@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Anime Schedule</string>
+    <string name="action_settings">Settings</string>
+    <string name="label_mail">Mail:</string>
+    <string name="label_password">Password:</string>
+    <string name="label_repository_url">Remote Repository URL:</string>
+    <string name="label_repository_branch">Branch:</string>
+    <string name="label_git_display_name">Display Name:</string>
+    <string name="label_git_user_name">User Name:</string>
+    <string name="action_test_connection">Test Connection</string>
+    <string name="action_save_settings">Save Settings</string>
+    <string name="message_notice_title">Notice</string>
+    <string name="message_lose_changes">You have unsaved changes, continue?</string>
+    <string name="message_settings_saved">Settings saved.</string>
+    <string name="action_restore_settings">Reset Settings</string>
+    <string name="message_overwrite_settings">This operation will overwrite your current settings, continue?</string>
+    <string name="message_settings_cleared">Settings were reset.</string>
+</resources>

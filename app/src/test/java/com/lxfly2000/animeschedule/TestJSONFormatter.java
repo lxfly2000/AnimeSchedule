@@ -1,14 +1,13 @@
 package com.lxfly2000.animeschedule;
 
-import com.lxfly2000.jsonformatter.JSONFormatter;
+import com.lxfly2000.utilities.JSONFormatter;
+import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 //测试JSON格式化类
 public class TestJSONFormatter {
     @Test
-    public void TestFormat() throws Exception {
+    public void TestFormat() {
         String srcJSON="{" +
 "\"_comment\":\"测试用\"," +
 "\"last_watch_index\":0," +
@@ -84,6 +83,6 @@ public class TestJSONFormatter {
 "\t}]\n" +
 "}";
         String testStr= JSONFormatter.Format(srcJSON);
-        assertEquals(formattedJSON,testStr);
+        Assert.assertEquals(formattedJSON,testStr);
     }
 }

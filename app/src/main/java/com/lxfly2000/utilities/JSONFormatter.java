@@ -1,4 +1,4 @@
-package com.lxfly2000.jsonformatter;
+package com.lxfly2000.utilities;
 
 public class JSONFormatter {
     private static void AppendNewLine(StringBuilder builder,int tabCount){
@@ -7,7 +7,6 @@ public class JSONFormatter {
             builder.append('\t');
     }
 
-    //并不具有通用性
     public static String Format(String srcJsonString){
         StringBuilder jsonStringBuilder=new StringBuilder();
         int tabCount=0,readerPos=0;

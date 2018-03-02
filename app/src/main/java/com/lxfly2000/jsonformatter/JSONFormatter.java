@@ -1,4 +1,4 @@
-package com.lxfly2000.animeschedule;
+package com.lxfly2000.jsonformatter;
 
 public class JSONFormatter {
     private static void AppendNewLine(StringBuilder builder,int tabCount){

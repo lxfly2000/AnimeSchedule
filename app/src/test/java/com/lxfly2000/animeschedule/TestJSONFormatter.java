@@ -1,5 +1,6 @@
 package com.lxfly2000.animeschedule;
 
+import com.lxfly2000.jsonformatter.JSONFormatter;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -82,7 +83,7 @@ public class TestJSONFormatter {
 "\t\t\"category\":[\"致郁\",\"猎奇\"]\n" +
 "\t}]\n" +
 "}";
-        String testStr=JSONFormatter.Format(srcJSON);
+        String testStr= JSONFormatter.Format(srcJSON);
         assertEquals(formattedJSON,testStr);
     }
 }

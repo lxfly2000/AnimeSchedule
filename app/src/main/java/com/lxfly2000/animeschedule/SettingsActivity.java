@@ -101,6 +101,7 @@ public class SettingsActivity extends AppCompatActivity {
         wPreference.apply();
         modified=false;
         Toast.makeText(this,R.string.message_settings_saved,Toast.LENGTH_LONG).show();
+        //TODO：放置要求更新数据的Extra信息
         if(finishActivity)
             finish();
         return true;

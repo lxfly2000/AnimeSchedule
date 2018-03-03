@@ -13,6 +13,7 @@
 package com.lxfly2000.animeschedule;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -24,16 +25,20 @@ import android.view.View;
 import android.widget.*;
 import com.lxfly2000.utilities.AndroidUtility;
 import com.lxfly2000.utilities.FileUtility;
+import com.lxfly2000.utilities.JSONFormatter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    JSONObject animeJson;
+    private JSONObject animeJson,workingJson;//TODO:换成我自己的类
+    private ArrayList<Integer>jsonSortTable;
     ListView listAnime;
     FloatingActionButton fab;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +56,16 @@ public class MainActivity extends AppCompatActivity {
         if(!AndroidUtility.CheckPermissionWithFinishOnDenied(this,
                 "android.permission.READ_EXTERNAL_STORAGE","No reading permission."))
             return;
+        preferences=Values.GetPreference(this);
+        if(preferences.getString(Values.keyRepositoryUrl,Values.vDefaultString).contentEquals(Values.vDefaultString)){
+            Toast.makeText(this,R.string.message_build_default_settings,Toast.LENGTH_LONG).show();
+            Values.BuildDefaultSettings(this);
+        }
         listAnime=(ListView)findViewById(R.id.listAnime);
         listAnime.setOnItemClickListener(listAnimeCallback);
-        try {
-            animeJson=new JSONObject(FileUtility.ReadFile(Values.GetJsonDataFullPath()));
-        }catch (JSONException e){
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
-        }
+        ReadJsonFile();
         DisplayList();
+        GetAnimeUpdateInfo(true);
     }
 
     AdapterView.OnItemClickListener listAnimeCallback=new AdapterView.OnItemClickListener() {
@@ -72,20 +79,34 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void DisplayList(){
+    private void ReadJsonFile(){
+        try{
+            animeJson=new JSONObject(FileUtility.ReadFile(Values.GetJsonDataFullPath()));
+        }catch (JSONException e){
+            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void SaveJsonFile(){
+        FileUtility.WriteFile(Values.GetJsonDataFullPath(), JSONFormatter.Format(animeJson.toString()));
+    }
+
+    private void DisplayList(){
+        BuildSortTable(2);
         ArrayList<HashMap<String,Object>>listItems=new ArrayList<>();
         try{
             for(int i=0;i<animeJson.getJSONArray("anime").length();i++){
                 HashMap<String,Object>listItem=new HashMap<>();
-                listItem.put("title",animeJson.getJSONArray("anime").getJSONObject(i).getString("title"));
-                listItem.put("description",animeJson.getJSONArray("anime").getJSONObject(i).getString("description"));
+                JSONObject animeObject=animeJson.getJSONArray("anime").getJSONObject(jsonSortTable.get(i));
+                listItem.put("title",animeObject.getString("title"));
+                listItem.put("description",animeObject.getString("description"));
                 StringBuilder rankingString=new StringBuilder();
                 for(int j=0;j<5;j++){
-                    rankingString.append(j>animeJson.getJSONArray("anime").getJSONObject(i).getInt("rank")?"☆":"★");
+                    rankingString.append(j<animeObject.getInt("rank")?"★":"☆");
                 }
                 listItem.put("ranking",rankingString.toString());
-                listItem.put("schedule",animeJson.getJSONArray("anime").getJSONObject(i).getString("start_date")+" 开始放送");
-                listItem.put("cover", Uri.parse(animeJson.getJSONArray("anime").getJSONObject(i).getString("cover")));
+                listItem.put("schedule",animeObject.getString("start_date")+" 开始放送");
+                listItem.put("cover", R.mipmap.ic_launcher);
                 listItems.add(listItem);
             }
         }catch (JSONException e){
@@ -94,6 +115,34 @@ public class MainActivity extends AppCompatActivity {
         String[]keyStrings={"title","description","ranking","schedule","cover"};
         int[]viewIds={R.id.textAnimeTitle,R.id.textAnimeDescription,R.id.textRanking,R.id.textSchedule,R.id.imageCover};
         listAnime.setAdapter(new SimpleAdapter(this,listItems,R.layout.item_anime,keyStrings,viewIds));
+    }
+
+    //排序，order:0=不排序，1=升序，2=降序
+    private void BuildSortTable(int order){
+        try {
+            int listCount=animeJson.getJSONArray("anime").length();
+            jsonSortTable=new ArrayList<>(listCount);
+            for(int i=0;i<listCount;i++)
+                jsonSortTable.add(i);
+            if(order==0)
+                return;
+            jsonSortTable.sort(new Comparator<Integer>() {
+                @Override
+                public int compare(Integer integer, Integer t1) {
+                    //TODO：按更新日期排序
+                    return 0;
+                }
+            });
+        }catch (JSONException e){
+            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void GetAnimeUpdateInfo(boolean onStartup){
+        if(onStartup&&preferences.getString(Values.keyAnimeInfoDate,Values.vDefaultString).contentEquals("【Today】"))
+            return;
+        //TODO:显示番剧的更新信息
+        AndroidUtility.MessageBox(this,"TODO:制作中。");
     }
 
     @Override
@@ -106,8 +155,28 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.action_settings:OnActionSettings();return true;
+            case R.id.action_show_anime_update:OnShowAnimeUpdate();return true;
+            case R.id.action_view_web_page:OnViewWebPage();return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void OnShowAnimeUpdate(){
+        GetAnimeUpdateInfo(false);
+    }
+
+    private void OnViewWebPage(){
+        String url=preferences.getString(Values.keyRepositoryUrl,"");
+        if(!url.startsWith("https://github.com")){
+            AndroidUtility.MessageBox(this,getString(R.string.message_not_supported_url));
+            return;
+        }
+        url=url.substring(19);
+        if(url.endsWith(".git"))
+            url=url.substring(0,url.length()-4);
+        String[]urlParts=url.split("/");
+        url="https://"+urlParts[0]+".github.io/"+urlParts[1];
+        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url)));
     }
 
     private void OnActionSettings(){

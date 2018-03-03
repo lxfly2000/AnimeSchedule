@@ -25,7 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         findViewById(R.id.buttonSaveSettings).setOnClickListener(buttonCallbacks);
-        preferences=getPreferences(MODE_PRIVATE);
+        preferences=Values.GetPreference(this);
         editRepositoryUrl=(EditText)findViewById(R.id.editRepositoryUrl);
         editRepositoryUrl.addTextChangedListener(editCallback);
         editBranch=(EditText)findViewById(R.id.editRepositoryBranch);
@@ -74,12 +74,12 @@ public class SettingsActivity extends AppCompatActivity {
     };
 
     private void LoadSettings(){
-        editRepositoryUrl.setText(preferences.getString(Values.keyRepositoryUrl,Values.vdRepositoryUrl));
-        editBranch.setText(preferences.getString(Values.keyBranch,Values.vdBranch));
-        editMail.setText(preferences.getString(Values.keyMail,Values.vdMail));
-        editDisplayName.setText(preferences.getString(Values.keyDisplayName,Values.vdDisplayName));
-        editUserName.setText(preferences.getString(Values.keyUserName,Values.vdUserName));
-        editPassword.setText(preferences.getString(Values.keyPassword,Values.vdPassword));
+        editRepositoryUrl.setText(preferences.getString(Values.keyRepositoryUrl,Values.vDefaultString));
+        editBranch.setText(preferences.getString(Values.keyBranch,Values.vDefaultString));
+        editMail.setText(preferences.getString(Values.keyMail,Values.vDefaultString));
+        editDisplayName.setText(preferences.getString(Values.keyDisplayName,Values.vDefaultString));
+        editUserName.setText(preferences.getString(Values.keyUserName,Values.vDefaultString));
+        editPassword.setText(preferences.getString(Values.keyPassword,Values.vDefaultString));
         modified=false;
     }
 

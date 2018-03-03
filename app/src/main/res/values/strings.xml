@@ -21,4 +21,9 @@
     <string name="label_anime_category">Category</string>
     <string name="message_uncategoried">No Category</string>
     <string name="label_anime_cover">Anime Cover</string>
+    <string name="action_show_anime_update">Anime update info.</string>
+    <string name="action_view_web_page">View web page</string>
+    <string name="message_not_supported_url">The repository URL you specified doesn\'t supported for viewing web page.
+    </string>
+    <string name="message_build_default_settings">Building default settings...</string>
 </resources>

@@ -29,6 +29,13 @@ public class FileUtility {
     public static boolean WriteFile(String path,String data){
         File file=new File(path);
         try {
+            if(!file.exists()){
+                File dir=new File(path.substring(0,path.lastIndexOf('/')));
+                if(!dir.exists()&&!dir.mkdirs())
+                    return false;
+                if(!file.createNewFile())
+                    return false;
+            }
             FileWriter writer=new FileWriter(file);
             writer.write(data);
             writer.close();
@@ -36,5 +43,10 @@ public class FileUtility {
             return false;
         }
         return true;
+    }
+
+    public static boolean IsFileExists(String path){
+        File file=new File(path);
+        return file.exists();
     }
 }

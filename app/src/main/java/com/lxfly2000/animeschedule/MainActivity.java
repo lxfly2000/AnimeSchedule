@@ -2,7 +2,7 @@
 * 读取json文件并显示（OK）
 * 异步加载图片，更新列表显示
 * 根据json中项目的更新日期排序（OK）
-* 可增加/删除/长按修改项目，并保存至本地文件
+* 可增加/删除/长按修改项目，并保存至本地文件（基本OK）
 * 对于B站链接，可根据链接自动获取所需信息（简介，时间，分类等）
 * 可直接在列表上标记观看集数
 * 点击打开链接（OK）
@@ -21,6 +21,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,8 +30,6 @@ import com.lxfly2000.utilities.AndroidUtility;
 import com.lxfly2000.utilities.FileUtility;
 import com.lxfly2000.utilities.JSONFormatter;
 import com.lxfly2000.utilities.YMDDate;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -41,19 +40,20 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Integer>jsonSortTable;
     private int sortOrder=0;
     ListView listAnime;
-    FloatingActionButton fab;
+    FloatingActionButton fabAddItem;
     private SharedPreferences preferences;
+    private int longPressedListItem=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
-        fab=(FloatingActionButton)findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fabAddItem=(FloatingActionButton)findViewById(R.id.fabAddItem);
+        fabAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OnActionSettings();
+                OnAddAnime();
             }
         });
 
@@ -66,9 +66,16 @@ public class MainActivity extends AppCompatActivity {
             Values.BuildDefaultSettings(this);
         }
         listAnime=(ListView)findViewById(R.id.listAnime);
+        registerForContextMenu(listAnime);
         listAnime.setOnItemClickListener(listAnimeCallback);
-        ReadJsonFile();
-        DisplayList();
+        listAnime.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                longPressedListItem=i;
+                return false;
+            }
+        });
+        SaveAndReloadJsonFile(false);
         GetAnimeUpdateInfo(true);
     }
 
@@ -80,15 +87,19 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void ReadJsonFile(){
+        if(!FileUtility.IsFileExists(Values.GetJsonDataFullPath())){
+            animeJson=new AnimeJson();
+            SaveJsonFile();
+        }
         animeJson=new AnimeJson(Values.GetJsonDataFullPath());
     }
 
     private void SaveJsonFile(){
-        FileUtility.WriteFile(Values.GetJsonDataFullPath(), JSONFormatter.Format(animeJson.toString()));
+        animeJson.SaveToFile(Values.GetJsonDataFullPath());
     }
 
     private void DisplayList(){
-        BuildSortTable(2);
+        RebuildSortTable(2);
         ArrayList<HashMap<String,Object>>listItems=new ArrayList<>();
         for(int i=0;i<animeJson.GetAnimeCount();i++){
             HashMap<String,Object>listItem=new HashMap<>();
@@ -109,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //排序，order:0=不排序，1=升序，2=降序
-    private void BuildSortTable(final int order){
+    private void RebuildSortTable(final int order){
         sortOrder=order;
         int listCount=animeJson.GetAnimeCount();
         jsonSortTable=new ArrayList<>(listCount);
@@ -201,8 +212,75 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_settings:OnActionSettings();return true;
             case R.id.action_show_anime_update:OnShowAnimeUpdate();return true;
             case R.id.action_view_web_page:OnViewWebPage();return true;
+            case R.id.action_add_item:OnAddAnime();return true;
+            case R.id.action_remove_all_item:OnRemoveAllAnime();return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu,View v,ContextMenu.ContextMenuInfo menuInfo){
+        getMenuInflater().inflate(R.menu.menu_anime_list,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.action_edit_item:EditAnime(jsonSortTable.get(longPressedListItem));break;
+            case R.id.action_remove_item:RemoveItem(jsonSortTable.get(longPressedListItem));break;
+        }
+        return false;
+    }
+
+    private void RemoveItem(int index){
+        animeJson.RemoveItem(index);
+        SaveAndReloadJsonFile(true);
+    }
+
+    private void OnAddAnime(){
+        int ni=animeJson.AddNewItem();
+        jsonSortTable.add(ni);
+        if(!EditAnime(ni)){
+            animeJson.RemoveItem(ni);
+            jsonSortTable.remove(ni);
+        }
+    }
+
+    private void OnRemoveAllAnime(){
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.message_notice_title)
+                .setMessage(R.string.message_remove_all_warning)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        RemoveAllAnime();
+                    }
+                })
+                .setNegativeButton(android.R.string.no,null)
+                .show();
+    }
+
+    private boolean EditAnime(int index){
+        //TODO
+        AndroidUtility.MessageBox(this,"编辑功能正在制作中。\n当前选择："+animeJson.GetTitle(jsonSortTable.get(index)));
+        if(true/*TODO：如果选择了确定*/){
+            SaveAndReloadJsonFile(true);
+            return true;
+        }
+        return false;
+    }
+
+    private void RemoveAllAnime(){
+        animeJson.ClearAllAnime();
+        SaveAndReloadJsonFile(true);
+    }
+
+    private void SaveAndReloadJsonFile(boolean save){
+        if(save)
+            SaveJsonFile();
+        ReadJsonFile();
+        DisplayList();
     }
 
     private void OnShowAnimeUpdate(){

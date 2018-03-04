@@ -26,4 +26,9 @@
     <string name="message_not_supported_url">The repository URL you specified doesn\'t supported for viewing web page.
     </string>
     <string name="message_build_default_settings">Building default settings...</string>
+    <string name="action_add_item">Add Anime</string>
+    <string name="action_remove_item">Remove Anime</string>
+    <string name="action_remove_all_item">Remove All Anime</string>
+    <string name="message_remove_all_warning">This will remove all Anime in the list, continue?</string>
+    <string name="action_edit_item">Edit Anime</string>
 </resources>

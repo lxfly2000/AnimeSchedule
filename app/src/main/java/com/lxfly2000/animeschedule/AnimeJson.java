@@ -28,6 +28,23 @@ public class AnimeJson {
         LoadFromFile(path);
     }
 
+    public AnimeJson(){
+        BuildDefaultData();
+    }
+
+    public void BuildDefaultData(){
+        try {
+            json=new JSONObject();
+            json.put("_comment","创建于"+YMDDate.GetTodayDate().ToYMDString());
+            json.put("last_watch_index",0);
+            json.put("last_watch_episode",0);
+            json.put("last_watch_date",YMDDate.GetTodayDate().ToYMDString());
+            json.put("anime",new JSONArray());
+        }catch (JSONException e){
+            json=null;
+        }
+    }
+
     public void LoadFromFile(String path){
         try {
             json = new JSONObject(FileUtility.ReadFile(path));
@@ -355,8 +372,10 @@ public class AnimeJson {
         try {
             JSONObject o=json.getJSONArray("anime").getJSONObject(index);
             JSONArray a=new JSONArray();
-            for(int i=0;i<category.length;i++)
-                a.put(i,category[i]);
+            if(category!=null) {
+                for (int i = 0; i < category.length; i++)
+                    a.put(i, category[i]);
+            }
             o.put("category",a);
         }catch (JSONException e){
             return false;
@@ -382,5 +401,54 @@ public class AnimeJson {
 
     public YMDDate GetLastUpdateYMDDate(int index){
         return jsonExtra.lastUpdateDate.get(index);
+    }
+
+    public int AddNewItem(){
+        int ni=-1;
+        try {
+            JSONArray a=json.getJSONArray("anime");
+            ni=a.length();
+            JSONObject o=new JSONObject();
+            o.put("watched_episode",new JSONArray());
+            a.put(ni,o);
+            SetCoverUrl(ni,"https://bangumi.bilibili.com/anime/");
+            SetTitle(ni,"");
+            SetDescription(ni,"Bili:");
+            SetStartDate(ni,YMDDate.GetTodayDate().ToYMDString());
+            SetUpdatePeriod(ni,7);
+            SetUpdatePeriodUnit(ni,unitDay);
+            SetEpisodeCount(ni,-1);
+            SetAbsenseCount(ni,0);
+            SetEpisodeWatched(ni,1,false);
+            SetAbandoned(ni,false);
+            SetRank(ni,0);
+            SetColor(ni,"blank");
+            SetCategory(ni,new String[]{});
+        }catch (JSONException e){
+            return -1;
+        }
+        return ni;
+    }
+
+    public boolean RemoveItem(int index){
+        try {
+            json.getJSONArray("anime").remove(index);
+        }catch (JSONException e){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean ClearAllAnime(){
+        try {
+            JSONArray a=json.getJSONArray("anime");
+            while(a.length()>0) {
+                if (!RemoveItem(0))
+                    return false;
+            }
+        }catch (JSONException e){
+            return false;
+        }
+        return true;
     }
 }

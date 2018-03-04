@@ -28,7 +28,6 @@ import android.view.View;
 import android.widget.*;
 import com.lxfly2000.utilities.AndroidUtility;
 import com.lxfly2000.utilities.FileUtility;
-import com.lxfly2000.utilities.JSONFormatter;
 import com.lxfly2000.utilities.YMDDate;
 
 import java.util.ArrayList;
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         GetAnimeUpdateInfo(true);
     }
 
-    AdapterView.OnItemClickListener listAnimeCallback=new AdapterView.OnItemClickListener() {
+    private AdapterView.OnItemClickListener listAnimeCallback=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(animeJson.GetWatchUrl(jsonSortTable.get(i)))));
@@ -240,10 +239,13 @@ public class MainActivity extends AppCompatActivity {
     private void OnAddAnime(){
         int ni=animeJson.AddNewItem();
         jsonSortTable.add(ni);
-        if(!EditAnime(ni)){
-            animeJson.RemoveItem(ni);
-            jsonSortTable.remove(ni);
-        }
+        EditAnime(ni);
+    }
+
+    private void OnAddAnimeCallback_Revert(){
+        int li=animeJson.GetAnimeCount()-1;
+        animeJson.RemoveItem(li);
+        jsonSortTable.remove(li);
     }
 
     private void OnRemoveAllAnime(){
@@ -261,14 +263,37 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    private boolean EditAnime(int index){
-        //TODO
-        AndroidUtility.MessageBox(this,"编辑功能正在制作中。\n当前选择："+animeJson.GetTitle(jsonSortTable.get(index)));
-        if(true/*TODO：如果选择了确定*/){
-            SaveAndReloadJsonFile(true);
-            return true;
-        }
-        return false;
+    private EditText editDialogDescription;
+    //TODO：其他对话框中的控件
+    private void EditAnime(int index){
+        //TODO：完善对话框
+        AlertDialog editDialog=new AlertDialog.Builder(this)
+                .setTitle(R.string.action_edit_item)
+                .setView(R.layout.dialog_edit_anime)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getBaseContext(),"选择了确定。\n描述："+editDialogDescription.getText(),Toast.LENGTH_LONG).show();
+                        //TODO：获取对话框中输入的信息并保存到JSON中。
+                        SaveAndReloadJsonFile(true);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        OnAddAnimeCallback_Revert();
+                    }
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        OnAddAnimeCallback_Revert();
+                    }
+                })
+                .show();
+        //http://blog.csdn.net/nihaoqiulinhe/article/details/49026263
+        editDialogDescription=(EditText)editDialog.findViewById(R.id.editTextDescription);
+        editDialogDescription.setText("编辑功能正在制作中。\n当前选择："+animeJson.GetTitle(index));
     }
 
     private void RemoveAllAnime(){

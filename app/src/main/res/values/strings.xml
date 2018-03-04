@@ -31,4 +31,12 @@
     <string name="action_remove_all_item">Remove All Anime</string>
     <string name="message_remove_all_warning">This will remove all Anime in the list, continue?</string>
     <string name="action_edit_item">Edit Anime</string>
+    <string name="label_start_date">Start Date</string>
+    <string name="label_update_period">Update Period</string>
+    <string name="label_anime_episode_count">Episode Count</string>
+    <string name="label_anime_absense_count">Absense Count</string>
+    <string name="label_watch_url">Anime URL</string>
+    <string name="label_watched_episode">Watched Episodes</string>
+    <string name="label_abandoned">Abandoned</string>
+    <string name="label_color">Color</string>
 </resources>

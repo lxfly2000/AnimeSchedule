@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="label_units">
+        <item>月</item>
+        <item>日</item>
+    </string-array>
+</resources>

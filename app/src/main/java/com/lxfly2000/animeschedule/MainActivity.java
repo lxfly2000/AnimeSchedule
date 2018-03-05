@@ -2,7 +2,7 @@
 * 读取json文件并显示（OK）
 * 异步加载图片，更新列表显示
 * 根据json中项目的更新日期排序（OK）
-* 可增加/删除/长按修改项目，并保存至本地文件（基本OK）
+* 可增加/删除/长按修改项目，并保存至本地文件（OK）
 * 对于B站链接，可根据链接自动获取所需信息（简介，时间，分类等）
 * 可直接在列表上标记观看集数
 * 点击打开链接（OK）
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Integer>jsonSortTable;
     private int sortOrder=0;
     ListView listAnime;
-    FloatingActionButton fabAddItem;
+    FloatingActionButton fabAnimeUpdate;
     private SharedPreferences preferences;
     private int longPressedListItem=-1;
 
@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
-        fabAddItem=(FloatingActionButton)findViewById(R.id.fabAddItem);
-        fabAddItem.setOnClickListener(new View.OnClickListener() {
+        fabAnimeUpdate=(FloatingActionButton)findViewById(R.id.fabShowAnimeUpdate);
+        fabAnimeUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OnAddAnime();
+                OnShowAnimeUpdate();
             }
         });
 
@@ -109,7 +109,23 @@ public class MainActivity extends AppCompatActivity {
                 rankingString.append(j<animeJson.GetRank(jsonSortTable.get(i))?"★":"☆");
             }
             listItem.put("ranking",rankingString.toString());
-            listItem.put("schedule",animeJson.GetLastUpdateYMDDate(jsonSortTable.get(i)).ToYMDString()+"更新"+animeJson.GetLastUpdateEpisode(jsonSortTable.get(i))+"话");
+            StringBuilder strSchedule=new StringBuilder();
+            strSchedule.append(animeJson.GetLastUpdateYMDDate(jsonSortTable.get(i)).ToYMDString())
+                    .append("更新")
+                    .append(animeJson.GetLastUpdateEpisode(jsonSortTable.get(i)))
+                    .append("话");
+            int haveNotWatched=0;
+            for(int j=1;j<=animeJson.GetLastUpdateEpisode(jsonSortTable.get(i));j++){
+                if(!animeJson.GetEpisodeWatched(jsonSortTable.get(i),j)){
+                    if(haveNotWatched==0)
+                        strSchedule.append("，未观看：");
+                    else
+                        strSchedule.append(", ");
+                    haveNotWatched++;
+                    strSchedule.append(String.valueOf(j));
+                }
+            }
+            listItem.put("schedule",strSchedule.toString());
             listItem.put("cover", R.mipmap.ic_launcher);
             listItems.add(listItem);
         }
@@ -225,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item){
         switch (item.getItemId()){
-            case R.id.action_edit_item:EditAnime(jsonSortTable.get(longPressedListItem));break;
+            case R.id.action_edit_item:EditAnime(jsonSortTable.get(longPressedListItem),false);break;
             case R.id.action_remove_item:RemoveItem(jsonSortTable.get(longPressedListItem));break;
         }
         return false;
@@ -239,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
     private void OnAddAnime(){
         int ni=animeJson.AddNewItem();
         jsonSortTable.add(ni);
-        EditAnime(ni);
+        EditAnime(ni,true);
     }
 
     private void OnAddAnimeCallback_Revert(){
@@ -264,8 +280,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private EditText editDialogDescription;
+    private EditText editDialogCover;
+    private EditText editDialogTitle;
+    private EditText editDialogStartDate;
+    private EditText editDialogUpdatePeriod;
+    private Spinner comboDialogUpdatePeriodUnit;
+    private EditText editDialogEpisodeCount;
+    private EditText editDialogAbsenseCount;
+    private EditText editDialogWatchUrl;
+    private EditText editDialogWatchedEpisode;
+    private EditText editDialogColor;
+    private EditText editDialogCategory;
+    private CheckBox checkDialogAbandoned;
+    private EditText editDialogRanking;
     //TODO：其他对话框中的控件
-    private void EditAnime(int index){
+    private void EditAnime(final int index, final boolean fromAddAction){
+        //此处的index已经是对应到JSON的序号了，不用再从排序表里找
         //TODO：完善对话框
         AlertDialog editDialog=new AlertDialog.Builder(this)
                 .setTitle(R.string.action_edit_item)
@@ -273,27 +303,96 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getBaseContext(),"选择了确定。\n描述："+editDialogDescription.getText(),Toast.LENGTH_LONG).show();
-                        //TODO：获取对话框中输入的信息并保存到JSON中。
+                        animeJson.SetDescription(index,editDialogDescription.getText().toString());
+                        animeJson.SetCoverUrl(index,editDialogCover.getText().toString());
+                        animeJson.SetTitle(index,editDialogTitle.getText().toString());
+                        animeJson.SetStartDate(index,editDialogStartDate.getText().toString());
+                        animeJson.SetUpdatePeriod(index,Integer.parseInt(editDialogUpdatePeriod.getText().toString()));
+                        switch (comboDialogUpdatePeriodUnit.getSelectedItemPosition()){
+                            case 0:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitDay);break;
+                            case 1:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitMonth);break;
+                            case 2:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitYear);break;
+                        }
+                        animeJson.SetEpisodeCount(index,Integer.parseInt(editDialogEpisodeCount.getText().toString()));
+                        animeJson.SetAbsenseCount(index,Integer.parseInt(editDialogAbsenseCount.getText().toString()));
+                        animeJson.SetWatchUrl(index,editDialogWatchUrl.getText().toString());
+                        String[]strWatchedEpisodeArray=editDialogWatchedEpisode.getText().toString().split(",");
+                        for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(index);i_epi++)
+                            animeJson.SetEpisodeWatched(index,i_epi,false);
+                        for (String strEachWatched : strWatchedEpisodeArray)
+                            if(!strEachWatched.contentEquals(""))
+                                animeJson.SetEpisodeWatched(index, Integer.parseInt(strEachWatched), true);
+                        animeJson.SetColor(index,editDialogColor.getText().toString());
+                        animeJson.SetCategory(index,editDialogCategory.getText().toString().split(","));
+                        animeJson.SetAbandoned(index,checkDialogAbandoned.isChecked());
+                        animeJson.SetRank(index,Integer.parseInt(editDialogRanking.getText().toString()));
                         SaveAndReloadJsonFile(true);
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        OnAddAnimeCallback_Revert();
+                        if(fromAddAction)
+                            OnAddAnimeCallback_Revert();
                     }
                 })
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialogInterface) {
-                        OnAddAnimeCallback_Revert();
+                        if(fromAddAction)
+                            OnAddAnimeCallback_Revert();
                     }
                 })
                 .show();
         //http://blog.csdn.net/nihaoqiulinhe/article/details/49026263
         editDialogDescription=(EditText)editDialog.findViewById(R.id.editTextDescription);
-        editDialogDescription.setText("编辑功能正在制作中。\n当前选择："+animeJson.GetTitle(index));
+        editDialogCover=(EditText)editDialog.findViewById(R.id.editDialogCover);
+        editDialogTitle=(EditText)editDialog.findViewById(R.id.editDialogTitle);
+        editDialogStartDate=(EditText)editDialog.findViewById(R.id.editDialogStartDate);
+        editDialogUpdatePeriod=(EditText)editDialog.findViewById(R.id.editDialogUpdatePeriod);
+        comboDialogUpdatePeriodUnit=(Spinner)editDialog.findViewById(R.id.comboDialogUpdatePeriodUnit);
+        editDialogEpisodeCount=(EditText)editDialog.findViewById(R.id.editDialogEpisodeCount);
+        editDialogAbsenseCount=(EditText)editDialog.findViewById(R.id.editDialogAbsenseCount);
+        editDialogWatchUrl=(EditText)editDialog.findViewById(R.id.editDialogWatchUrl);
+        editDialogWatchedEpisode=(EditText)editDialog.findViewById(R.id.editDialogWatchedEpisodes);
+        editDialogColor=(EditText)editDialog.findViewById(R.id.editDialogColor);
+        editDialogCategory=(EditText)editDialog.findViewById(R.id.editDialogCategory);
+        checkDialogAbandoned=(CheckBox)editDialog.findViewById(R.id.checkAbandoned);
+        editDialogRanking=(EditText)editDialog.findViewById(R.id.editDialogRank);
+
+        editDialogDescription.setText(animeJson.GetDescription(index));
+        editDialogCover.setText(animeJson.GetCoverUrl(index));
+        editDialogTitle.setText(animeJson.GetTitle(index));
+        editDialogStartDate.setText(animeJson.GetStartDate(index));
+        editDialogUpdatePeriod.setText(String.valueOf(animeJson.GetUpdatePeriod(index)));
+        switch (animeJson.GetUpdatePeriodUnit(index)){
+            case AnimeJson.unitDay:comboDialogUpdatePeriodUnit.setSelection(0,true);break;
+            case AnimeJson.unitMonth:comboDialogUpdatePeriodUnit.setSelection(1,true);break;
+            case AnimeJson.unitYear:comboDialogUpdatePeriodUnit.setSelection(2,true);break;
+        }
+        editDialogEpisodeCount.setText(String.valueOf(animeJson.GetEpisodeCount(index)));
+        editDialogAbsenseCount.setText(String.valueOf(animeJson.GetAbsenseCount(index)));
+        editDialogWatchUrl.setText(String.valueOf(animeJson.GetWatchUrl(index)));
+        StringBuilder stringBuilder=new StringBuilder();
+        for(int i=1;i<=animeJson.GetLastUpdateEpisode(index);i++){
+            if(animeJson.GetEpisodeWatched(index,i)){
+                if(stringBuilder.length()!=0)
+                    stringBuilder.append(",");
+                stringBuilder.append(String.valueOf(i));
+            }
+        }
+        editDialogWatchedEpisode.setText(stringBuilder.toString());
+        editDialogColor.setText(String.valueOf(animeJson.GetColor(index)));
+        String[]strCategoryArray=animeJson.GetCategory(index);
+        stringBuilder=new StringBuilder();
+        for(int i=0;i<strCategoryArray.length;i++){
+            if(i!=0)
+                stringBuilder.append(",");
+            stringBuilder.append(strCategoryArray[i]);
+        }
+        editDialogCategory.setText(stringBuilder.toString());
+        checkDialogAbandoned.setChecked(animeJson.GetAbandoned(index));
+        editDialogRanking.setText(String.valueOf(animeJson.GetRank(index)));
     }
 
     private void RemoveAllAnime(){

@@ -411,7 +411,8 @@ public class AnimeJson {
             JSONObject o=new JSONObject();
             o.put("watched_episode",new JSONArray());
             a.put(ni,o);
-            SetCoverUrl(ni,"https://bangumi.bilibili.com/anime/");
+            SetCoverUrl(ni,"");
+            SetWatchUrl(ni,"http://bangumi.bilibili.com/anime/");
             SetTitle(ni,"");
             SetDescription(ni,"Bili:");
             SetStartDate(ni,YMDDate.GetTodayDate().ToYMDString());
@@ -422,8 +423,9 @@ public class AnimeJson {
             SetEpisodeWatched(ni,1,false);
             SetAbandoned(ni,false);
             SetRank(ni,0);
-            SetColor(ni,"blank");
+            SetColor(ni,"silver");
             SetCategory(ni,new String[]{});
+            CalculateExtraInfomation();
         }catch (JSONException e){
             return -1;
         }
@@ -433,6 +435,7 @@ public class AnimeJson {
     public boolean RemoveItem(int index){
         try {
             json.getJSONArray("anime").remove(index);
+            CalculateExtraInfomation();
         }catch (JSONException e){
             return false;
         }

@@ -96,9 +96,9 @@
                     <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="number"
                             android:ems="10"
-                            android:id="@+id/editDialogEpisodeCount" android:hint="@string/label_anime_episode_count"/>
+                            android:id="@+id/editDialogEpisodeCount" android:hint="@string/label_anime_episode_count"
+                            android:inputType="numberSigned"/>
                 </LinearLayout>
                 <LinearLayout
                         android:orientation="vertical"
@@ -134,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:id="@+id/editDialogWatchedEpisodes" android:inputType="number"
-                    android:hint="@string/label_watched_episode"/>
+                    android:hint="@string/message_not_watched"/>
             <TextView
                     android:text="@string/label_color"
                     android:layout_width="match_parent"

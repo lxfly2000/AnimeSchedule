@@ -133,8 +133,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/editDialogWatchedEpisodes" android:inputType="number"
-                    android:hint="@string/message_not_watched"/>
+                    android:id="@+id/editDialogWatchedEpisodes"
+                    android:hint="@string/message_not_watched" android:inputType="text"/>
+            <TextView
+                    android:text="@string/label_anime_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textDialogCategory"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:id="@+id/editDialogCategory" android:hint="@string/message_uncategoried"/>
             <TextView
                     android:text="@string/label_color"
                     android:layout_width="match_parent"
@@ -167,16 +177,6 @@
                         android:layout_height="wrap_content" android:id="@+id/checkAbandoned"
                         android:layout_weight="1"/>
             </LinearLayout>
-            <TextView
-                    android:text="@string/label_anime_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogCategory"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/editDialogCategory" android:hint="@string/message_uncategoried"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

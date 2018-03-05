@@ -40,4 +40,5 @@
     <string name="label_abandoned">Abandoned</string>
     <string name="label_color">Color</string>
     <string name="message_not_watched">Not Watched</string>
+    <string name="message_saving_item">Saving data...</string>
 </resources>

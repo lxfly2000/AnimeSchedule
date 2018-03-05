@@ -326,6 +326,7 @@ public class MainActivity extends AppCompatActivity {
                         animeJson.SetCategory(index,editDialogCategory.getText().toString().split(","));
                         animeJson.SetAbandoned(index,checkDialogAbandoned.isChecked());
                         animeJson.SetRank(index,Integer.parseInt(editDialogRanking.getText().toString()));
+                        Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();
                         SaveAndReloadJsonFile(true);
                     }
                 })

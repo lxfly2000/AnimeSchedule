@@ -12,9 +12,8 @@
 
 package com.lxfly2000.animeschedule;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -76,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
         });
         SaveAndReloadJsonFile(false);
         GetAnimeUpdateInfo(true);
+
+        //注册检查更新广播接收器
+        IntentFilter fiUpdate=new IntentFilter();
+        fiUpdate.addAction(ACTION_CHECK_UPDATE_RESULT);
+        checkUpdateReceiver=new CheckUpdateReceiver();
+        registerReceiver(checkUpdateReceiver,fiUpdate);
+        //检测更新
+        CheckForUpdate(true);
     }
 
     private AdapterView.OnItemClickListener listAnimeCallback=new AdapterView.OnItemClickListener() {
@@ -229,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_view_web_page:OnViewWebPage();return true;
             case R.id.action_add_item:OnAddAnime();return true;
             case R.id.action_remove_all_item:OnRemoveAllAnime();return true;
+            case R.id.action_check_update:CheckForUpdate(false);return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -428,5 +436,79 @@ public class MainActivity extends AppCompatActivity {
 
     private void OnActionSettings(){
         startActivityForResult(new Intent(this,SettingsActivity.class),R.id.action_settings&0xFFFF);
+    }
+
+    private static final String INTENT_EXTRA_UPDATE_ONLY="onlyUpdate";
+    private static final String INTENT_EXTRA_FOUND_UPDATE="foundUpdate";
+    private static final String ACTION_CHECK_UPDATE_RESULT=BuildConfig.APPLICATION_ID+".CheckUpdateResult";
+    private UpdateChecker updateChecker=null;
+
+    private CheckUpdateReceiver checkUpdateReceiver;
+    class CheckUpdateReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            boolean onlyReportNewVersion=intent.getBooleanExtra(INTENT_EXTRA_UPDATE_ONLY,true);
+            boolean foundNewVersion=intent.getBooleanExtra(INTENT_EXTRA_FOUND_UPDATE,false);
+            AlertDialog.Builder msgBox=new AlertDialog.Builder(context);//这里不能用getApplicationContext.
+            msgBox.setPositiveButton(android.R.string.ok,null);
+            msgBox.setTitle(R.string.menu_check_update);
+            if (foundNewVersion) {
+                String msg = String.format(getString(R.string.message_new_version), BuildConfig.VERSION_NAME, updateChecker.GetUpdateVersionName());
+                msgBox.setMessage(msg);
+                msgBox.setIcon(android.R.drawable.ic_dialog_info);
+                msgBox.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent=new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(getString(R.string.url_author)));
+                        startActivity(intent);
+                    }
+                });
+                msgBox.setNegativeButton(android.R.string.cancel,null);
+            }else if (onlyReportNewVersion){
+                return;
+            }else if (updateChecker.IsError()){
+                msgBox.setMessage(R.string.error_check_update);
+                msgBox.setIcon(android.R.drawable.ic_dialog_alert);
+            }else {
+                msgBox.setMessage(R.string.message_no_update);
+            }
+            msgBox.show();
+        }
+    };
+
+    @Override
+    protected void onStop(){
+        if(checkUpdateReceiver!=null){
+            unregisterReceiver(checkUpdateReceiver);
+            checkUpdateReceiver=null;
+        }
+        super.onStop();
+    }
+
+    private void CheckForUpdate(boolean onlyReportNewVersion) {
+        if (updateChecker == null) {
+            updateChecker = new UpdateChecker().SetCheckURL(getString(R.string.url_check_update));
+        }
+        updateChecker.SetResultHandler(new UpdateChecker.ResultHandler(this) {
+            @Override
+            protected void OnReceive(boolean foundNewVersion) {
+                Intent intent = new Intent(ACTION_CHECK_UPDATE_RESULT);
+                intent.putExtra(INTENT_EXTRA_FOUND_UPDATE, foundNewVersion);
+                intent.putExtra(INTENT_EXTRA_UPDATE_ONLY, GetOnlyReportUpdate());
+                HandlerSendBroadcast(intent);
+            }
+        }.SetOnlyReportUpdate(onlyReportNewVersion));
+        if (checkCallingOrSelfPermission("android.permission.INTERNET") != PackageManager.PERMISSION_GRANTED) {
+            if (onlyReportNewVersion)
+                return;
+            AlertDialog.Builder msgBox = new AlertDialog.Builder(this)
+                    .setTitle(R.string.menu_check_update)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setMessage(R.string.error_permission_network);
+            msgBox.show();
+        } else {
+            updateChecker.CheckForUpdate();
+        }
     }
 }

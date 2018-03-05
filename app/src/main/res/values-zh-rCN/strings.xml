@@ -41,4 +41,9 @@
     <string name="label_watched_episode">已观看集数</string>
     <string name="message_not_watched">未观看</string>
     <string name="message_saving_item">保存信息……</string>
+    <string name="menu_check_update">检查更新</string>
+    <string name="message_new_version" formatted="false">检测到新版本，是否更新？\n当前版本：%s\n新版本：%s</string>
+    <string name="error_check_update">无法检查更新，可能是网络有问题或目标服务器已更改。</string>
+    <string name="message_no_update">当前版本已是最新。</string>
+    <string name="error_permission_network">未获取到联网权限，请修改权限设置。</string>
 </resources>

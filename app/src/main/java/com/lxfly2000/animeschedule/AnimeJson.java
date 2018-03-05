@@ -301,7 +301,7 @@ public class AnimeJson {
             return false;
         }
         if(watched)
-            SetLastWatch(index,episode,YMDDate.GetTodayDate().ToYMDString());
+            SetLastWatch(index,episode+1,YMDDate.GetTodayDate().ToYMDString());
         return true;
     }
 

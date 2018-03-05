@@ -41,4 +41,13 @@
     <string name="label_color">Color</string>
     <string name="message_not_watched">Not Watched</string>
     <string name="message_saving_item">Saving data...</string>
+    <string name="menu_check_update">Check Update</string>
+    <string name="message_new_version" formatted="false">Found new version, update?\nCurrent: %s\nNew: %s</string>
+    <string name="url_author" translatable="false">https://github.com/lxfly2000/AnimeScheduleClient</string>
+    <string name="error_check_update">Cannot check update.</string>
+    <string name="message_no_update">No update.</string>
+    <string name="error_permission_network">No network permission.</string>
+    <string name="url_check_update" translatable="false">
+        https://raw.githubusercontent.com/lxfly2000/AnimeScheduleClient/master/app/build.gradle
+    </string>
 </resources>

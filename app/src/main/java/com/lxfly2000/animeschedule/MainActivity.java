@@ -3,7 +3,7 @@
 * 异步加载图片，更新列表显示
 * 根据json中项目的更新日期排序（OK）
 * 可增加/删除/长按修改项目，并保存至本地文件（OK）
-* 对于B站链接，可根据链接自动获取所需信息（简介，时间，分类等）
+* 对于B站链接，可根据链接自动获取所需信息（简介，时间，分类等）（OK）
 * 可直接在列表上标记观看集数
 * 点击打开链接（OK）
 * 更新集数提示（用对话框显示，可选择今日不再提示(Neu)/关闭(Posi)）（OK）
@@ -25,13 +25,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
+import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.AndroidUtility;
 import com.lxfly2000.utilities.FileUtility;
 import com.lxfly2000.utilities.YMDDate;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     private AnimeJson animeJson;
@@ -402,6 +407,78 @@ public class MainActivity extends AppCompatActivity {
         editDialogCategory.setText(stringBuilder.toString());
         checkDialogAbandoned.setChecked(animeJson.GetAbandoned(index));
         editDialogRanking.setText(String.valueOf(animeJson.GetRank(index)));
+        editDialog.findViewById(R.id.buttonDialogAutofill).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String urlString=editDialogWatchUrl.getText().toString();
+                int i_regex=0;
+                for(;i_regex<Values.parsableLinksRegex.length;i_regex++){
+                    Pattern p=Pattern.compile(Values.parsableLinksRegex[i_regex]);
+                    Matcher m=p.matcher(urlString);
+                    if(m.find()){
+                        if(urlString.toLowerCase().contains("bilibili")){
+                            Pattern pSub=Pattern.compile("[0-9]*$");
+                            String subFound=urlString.substring(m.start(),m.end());
+                            Matcher mSub=pSub.matcher(subFound);
+                            if(mSub.find()){
+                                ReadBilibiliJsonp_OnCallback(subFound.substring(mSub.start(),mSub.end()));
+                                break;
+                            }else{
+                                throw new IllegalStateException("意外的状态。");
+                            }
+                        }else if(urlString.toLowerCase().contains("iqiyi")){
+                            Toast.makeText(getBaseContext(),"暂不支持读取爱奇艺链接。",Toast.LENGTH_LONG).show();
+                            break;
+                        }
+                    }
+                }
+                if(i_regex==Values.parsableLinksRegex.length){
+                    Toast.makeText(getBaseContext(),"不支持读取该链接。",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    private void ReadBilibiliJsonp_OnCallback(String idString){
+        String requestUrl="https://bangumi.bilibili.com/jsonp/seasoninfo/"+idString+".ver?callback=seasonListCallback&jsonp=jsonp";
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReceiveSuccess(String data, Object extra) {
+                try {
+                    JSONObject biliJson = new JSONObject(data.substring(data.indexOf('{'), data.lastIndexOf('}') + 1));
+                    JSONObject biliResult=biliJson.getJSONObject("result");
+                    editDialogCover.setText(biliResult.getString("cover"));
+                    editDialogTitle.setText(biliResult.getString("bangumi_title"));
+                    editDialogDescription.setText(biliResult.getString("evaluate"));
+                    editDialogStartDate.setText(biliResult.getString("pub_time").split(" ")[0]);
+                    if(biliResult.getString("weekday").contentEquals("-1")){
+                        editDialogUpdatePeriod.setText("1");
+                        comboDialogUpdatePeriodUnit.setSelection(1,true);
+                    }
+                    String countString=biliResult.getString("total_count");
+                    if(countString.contentEquals("0"))
+                        editDialogEpisodeCount.setText("-1");
+                    else
+                        editDialogEpisodeCount.setText(countString);
+                    editDialogRanking.setText(String.valueOf(Math.round(biliResult.getJSONObject("media").getJSONObject("rating").getDouble("score")/2)));
+                    StringBuilder tagString=new StringBuilder();
+                    for(int i=0;i<biliResult.getJSONArray("tags").length();i++){
+                        if(i!=0)
+                            tagString.append(",");
+                        tagString.append(biliResult.getJSONArray("tags").getJSONObject(i).getString("tag_name"));
+                    }
+                    editDialogCategory.setText(tagString.toString());
+                }catch (JSONException e){
+                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void OnReceiveFail(Object extra) {
+                Toast.makeText(getBaseContext(),"无法获取番剧信息。",Toast.LENGTH_LONG).show();
+            }
+        };
+        task.execute(requestUrl);
     }
 
     private void RemoveAllAnime(){

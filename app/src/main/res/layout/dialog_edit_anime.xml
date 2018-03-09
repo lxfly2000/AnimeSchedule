@@ -10,6 +10,26 @@
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical">
             <TextView
+                    android:text="@string/label_watch_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textDialogWatchUrl"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:id="@+id/editDialogWatchUrl" android:inputType="textUri"
+                        android:hint="@string/label_watch_url" android:layout_weight="1"/>
+                <Button
+                        android:text="@string/action_anime_auto_fill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:id="@+id/buttonDialogAutofill"
+                        android:layout_weight="0"/>
+            </LinearLayout>
+            <TextView
                     android:text="@string/label_anime_cover"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textDialogCover"/>
@@ -116,15 +136,6 @@
                             android:id="@+id/editDialogAbsenseCount" android:hint="@string/label_anime_absense_count"/>
                 </LinearLayout>
             </LinearLayout>
-            <TextView
-                    android:text="@string/label_watch_url"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogWatchUrl"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editDialogWatchUrl" android:inputType="textUri" android:hint="@string/label_watch_url"/>
             <TextView
                     android:text="@string/label_watched_episode"
                     android:layout_width="match_parent"

@@ -36,4 +36,8 @@ public class Values {
         editPref.putString(keyAnimeInfoDate,"1900-1-1");
         editPref.apply();
     }
+    public static final String[]parsableLinksRegex={
+            "(.*bangumi.bilibili.com/anime/[0-9]*)|(.*m.bilibili.com/bangumi/play/ss[0-9]*)",
+            ".*iqiyi.com/[a|v]_.*.html"
+    };
 }

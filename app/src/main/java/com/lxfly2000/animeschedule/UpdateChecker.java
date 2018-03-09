@@ -2,15 +2,8 @@ package com.lxfly2000.animeschedule;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import com.lxfly2000.utilities.AndroidDownloadFileTask;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,7 +24,18 @@ public class UpdateChecker {
 
     public void CheckForUpdate(){
         //https://stackoverflow.com/questions/5150637/networkonmainthreadexception
-        DownloadFileTask task=new DownloadFileTask(this);
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReceiveSuccess(String data, Object extra) {
+                ((UpdateChecker)extra).OnReceiveData(data);
+            }
+
+            @Override
+            public void OnReceiveFail(Object extra) {
+                ((UpdateChecker)extra).OnReceiveData(null);
+            }
+        };
+        task.SetExtra(this);
         task.execute(fileURL);
     }
 
@@ -96,60 +100,5 @@ public class UpdateChecker {
             androidContext.sendBroadcast(intent);
         }
         protected abstract void OnReceive(boolean foundNewVersion);
-    }
-}
-
-class DownloadFileTask extends AsyncTask<String,Integer,Boolean>{
-    public String fileContentString;
-    private UpdateChecker checker;
-    public DownloadFileTask(UpdateChecker _checker){
-        checker=_checker;
-    }
-
-    //http://blog.csdn.net/hanqunfeng/article/details/4364583
-    private String GetStringFromStream(InputStream stream)throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        StringBuilder getString = new StringBuilder();
-        String newString;
-        while (true) {
-            newString = reader.readLine();
-            if (newString == null)
-                break;
-            getString.append(newString).append("\n");
-        }
-        return getString.toString();
-    }
-    @Override
-    protected Boolean doInBackground(String... urls) {
-        return DownloadFileToString(urls[0]);
-    }
-
-    private boolean DownloadFileToString(String url){
-        //http://blog.csdn.net/pgmsoul/article/details/7181793
-        URL jUrl;
-        try{
-            jUrl=new URL(url);
-        }catch (MalformedURLException e){
-            return false;
-        }
-        URLConnection connection;
-        InputStream ins;
-        try{
-            connection=jUrl.openConnection();
-            ins=connection.getInputStream();
-            fileContentString=GetStringFromStream(ins);
-            ins.close();
-        }catch (IOException e){
-            return false;
-        }
-        return true;
-    }
-    @Override
-    protected void onPostExecute(Boolean result){
-        if(result){
-            checker.OnReceiveData(fileContentString);
-        }else {
-            checker.OnReceiveData(null);
-        }
     }
 }

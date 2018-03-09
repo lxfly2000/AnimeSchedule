@@ -46,4 +46,5 @@
     <string name="error_check_update">无法检查更新，可能是网络有问题或目标服务器已更改。</string>
     <string name="message_no_update">当前版本已是最新。</string>
     <string name="error_permission_network">未获取到联网权限，请修改权限设置。</string>
+    <string name="action_anime_auto_fill">自动获取</string>
 </resources>

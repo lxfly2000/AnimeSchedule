@@ -15,9 +15,11 @@ public class Values {
     public static final String pathJsonDataOnRepository="anime.json";
     public static final String keyAnimeInfoDate="anime_info_date";
     public static final String vDefaultString="(NOT SET)";
-    public static final String illegalCharacters="\\/:?*\"<>|";
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
+    }
+    public static String GetCoverPathOnLocal(){
+        return GetRepositoryPathOnLocal()+"/covers";
     }
     public static String GetJsonDataFullPath(){
         return GetRepositoryPathOnLocal()+"/"+pathJsonDataOnRepository;

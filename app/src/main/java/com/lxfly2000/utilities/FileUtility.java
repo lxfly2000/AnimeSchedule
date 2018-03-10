@@ -27,18 +27,41 @@ public class FileUtility {
 
     //保存文本到文件，成功返回true, 失败返回false
     public static boolean WriteFile(String path,String data){
-        File file=new File(path);
         try {
-            if(!file.exists()){
-                File dir=new File(path.substring(0,path.lastIndexOf('/')));
-                if(!dir.exists()&&!dir.mkdirs())
-                    return false;
-                if(!file.createNewFile())
-                    return false;
-            }
-            FileWriter writer=new FileWriter(file);
+            FileWriter writer=new FileWriter(CreateFile(path));
             writer.write(data);
             writer.close();
+        }catch (IOException e){
+            return false;
+        }
+        return true;
+    }
+
+    public static File CreateFile(String path)throws IOException{
+        File file=new File(path);
+        if(!file.exists()){
+            if(!path.contains("/")){
+                path=(new File("")).getCanonicalPath()+"/"+path;
+            }
+            File dir=new File(path.substring(0,path.lastIndexOf('/')));
+            if(!dir.exists()&&!dir.mkdirs())
+                return null;
+            if(!file.createNewFile())
+                return null;
+        }
+        return file;
+    }
+
+    public static boolean WriteStreamToFile(String path,ByteArrayInputStream stream){
+        try {
+            FileOutputStream outputStream = new FileOutputStream(CreateFile(path));
+            stream.reset();
+            byte[]buffer=new byte[1024];
+            while(stream.read(buffer)!=-1){
+                outputStream.write(buffer);
+            }
+            outputStream.flush();
+            outputStream.close();
         }catch (IOException e){
             return false;
         }

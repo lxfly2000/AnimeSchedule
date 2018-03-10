@@ -38,7 +38,7 @@
     <string name="label_abandoned">弃番</string>
     <string name="label_color">颜色</string>
     <string name="label_watch_url">番剧地址链接</string>
-    <string name="label_watched_episode">已观看集数</string>
+    <string name="label_watched_episode">已观看集数（用英文逗号分隔数字）</string>
     <string name="message_not_watched">未观看</string>
     <string name="message_saving_item">保存信息……</string>
     <string name="menu_check_update">检查更新</string>

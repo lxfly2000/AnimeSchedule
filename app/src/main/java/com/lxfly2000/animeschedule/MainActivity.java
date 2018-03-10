@@ -1,6 +1,6 @@
 /*TODO:
 * 读取json文件并显示（OK）
-* 异步加载图片，更新列表显示
+* 异步加载图片，更新列表显示（OK）
 * 根据json中项目的更新日期排序（OK）
 * 可增加/删除/长按修改项目，并保存至本地文件（OK）
 * 对于B站链接，可根据链接自动获取所需信息（简介，时间，分类等）（OK）
@@ -14,9 +14,10 @@ package com.lxfly2000.animeschedule;
 
 import android.content.*;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -25,13 +26,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
-import com.lxfly2000.utilities.AndroidDownloadFileTask;
-import com.lxfly2000.utilities.AndroidUtility;
-import com.lxfly2000.utilities.FileUtility;
-import com.lxfly2000.utilities.YMDDate;
+import com.lxfly2000.utilities.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Integer>jsonSortTable;
     private int sortOrder=0;
     ListView listAnime;
-    FloatingActionButton fabAnimeUpdate;
     private SharedPreferences preferences;
     private int longPressedListItem=-1;
 
@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
-        fabAnimeUpdate=(FloatingActionButton)findViewById(R.id.fabShowAnimeUpdate);
-        fabAnimeUpdate.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.fabShowAnimeUpdate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 OnShowAnimeUpdate();
@@ -109,9 +108,23 @@ public class MainActivity extends AppCompatActivity {
         animeJson.SaveToFile(Values.GetJsonDataFullPath());
     }
 
+    class ParametersSetImage{
+        public SimpleAdapter listAdapter;
+        public String imagePath;
+        public int listIndex;
+        ParametersSetImage(SimpleAdapter adapter,String path,int index){
+            listAdapter=adapter;
+            imagePath=path;
+            listIndex=index;
+        }
+    }
+
     private void DisplayList(){
         RebuildSortTable(2);
         ArrayList<HashMap<String,Object>>listItems=new ArrayList<>();
+        String[]keyStrings={"title","description","ranking","schedule","cover"};
+        int[]viewIds={R.id.textAnimeTitle,R.id.textAnimeDescription,R.id.textRanking,R.id.textSchedule,R.id.imageCover};
+        SimpleAdapter customAdapter=new SimpleAdapter(this,listItems,R.layout.item_anime,keyStrings,viewIds);
         for(int i=0;i<animeJson.GetAnimeCount();i++){
             HashMap<String,Object>listItem=new HashMap<>();
             listItem.put("title",animeJson.GetTitle(jsonSortTable.get(i)));
@@ -138,12 +151,47 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             listItem.put("schedule",strSchedule.toString());
-            listItem.put("cover", R.mipmap.ic_launcher);
+            String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(i));
+            String coverPath=Values.GetCoverPathOnLocal()+"/"+
+                    animeJson.GetTitle(jsonSortTable.get(i)).replaceAll("[/\":|<>?*]","_")+
+                    coverUrl.substring(coverUrl.lastIndexOf('.'),coverUrl.length());
+            if(FileUtility.IsFileExists(coverPath)){
+                listItem.put("cover", BitmapFactory.decodeFile(coverPath));
+            }else {
+                AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+                    @Override
+                    public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                        if(success) {
+                            ParametersSetImage param = (ParametersSetImage) extra;
+                            FileUtility.WriteStreamToFile(param.imagePath,stream);
+                            ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
+                            param.listAdapter.notifyDataSetChanged();
+                        }else {
+                            Toast.makeText(getBaseContext(),"下载文件失败。",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                };
+                task.SetExtra(new ParametersSetImage(customAdapter,coverPath,i));
+                try{
+                    FileUtility.CreateFile(coverPath);
+                }catch (IOException e){
+                    Toast.makeText(getBaseContext(),"无法创建文件：\n"+coverPath,Toast.LENGTH_LONG).show();
+                }
+                task.execute(coverUrl,coverPath);
+            }
             listItems.add(listItem);
         }
-        String[]keyStrings={"title","description","ranking","schedule","cover"};
-        int[]viewIds={R.id.textAnimeTitle,R.id.textAnimeDescription,R.id.textRanking,R.id.textSchedule,R.id.imageCover};
-        listAnime.setAdapter(new SimpleAdapter(this,listItems,R.layout.item_anime,keyStrings,viewIds));
+        customAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+            @Override
+            public boolean setViewValue(View view, Object o, String s) {
+                if(view instanceof ImageView&& o instanceof Bitmap){
+                    ((ImageView)view).setImageBitmap((Bitmap)o);
+                    return true;
+                }
+                return false;
+            }
+        });
+        listAnime.setAdapter(customAdapter);
     }
 
     //排序，order:0=不排序，1=升序，2=降序
@@ -443,8 +491,13 @@ public class MainActivity extends AppCompatActivity {
         String requestUrl="https://bangumi.bilibili.com/jsonp/seasoninfo/"+idString+".ver?callback=seasonListCallback&jsonp=jsonp";
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReceiveSuccess(String data, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                if(!success){
+                    Toast.makeText(getBaseContext(),"无法获取番剧信息。",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 try {
+                    String data=StreamUtility.GetStringFromStream(stream);
                     JSONObject biliJson = new JSONObject(data.substring(data.indexOf('{'), data.lastIndexOf('}') + 1));
                     JSONObject biliResult=biliJson.getJSONObject("result");
                     editDialogCover.setText(biliResult.getString("cover"));
@@ -454,6 +507,9 @@ public class MainActivity extends AppCompatActivity {
                     if(biliResult.getString("weekday").contentEquals("-1")){
                         editDialogUpdatePeriod.setText("1");
                         comboDialogUpdatePeriodUnit.setSelection(1,true);
+                    }else if("0123456".contains(biliResult.getString("weekday"))){
+                        editDialogUpdatePeriod.setText("7");
+                        comboDialogUpdatePeriodUnit.setSelection(0,true);
                     }
                     String countString=biliResult.getString("total_count");
                     if(countString.contentEquals("0"))
@@ -469,13 +525,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     editDialogCategory.setText(tagString.toString());
                 }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }catch (IOException e){
+                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
                 }
-            }
-
-            @Override
-            public void OnReceiveFail(Object extra) {
-                Toast.makeText(getBaseContext(),"无法获取番剧信息。",Toast.LENGTH_LONG).show();
             }
         };
         task.execute(requestUrl);
@@ -552,7 +605,7 @@ public class MainActivity extends AppCompatActivity {
             }
             msgBox.show();
         }
-    };
+    }
 
     @Override
     protected void onStop(){

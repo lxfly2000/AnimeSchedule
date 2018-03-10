@@ -3,7 +3,10 @@ package com.lxfly2000.animeschedule;
 import android.content.Context;
 import android.content.Intent;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
+import com.lxfly2000.utilities.StreamUtility;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,13 +29,12 @@ public class UpdateChecker {
         //https://stackoverflow.com/questions/5150637/networkonmainthreadexception
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReceiveSuccess(String data, Object extra) {
-                ((UpdateChecker)extra).OnReceiveData(data);
-            }
-
-            @Override
-            public void OnReceiveFail(Object extra) {
-                ((UpdateChecker)extra).OnReceiveData(null);
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                try {
+                    ((UpdateChecker) extra).OnReceiveData(success?StreamUtility.GetStringFromStream(stream):null);
+                }catch (IOException e){
+                    ((UpdateChecker)extra).OnReceiveData(null);
+                }
             }
         };
         task.SetExtra(this);

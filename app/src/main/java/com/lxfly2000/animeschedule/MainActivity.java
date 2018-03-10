@@ -172,11 +172,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
                 task.SetExtra(new ParametersSetImage(customAdapter,coverPath,i));
-                try{
-                    FileUtility.CreateFile(coverPath);
-                }catch (IOException e){
-                    Toast.makeText(getBaseContext(),"无法创建文件：\n"+coverPath,Toast.LENGTH_LONG).show();
-                }
                 task.execute(coverUrl,coverPath);
             }
             listItems.add(listItem);

@@ -154,9 +154,8 @@ public class MainActivity extends AppCompatActivity {
             String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(i));
             String[]tempSplit=coverUrl.split("/");
             String coverExt="";
-            if(tempSplit[tempSplit.length-1].contains(".")){
-                tempSplit=tempSplit[tempSplit.length-1].split(".");
-                coverExt="."+tempSplit[tempSplit.length-1];
+            if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
+                coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
             }
             String coverPath=Values.GetCoverPathOnLocal()+"/"+
                     animeJson.GetTitle(jsonSortTable.get(i)).replaceAll("[/\":|<>?*]","_")+coverExt;

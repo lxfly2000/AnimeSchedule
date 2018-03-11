@@ -152,22 +152,27 @@ public class MainActivity extends AppCompatActivity {
             }
             listItem.put("schedule",strSchedule.toString());
             String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(i));
+            String[]tempSplit=coverUrl.split("/");
+            String coverExt="";
+            if(tempSplit[tempSplit.length-1].contains(".")){
+                tempSplit=tempSplit[tempSplit.length-1].split(".");
+                coverExt="."+tempSplit[tempSplit.length-1];
+            }
             String coverPath=Values.GetCoverPathOnLocal()+"/"+
-                    animeJson.GetTitle(jsonSortTable.get(i)).replaceAll("[/\":|<>?*]","_")+
-                    coverUrl.substring(coverUrl.lastIndexOf('.'),coverUrl.length());
+                    animeJson.GetTitle(jsonSortTable.get(i)).replaceAll("[/\":|<>?*]","_")+coverExt;
             if(FileUtility.IsFileExists(coverPath)){
                 listItem.put("cover", BitmapFactory.decodeFile(coverPath));
             }else {
                 AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
                     @Override
                     public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                        ParametersSetImage param = (ParametersSetImage) extra;
                         if(success) {
-                            ParametersSetImage param = (ParametersSetImage) extra;
                             FileUtility.WriteStreamToFile(param.imagePath,stream);
                             ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
                             param.listAdapter.notifyDataSetChanged();
                         }else {
-                            Toast.makeText(getBaseContext(),"下载文件失败。",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(),"下载封面图片失败：\n"+param.imagePath,Toast.LENGTH_LONG).show();
                         }
                     }
                 };
@@ -335,6 +340,12 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    private int ParseStringToInt(String str,int iDefault){
+        if(str.contentEquals(""))
+            return iDefault;
+        return Integer.parseInt(str);
+    }
+
     private EditText editDialogDescription;
     private EditText editDialogCover;
     private EditText editDialogTitle;
@@ -363,14 +374,14 @@ public class MainActivity extends AppCompatActivity {
                         animeJson.SetCoverUrl(index,editDialogCover.getText().toString());
                         animeJson.SetTitle(index,editDialogTitle.getText().toString());
                         animeJson.SetStartDate(index,editDialogStartDate.getText().toString());
-                        animeJson.SetUpdatePeriod(index,Integer.parseInt(editDialogUpdatePeriod.getText().toString()));
+                        animeJson.SetUpdatePeriod(index,ParseStringToInt(editDialogUpdatePeriod.getText().toString(),7));
                         switch (comboDialogUpdatePeriodUnit.getSelectedItemPosition()){
                             case 0:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitDay);break;
                             case 1:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitMonth);break;
                             case 2:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitYear);break;
                         }
-                        animeJson.SetEpisodeCount(index,Integer.parseInt(editDialogEpisodeCount.getText().toString()));
-                        animeJson.SetAbsenseCount(index,Integer.parseInt(editDialogAbsenseCount.getText().toString()));
+                        animeJson.SetEpisodeCount(index,ParseStringToInt(editDialogEpisodeCount.getText().toString(),-1));
+                        animeJson.SetAbsenseCount(index,ParseStringToInt(editDialogAbsenseCount.getText().toString(),0));
                         animeJson.SetWatchUrl(index,editDialogWatchUrl.getText().toString());
                         String[]strWatchedEpisodeArray=editDialogWatchedEpisode.getText().toString().split(",");
                         for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(index);i_epi++)
@@ -381,7 +392,7 @@ public class MainActivity extends AppCompatActivity {
                         animeJson.SetColor(index,editDialogColor.getText().toString());
                         animeJson.SetCategory(index,editDialogCategory.getText().toString().split(","));
                         animeJson.SetAbandoned(index,checkDialogAbandoned.isChecked());
-                        animeJson.SetRank(index,Integer.parseInt(editDialogRanking.getText().toString()));
+                        animeJson.SetRank(index,Math.min(ParseStringToInt(editDialogRanking.getText().toString(),0),5));
                         Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();
                         SaveAndReloadJsonFile(true);
                     }

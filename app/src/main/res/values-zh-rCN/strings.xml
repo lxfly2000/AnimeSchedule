@@ -2,13 +2,6 @@
 <resources>
     <string name="app_name">追番表</string>
     <string name="action_settings">设置</string>
-    <string name="label_mail">邮箱</string>
-    <string name="label_password">密码</string>
-    <string name="label_repository_url">远程仓库地址</string>
-    <string name="label_repository_branch">分支</string>
-    <string name="label_git_display_name">显示名称</string>
-    <string name="label_git_user_name">用户名</string>
-    <string name="action_test_connection">测试连接</string>
     <string name="action_save_settings">保存设置</string>
     <string name="message_notice_title">提示</string>
     <string name="message_lose_changes">你有未保存的修改，是否继续？</string>
@@ -46,4 +39,5 @@
     <string name="message_no_update">当前版本已是最新。</string>
     <string name="error_permission_network">未获取到联网权限，请修改权限设置。</string>
     <string name="action_anime_auto_fill">自动获取</string>
+    <string name="label_version_info">版本：%s</string>
 </resources>

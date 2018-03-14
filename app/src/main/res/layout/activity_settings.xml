@@ -17,63 +17,9 @@
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical">
             <TextView
-                    android:text="@string/label_repository_url"
+                    android:text="@string/label_version_info"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textRepositoryUrl"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editRepositoryUrl" android:inputType="textUri"
-                    android:hint="@string/label_repository_url"/>
-            <TextView
-                    android:text="@string/label_repository_branch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textRepositoryBranch"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editRepositoryBranch" android:hint="@string/label_repository_branch"
-                    android:inputType="text"/>
-            <TextView
-                    android:text="@string/label_mail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textMail"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editMail" android:inputType="textEmailAddress" android:hint="@string/label_mail"/>
-            <TextView
-                    android:text="@string/label_git_display_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDisplayName"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editDisplayName" android:hint="@string/label_git_display_name"
-                    android:inputType="text"/>
-            <TextView
-                    android:text="@string/label_git_user_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textUserName"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editUserName" android:hint="@string/label_git_user_name" android:inputType="text"/>
-            <TextView
-                    android:text="@string/label_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textPassword"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editPassword" android:hint="@string/label_password"
-                    android:inputType="textPassword"/>
+                    android:layout_height="wrap_content" android:id="@+id/textVersionInfo"/>
         </LinearLayout>
     </ScrollView>
     <Button

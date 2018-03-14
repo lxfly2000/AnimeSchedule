@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/action_test_connection" android:id="@+id/action_test_connection"
-          android:icon="@android:drawable/ic_menu_send"/>
     <item android:title="@string/action_save_settings" android:id="@+id/action_save"
           android:icon="@android:drawable/ic_menu_save"/>
     <item android:title="@string/action_restore_settings" android:id="@+id/action_restore_settings"

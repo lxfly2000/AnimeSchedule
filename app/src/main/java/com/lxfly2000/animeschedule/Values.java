@@ -7,14 +7,8 @@ import com.lxfly2000.utilities.FileUtility;
 
 public class Values {
     public static final String appIdentifier="AnimeSchedule";
-    public static final String keyRepositoryUrl="repo_url";
-    public static final String keyBranch="branch";
-    public static final String keyMail="mail";
-    public static final String keyDisplayName="display_name";
-    public static final String keyUserName="user_name";
-    public static final String keyPassword="password";
     public static final String[] pathJsonDataOnRepository={"anime.js","anime.json"};
-    public static final String keyAnimeInfoDate="anime_info_date";
+    public static final String keyAnimeInfoDate="anime_info_date",vdAnimeInfoDate="1900-1-1";
     public static final String vDefaultString="(NOT SET)";
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
@@ -34,13 +28,7 @@ public class Values {
     }
     public static void BuildDefaultSettings(Context context){
         SharedPreferences.Editor editPref=GetPreference(context).edit();
-        editPref.putString(keyRepositoryUrl,"https://github.com/lxfly2000/anime_schedule");
-        editPref.putString(keyBranch,"master");
-        editPref.putString(keyMail,"");
-        editPref.putString(keyDisplayName,"lxfly2000");
-        editPref.putString(keyUserName,"lxfly2000");
-        editPref.putString(keyPassword,"");
-        editPref.putString(keyAnimeInfoDate,"1900-1-1");
+        editPref.putString(keyAnimeInfoDate,vdAnimeInfoDate);
         editPref.apply();
     }
     public static final String[]parsableLinksRegex={

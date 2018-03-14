@@ -22,8 +22,8 @@ function getQueryString(name) {
 
 //Callback
 function setJsonData(anime_json){
-	clearList();
-	writeList(anime_json,"降序");
+	if(clearList())
+		writeList(anime_json,"降序");
 }
 
 function appendLocalScript(src){
@@ -36,22 +36,22 @@ function appendLocalScript(src){
 (function initPage(){
 	var src=getQueryString("src");
 	if(src==null)
-		src="anime.json";
+		src="anime.js";
+	getTemplate();
 	if(location.href.substring(0,4).toLowerCase()=="file"){
-		appendLocalScript(src.substring(0,src.length-2));
+		appendLocalScript(src);
 	}else{
 		getUrlData(src,function(d,s){
 			if(s==200){
 				setJsonData(JSON.parse(d));
 			}else{
-				appendLocalScript(src.substring(0,src.length-2));
+				appendLocalScript(src);
 			}
 		});
 	}
 	document.getElementsByClassName("ButtonCloseBox")[0].addEventListener("click",function(e){
 		document.getElementsByClassName("FloatingBoxRoot")[0].remove();
 	});
-	getTemplate();
 }());
 
 var listTemplate;
@@ -63,6 +63,11 @@ function getTemplate(){
 //清除列表项
 function clearList(){
 	document.getElementsByClassName("AnimeList")[0].innerHTML="";
+	if(listTemplate.innerHTML==""){
+		alert("当前浏览器无法显示此网页。");
+		return false;
+	}
+	return true;
 }
 
 //日期计算，输入日期参数为Date类型，addDays为整型，无返回值
@@ -138,18 +143,13 @@ function writeList(jsonData,sortOrder){
 	for (var i = 0; i < jsonData["anime"].length; i++) {
 		var listObject=listTemplate.cloneNode(true);
 		var animeObject=jsonData["anime"][i];
-		try{
-			getUrlData(animeObject["cover"],setCoverCallback,{
-				cover_dom:listObject.getElementsByClassName("ItemAnimeCover")[0],
-				next_url:[
-					animeObject["cover"],
-					"covers/"+animeObject["title"].replace(/[/\\":\|<>\?\*]/g,"_")+"."+animeObject["cover"].split(".").pop()
-				],
-			});
-		}catch(e){
-			alert("该网页不支持IE浏览器。");
-			return;
-		}
+		getUrlData(animeObject["cover"],setCoverCallback,{
+			cover_dom:listObject.getElementsByClassName("ItemAnimeCover")[0],
+			next_url:[
+				animeObject["cover"],
+				"covers/"+animeObject["title"].replace(/[/\\":\|<>\?\*]/g,"_")+"."+animeObject["cover"].split(".").pop()
+			],
+		});
 		listObject.getElementsByClassName("ItemAnimeTitle")[0].innerHTML="";
 		var linkedTitleObject=document.createElement("a");
 		linkedTitleObject.textContent=animeObject["title"];
@@ -189,10 +189,9 @@ function writeList(jsonData,sortOrder){
 			if(animeObject["episode_count"]!=-1&&animeObject["last_update_episode"]+1>=animeObject["episode_count"])
 				break;
 			animeObject["last_update_date"]=dateToString(lastUpdateDate);
-			animeObject.lastUpdateDateObject=lastUpdateDate;
 			animeObject["last_update_episode"]++;
 		}
-		lastUpdateDate=new Date(animeObject["last_update_date"]);
+		animeObject.lastUpdateDateObject=lastUpdateDate=new Date(animeObject["last_update_date"]);
 		var maxEpisodes=animeObject["episode_count"];
 		if(maxEpisodes==-1)
 			maxEpisodes=animeObject["last_update_episode"]+1;

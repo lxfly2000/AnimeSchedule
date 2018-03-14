@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 "android.permission.READ_EXTERNAL_STORAGE","No reading permission."))
             return;
         preferences=Values.GetPreference(this);
-        if(preferences.getString(Values.keyRepositoryUrl,Values.vDefaultString).contentEquals(Values.vDefaultString)){
+        if(preferences.getString(Values.keyAnimeInfoDate,Values.vDefaultString).contentEquals(Values.vDefaultString)){
             Toast.makeText(this,R.string.message_build_default_settings,Toast.LENGTH_LONG).show();
             Values.BuildDefaultSettings(this);
         }

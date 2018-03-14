@@ -11,11 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
     private SharedPreferences preferences;
-    private EditText editRepositoryUrl,editBranch,editDisplayName,editUserName,editMail,editPassword;
     private boolean modified;
 
     @Override
@@ -26,18 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         findViewById(R.id.buttonSaveSettings).setOnClickListener(buttonCallbacks);
         preferences=Values.GetPreference(this);
-        editRepositoryUrl=(EditText)findViewById(R.id.editRepositoryUrl);
-        editRepositoryUrl.addTextChangedListener(editCallback);
-        editBranch=(EditText)findViewById(R.id.editRepositoryBranch);
-        editBranch.addTextChangedListener(editCallback);
-        editDisplayName=(EditText)findViewById(R.id.editDisplayName);
-        editDisplayName.addTextChangedListener(editCallback);
-        editUserName=(EditText)findViewById(R.id.editUserName);
-        editUserName.addTextChangedListener(editCallback);
-        editMail=(EditText)findViewById(R.id.editMail);
-        editMail.addTextChangedListener(editCallback);
-        editPassword=(EditText)findViewById(R.id.editPassword);
-        editPassword.addTextChangedListener(editCallback);
+        ((TextView)findViewById(R.id.textVersionInfo)).setText(getString(R.string.label_version_info,BuildConfig.VERSION_NAME));
         LoadSettings();
     }
 
@@ -74,30 +63,11 @@ public class SettingsActivity extends AppCompatActivity {
     };
 
     private void LoadSettings(){
-        editRepositoryUrl.setText(preferences.getString(Values.keyRepositoryUrl,Values.vDefaultString));
-        editBranch.setText(preferences.getString(Values.keyBranch,Values.vDefaultString));
-        editMail.setText(preferences.getString(Values.keyMail,Values.vDefaultString));
-        editDisplayName.setText(preferences.getString(Values.keyDisplayName,Values.vDefaultString));
-        editUserName.setText(preferences.getString(Values.keyUserName,Values.vDefaultString));
-        editPassword.setText(preferences.getString(Values.keyPassword,Values.vDefaultString));
         modified=false;
-    }
-
-    private boolean OnTestConnection(){
-        //TODO
-        String msg="TODO：测试可否连接至远程仓库，可否下载，有无anime.json文件。\n本地存储位置："+Values.GetJsonDataFullPath();
-        Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
-        return true;
     }
 
     private boolean OnSaveSettings(boolean finishActivity){
         SharedPreferences.Editor wPreference=preferences.edit();
-        wPreference.putString(Values.keyRepositoryUrl,editRepositoryUrl.getText().toString());
-        wPreference.putString(Values.keyBranch,editBranch.getText().toString());
-        wPreference.putString(Values.keyMail,editMail.getText().toString());
-        wPreference.putString(Values.keyDisplayName,editDisplayName.getText().toString());
-        wPreference.putString(Values.keyUserName,editUserName.getText().toString());
-        wPreference.putString(Values.keyPassword,editPassword.getText().toString());
         wPreference.apply();
         modified=false;
         Toast.makeText(this,R.string.message_settings_saved,Toast.LENGTH_LONG).show();
@@ -112,7 +82,6 @@ public class SettingsActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:return OnBackButton();
             case R.id.action_save:return OnSaveSettings(false);
-            case R.id.action_test_connection:return OnTestConnection();
             case R.id.action_restore_settings:return OnRestoreSettings();
         }
         return super.onOptionsItemSelected(item);

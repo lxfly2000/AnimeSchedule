@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -102,6 +103,16 @@ public class MainActivity extends AppCompatActivity {
             SaveJsonFile();
         }
         animeJson=new AnimeJson(Values.GetJsonDataFullPath());
+        Pattern p=Pattern.compile("\\.json$");
+        Matcher m=p.matcher(Values.GetJsonDataFullPath());
+        if(m.find()){
+            File file=new File(Values.GetJsonDataFullPath());
+            if(file.renameTo(new File(Values.GetRepositoryPathOnLocal()+"/"+Values.pathJsonDataOnRepository[0]))) {
+                Toast.makeText(this, "重命名：" + file.getName() + "\n为：" + Values.pathJsonDataOnRepository[0], Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(this, "无法修改文件名：" + file.getName(), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void SaveJsonFile(){
@@ -556,17 +567,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void OnViewWebPage(){
-        String url=preferences.getString(Values.keyRepositoryUrl,"");
-        if(!url.startsWith("https://github.com")){
-            AndroidUtility.MessageBox(this,getString(R.string.message_not_supported_url));
-            return;
+        for(int i=0;i<Values.webFiles.length;i++) {
+            String webFile=Values.GetRepositoryPathOnLocal()+"/"+Values.webFiles[i];
+            if (!FileUtility.IsFileExists(webFile)) {
+                try{
+                if(!FileUtility.WriteFile(webFile,StreamUtility.GetStringFromStream(getResources().openRawResource(Values.resIdWebFiles[i])))){
+                    Toast.makeText(this, "无法写入文件：" + webFile, Toast.LENGTH_LONG).show();
+                    return;
+                }}catch (IOException e){
+                    return;
+                }
+            }
         }
-        url=url.substring(19);
-        if(url.endsWith(".git"))
-            url=url.substring(0,url.length()-4);
-        String[]urlParts=url.split("/");
-        url="https://"+urlParts[0]+".github.io/"+urlParts[1];
-        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url)));
+        Intent intent=new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.fromFile(new File(Values.GetRepositoryPathOnLocal()+"/"+Values.webFiles[0])));
+        intent.setClassName("com.android.chrome","com.google.android.apps.chrome.Main");
+        try {
+            startActivity(intent);
+        }catch (ActivityNotFoundException e){
+            Toast.makeText(this,"无法启动 Chrome, 请选择其他浏览器。",Toast.LENGTH_LONG).show();
+            Intent intentFallback=new Intent();
+            intentFallback.setAction(intent.getAction());
+            intentFallback.setDataAndType(intent.getData(),"*/*");
+            startActivity(intentFallback);
+        }
     }
 
     private void OnActionSettings(){

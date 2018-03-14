@@ -24,7 +24,6 @@
     <string name="label_anime_cover">番剧封面</string>
     <string name="action_show_anime_update">番剧更新信息</string>
     <string name="action_view_web_page">查看网页</string>
-    <string name="message_not_supported_url">不支持查看当前项目地址的网页。</string>
     <string name="message_build_default_settings">生成默认设置……</string>
     <string name="action_add_item">增加番剧</string>
     <string name="action_remove_item">删除番剧</string>

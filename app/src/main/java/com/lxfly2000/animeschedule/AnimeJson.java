@@ -46,11 +46,17 @@ public class AnimeJson {
     }
 
     public void LoadFromFile(String path){
+        String jsonString=FileUtility.ReadFile(path);
         try {
-            json = new JSONObject(FileUtility.ReadFile(path));
+            json = new JSONObject(jsonString.substring(jsonString.indexOf('(')+1,jsonString.lastIndexOf(')')));
             CalculateExtraInfomation();
-        }catch (JSONException e){
-            json=null;
+        }catch (JSONException | NullPointerException e){
+            try {
+                json=new JSONObject(jsonString);
+                CalculateExtraInfomation();
+            }catch (JSONException e1){
+                json=null;
+            }
         }
     }
 
@@ -84,7 +90,7 @@ public class AnimeJson {
     }
 
     public boolean SaveToFile(String path){
-        return FileUtility.WriteFile(path, JSONFormatter.Format(json.toString()));
+        return FileUtility.WriteFile(path, Values.jsCallback+"("+JSONFormatter.Format(json.toString())+");");
     }
 
     public int GetLastWatchIndex(){

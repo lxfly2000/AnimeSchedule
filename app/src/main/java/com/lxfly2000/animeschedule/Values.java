@@ -48,4 +48,8 @@ public class Values {
             R.raw.get_covers
     };
     public static final String jsCallback="setJsonData";
+    public static final String urlAuthor="https://github.com/lxfly2000/AnimeSchedule";
+    public static String GetCheckUpdateURL(){
+        return urlAuthor+"/raw/master/app/build.gradle";
+    }
 }

@@ -7,7 +7,6 @@
 * 可直接在列表上标记观看集数
 * 点击打开链接（OK）
 * 更新集数提示（用对话框显示，可选择今日不再提示(Neu)/关闭(Posi)）（OK）
-* JGit上传/下载数据
 */
 
 package com.lxfly2000.animeschedule;
@@ -620,7 +619,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent=new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(getString(R.string.url_author)));
+                        intent.setData(Uri.parse(Values.urlAuthor));
                         startActivity(intent);
                     }
                 });
@@ -648,7 +647,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void CheckForUpdate(boolean onlyReportNewVersion) {
         if (updateChecker == null) {
-            updateChecker = new UpdateChecker().SetCheckURL(getString(R.string.url_check_update));
+            updateChecker = new UpdateChecker().SetCheckURL(Values.GetCheckUpdateURL());
         }
         updateChecker.SetResultHandler(new UpdateChecker.ResultHandler(this) {
             @Override

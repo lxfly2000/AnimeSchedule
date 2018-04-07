@@ -40,4 +40,5 @@
     <string name="error_permission_network">未获取到联网权限，请修改权限设置。</string>
     <string name="action_anime_auto_fill">自动获取</string>
     <string name="label_version_info">版本：%s</string>
+    <string name="title_total_count">（%d）</string>
 </resources>

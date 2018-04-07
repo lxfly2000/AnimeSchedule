@@ -201,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         listAnime.setAdapter(customAdapter);
+        setTitle(getString(R.string.app_name)+getString(R.string.title_total_count,animeJson.GetAnimeCount()));
     }
 
     //排序，order:0=不排序，1=升序，2=降序
@@ -399,7 +400,10 @@ public class MainActivity extends AppCompatActivity {
                             if(!strEachWatched.contentEquals(""))
                                 animeJson.SetEpisodeWatched(index, Integer.parseInt(strEachWatched), true);
                         animeJson.SetColor(index,editDialogColor.getText().toString());
-                        animeJson.SetCategory(index,editDialogCategory.getText().toString().split(","));
+                        String[]categoryArray=null;
+                        if(editDialogCategory.getText().length()>0)
+                            categoryArray=editDialogCategory.getText().toString().split(",");
+                        animeJson.SetCategory(index,categoryArray);
                         animeJson.SetAbandoned(index,checkDialogAbandoned.isChecked());
                         animeJson.SetRank(index,Math.min(ParseStringToInt(editDialogRanking.getText().toString(),0),5));
                         Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();

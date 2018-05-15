@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Integer>jsonSortTable;
     private int sortOrder=0;
     ListView listAnime;
+    private int posListAnimeScroll=0,posListAnimeTop=0;
     private SharedPreferences preferences;
     private int longPressedListItem=-1;
 
@@ -75,6 +76,22 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 longPressedListItem=i;
                 return false;
+            }
+        });
+        listAnime.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if(scrollState==AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
+                    //参考：https://blog.csdn.net/jdsjlzx/article/details/17794209
+                    posListAnimeScroll=listAnime.getFirstVisiblePosition();
+                    View v=listAnime.getChildAt(0);
+                    posListAnimeTop=(v==null)?0:v.getTop();
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                //Nothing to do.
             }
         });
         SaveAndReloadJsonFile(false);
@@ -201,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         listAnime.setAdapter(customAdapter);
+        listAnime.setSelectionFromTop(posListAnimeScroll,posListAnimeTop);
         setTitle(getString(R.string.app_name)+getString(R.string.title_total_count,animeJson.GetAnimeCount()));
     }
 

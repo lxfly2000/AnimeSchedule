@@ -160,14 +160,7 @@ function writeList(jsonData,sortOrder){
 			rankString+=j<animeObject["rank"]?"★":"☆";
 		}
 		listObject.getElementsByClassName("ItemAnimeRank")[0].innerHTML=rankString;
-		var descriptionSplittedLines=animeObject["description"].split("\n");
-		var descriptionObject=listObject.getElementsByClassName("ItemAnimeDescription")[0];
-		descriptionObject.textContent="";
-		for(var j=0;j<descriptionSplittedLines.length;j++){
-			if(j>0)
-				descriptionObject.appendChild(document.createElement("br"));
-			descriptionObject.appendChild(document.createTextNode(descriptionSplittedLines[j]));
-		}
+		listObject.getElementsByClassName("ItemAnimeDescription")[0].innerText=animeObject["description"];
 		if(animeObject["category"].length==0){
 			listObject.getElementsByClassName("ItemAnimeCategory")[0].appendChild(document.createTextNode("未分类"));
 		}else{

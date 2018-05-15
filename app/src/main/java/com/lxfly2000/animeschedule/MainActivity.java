@@ -318,9 +318,19 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private void RemoveItem(int index){
-        animeJson.RemoveItem(index);
-        SaveAndReloadJsonFile(true);
+    private void RemoveItem(final int index){
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.message_remove_warning)
+                .setTitle(animeJson.GetTitle(index))
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        animeJson.RemoveItem(index);
+                        SaveAndReloadJsonFile(true);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel,null)
+                .show();
     }
 
     private void OnAddAnime(){

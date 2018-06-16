@@ -440,6 +440,11 @@ public class AnimeJson {
 
     public boolean RemoveItem(int index){
         try {
+            int lastWatchIndex=GetLastWatchIndex();
+            if(lastWatchIndex==index)
+                SetLastWatch(-1,GetLastWatchEpisode(),GetLastWatchDateString());
+            else if(lastWatchIndex>index)
+                SetLastWatch(lastWatchIndex-1,GetLastWatchEpisode(),GetLastWatchDateString());
             json.getJSONArray("anime").remove(index);
             CalculateExtraInfomation();
         }catch (JSONException e){

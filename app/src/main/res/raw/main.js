@@ -216,7 +216,8 @@ function writeList(jsonData,sortOrder){
 				else
 					textContent+="，共"+animeObject["episode_count"]+"话。";
 			}
-			textContent+="最后观看于"+animeObject["last_watch_date_anime"]+"。";
+			if(animeObject["last_watch_episode_anime"]!=undefined&&animeObject["last_watch_episode_anime"]!=0)
+				textContent+="最后观看于"+animeObject["last_watch_date_anime"]+"。";
 		}
 		for (var j=0;j<maxEpisodes;j++){
 			var tagEpisodeObject=document.createElement("div");

@@ -93,6 +93,41 @@ public class AnimeJson {
         return FileUtility.WriteFile(path, Values.jsCallback+"("+JSONFormatter.Format(json.toString())+");");
     }
 
+    public String GetLastWatchDateStringForAnime(int index){
+        try{
+            return json.getJSONArray("anime").getJSONObject(index).getString("last_watch_date_anime");
+        }catch (JSONException e){
+            return "1900-1-1";
+        }
+    }
+
+    public boolean SetLastWatchDateForAnime(int index,String date){
+        try{
+            json.getJSONArray("anime").getJSONObject(index).put("last_watch_date_anime",date);
+            return true;
+        }catch (JSONException e){
+            return false;
+        }
+    }
+
+    //洋：集数是从1数起的
+    public int GetLastWatchEpisodeForAnime(int index){
+        try{
+            return json.getJSONArray("anime").getJSONObject(index).getInt("last_watch_episode_anime");
+        }catch (JSONException e){
+            return 0;
+        }
+    }
+
+    public boolean SetLastWatchEpisodeForAnime(int index,int epi_from_one){
+        try{
+            json.getJSONArray("anime").getJSONObject(index).put("last_watch_episode_anime",epi_from_one);
+            return true;
+        }catch (JSONException e){
+            return false;
+        }
+    }
+
     public int GetLastWatchIndex(){
         try {
             return json.getInt("last_watch_index");
@@ -103,27 +138,19 @@ public class AnimeJson {
 
     //【注意】集数是从1数起的
     public int GetLastWatchEpisode(){
-        try{
-            return json.getInt("last_watch_episode");
-        }catch (JSONException e){
-            return 0;
-        }
+        return GetLastWatchEpisodeForAnime(GetLastWatchIndex());
     }
 
     public String GetLastWatchDateString(){
-        try {
-            return json.getString("last_watch_date");
-        }catch (JSONException e){
-            return "1900-1-1";
-        }
+        return GetLastWatchDateStringForAnime(GetLastWatchIndex());
     }
 
     //【注意】集数是从1数起的
     public boolean SetLastWatch(int index,int episode,String date){
         try{
             json.put("last_watch_index",index);
-            json.put("last_watch_episode",episode);
-            json.put("last_watch_date",date);
+            SetLastWatchEpisodeForAnime(index,episode);
+            SetLastWatchDateForAnime(index,date);
         }catch (JSONException e){
             return false;
         }

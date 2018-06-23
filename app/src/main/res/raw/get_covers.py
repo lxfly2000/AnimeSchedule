@@ -10,8 +10,13 @@ def downloadFromURL(src_url,save_name):
 	url_file=request.urlopen(src_url)
 	save_file=open(save_name,"wb").write(url_file.read())
 
-jsonFile=open("anime.json",encoding="utf-8")
-jsonObject=json.load(jsonFile)
+jsonFile=open("anime.js",encoding="utf-8")
+try:
+	jsonStr=jsonFile.read()
+finally:
+	jsonFile.close()
+
+jsonObject=json.loads(jsonStr[jsonStr.find("(")+1:jsonStr.rfind(")")])
 
 if os.path.exists("covers")==False:
 	os.mkdir("covers")

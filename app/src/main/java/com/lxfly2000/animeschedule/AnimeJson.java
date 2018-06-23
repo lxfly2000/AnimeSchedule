@@ -458,6 +458,8 @@ public class AnimeJson {
             SetRank(ni,0);
             SetColor(ni,"silver");
             SetCategory(ni,new String[]{});
+            SetLastWatchDateForAnime(ni,"1900-1-1");
+            SetLastWatchEpisodeForAnime(ni,0);
             CalculateExtraInfomation();
         }catch (JSONException e){
             return -1;

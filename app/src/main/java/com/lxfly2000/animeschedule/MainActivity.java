@@ -231,8 +231,6 @@ public class MainActivity extends AppCompatActivity {
         jsonSortTable=new ArrayList<>(listCount);
         for(int i=0;i<listCount;i++)
             jsonSortTable.add(i);
-        if(order==0)
-            return;
         final YMDDate last_watch_date_a=new YMDDate(),last_watch_date_b=new YMDDate();//这样真的OK？
         jsonSortTable.sort(new Comparator<Integer>() {
             @Override
@@ -245,9 +243,19 @@ public class MainActivity extends AppCompatActivity {
                             case 2:
                                 last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));
                                 last_watch_date_b.FromString(animeJson.GetLastWatchDateStringForAnime(b));
-                                return last_watch_date_a.IsEarlierThanDate(last_watch_date_b)?-1:1;
+                                if(last_watch_date_a.IsEarlierThanDate(last_watch_date_b))
+                                    return -1;
+                                else if(last_watch_date_a.IsSameToDate(last_watch_date_b))
+                                    return 0;
+                                else
+                                    return 1;
                             case 1:default:
-                                return animeJson.GetLastUpdateYMDDate(a).IsEarlierThanDate(animeJson.GetLastUpdateYMDDate(b))?-1:1;
+                                if(animeJson.GetLastUpdateYMDDate(a).IsEarlierThanDate(animeJson.GetLastUpdateYMDDate(b)))
+                                    return -1;
+                                else if(animeJson.GetLastUpdateYMDDate(a).IsSameToDate(animeJson.GetLastUpdateYMDDate(b)))
+                                    return 0;
+                                else
+                                    return 1;
                         }
                     case 2:
                         switch (method){
@@ -256,9 +264,19 @@ public class MainActivity extends AppCompatActivity {
                             case 2:
                                 last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));
                                 last_watch_date_b.FromString(animeJson.GetLastWatchDateStringForAnime(b));
-                                return last_watch_date_a.IsLaterThanDate(last_watch_date_b)?-1:1;
+                                if(last_watch_date_a.IsLaterThanDate(last_watch_date_b))
+                                    return -1;
+                                else if(last_watch_date_a.IsSameToDate(last_watch_date_b))
+                                    return 0;
+                                else
+                                    return 1;
                             case 1:default:
-                                return animeJson.GetLastUpdateYMDDate(a).IsLaterThanDate(animeJson.GetLastUpdateYMDDate(b))?-1:1;
+                                if(animeJson.GetLastUpdateYMDDate(a).IsLaterThanDate(animeJson.GetLastUpdateYMDDate(b)))
+                                    return -1;
+                                else if(animeJson.GetLastUpdateYMDDate(a).IsLaterThanDate(animeJson.GetLastUpdateYMDDate(b)))
+                                    return 0;
+                                else
+                                    return 1;
                         }
                 }
                 return 0;

@@ -10,6 +10,12 @@ public class Values {
     public static final String[] pathJsonDataOnRepository={"anime.js","anime.json"};
     public static final String keyAnimeInfoDate="anime_info_date",vdAnimeInfoDate="1900-1-1";
     public static final String vDefaultString="(NOT SET)";
+    public static final String keySortMethod="anime_sort_method";
+    public static final int vDefaultSortMethod=1;
+    public static final String keySortOrder="anime_sort_order";
+    public static final int vDefaultSortOrder=2;
+    public static final String keySortSeperateAbandoned="anime_sort_separate_abandoned";
+    public static final boolean vDefaultSortSeperateAbandoned=true;
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
     }

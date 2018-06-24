@@ -147,7 +147,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void DisplayList(){
-        RebuildSortTable(2);
+        RebuildSortTable(preferences.getInt(Values.keySortMethod,Values.vDefaultSortMethod),
+                preferences.getInt(Values.keySortOrder,Values.vDefaultSortOrder),
+                preferences.getBoolean(Values.keySortSeperateAbandoned,Values.vDefaultSortSeperateAbandoned));
         ArrayList<HashMap<String,Object>>listItems=new ArrayList<>();
         String[]keyStrings={"title","description","ranking","schedule","cover"};
         int[]viewIds={R.id.textAnimeTitle,R.id.textAnimeDescription,R.id.textRanking,R.id.textSchedule,R.id.imageCover};
@@ -222,8 +224,8 @@ public class MainActivity extends AppCompatActivity {
         setTitle(getString(R.string.app_name)+getString(R.string.title_total_count,animeJson.GetAnimeCount()));
     }
 
-    //排序，order:0=不排序，1=升序，2=降序
-    private void RebuildSortTable(final int order){
+    //排序，method:0=评分，1=更新日期，2=观看日期，order:0=不排序，1=升序，2=降序，sep_ab:是否分开弃番
+    private void RebuildSortTable(final int method,final int order,final boolean sep_ab){
         sortOrder=order;
         int listCount=animeJson.GetAnimeCount();
         jsonSortTable=new ArrayList<>(listCount);
@@ -231,24 +233,47 @@ public class MainActivity extends AppCompatActivity {
             jsonSortTable.add(i);
         if(order==0)
             return;
+        final YMDDate last_watch_date_a=new YMDDate(),last_watch_date_b=new YMDDate();//这样真的OK？
         jsonSortTable.sort(new Comparator<Integer>() {
             @Override
             public int compare(Integer a, Integer b) {
                 switch (order){
-                    case 1:return animeJson.GetLastUpdateYMDDate(a).IsEarlierThanDate(animeJson.GetLastUpdateYMDDate(b))?-1:1;
-                    case 2:return animeJson.GetLastUpdateYMDDate(a).IsLaterThanDate(animeJson.GetLastUpdateYMDDate(b))?-1:1;
+                    case 1:
+                        switch (method){
+                            case 0:
+                                return Integer.compare(animeJson.GetRank(a), animeJson.GetRank(b));
+                            case 2:
+                                last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));
+                                last_watch_date_b.FromString(animeJson.GetLastWatchDateStringForAnime(b));
+                                return last_watch_date_a.IsEarlierThanDate(last_watch_date_b)?-1:1;
+                            case 1:default:
+                                return animeJson.GetLastUpdateYMDDate(a).IsEarlierThanDate(animeJson.GetLastUpdateYMDDate(b))?-1:1;
+                        }
+                    case 2:
+                        switch (method){
+                            case 0:
+                                return Integer.compare(animeJson.GetRank(b), animeJson.GetRank(a));
+                            case 2:
+                                last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));
+                                last_watch_date_b.FromString(animeJson.GetLastWatchDateStringForAnime(b));
+                                return last_watch_date_a.IsLaterThanDate(last_watch_date_b)?-1:1;
+                            case 1:default:
+                                return animeJson.GetLastUpdateYMDDate(a).IsLaterThanDate(animeJson.GetLastUpdateYMDDate(b))?-1:1;
+                        }
                 }
                 return 0;
             }
         });
-        int processingTotal=listCount;
-        for(int i=0;i<processingTotal;){
-            if(animeJson.GetAbandoned(jsonSortTable.get(i))){
-                jsonSortTable.add(jsonSortTable.get(i));
-                jsonSortTable.remove(i);
-                processingTotal--;
-            }else{
-                i++;
+        if(sep_ab) {
+            int processingTotal = listCount;
+            for (int i = 0; i < processingTotal; ) {
+                if (animeJson.GetAbandoned(jsonSortTable.get(i))) {
+                    jsonSortTable.add(jsonSortTable.get(i));
+                    jsonSortTable.remove(i);
+                    processingTotal--;
+                } else {
+                    i++;
+                }
             }
         }
     }
@@ -318,6 +343,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_add_item:OnAddAnime();return true;
             case R.id.action_remove_all_item:OnRemoveAllAnime();return true;
             case R.id.action_check_update:CheckForUpdate(false);return true;
+            case R.id.action_show_count_statistics:ShowCountStatistics();return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -334,6 +360,48 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_remove_item:RemoveItem(jsonSortTable.get(longPressedListItem));break;
         }
         return false;
+    }
+
+    public void ShowCountStatistics(){
+        int followed_sub=0,followed_ab=0,following_sub=0,following_ab=0,notwatched_sub=0,notwatched_ab=0;
+        int broadcasting_sub=0,broadcasting_ab=0,finished_sub=0,finished_ab=0;
+        for(int i=0;i<animeJson.GetAnimeCount();i++){
+            int epi_watched=0;
+            for(int j=0;j<animeJson.GetEpisodeCount(i);j++){
+                if(animeJson.GetEpisodeWatched(i,j+1))
+                    epi_watched++;
+            }
+            if(epi_watched==0){
+                if(animeJson.GetAbandoned(i))
+                    notwatched_ab++;
+                else
+                    notwatched_sub++;
+            }else if(epi_watched<animeJson.GetEpisodeCount(i)){
+                if(animeJson.GetAbandoned(i))
+                    following_ab++;
+                else
+                    following_sub++;
+            }else{
+                if(animeJson.GetAbandoned(i))
+                    followed_ab++;
+                else
+                    followed_sub++;
+            }
+            if(animeJson.GetLastUpdateEpisode(i)==animeJson.GetEpisodeCount(i)){
+                if(animeJson.GetAbandoned(i))
+                    finished_ab++;
+                else
+                    finished_sub++;
+            }else{
+                if(animeJson.GetAbandoned(i))
+                    broadcasting_ab++;
+                else
+                    broadcasting_sub++;
+            }
+        }
+        AndroidUtility.MessageBox(this,String.format(getString(R.string.message_count_statistics),
+                followed_sub,followed_ab,following_sub,following_ab,notwatched_sub,notwatched_ab,
+                broadcasting_sub,broadcasting_ab,finished_sub,finished_ab,animeJson.GetAnimeCount()));
     }
 
     private void RemoveItem(final int index){
@@ -528,7 +596,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if(i_regex==Values.parsableLinksRegex.length){
-                    Toast.makeText(getBaseContext(),"不支持读取该链接。",Toast.LENGTH_LONG).show();
+                    if(urlString.contains("bilibili"))
+                        Toast.makeText(getBaseContext(),"暂不支持读取该类型的B站链接，建议使用国际版哔哩哔哩客户端以获得更好支持。",Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(getBaseContext(),"不支持读取该链接。",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -627,6 +698,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void OnActionSettings(){
         startActivityForResult(new Intent(this,SettingsActivity.class),R.id.action_settings&0xFFFF);
+    }
+
+    @Override
+    protected void onActivityResult (int requestCode,int resultCode,Intent data){
+        if(requestCode==(R.id.action_settings&0xFFFF)&&resultCode==RESULT_OK){
+            if(data.getBooleanExtra(SettingsActivity.keyNeedReload,false))
+                SaveAndReloadJsonFile(false);
+        }
     }
 
     private static final String INTENT_EXTRA_UPDATE_ONLY="onlyUpdate";

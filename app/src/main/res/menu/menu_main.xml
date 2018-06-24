@@ -5,6 +5,7 @@
     <item android:title="@string/action_remove_all_item" android:id="@+id/action_remove_all_item"/>
     <item android:title="@string/action_show_anime_update" android:id="@+id/action_show_anime_update"
           android:icon="@android:drawable/ic_menu_help"/>
+    <item android:title="@string/action_show_count_statistics" android:id="@+id/action_show_count_statistics"/>
     <item android:title="@string/action_view_web_page" android:id="@+id/action_view_web_page"/>
     <item android:title="@string/menu_check_update" android:id="@+id/action_check_update"/>
     <item android:title="@string/action_settings" android:id="@+id/action_settings"

@@ -4,4 +4,14 @@
         <item>Day</item>
         <item>Month</item>
     </string-array>
+    <string-array name="list_sort_methods">
+        <item>Rank</item>
+        <item>Update Date</item>
+        <item>Watch Date</item>
+    </string-array>
+    <string-array name="list_sort_order">
+        <item>Null</item>
+        <item>Ascend</item>
+        <item>Descend</item>
+    </string-array>
 </resources>

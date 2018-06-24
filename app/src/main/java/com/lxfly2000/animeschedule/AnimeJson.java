@@ -37,8 +37,6 @@ public class AnimeJson {
             json=new JSONObject();
             json.put("_comment","创建于"+YMDDate.GetTodayDate().ToYMDString());
             json.put("last_watch_index",0);
-            json.put("last_watch_episode",0);
-            json.put("last_watch_date",YMDDate.GetTodayDate().ToYMDString());
             json.put("anime",new JSONArray());
         }catch (JSONException e){
             json=null;

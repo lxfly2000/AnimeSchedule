@@ -42,4 +42,8 @@
     <string name="label_version_info">版本：%s</string>
     <string name="title_total_count">（%d）</string>
     <string name="message_remove_warning">确定删除这部番剧吗？</string>
+    <string name="action_show_count_statistics">统计</string>
+    <string name="message_count_statistics" formatted="false">统计 \u0020\u0020\u0020\u0020\u0020\u0020追番 \u0020\u0020\u0020\u0020\u0020\u0020弃番\n最新 %10d %10d\n更新 %10d %10d\n未看 %10d %10d\n\n放送 %10d %10d\n完结 %10d %10d\n\n总计：%d</string>
+    <string name="label_sort_method">排序方法</string>
+    <string name="label_sort_split_abandoned">分开弃番</string>
 </resources>

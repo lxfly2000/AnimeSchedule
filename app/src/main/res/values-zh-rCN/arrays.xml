@@ -4,4 +4,14 @@
         <item>日</item>
         <item>月</item>
     </string-array>
+    <string-array name="list_sort_methods">
+        <item>评分</item>
+        <item>更新日期</item>
+        <item>观看日期</item>
+    </string-array>
+    <string-array name="list_sort_order">
+        <item>不排序</item>
+        <item>升序</item>
+        <item>降序</item>
+    </string-array>
 </resources>

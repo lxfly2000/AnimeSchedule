@@ -385,7 +385,7 @@ public class MainActivity extends AppCompatActivity {
         int broadcasting_sub=0,broadcasting_ab=0,finished_sub=0,finished_ab=0;
         for(int i=0;i<animeJson.GetAnimeCount();i++){
             int epi_watched=0;
-            for(int j=0;j<animeJson.GetEpisodeCount(i);j++){
+            for(int j=0;j<animeJson.GetEpisodeCount(i)||j<animeJson.GetLastUpdateEpisode(i);j++){
                 if(animeJson.GetEpisodeWatched(i,j+1))
                     epi_watched++;
             }
@@ -394,7 +394,7 @@ public class MainActivity extends AppCompatActivity {
                     notwatched_ab++;
                 else
                     notwatched_sub++;
-            }else if(epi_watched<animeJson.GetEpisodeCount(i)){
+            }else if(epi_watched<animeJson.GetEpisodeCount(i)||epi_watched<animeJson.GetLastUpdateEpisode(i)){
                 if(animeJson.GetAbandoned(i))
                     following_ab++;
                 else

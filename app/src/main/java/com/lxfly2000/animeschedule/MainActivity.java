@@ -602,7 +602,11 @@ public class MainActivity extends AppCompatActivity {
                             String subFound=urlString.substring(m.start(),m.end());
                             Matcher mSub=pSub.matcher(subFound);
                             if(mSub.find()){
-                                ReadBilibiliJsonp_OnCallback(subFound.substring(mSub.start(),mSub.end()));
+                                switch (i_regex) {
+                                    case 0:ReadBilibiliJsonp_OnCallback(subFound.substring(mSub.start(), mSub.end()));break;//旧的SSID链接形式
+                                    case 1:ReadBilibiliEpisodeJson_OnCallback(subFound.substring(mSub.start(),mSub.end()));break;//2018年新版B站客户端的Episode链接形式
+                                    default:throw new IllegalStateException("没有符合的B站链接形式。");
+                                }
                                 break;
                             }else{
                                 throw new IllegalStateException("意外的状态。");
@@ -621,6 +625,40 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void ReadBilibiliEpisodeJson_OnCallback(String epidString){
+        /*输入URL：
+        * *bilibili.com/bangumi/play/ep#####*
+        *                              ~~~~~Episode ID
+        *
+        * 则应查询的JSON为：
+        * https://bangumi.bilibili.com/web_api/episode/#####.json
+        *
+        * 获取SSID：
+        * ep#####.result.currentEpisode.seasonId -> Int型
+        * */
+        Toast.makeText(this,"你输入的是Episode链接，正在获取SSID……",Toast.LENGTH_SHORT).show();
+        editDialogTitle.setText(epidString);
+        String requestUrl="https://bangumi.bilibili.com/web_api/episode/"+epidString+".json";
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                if(!success){
+                    Toast.makeText(getBaseContext(),"无法获取Episode ID信息。",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                try{
+                    JSONObject biliEpisodeJson=new JSONObject(StreamUtility.GetStringFromStream(stream));
+                    ReadBilibiliJsonp_OnCallback(String.valueOf(biliEpisodeJson.getJSONObject("result").getJSONObject("currentEpisode").getInt("seasonId")));
+                }catch (JSONException e){
+                    Toast.makeText(getBaseContext(),"发生JSON异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }catch (IOException e){
+                    Toast.makeText(getBaseContext(),"发生IO异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+        task.execute(requestUrl);
     }
 
     private void ReadBilibiliJsonp_OnCallback(String idString){

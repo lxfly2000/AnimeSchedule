@@ -638,8 +638,7 @@ public class MainActivity extends AppCompatActivity {
         * 获取SSID：
         * ep#####.result.currentEpisode.seasonId -> Int型
         * */
-        Toast.makeText(this,"你输入的是Episode链接，正在获取SSID……",Toast.LENGTH_SHORT).show();
-        editDialogTitle.setText(epidString);
+        editDialogTitle.setText("Episode ID: "+epidString);
         String requestUrl="https://bangumi.bilibili.com/web_api/episode/"+epidString+".json";
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
@@ -662,6 +661,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ReadBilibiliJsonp_OnCallback(String idString){
+        editDialogTitle.setText("Season ID: "+idString);
         String requestUrl="https://bangumi.bilibili.com/jsonp/seasoninfo/"+idString+".ver?callback=seasonListCallback&jsonp=jsonp";
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override

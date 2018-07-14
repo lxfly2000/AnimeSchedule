@@ -10,4 +10,9 @@
     <item android:title="@string/menu_check_update" android:id="@+id/action_check_update"/>
     <item android:title="@string/action_settings" android:id="@+id/action_settings"
           android:icon="@android:drawable/ic_menu_preferences"/>
+    <item
+            android:id="@+id/app_bar_search"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="@android:string/search_go" app:actionViewClass="android.widget.SearchView"
+            app:showAsAction="ifRoom"/>
 </menu>

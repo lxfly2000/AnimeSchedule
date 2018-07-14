@@ -7,16 +7,20 @@
 * 可直接在列表上标记观看集数
 * 点击打开链接（OK）
 * 更新集数提示（用对话框显示，可选择今日不再提示(Neu)/关闭(Posi)）（OK）
+* 完善搜索功能
 */
 
 package com.lxfly2000.animeschedule;
 
+import android.app.SearchManager;
 import android.content.*;
 import android.content.pm.PackageManager;
+import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,7 +36,6 @@ import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -104,6 +107,25 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(checkUpdateReceiver,fiUpdate);
         //检测更新
         CheckForUpdate(true);
+        //处理Intent
+        HandleIntent(getIntent());
+        //初始化搜索建议相关变量
+        final String[]suggestionKeys=new String[]{"title"};
+        final int[]suggestionsIds=new int[]{android.R.id.text1};
+        suggestionsAdapter=new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,null,suggestionKeys,
+                suggestionsIds,CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent){
+        HandleIntent(intent);
+    }
+
+    private void HandleIntent(Intent intent){
+        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
+            String queryWord=intent.getStringExtra(SearchManager.QUERY);
+            Toast.makeText(this,queryWord+"\n该功能正在制作中。",Toast.LENGTH_LONG).show();
+        }
     }
 
     private AdapterView.OnItemClickListener listAnimeCallback=new AdapterView.OnItemClickListener() {
@@ -346,10 +368,52 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    SearchView searchView;
+    SimpleCursorAdapter suggestionsAdapter;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_main,menu);
+        //https://developer.android.google.cn/training/search/setup
+        //设置搜索属性
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(int i) {
+                //TODO:Fill code.
+                return false;
+            }
+
+            @Override
+            public boolean onSuggestionClick(int i) {
+                //TODO:Fill code.
+                return false;
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                SetSuggestionAdapter(s);
+                return false;
+            }
+        });
         return true;
+    }
+
+    private void  SetSuggestionAdapter(String queryStr){
+        final MatrixCursor c=new MatrixCursor(new String[]{BaseColumns._ID,"title"});
+        for(int i=0;i<animeJson.GetAnimeCount();i++){
+            if(animeJson.GetTitle(i).toLowerCase().startsWith(queryStr.toLowerCase()))
+                c.addRow(new Object[]{i,animeJson.GetTitle(i)});
+        }
+        suggestionsAdapter.changeCursor(c);
     }
 
     @Override

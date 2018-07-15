@@ -47,4 +47,6 @@
     <string name="label_sort_method">排序方法</string>
     <string name="label_sort_split_abandoned">分开弃番</string>
     <string name="edit_hint_search_anime">输入番剧名称……</string>
+    <string name="message_anime_not_found">未找到名称为“%s”的番剧。</string>
+    <string name="message_anime_jumping">跳转至“%s”……</string>
 </resources>

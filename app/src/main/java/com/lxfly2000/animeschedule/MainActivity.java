@@ -7,7 +7,7 @@
 * 可直接在列表上标记观看集数
 * 点击打开链接（OK）
 * 更新集数提示（用对话框显示，可选择今日不再提示(Neu)/关闭(Posi)）（OK）
-* 完善搜索功能
+* 完善搜索功能（OK）
 */
 
 package com.lxfly2000.animeschedule;
@@ -124,7 +124,15 @@ public class MainActivity extends AppCompatActivity {
     private void HandleIntent(Intent intent){
         if(Intent.ACTION_SEARCH.equals(intent.getAction())){
             String queryWord=intent.getStringExtra(SearchManager.QUERY);
-            Toast.makeText(this,queryWord+"\n该功能正在制作中。",Toast.LENGTH_LONG).show();
+            //跳转至搜索的番剧名称处
+            for(int i=0;i<animeJson.GetAnimeCount();i++){
+                if(animeJson.GetTitle(jsonSortTable.get(i)).equals(queryWord)){
+                    Toast.makeText(this,String.format(getString(R.string.message_anime_jumping),queryWord),Toast.LENGTH_SHORT).show();
+                    listAnime.setSelection(i);
+                    return;
+                }
+            }
+            Toast.makeText(this,String.format(getString(R.string.message_anime_not_found),queryWord),Toast.LENGTH_LONG).show();
         }
     }
 
@@ -368,28 +376,37 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    SearchView searchView;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
     SimpleCursorAdapter suggestionsAdapter;
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+    public boolean onPrepareOptionsMenu(Menu menu){
+        super.onPrepareOptionsMenu(menu);
         //https://developer.android.google.cn/training/search/setup
         //设置搜索属性
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
+        final SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
+        searchView.setSuggestionsAdapter(suggestionsAdapter);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
             @Override
             public boolean onSuggestionSelect(int i) {
-                //TODO:Fill code.
-                return false;
+                return onSuggestionClick(i);
             }
 
             @Override
             public boolean onSuggestionClick(int i) {
-                //TODO:Fill code.
-                return false;
+                //查询选择的是什么建议
+                //https://stackoverflow.com/a/50385750（答案有误）
+                MatrixCursor c=(MatrixCursor)searchView.getSuggestionsAdapter().getCursor();
+                c.moveToPosition(i);
+                searchView.setQuery(c.getString(1),true);
+                return true;
             }
         });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -400,14 +417,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                SetSuggestionAdapter(s);
+                UpdateSuggestionAdapter(s);
                 return false;
             }
         });
         return true;
     }
 
-    private void  SetSuggestionAdapter(String queryStr){
+    private void UpdateSuggestionAdapter(String queryStr){
         final MatrixCursor c=new MatrixCursor(new String[]{BaseColumns._ID,"title"});
         for(int i=0;i<animeJson.GetAnimeCount();i++){
             if(animeJson.GetTitle(i).toLowerCase().startsWith(queryStr.toLowerCase()))

@@ -46,4 +46,6 @@
     <string name="label_sort_method">Sort method</string>
     <string name="label_sort_split_abandoned">Separate Abandoned</string>
     <string name="edit_hint_search_anime">Enter the Anime title here...</string>
+    <string name="message_anime_not_found">No Anime found named "%s".</string>
+    <string name="message_anime_jumping">Jump to the Anime "%s"...</string>
 </resources>

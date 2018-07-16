@@ -177,6 +177,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    class BitmapSets{
+        public BitmapSets(){
+            images=new HashMap<>();
+        }
+        public Bitmap GetBitmapFromPath(String path){
+            if(images.containsKey(path))
+                return images.get(path);
+            Bitmap img=BitmapFactory.decodeFile(path);
+            images.put(path,img);
+            return img;
+        }
+        HashMap<String,Bitmap>images;
+    }
+
+    BitmapSets bitmapSets=new BitmapSets();
+
     private void DisplayList(){
         RebuildSortTable(preferences.getInt(Values.keySortMethod,Values.vDefaultSortMethod),
                 preferences.getInt(Values.keySortOrder,Values.vDefaultSortOrder),
@@ -220,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
             String coverPath=Values.GetCoverPathOnLocal()+"/"+
                     animeJson.GetTitle(jsonSortTable.get(i)).replaceAll("[/\":|<>?*]","_")+coverExt;
             if(FileUtility.IsFileExists(coverPath)){
-                listItem.put("cover", BitmapFactory.decodeFile(coverPath));
+                listItem.put("cover", bitmapSets.GetBitmapFromPath(coverPath));
             }else {
                 AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
                     @Override

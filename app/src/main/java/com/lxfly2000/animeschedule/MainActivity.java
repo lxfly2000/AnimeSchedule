@@ -137,6 +137,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy(){
+        bitmapSets.ReleaseAll();
+        super.onDestroy();
+    }
+
     private AdapterView.OnItemClickListener listAnimeCallback=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -180,6 +186,12 @@ public class MainActivity extends AppCompatActivity {
     class BitmapSets{
         public BitmapSets(){
             images=new HashMap<>();
+        }
+        public void ReleaseAll(){
+            for(HashMap.Entry<String,Bitmap>e:images.entrySet()){
+                e.getValue().recycle();
+            }
+            images.clear();
         }
         public Bitmap GetBitmapFromPath(String path){
             if(images.containsKey(path))

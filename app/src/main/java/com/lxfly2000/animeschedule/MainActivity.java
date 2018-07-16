@@ -29,6 +29,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
+import com.google.android.flexbox.FlexboxLayout;
 import com.lxfly2000.utilities.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -560,7 +561,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editDialogEpisodeCount;
     private EditText editDialogAbsenseCount;
     private EditText editDialogWatchUrl;
-    private EditText editDialogWatchedEpisode;
+    private FlexboxLayout flexboxDialogWatchedEpisode;
     private EditText editDialogColor;
     private EditText editDialogCategory;
     private CheckBox checkDialogAbandoned;
@@ -588,12 +589,9 @@ public class MainActivity extends AppCompatActivity {
                         animeJson.SetEpisodeCount(index,ParseStringToInt(editDialogEpisodeCount.getText().toString(),-1));
                         animeJson.SetAbsenseCount(index,ParseStringToInt(editDialogAbsenseCount.getText().toString(),0));
                         animeJson.SetWatchUrl(index,editDialogWatchUrl.getText().toString());
-                        String[]strWatchedEpisodeArray=editDialogWatchedEpisode.getText().toString().split(",");
+                        //读取已观看的集数
                         for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(index);i_epi++)
-                            animeJson.SetEpisodeWatched(index,i_epi,false);
-                        for (String strEachWatched : strWatchedEpisodeArray)
-                            if(!strEachWatched.contentEquals(""))
-                                animeJson.SetEpisodeWatched(index, Integer.parseInt(strEachWatched), true);
+                            animeJson.SetEpisodeWatched(index,i_epi,((ToggleButton)flexboxDialogWatchedEpisode.getChildAt(i_epi-1)).isChecked());
                         animeJson.SetColor(index,editDialogColor.getText().toString());
                         String[]categoryArray=null;
                         if(editDialogCategory.getText().length()>0)
@@ -630,7 +628,7 @@ public class MainActivity extends AppCompatActivity {
         editDialogEpisodeCount=(EditText)editDialog.findViewById(R.id.editDialogEpisodeCount);
         editDialogAbsenseCount=(EditText)editDialog.findViewById(R.id.editDialogAbsenseCount);
         editDialogWatchUrl=(EditText)editDialog.findViewById(R.id.editDialogWatchUrl);
-        editDialogWatchedEpisode=(EditText)editDialog.findViewById(R.id.editDialogWatchedEpisodes);
+        flexboxDialogWatchedEpisode=(FlexboxLayout)editDialog.findViewById(R.id.flexboxDialogWatchedEpisodes);
         editDialogColor=(EditText)editDialog.findViewById(R.id.editDialogColor);
         editDialogCategory=(EditText)editDialog.findViewById(R.id.editDialogCategory);
         checkDialogAbandoned=(CheckBox)editDialog.findViewById(R.id.checkAbandoned);
@@ -649,15 +647,20 @@ public class MainActivity extends AppCompatActivity {
         editDialogEpisodeCount.setText(String.valueOf(animeJson.GetEpisodeCount(index)));
         editDialogAbsenseCount.setText(String.valueOf(animeJson.GetAbsenseCount(index)));
         editDialogWatchUrl.setText(String.valueOf(animeJson.GetWatchUrl(index)));
+        //显示观看的集数
         StringBuilder stringBuilder=new StringBuilder();
+        ToggleButton toggleEpisode;
+        FlexboxLayout.LayoutParams layoutToggleEpisode=new FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT,FlexboxLayout.LayoutParams.WRAP_CONTENT);
         for(int i=1;i<=animeJson.GetLastUpdateEpisode(index);i++){
-            if(animeJson.GetEpisodeWatched(index,i)){
-                if(stringBuilder.length()!=0)
-                    stringBuilder.append(",");
-                stringBuilder.append(String.valueOf(i));
-            }
+            toggleEpisode=new ToggleButton(this);
+            toggleEpisode.setLayoutParams(layoutToggleEpisode);
+            toggleEpisode.setMinWidth(0);
+            toggleEpisode.setMinimumWidth(0);
+            toggleEpisode.setTextOn(String.valueOf(i));
+            toggleEpisode.setTextOff(String.valueOf(i));
+            toggleEpisode.setChecked(animeJson.GetEpisodeWatched(index,i));
+            flexboxDialogWatchedEpisode.addView(toggleEpisode);
         }
-        editDialogWatchedEpisode.setText(stringBuilder.toString());
         editDialogColor.setText(String.valueOf(animeJson.GetColor(index)));
         String[]strCategoryArray=animeJson.GetCategory(index);
         stringBuilder=new StringBuilder();

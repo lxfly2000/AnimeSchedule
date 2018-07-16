@@ -140,12 +140,16 @@
                     android:text="@string/label_watched_episode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textDialogWatchedEpisode"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editDialogWatchedEpisodes"
-                    android:hint="@string/message_not_watched" android:inputType="text"/>
+            <com.google.android.flexbox.FlexboxLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:flexWrap="wrap"
+                app:alignItems="center"
+                app:alignContent="stretch"
+                android:id="@+id/flexboxDialogWatchedEpisodes">
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                     android:text="@string/label_anime_category"
                     android:layout_width="match_parent"

@@ -618,8 +618,11 @@ public class MainActivity extends AppCompatActivity {
                         animeJson.SetAbsenseCount(index,ParseStringToInt(editDialogAbsenseCount.getText().toString(),0));
                         animeJson.SetWatchUrl(index,editDialogWatchUrl.getText().toString());
                         //读取已观看的集数
-                        for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(index);i_epi++)
-                            animeJson.SetEpisodeWatched(index,i_epi,((ToggleButton)flexboxDialogWatchedEpisode.getChildAt(i_epi-1)).isChecked());
+                        for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(index);i_epi++) {
+                            boolean i_epi_watched=((ToggleButton)flexboxDialogWatchedEpisode.getChildAt(i_epi-1)).isChecked();
+                            if(animeJson.GetEpisodeWatched(index,i_epi)!=i_epi_watched)
+                                animeJson.SetEpisodeWatched(index, i_epi, i_epi_watched);
+                        }
                         animeJson.SetColor(index,editDialogColor.getText().toString());
                         String[]categoryArray=null;
                         if(editDialogCategory.getText().length()>0)

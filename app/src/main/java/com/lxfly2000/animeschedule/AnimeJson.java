@@ -108,7 +108,7 @@ public class AnimeJson {
         }
     }
 
-    //洋：集数是从1数起的
+    //注意：集数是从1数起的
     public int GetLastWatchEpisodeForAnime(int index){
         try{
             return json.getJSONArray("anime").getJSONObject(index).getInt("last_watch_episode_anime");

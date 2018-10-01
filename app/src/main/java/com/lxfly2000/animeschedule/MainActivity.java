@@ -727,7 +727,7 @@ public class MainActivity extends AppCompatActivity {
                                 throw new IllegalStateException("意外的状态。");
                             }
                         }else if(urlString.toLowerCase().contains("iqiyi")){
-                            Toast.makeText(getBaseContext(),"暂不支持读取爱奇艺链接。",Toast.LENGTH_LONG).show();
+                            GetIQiyiAnimeIDFromURL(urlString);
                             break;
                         }
                     }
@@ -813,6 +813,161 @@ public class MainActivity extends AppCompatActivity {
                         tagString.append(biliResult.getJSONArray("tags").getJSONObject(i).getString("tag_name"));
                     }
                     editDialogCategory.setText(tagString.toString());
+                }catch (JSONException e){
+                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }catch (IOException e){
+                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+        task.execute(requestUrl);
+    }
+
+    private void GetIQiyiAnimeIDFromURL(String url){
+        //根据目前（2018-10-1）观察到的情况，爱奇艺的链接无论是a链接还是v链接都有含有“albumId: #########,”代码的脚本，通过此就能查询到番剧的数字ID
+        editDialogTitle.setText(url);
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                if(!success){
+                    Toast.makeText(getBaseContext(),"无法读取网址。",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Pattern p=Pattern.compile("albumId: *[0-9]+,");
+                try {
+                    String htmlString = StreamUtility.GetStringFromStream(stream);//整个网页的内容
+                    Matcher m = p.matcher(htmlString);
+                    boolean mfind=false;
+                    if(m.find())
+                        mfind=true;
+                    else{
+                        p=Pattern.compile("aid *= *\"[0-9]+\"");
+                        m=p.matcher(htmlString);
+                        if(m.find())
+                            mfind=true;
+                        else{
+                            if(((String)extra).toLowerCase().startsWith("http:")) {
+                                GetIQiyiAnimeIDFromURL(((String) extra).replaceFirst("http", "https"));
+                                return;
+                            }
+                        }
+                    }
+                    if(mfind) {
+                        htmlString = htmlString.substring(m.start(), m.end());//数字ID所在代码的内容
+                        Pattern pSub=Pattern.compile("[0-9]+");
+                        Matcher mSub=pSub.matcher(htmlString);
+                        if(mSub.find())
+                            ReadIQiyiJson_OnCallback(htmlString.substring(mSub.start(),mSub.end()));//数字ID的字符串
+                        else
+                            Toast.makeText(getBaseContext(),"无法获取数字ID。",Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getBaseContext(),"无法获取数字ID所在代码。",Toast.LENGTH_LONG).show();
+                    }
+                }catch (IOException e){
+                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+        task.SetExtra(url);
+        task.execute(url);
+    }
+
+    private void ReadIQiyiJson_OnCallback(String idString){
+        editDialogTitle.setText("Album ID: "+idString);
+        //String jsonUrlGetAlbumId="https://nl-rcd.iqiyi.com/apis/urc/getalbumrc?albumId="+idString;//因为此链接爱奇艺要求登录或验证所以无法使用
+        String jsonUrlGetSnsScore="https://pcw-api.iqiyi.com/video/score/getsnsscore?qipu_ids="+idString;
+        String jsonpUrlGetAvList="https://cache.video.iqiyi.com/jp/avlist/"+idString+"/1/50/";//这后面的1/50好像没有什么影响的吧……
+        /*AndroidDownloadFileTask taskDownloadJsonGetAlbumId=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                if(!success){
+                    Toast.makeText(getBaseContext(),"无法获取 GetAlbumRC.",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                try {
+                    JSONObject jsonObject = new JSONObject(StreamUtility.GetStringFromStream(stream));
+                    editDialogCover.setText(jsonObject.getJSONObject("data").getString("albumImageUrl"));
+                    editDialogTitle.setText(jsonObject.getJSONObject("data").getString("albumName"));
+                    String tvYearString=String.valueOf(jsonObject.getJSONObject("data").getInt("tvYear"));
+                    editDialogStartDate.setText(tvYearString.substring(0,4)+"-"+tvYearString.substring(4,6)+"-"+tvYearString.substring(6));
+
+                    //总集数可能是data.allSet，data.allSets或data.mpd，AvList链接中pt，allNum……中的一个
+                    editDialogEpisodeCount.setText(String.valueOf(jsonObject.getJSONObject("data").getInt("allSet")));
+                    //editDialogEpisodeCount.setText(String.valueOf(jsonObject.getJSONObject("data").getInt("allSets")));
+                    //editDialogEpisodeCount.setText(String.valueOf(jsonObject.getJSONObject("data").getInt("mpd")));
+                }catch (JSONException e){
+                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }catch (IOException e){
+                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        };*/
+        AndroidDownloadFileTask taskDownloadJsonGetSnsScore=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                if(!success){
+                    Toast.makeText(getBaseContext(),"无法获取 GetSnsScore.",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                try {
+                    JSONObject jsonObject=new JSONObject(StreamUtility.GetStringFromStream(stream));
+                    editDialogRanking.setText(String.valueOf(Math.round(jsonObject.getJSONArray("data").getJSONObject(0).getDouble("sns_score"))/2));
+                }catch (JSONException e){
+                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }catch (IOException e){
+                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+        AndroidDownloadFileTask taskDownloadJsonpGetAvList=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                if(!success){
+                    Toast.makeText(getBaseContext(),"无法获取 GetAvList.",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                try {
+                    String jsonString=StreamUtility.GetStringFromStream(stream);
+                    jsonString=jsonString.substring(jsonString.indexOf('{'),jsonString.lastIndexOf('}')+1);
+                    JSONObject jsonObject=new JSONObject(jsonString);
+                    editDialogDescription.setText(jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("desc"));
+                    if(jsonObject.getJSONObject("data").getString("ps").contains("每周")){
+                        editDialogUpdatePeriod.setText("7");
+                        comboDialogUpdatePeriodUnit.setSelection(0,true);
+                    }
+                    ReadIQiyiJsonpAnimeCategory_OnCallback(String.valueOf(jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getInt("id")),
+                            jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("vid"));
+                }catch (JSONException e){
+                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }catch (IOException e){
+                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+        //taskDownloadJsonGetAlbumId.execute(jsonUrlGetAlbumId);
+        taskDownloadJsonGetSnsScore.execute(jsonUrlGetSnsScore);
+        taskDownloadJsonpGetAvList.execute(jsonpUrlGetAvList);
+    }
+
+    private void ReadIQiyiJsonpAnimeCategory_OnCallback(String tvidString,String vidString){
+        String requestUrl="https://cache.video.iqiyi.com/jp/vi/"+tvidString+"/"+vidString+"/";
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                if(!success){
+                    Toast.makeText(getBaseContext(),"无法获取分类。",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                try {
+                    String jsonString=StreamUtility.GetStringFromStream(stream);
+                    jsonString=jsonString.substring(jsonString.indexOf('{'),jsonString.lastIndexOf('}')+1);
+                    JSONObject jsonObject=new JSONObject(jsonString);
+                    editDialogCategory.setText(jsonObject.getString("tg").replaceAll(" ",","));
+                    editDialogTitle.setText(jsonObject.getString("an"));
+                    String startTimeString=jsonObject.getString("stm");
+                    editDialogStartDate.setText(startTimeString.substring(0,4)+"-"+startTimeString.substring(4,6)+"-"+startTimeString.substring(6));
+                    editDialogEpisodeCount.setText(String.valueOf(jsonObject.getInt("es")));//TODO:其他地方也有疑似总集数的属性
+                    editDialogCover.setText(jsonObject.getString("apic"));
                 }catch (JSONException e){
                     Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
                 }catch (IOException e){

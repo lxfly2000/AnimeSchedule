@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.2"
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 31
-        versionName "2.1"
+        versionCode 32
+        versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -29,4 +29,6 @@ dependencies {
     implementation 'com.android.support:design:26.0.0-alpha1'
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.android:flexbox:1.0.0'
+    implementation 'com.google.android.gms:play-services-drive:16.0.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 }

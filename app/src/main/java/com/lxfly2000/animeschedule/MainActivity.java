@@ -965,7 +965,10 @@ public class MainActivity extends AppCompatActivity {
                     editDialogCategory.setText(jsonObject.getString("tg").replaceAll(" ",","));
                     editDialogTitle.setText(jsonObject.getString("an"));
                     String startTimeString=jsonObject.getString("stm");
-                    editDialogStartDate.setText(startTimeString.substring(0,4)+"-"+startTimeString.substring(4,6)+"-"+startTimeString.substring(6));
+                    if(startTimeString.length()>=8)
+                        editDialogStartDate.setText(startTimeString.substring(0,4)+"-"+startTimeString.substring(4,6)+"-"+startTimeString.substring(6));
+                    else
+                        Toast.makeText(getBaseContext(),String.format("日期字符串不足8位（长度为%d）",startTimeString.length()),Toast.LENGTH_LONG).show();
                     editDialogEpisodeCount.setText(String.valueOf(jsonObject.getInt("es")));//TODO:其他地方也有疑似总集数的属性
                     editDialogCover.setText(jsonObject.getString("apic"));
                 }catch (JSONException e){

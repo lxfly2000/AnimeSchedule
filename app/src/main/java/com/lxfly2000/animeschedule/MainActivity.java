@@ -85,17 +85,20 @@ public class MainActivity extends AppCompatActivity {
         listAnime.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if(scrollState==AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
-                    //参考：https://blog.csdn.net/jdsjlzx/article/details/17794209
-                    posListAnimeScroll=listAnime.getFirstVisiblePosition();
-                    View v=listAnime.getChildAt(0);
-                    posListAnimeTop=(v==null)?0:v.getTop();
-                }
+                //Nothing to do.
             }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                //Nothing to do.
+                if(firstVisibleItem!=lastTopItemIndex||firstVisibleItem+visibleItemCount!=lastBottomItemIndex+1){
+                    if(listAnime.getAdapter()!=null) {
+                        //参考：https://blog.csdn.net/jdsjlzx/article/details/17794209
+                        posListAnimeScroll = listAnime.getFirstVisiblePosition();
+                        View v = listAnime.getChildAt(0);
+                        posListAnimeTop = (v == null) ? 0 : v.getTop();
+                        DisplayImagesVisible();
+                    }
+                }
             }
         });
         SaveAndReloadJsonFile(false);
@@ -135,12 +138,6 @@ public class MainActivity extends AppCompatActivity {
             }
             Toast.makeText(this,String.format(getString(R.string.message_anime_not_found),queryWord),Toast.LENGTH_LONG).show();
         }
-    }
-
-    @Override
-    protected void onDestroy(){
-        bitmapSets.ReleaseAll();
-        super.onDestroy();
     }
 
     private AdapterView.OnItemClickListener listAnimeCallback=new AdapterView.OnItemClickListener() {
@@ -183,27 +180,56 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class BitmapSets{
-        public BitmapSets(){
-            images=new HashMap<>();
-        }
-        public void ReleaseAll(){
-            for(HashMap.Entry<String,Bitmap>e:images.entrySet()){
-                e.getValue().recycle();
-            }
-            images.clear();
-        }
-        public Bitmap GetBitmapFromPath(String path){
-            if(images.containsKey(path))
-                return images.get(path);
-            Bitmap img=BitmapFactory.decodeFile(path);
-            images.put(path,img);
-            return img;
-        }
-        HashMap<String,Bitmap>images;
-    }
+    int lastTopItemIndex,lastBottomItemIndex;
 
-    BitmapSets bitmapSets=new BitmapSets();
+    void DisplayImagesVisible(){
+        int top=posListAnimeScroll,bottom=listAnime.getLastVisiblePosition();
+        SimpleAdapter adapter=(SimpleAdapter)listAnime.getAdapter();
+        for(int i=lastTopItemIndex;i<=lastBottomItemIndex;i++){
+            if(i>=0&&i<top||i>bottom&&i<listAnime.getCount()){
+                HashMap<String,Object>item=(HashMap)adapter.getItem(i);
+                if(item.get("cover")!=null){
+                    ((Bitmap)item.get("cover")).recycle();
+                    item.remove("cover");
+                }
+            }
+        }
+        lastTopItemIndex=top;
+        lastBottomItemIndex=bottom;
+        for(int i=top;i<=bottom;i++){
+            HashMap<String,Object>item=(HashMap)adapter.getItem(i);
+            if(item.get("cover")==null){
+                String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(i));
+                String[]tempSplit=coverUrl.split("/");
+                String coverExt="";
+                if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
+                    coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
+                }
+                String coverPath=Values.GetCoverPathOnLocal()+"/"+
+                        animeJson.GetTitle(jsonSortTable.get(i)).replaceAll("[/\":|<>?*]","_")+coverExt;
+                if(FileUtility.IsFileExists(coverPath)){
+                    item.put("cover", BitmapFactory.decodeFile(coverPath));
+                }else {
+                    AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+                        @Override
+                        public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                            ParametersSetImage param = (ParametersSetImage) extra;
+                            if(success) {
+                                FileUtility.WriteStreamToFile(param.imagePath,stream);
+                                ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
+                                param.listAdapter.notifyDataSetChanged();
+                            }else {
+                                Toast.makeText(getBaseContext(),"下载封面图片失败：\n"+param.imagePath,Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    };
+                    task.SetExtra(new ParametersSetImage(adapter,coverPath,i));
+                    task.execute(coverUrl,coverPath);
+                }
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }
 
     private void DisplayList(){
         RebuildSortTable(preferences.getInt(Values.keySortMethod,Values.vDefaultSortMethod),
@@ -239,33 +265,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             listItem.put("schedule",strSchedule.toString());
-            String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(i));
-            String[]tempSplit=coverUrl.split("/");
-            String coverExt="";
-            if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
-                coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
-            }
-            String coverPath=Values.GetCoverPathOnLocal()+"/"+
-                    animeJson.GetTitle(jsonSortTable.get(i)).replaceAll("[/\":|<>?*]","_")+coverExt;
-            if(FileUtility.IsFileExists(coverPath)){
-                listItem.put("cover", bitmapSets.GetBitmapFromPath(coverPath));
-            }else {
-                AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-                    @Override
-                    public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
-                        ParametersSetImage param = (ParametersSetImage) extra;
-                        if(success) {
-                            FileUtility.WriteStreamToFile(param.imagePath,stream);
-                            ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
-                            param.listAdapter.notifyDataSetChanged();
-                        }else {
-                            Toast.makeText(getBaseContext(),"下载封面图片失败：\n"+param.imagePath,Toast.LENGTH_LONG).show();
-                        }
-                    }
-                };
-                task.SetExtra(new ParametersSetImage(customAdapter,coverPath,i));
-                task.execute(coverUrl,coverPath);
-            }
             listItems.add(listItem);
         }
         customAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
@@ -281,10 +280,12 @@ public class MainActivity extends AppCompatActivity {
         listAnime.setAdapter(customAdapter);
         listAnime.setSelectionFromTop(posListAnimeScroll,posListAnimeTop);
         setTitle(getString(R.string.app_name)+getString(R.string.title_total_count,animeJson.GetAnimeCount()));
+        DisplayImagesVisible();
     }
 
     //排序，method:0=评分，1=更新日期，2=观看日期，order:0=不排序，1=升序，2=降序，sep_ab:是否分开弃番
     private void RebuildSortTable(final int method,final int order,final boolean sep_ab){
+        lastTopItemIndex=lastBottomItemIndex=-1;
         sortOrder=order;
         int listCount=animeJson.GetAnimeCount();
         jsonSortTable=new ArrayList<>(listCount);

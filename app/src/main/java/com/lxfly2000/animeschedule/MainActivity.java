@@ -19,6 +19,7 @@ import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.support.v7.app.AlertDialog;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         posListAnimeScroll = listAnime.getFirstVisiblePosition();
                         View v = listAnime.getChildAt(0);
                         posListAnimeTop = (v == null) ? 0 : v.getTop();
-                        DisplayImagesVisible();
+                        DisplayImagesVisible(firstVisibleItem,firstVisibleItem+visibleItemCount-1);
                     }
                 }
             }
@@ -182,13 +183,12 @@ public class MainActivity extends AppCompatActivity {
 
     int lastTopItemIndex,lastBottomItemIndex;
 
-    void DisplayImagesVisible(){
-        int top=posListAnimeScroll,bottom=listAnime.getLastVisiblePosition();
+    private void DisplayImagesVisible(int top,int bottom){
         SimpleAdapter adapter=(SimpleAdapter)listAnime.getAdapter();
         for(int i=lastTopItemIndex;i<=lastBottomItemIndex;i++){
             if(i>=0&&i<top||i>bottom&&i<listAnime.getCount()){
                 HashMap<String,Object>item=(HashMap)adapter.getItem(i);
-                if(item.get("cover")!=null){
+                if(item.get("cover")instanceof Bitmap){
                     ((Bitmap)item.get("cover")).recycle();
                     item.remove("cover");
                 }
@@ -197,38 +197,55 @@ public class MainActivity extends AppCompatActivity {
         lastTopItemIndex=top;
         lastBottomItemIndex=bottom;
         for(int i=top;i<=bottom;i++){
-            HashMap<String,Object>item=(HashMap)adapter.getItem(i);
-            if(item.get("cover")==null){
-                String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(i));
-                String[]tempSplit=coverUrl.split("/");
-                String coverExt="";
-                if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
-                    coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
-                }
-                String coverPath=Values.GetCoverPathOnLocal()+"/"+
-                        animeJson.GetTitle(jsonSortTable.get(i)).replaceAll("[/\":|<>?*]","_")+coverExt;
-                if(FileUtility.IsFileExists(coverPath)){
-                    item.put("cover", BitmapFactory.decodeFile(coverPath));
-                }else {
-                    AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-                        @Override
-                        public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
-                            ParametersSetImage param = (ParametersSetImage) extra;
-                            if(success) {
-                                FileUtility.WriteStreamToFile(param.imagePath,stream);
-                                ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
-                                param.listAdapter.notifyDataSetChanged();
-                            }else {
-                                Toast.makeText(getBaseContext(),"下载封面图片失败：\n"+param.imagePath,Toast.LENGTH_LONG).show();
-                            }
+            AsyncTask<Object,Integer,Boolean>setImageTask=new AsyncTask<Object, Integer, Boolean>() {
+                SimpleAdapter listAdapter;
+                @Override
+                protected Boolean doInBackground(Object... params) {
+                    int imgIndex=(Integer)params[0];
+                    listAdapter=(SimpleAdapter)params[1];
+                    HashMap<String,Object>item=(HashMap)listAdapter.getItem(imgIndex);
+                    if(item.get("cover")==null){
+                        String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(imgIndex));
+                        String[]tempSplit=coverUrl.split("/");
+                        String coverExt="";
+                        if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
+                            coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
                         }
-                    };
-                    task.SetExtra(new ParametersSetImage(adapter,coverPath,i));
-                    task.execute(coverUrl,coverPath);
+                        String coverPath=Values.GetCoverPathOnLocal()+"/"+
+                                animeJson.GetTitle(jsonSortTable.get(imgIndex)).replaceAll("[/\":|<>?*]","_")+coverExt;
+                        if(FileUtility.IsFileExists(coverPath)){
+                            item.put("cover", BitmapFactory.decodeFile(coverPath));
+                            return true;
+                        }else{
+                            AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+                                @Override
+                                public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                                    ParametersSetImage param = (ParametersSetImage) extra;
+                                    if(success) {
+                                        FileUtility.WriteStreamToFile(param.imagePath,stream);
+                                        ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
+                                        param.listAdapter.notifyDataSetChanged();
+                                    }else {
+                                        ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).remove("cover");
+                                        Toast.makeText(getBaseContext(),"下载封面图片失败：\n"+param.imagePath,Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            };
+                            task.SetExtra(new ParametersSetImage(listAdapter,coverPath,imgIndex));
+                            task.execute(coverUrl,coverPath);
+                            item.put("cover",task);
+                        }
+                    }
+                    return false;
                 }
-            }
+                @Override
+                protected void onPostExecute(Boolean result){
+                    if(result)
+                        listAdapter.notifyDataSetChanged();
+                }
+            };
+            setImageTask.execute(i,adapter);
         }
-        adapter.notifyDataSetChanged();
     }
 
     private void DisplayList(){
@@ -280,7 +297,6 @@ public class MainActivity extends AppCompatActivity {
         listAnime.setAdapter(customAdapter);
         listAnime.setSelectionFromTop(posListAnimeScroll,posListAnimeTop);
         setTitle(getString(R.string.app_name)+getString(R.string.title_total_count,animeJson.GetAnimeCount()));
-        DisplayImagesVisible();
     }
 
     //排序，method:0=评分，1=更新日期，2=观看日期，order:0=不排序，1=升序，2=降序，sep_ab:是否分开弃番

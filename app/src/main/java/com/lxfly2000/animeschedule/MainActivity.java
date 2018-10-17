@@ -224,15 +224,15 @@ public class MainActivity extends AppCompatActivity {
                                     if(success) {
                                         FileUtility.WriteStreamToFile(param.imagePath,stream);
                                         ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
-                                        param.listAdapter.notifyDataSetChanged();
                                     }else {
-                                        ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).remove("cover");
+                                        ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).put("cover",BitmapFactory.decodeResource(getResources(),R.raw.dn_error));
                                         Toast.makeText(getBaseContext(),"下载封面图片失败：\n"+param.imagePath,Toast.LENGTH_LONG).show();
                                     }
+                                    param.listAdapter.notifyDataSetChanged();
                                 }
                             };
                             task.SetExtra(new ParametersSetImage(listAdapter,coverPath,imgIndex));
-                            task.execute(coverUrl,coverPath);
+                            task.executeOnExecutor(THREAD_POOL_EXECUTOR,coverUrl,coverPath);
                             item.put("cover",task);
                         }
                     }

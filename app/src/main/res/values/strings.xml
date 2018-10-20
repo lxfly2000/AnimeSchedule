@@ -38,7 +38,7 @@
     <string name="message_no_update">No update.</string>
     <string name="error_permission_network">No network permission.</string>
     <string name="action_anime_auto_fill">Auto Fill</string>
-    <string name="label_version_info">Version: %s</string>
+    <string name="label_version_info">Version: %s\nBuild on: %s</string>
     <string name="title_total_count">\u0020(Total: %d)</string>
     <string name="message_remove_warning">Are you sure to delete this Anime?</string>
     <string name="action_show_count_statistics">Show count</string>
@@ -84,4 +84,5 @@
     <string name="label_count_stat_onair">On Air</string>
     <string name="label_count_stat_end">End</string>
     <string name="label_count_stat_total">Total</string>
+    <string name="message_no_anime_json">You have not made an Anime schedule, do you want to try the sample?</string>
 </resources>

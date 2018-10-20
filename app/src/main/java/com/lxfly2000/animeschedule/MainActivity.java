@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.BaseColumns;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -103,7 +104,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         SaveAndReloadJsonFile(false);
-        GetAnimeUpdateInfo(true);
+        if(animeJson.GetAnimeCount()>0) {
+            GetAnimeUpdateInfo(true);
+        }else{
+            Snackbar.make(listAnime,R.string.message_no_anime_json,Snackbar.LENGTH_LONG)
+                    .setAction(android.R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            try{
+                                if(FileUtility.WriteFile(Values.GetJsonDataFullPath(),StreamUtility.GetStringFromStream(getResources().openRawResource(R.raw.anime))))
+                                    SaveAndReloadJsonFile(false);
+                                else
+                                    Toast.makeText(getBaseContext(), getString(R.string.message_cannot_write_to_file,Values.GetJsonDataFullPath()), Toast.LENGTH_LONG).show();
+                            }catch (IOException e){
+                                //Nothing to do.
+                            }
+                        }
+                    }).show();
+        }
 
         //注册检查更新广播接收器
         IntentFilter fiUpdate=new IntentFilter();

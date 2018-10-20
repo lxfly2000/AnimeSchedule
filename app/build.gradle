@@ -7,9 +7,10 @@ android {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 41
-        versionName "3.1.2"
+        versionCode 42
+        versionName "3.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String","BUILD_DATE",getBuildDate()
     }
     buildTypes {
         release {
@@ -29,4 +30,10 @@ dependencies {
     implementation 'com.android.support:design:26.0.0-alpha1'
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.android:flexbox:1.0.0'
+}
+
+def getBuildDate(){
+    Date date=new Date()
+    String date_string="\""+date.format("yyyy-M-d")+"\""
+    return date_string
 }

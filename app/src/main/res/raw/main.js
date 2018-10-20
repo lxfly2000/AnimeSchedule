@@ -294,7 +294,7 @@ function writeList(jsonData,sortOrder){
 		if(animeObject["abandoned"]==false&&animeObject.haveNotWatchedEpi==true){
 			behindCount++;
 			paragObject.appendChild(document.createElement("br"));
-			paragObject.appendChild(document.createTextNode(animeObject["title"]+" "+animeObject["last_update_date"]+" 已更新至"+(animeObject["last_update_episode"]+1)+"话"));
+			paragObject.appendChild(document.createTextNode(animeObject["title"]+" "+animeObject["last_update_date"]+" 更新至"+(animeObject["last_update_episode"]+1)+"话"));
 		}
 	}
 	if(behindCount==0){

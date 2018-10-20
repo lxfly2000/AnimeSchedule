@@ -26,7 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         findViewById(R.id.buttonSaveSettings).setOnClickListener(buttonCallbacks);
         preferences=Values.GetPreference(this);
-        ((TextView)findViewById(R.id.textVersionInfo)).setText(getString(R.string.label_version_info,BuildConfig.VERSION_NAME));
+        ((TextView)findViewById(R.id.textVersionInfo)).setText(getString(R.string.label_version_info,BuildConfig.VERSION_NAME,BuildConfig.BUILD_DATE));
         spinnerSortMethods=(Spinner)findViewById(R.id.spinnerSortMethod);
         spinnerSortOrder=(Spinner)findViewById(R.id.spinnerSortOrder);
         checkSeperateAbandoned=(CheckBox)findViewById(R.id.checkBoxSeperateAbandoned);

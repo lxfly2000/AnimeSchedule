@@ -9,7 +9,7 @@
             app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp" android:stretchColumns="1,2">
+            android:layout_marginBottom="8dp" android:stretchColumns="0,1,2">
 
         <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
             <Space
@@ -28,7 +28,8 @@
             <TextView
                     android:text="@string/label_count_stat_followed"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textStatFollowed"/>
+                    android:layout_height="wrap_content" android:id="@+id/textStatFollowed"
+                    android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textStatFollowedSub"
@@ -43,7 +44,8 @@
             <TextView
                     android:text="@string/label_count_stat_following"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textStatFollowing"/>
+                    android:layout_height="wrap_content" android:id="@+id/textStatFollowing"
+                    android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textStatFollowingSub"
@@ -57,7 +59,8 @@
             <TextView
                     android:text="@string/label_count_stat_notwatched"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textStatNotwatched"/>
+                    android:layout_height="wrap_content" android:id="@+id/textStatNotwatched"
+                    android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textStatNotwatchedSub"
@@ -80,7 +83,8 @@
             <TextView
                     android:text="@string/label_count_stat_onair"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textStatOnair"/>
+                    android:layout_height="wrap_content" android:id="@+id/textStatOnair"
+                    android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textStatOnairSub"
@@ -96,7 +100,7 @@
             <TextView
                     android:text="@string/label_count_stat_end"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textStatEnd"/>
+                    android:layout_height="wrap_content" android:id="@+id/textStatEnd" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textStatEndSub"
@@ -119,7 +123,8 @@
             <TextView
                     android:text="@string/label_count_stat_total"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textStatTotal"/>
+                    android:layout_height="wrap_content" android:id="@+id/textStatTotal"
+                    android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textStatTotalSub"

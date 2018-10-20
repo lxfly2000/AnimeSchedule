@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if(!AndroidUtility.CheckPermissionWithFinishOnDenied(this,
-                "android.permission.READ_EXTERNAL_STORAGE","No reading permission."))
+                "android.permission.READ_EXTERNAL_STORAGE",getString(R.string.error_permission_reading_sdcard)))
             return;
         preferences=Values.GetPreference(this);
         if(preferences.getString(Values.keyAnimeInfoDate,Values.vDefaultString).contentEquals(Values.vDefaultString)){
@@ -159,9 +159,9 @@ public class MainActivity extends AppCompatActivity {
         if(m.find()){
             File file=new File(Values.GetJsonDataFullPath());
             if(file.renameTo(new File(Values.GetRepositoryPathOnLocal()+"/"+Values.pathJsonDataOnRepository[0]))) {
-                Toast.makeText(this, "重命名：" + file.getName() + "\n为：" + Values.pathJsonDataOnRepository[0], Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.message_rename_file,file.getName(),Values.pathJsonDataOnRepository[0]), Toast.LENGTH_LONG).show();
             }else {
-                Toast.makeText(this, "无法修改文件名：" + file.getName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.message_cannot_rename,file.getName()), Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                                         ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
                                     }else {
                                         ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).put("cover",BitmapFactory.decodeResource(getResources(),R.raw.dn_error));
-                                        Toast.makeText(getBaseContext(),"下载封面图片失败：\n"+param.imagePath,Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getBaseContext(),getString(R.string.message_cannot_download_cover,animeJson.GetCoverUrl(jsonSortTable.get(param.listIndex)),param.imagePath),Toast.LENGTH_LONG).show();
                                     }
                                     param.listAdapter.notifyDataSetChanged();
                                 }
@@ -267,16 +267,13 @@ public class MainActivity extends AppCompatActivity {
             listItem.put("ranking",rankingString.toString());
             StringBuilder strSchedule=new StringBuilder();
             strSchedule.append(animeJson.GetLastUpdateYMDDate(jsonSortTable.get(i)).ToYMDString())
-                    .append("更新")
-                    .append(animeJson.GetLastUpdateEpisode(jsonSortTable.get(i)))
-                    .append("话");
+                    .append(getString(R.string.label_schedule_update_episode,animeJson.GetLastUpdateEpisode(jsonSortTable.get(i))));
             int haveNotWatched=0;
             for(int j=1;j<=animeJson.GetLastUpdateEpisode(jsonSortTable.get(i));j++){
                 if(!animeJson.GetEpisodeWatched(jsonSortTable.get(i),j)){
+                    strSchedule.append(", ");
                     if(haveNotWatched==0)
-                        strSchedule.append("，未观看：");
-                    else
-                        strSchedule.append(", ");
+                        strSchedule.append(getString(R.string.label_schedule_to_watch));
                     haveNotWatched++;
                     strSchedule.append(String.valueOf(j));
                 }
@@ -377,11 +374,11 @@ public class MainActivity extends AppCompatActivity {
             return;
         StringBuilder msg=new StringBuilder();
         if(animeJson.GetAnimeCount()==0)
-            msg.append("无数据\n");
+            msg.append(getString(R.string.message_no_data));
         else
-            msg.append("上次观看：").append(animeJson.GetLastWatchDateString()).append(" ").append(animeJson.GetTitle(animeJson.GetLastWatchIndex())).
-                    append(" 第").append(animeJson.GetLastWatchEpisode()).append("话\n");
-        msg.append("更新信息：");
+            msg.append(getString(R.string.message_last_watched_info,animeJson.GetLastWatchDateString(),
+                    animeJson.GetTitle(animeJson.GetLastWatchIndex()),animeJson.GetLastWatchEpisode()));
+        msg.append("\n").append(getString(R.string.message_update_info));
         int behindCount=0;
         ArrayList<Integer>uTable=new ArrayList<>();
         for(int i=0;i<jsonSortTable.size();i++) {
@@ -401,19 +398,19 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(haveNotWatched) {
                     behindCount++;
-                    msg.append("\n").append(animeJson.GetTitle(uTable.get(i))).append(" ").append(animeJson.GetLastUpdateYMDDate(uTable.get(i)).ToYMDString()).
-                            append(" 已更新至").append(animeJson.GetLastUpdateEpisode(uTable.get(i))).append("话");
+                    msg.append("\n").append(getString(R.string.message_title_updated_to,animeJson.GetTitle(uTable.get(i)),
+                            animeJson.GetLastUpdateYMDDate(uTable.get(i)).ToYMDString(),animeJson.GetLastUpdateEpisode(uTable.get(i))));
                 }
             }
         }
         if(behindCount==0){
-            msg.append("你已跟上所有番剧的更新进度。");
+            msg.append(getString(R.string.message_followed_all_anime));
         }
         new AlertDialog.Builder(this)
                 .setTitle(R.string.action_show_anime_update)
                 .setMessage(msg.toString())
                 .setPositiveButton(android.R.string.ok,null)
-                .setNeutralButton("今日不再提示", new DialogInterface.OnClickListener() {
+                .setNeutralButton(R.string.button_dont_show_again_today, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         preferences.edit().putString(Values.keyAnimeInfoDate,YMDDate.GetTodayDate().ToYMDString()).apply();
@@ -737,11 +734,11 @@ public class MainActivity extends AppCompatActivity {
                                 switch (i_regex) {
                                     case 0:ReadBilibiliJsonp_OnCallback(subFound.substring(mSub.start(), mSub.end()));break;//旧的SSID链接形式
                                     case 1:ReadBilibiliEpisodeJson_OnCallback(subFound.substring(mSub.start(),mSub.end()));break;//2018年新版B站客户端的Episode链接形式
-                                    default:throw new IllegalStateException("没有符合的B站链接形式。");
+                                    default:throw new IllegalStateException(getString(R.string.message_novalid_bilibili_url));
                                 }
                                 break;
                             }else{
-                                throw new IllegalStateException("意外的状态。");
+                                throw new IllegalStateException(getString(R.string.message_unexpected_status));
                             }
                         }else if(urlString.toLowerCase().contains("iqiyi")){
                             GetIQiyiAnimeIDFromURL(urlString);
@@ -751,9 +748,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(i_regex==Values.parsableLinksRegex.length){
                     if(urlString.contains("bilibili"))
-                        Toast.makeText(getBaseContext(),"暂不支持读取该类型的B站链接，建议使用国际版哔哩哔哩客户端以获得更好支持。",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(),R.string.message_not_supported_bilibili_url,Toast.LENGTH_LONG).show();
                     else
-                        Toast.makeText(getBaseContext(),"不支持读取该链接。",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(),R.string.message_not_supported_url,Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -776,16 +773,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(!success){
-                    Toast.makeText(getBaseContext(),"无法获取Episode ID信息。",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),R.string.message_unable_to_fetch_episode_id,Toast.LENGTH_LONG).show();
                     return;
                 }
                 try{
                     JSONObject biliEpisodeJson=new JSONObject(StreamUtility.GetStringFromStream(stream));
                     ReadBilibiliJsonp_OnCallback(String.valueOf(biliEpisodeJson.getJSONObject("result").getJSONObject("currentEpisode").getInt("seasonId")));
                 }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),"发生JSON异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_json_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }catch (IOException e){
-                    Toast.makeText(getBaseContext(),"发生IO异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_io_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -799,7 +796,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(!success){
-                    Toast.makeText(getBaseContext(),"无法获取番剧信息。",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),R.string.message_unable_to_fetch_anime_info,Toast.LENGTH_LONG).show();
                     return;
                 }
                 try {
@@ -831,9 +828,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     editDialogCategory.setText(tagString.toString());
                 }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }catch (IOException e){
-                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -847,7 +844,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(!success){
-                    Toast.makeText(getBaseContext(),"无法读取网址。",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_LONG).show();
                     return;
                 }
                 Pattern p=Pattern.compile("albumId: *[0-9]+,");
@@ -876,12 +873,12 @@ public class MainActivity extends AppCompatActivity {
                         if(mSub.find())
                             ReadIQiyiJson_OnCallback(htmlString.substring(mSub.start(),mSub.end()));//数字ID的字符串
                         else
-                            Toast.makeText(getBaseContext(),"无法获取数字ID。",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(),R.string.message_unable_get_id_number,Toast.LENGTH_LONG).show();
                     }else{
-                        Toast.makeText(getBaseContext(),"无法获取数字ID所在代码。",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(),R.string.message_unable_get_id_number_line,Toast.LENGTH_LONG).show();
                     }
                 }catch (IOException e){
-                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -923,16 +920,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(!success){
-                    Toast.makeText(getBaseContext(),"无法获取 GetSnsScore.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_cannot_fetch_property,"GetSnsScore"),Toast.LENGTH_LONG).show();
                     return;
                 }
                 try {
                     JSONObject jsonObject=new JSONObject(StreamUtility.GetStringFromStream(stream));
                     editDialogRanking.setText(String.valueOf(Math.round(jsonObject.getJSONArray("data").getJSONObject(0).getDouble("sns_score"))/2));
                 }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }catch (IOException e){
-                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -940,7 +937,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(!success){
-                    Toast.makeText(getBaseContext(),"无法获取 GetAvList.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_cannot_fetch_property,"GetAvList"),Toast.LENGTH_LONG).show();
                     return;
                 }
                 try {
@@ -955,9 +952,9 @@ public class MainActivity extends AppCompatActivity {
                     ReadIQiyiJsonpAnimeCategory_OnCallback(String.valueOf(jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getInt("id")),
                             jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("vid"));
                 }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }catch (IOException e){
-                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -972,7 +969,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(!success){
-                    Toast.makeText(getBaseContext(),"无法获取分类。",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),R.string.message_iqiyi_cannot_fetch_category,Toast.LENGTH_LONG).show();
                     return;
                 }
                 try {
@@ -985,13 +982,13 @@ public class MainActivity extends AppCompatActivity {
                     if(startTimeString.length()>=8)
                         editDialogStartDate.setText(startTimeString.substring(0,4)+"-"+startTimeString.substring(4,6)+"-"+startTimeString.substring(6));
                     else
-                        Toast.makeText(getBaseContext(),String.format("日期字符串不足8位（长度为%d）",startTimeString.length()),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(),getString(R.string.message_date_string_too_short,startTimeString.length()),Toast.LENGTH_LONG).show();
                     editDialogEpisodeCount.setText(String.valueOf(jsonObject.getInt("es")));//TODO:其他地方也有疑似总集数的属性
                     editDialogCover.setText(jsonObject.getString("apic"));
                 }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }catch (IOException e){
-                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -1020,7 +1017,7 @@ public class MainActivity extends AppCompatActivity {
             if (!FileUtility.IsFileExists(webFile)) {
                 try{
                 if(!FileUtility.WriteFile(webFile,StreamUtility.GetStringFromStream(getResources().openRawResource(Values.resIdWebFiles[i])))){
-                    Toast.makeText(this, "无法写入文件：" + webFile, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.message_cannot_write_to_file,webFile), Toast.LENGTH_LONG).show();
                     return;
                 }}catch (IOException e){
                     return;
@@ -1034,7 +1031,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             startActivity(intent);
         }catch (ActivityNotFoundException e){
-            Toast.makeText(this,"无法启动 Chrome, 请选择其他浏览器。",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.message_cannot_launch_chrome,Toast.LENGTH_LONG).show();
             Intent intentFallback=new Intent();
             intentFallback.setAction(intent.getAction());
             intentFallback.setDataAndType(intent.getData(),"*/*");

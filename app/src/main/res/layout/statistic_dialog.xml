@@ -9,7 +9,7 @@
             app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp" android:stretchColumns="1,2">
 
         <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
             <Space
@@ -18,11 +18,11 @@
             <TextView
                     android:text="@string/label_count_stat_sub"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textStatSub"/>
+                    android:layout_height="wrap_content" android:id="@+id/textStatSub" android:textAlignment="center"/>
             <TextView
                     android:text="@string/label_abandoned"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textStatAb"/>
+                    android:layout_height="wrap_content" android:id="@+id/textStatAb" android:textAlignment="center"/>
         </TableRow>
         <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
             <TextView

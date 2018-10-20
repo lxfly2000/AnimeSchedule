@@ -51,7 +51,7 @@
     <string name="error_permission_reading_sdcard">No reading external storage permission.</string>
     <string name="message_rename_file">Rename: %s\nto: %s...</string>
     <string name="message_cannot_rename">Cannot rename: %s</string>
-    <string name="message_cannot_download_cover">Failed to download cover:\n%s\nto: %s</string>
+    <string name="message_cannot_download_cover">Failed to download cover:\n%s\nof: %s</string>
     <string name="label_schedule_update_episode">\u0020update ep%d</string>
     <string name="label_schedule_to_watch">to watch:</string>
     <string name="message_no_data">No data.</string>

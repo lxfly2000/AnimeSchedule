@@ -52,7 +52,7 @@
     <string name="error_permission_reading_sdcard">没有读取外部存储的权限。</string>
     <string name="message_rename_file">重命名：%s\n为：%s</string>
     <string name="message_cannot_rename">无法修改文件名：%s</string>
-    <string name="message_cannot_download_cover">下载封面图片失败。\nURL: %s\n存储位置：%s</string>
+    <string name="message_cannot_download_cover">下载封面图片失败。\nURL: %s\n番剧：%s</string>
     <string name="label_schedule_update_episode">更新%d话</string>
     <string name="label_schedule_to_watch">未观看：</string>
     <string name="message_no_data">无数据。</string>

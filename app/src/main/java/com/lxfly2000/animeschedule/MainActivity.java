@@ -226,7 +226,8 @@ public class MainActivity extends AppCompatActivity {
                                         ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
                                     }else {
                                         ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).put("cover",BitmapFactory.decodeResource(getResources(),R.raw.dn_error));
-                                        Toast.makeText(getBaseContext(),getString(R.string.message_cannot_download_cover,animeJson.GetCoverUrl(jsonSortTable.get(param.listIndex)),param.imagePath),Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getBaseContext(),getString(R.string.message_cannot_download_cover,animeJson.GetCoverUrl(jsonSortTable.get(param.listIndex)),
+                                                (String)((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).get("title")),Toast.LENGTH_LONG).show();
                                     }
                                     param.listAdapter.notifyDataSetChanged();
                                 }

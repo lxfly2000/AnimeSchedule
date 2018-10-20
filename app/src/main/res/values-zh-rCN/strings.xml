@@ -43,7 +43,7 @@
     <string name="title_total_count">（%d）</string>
     <string name="message_remove_warning">确定删除这部番剧吗？</string>
     <string name="action_show_count_statistics">统计</string>
-    <string name="message_count_statistics" formatted="false">统计 \u0020\u0020\u0020\u0020\u0020\u0020追番 \u0020\u0020\u0020\u0020\u0020\u0020弃番\n最新 %10d %10d\n更新 %10d %10d\n未看 %10d %10d\n\n放送 %10d %10d\n完结 %10d %10d\n\n总计：%d</string>
+    <string name="label_count_stat_sub">追番</string>
     <string name="label_sort_method">排序方法</string>
     <string name="label_sort_split_abandoned">分开弃番</string>
     <string name="edit_hint_search_anime">输入番剧名称……</string>
@@ -79,4 +79,10 @@
     <string name="message_date_string_too_short">日期字符串不足8位（长度为%d）</string>
     <string name="message_cannot_write_to_file">无法写入文件：\n%s</string>
     <string name="message_cannot_launch_chrome">无法启动 Chrome, 请选择其他浏览器。</string>
+    <string name="label_count_stat_followed">最新</string>
+    <string name="label_count_stat_following">更新</string>
+    <string name="label_count_stat_notwatched">未看</string>
+    <string name="label_count_stat_onair">放送</string>
+    <string name="label_count_stat_end">完结</string>
+    <string name="label_count_stat_total">总计</string>
 </resources>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp">
+
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:text="@string/label_count_stat_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatSub"/>
+            <TextView
+                    android:text="@string/label_abandoned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatAb"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TextView
+                    android:text="@string/label_count_stat_followed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatFollowed"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatFollowedSub"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatFollowedAb"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TextView
+                    android:text="@string/label_count_stat_following"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatFollowing"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatFollowingSub"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatFollowingAb"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TextView
+                    android:text="@string/label_count_stat_notwatched"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatNotwatched"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatNotwatchedSub"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatNotwatchedAb"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatStub"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:text="@string/label_count_stat_onair"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatOnair"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatOnairSub"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatOnairAb"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:text="@string/label_count_stat_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatEnd"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatEndSub"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatEndAb"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatStub2"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:text="@string/label_count_stat_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatTotal"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatTotalSub"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textStatTotalAb"
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
+        </TableRow>
+    </TableLayout>
+</android.support.constraint.ConstraintLayout>

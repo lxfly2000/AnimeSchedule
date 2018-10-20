@@ -42,7 +42,7 @@
     <string name="title_total_count">\u0020(Total: %d)</string>
     <string name="message_remove_warning">Are you sure to delete this Anime?</string>
     <string name="action_show_count_statistics">Show count</string>
-    <string name="message_count_statistics" formatted="false">\tSub.\tAb.\nFollowed\t%d\t%d\nFollowing\t%d\t%d\nNot watched\t%d\t%d\n\nOn Air\t%d\t%d\nEnd\t%d\t%d\n\nTotal: %d</string>
+    <string name="label_count_stat_sub">Subscribed</string>
     <string name="label_sort_method">Sort method</string>
     <string name="label_sort_split_abandoned">Separate Abandoned</string>
     <string name="edit_hint_search_anime">Enter the Anime title here...</string>
@@ -78,4 +78,10 @@
     <string name="message_date_string_too_short">Date string is not enough to 8 digits which is %d digits.</string>
     <string name="message_cannot_write_to_file">Cannot write to file:\n%s</string>
     <string name="message_cannot_launch_chrome">Cannot launch Chrome, please use another browser.</string>
+    <string name="label_count_stat_followed">Followed</string>
+    <string name="label_count_stat_following">Following</string>
+    <string name="label_count_stat_notwatched">Not watched</string>
+    <string name="label_count_stat_onair">On Air</string>
+    <string name="label_count_stat_end">End</string>
+    <string name="label_count_stat_total">Total</string>
 </resources>

@@ -507,7 +507,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void ShowCountStatistics(){
         int followed_sub=0,followed_ab=0,following_sub=0,following_ab=0,notwatched_sub=0,notwatched_ab=0;
-        int broadcasting_sub=0,broadcasting_ab=0,finished_sub=0,finished_ab=0;
+        int broadcasting_sub=0,broadcasting_ab=0,finished_sub=0,finished_ab=0,total_sub=0,total_ab=0;
         for(int i=0;i<animeJson.GetAnimeCount();i++){
             int epi_watched=0;
             for(int j=0;j<animeJson.GetEpisodeCount(i)||j<animeJson.GetLastUpdateEpisode(i);j++){
@@ -541,10 +541,28 @@ public class MainActivity extends AppCompatActivity {
                 else
                     broadcasting_sub++;
             }
+            if(animeJson.GetAbandoned(i))
+                total_ab++;
+            else
+                total_sub++;
         }
-        AndroidUtility.MessageBox(this,String.format(getString(R.string.message_count_statistics),
-                followed_sub,followed_ab,following_sub,following_ab,notwatched_sub,notwatched_ab,
-                broadcasting_sub,broadcasting_ab,finished_sub,finished_ab,animeJson.GetAnimeCount()));
+        AlertDialog statDialog=new AlertDialog.Builder(this)
+                .setTitle(R.string.action_show_count_statistics)
+                .setView(R.layout.statistic_dialog)
+                .setPositiveButton(android.R.string.ok,null)
+                .show();
+        ((TextView)statDialog.findViewById(R.id.textStatFollowedSub)).setText(String.valueOf(followed_sub));
+        ((TextView)statDialog.findViewById(R.id.textStatFollowedAb)).setText(String.valueOf(followed_ab));
+        ((TextView)statDialog.findViewById(R.id.textStatFollowingSub)).setText(String.valueOf(following_sub));
+        ((TextView)statDialog.findViewById(R.id.textStatFollowingAb)).setText(String.valueOf(following_ab));
+        ((TextView)statDialog.findViewById(R.id.textStatNotwatchedSub)).setText(String.valueOf(notwatched_sub));
+        ((TextView)statDialog.findViewById(R.id.textStatNotwatchedAb)).setText(String.valueOf(notwatched_ab));
+        ((TextView)statDialog.findViewById(R.id.textStatOnairSub)).setText(String.valueOf(broadcasting_sub));
+        ((TextView)statDialog.findViewById(R.id.textStatOnairAb)).setText(String.valueOf(broadcasting_ab));
+        ((TextView)statDialog.findViewById(R.id.textStatEndSub)).setText(String.valueOf(finished_sub));
+        ((TextView)statDialog.findViewById(R.id.textStatEndAb)).setText(String.valueOf(finished_ab));
+        ((TextView)statDialog.findViewById(R.id.textStatTotalSub)).setText(String.valueOf(total_sub));
+        ((TextView)statDialog.findViewById(R.id.textStatTotalAb)).setText(String.valueOf(total_ab));
     }
 
     private void RemoveItem(final int index){

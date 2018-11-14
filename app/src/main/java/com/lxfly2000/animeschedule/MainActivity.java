@@ -764,19 +764,8 @@ public class MainActivity extends AppCompatActivity {
                     Matcher m=p.matcher(urlString);
                     if(m.find()){
                         if(urlString.toLowerCase().contains("bilibili")){
-                            Pattern pSub=Pattern.compile("[0-9]*$");
-                            String subFound=urlString.substring(m.start(),m.end());
-                            Matcher mSub=pSub.matcher(subFound);
-                            if(mSub.find()){
-                                switch (i_regex) {
-                                    case 0:ReadBilibiliJsonp_OnCallback(subFound.substring(mSub.start(), mSub.end()));break;//旧的SSID链接形式
-                                    case 1:ReadBilibiliEpisodeJson_OnCallback(subFound.substring(mSub.start(),mSub.end()));break;//2018年新版B站客户端的Episode链接形式
-                                    default:throw new IllegalStateException(getString(R.string.message_novalid_bilibili_url));
-                                }
-                                break;
-                            }else{
-                                throw new IllegalStateException(getString(R.string.message_unexpected_status));
-                            }
+                            ReadBilibiliURL_OnCallback(urlString);
+                            break;
                         }else if(urlString.toLowerCase().contains("iqiyi")){
                             GetIQiyiAnimeIDFromURL(urlString);
                             break;
@@ -793,19 +782,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void ReadBilibiliEpisodeJson_OnCallback(String epidString){
-        /*输入URL：
-        * *bilibili.com/bangumi/play/ep#####*
-        *                              ~~~~~Episode ID
+    private void ReadBilibiliURL_OnCallback(final String urlString){//2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
+        /*输入URL：parsableLinkRegex中的任何一个B站URL
         *
-        * 则应查询的JSON为：
-        * https://bangumi.bilibili.com/web_api/episode/#####.json
-        *
-        * 获取SSID：
-        * ep#####.result.currentEpisode.seasonId -> Int型
+        * 在返回的HTML文本（转换成小写）里找ss#####, season_id:#####, "season_id":#####, ssid:#####, "ssid":#####
+        * 得到的数值均为 Season ID, 然后就可以从ss##### URL里获取信息了。
         * */
-        editDialogTitle.setText("Episode ID: "+epidString);
-        String requestUrl="https://bangumi.bilibili.com/web_api/episode/"+epidString+".json";
+        Matcher mssid=Pattern.compile("/[0-9]+").matcher(urlString);
+        if(mssid.find()){
+            ReadBilibiliSSID_OnCallback(urlString.substring(mssid.start()+1,mssid.end()));
+            return;
+        }
+        mssid=Pattern.compile("/ss[0-9]+").matcher(urlString);
+        if(mssid.find()){
+            ReadBilibiliSSID_OnCallback(urlString.substring(mssid.start()+3,mssid.end()));
+            return;
+        }
+        editDialogTitle.setText("获取SSID中……");
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
@@ -814,21 +807,47 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 try{
-                    JSONObject biliEpisodeJson=new JSONObject(StreamUtility.GetStringFromStream(stream));
-                    ReadBilibiliJsonp_OnCallback(String.valueOf(biliEpisodeJson.getJSONObject("result").getJSONObject("currentEpisode").getInt("seasonId")));
-                }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_json_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+                    String htmlString=StreamUtility.GetStringFromStream(stream);
+                    Matcher m=Pattern.compile("ss[0-9]+").matcher(htmlString);
+                    if(m.find()){
+                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+2,m.end()));
+                        return;
+                    }
+                    m=Pattern.compile("season_id:[0-9]+").matcher(htmlString);
+                    if(m.find()){
+                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+10,m.end()));
+                        return;
+                    }
+                    m=Pattern.compile("\"season_id\":[0-9]+").matcher(htmlString);
+                    if(m.find()){
+                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+12,m.end()));
+                        return;
+                    }
+                    m=Pattern.compile("ssId:[0-9]+").matcher(htmlString);
+                    if(m.find()){
+                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+5,m.end()));
+                        return;
+                    }
+                    m=Pattern.compile("\"ssId\":[0-9]+").matcher(htmlString);
+                    if(m.find()){
+                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+7,m.end()));
+                        return;
+                    }
+                    String ssid_not_found_string="未找到SSID属性。";
+                    if(urlString.startsWith("http:"))
+                        ssid_not_found_string+="\n请尝试将URL前面的HTTP改为HTTPS。";
+                    Toast.makeText(getBaseContext(),ssid_not_found_string,Toast.LENGTH_LONG).show();
                 }catch (IOException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_io_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }
             }
         };
-        task.execute(requestUrl);
+        task.execute(urlString);
     }
 
-    private void ReadBilibiliJsonp_OnCallback(String idString){
-        editDialogTitle.setText("Season ID: "+idString);
-        String requestUrl="https://bangumi.bilibili.com/jsonp/seasoninfo/"+idString+".ver?callback=seasonListCallback&jsonp=jsonp";
+    private void ReadBilibiliSSID_OnCallback(final String idString){
+        editDialogTitle.setText("SSID:"+idString);
+        final String requestUrl="https://www.bilibili.com/bangumi/play/ss"+idString;
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
@@ -837,33 +856,56 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 try {
-                    String data=StreamUtility.GetStringFromStream(stream);
-                    JSONObject biliJson = new JSONObject(data.substring(data.indexOf('{'), data.lastIndexOf('}') + 1));
-                    JSONObject biliResult=biliJson.getJSONObject("result");
-                    editDialogCover.setText(biliResult.getString("cover"));
-                    editDialogTitle.setText(biliResult.getString("bangumi_title"));
-                    editDialogDescription.setText(biliResult.getString("evaluate"));
-                    editDialogStartDate.setText(biliResult.getString("pub_time").split(" ")[0]);
-                    if(biliResult.getString("weekday").contentEquals("-1")){
+                    String htmlString=StreamUtility.GetStringFromStream(stream);
+                    Matcher m=Pattern.compile("<script>[^<>]+"+idString+"[^<>]+</script>").matcher(htmlString);
+                    if(!m.find()){
+                        Toast.makeText(getBaseContext(),"未找到含有SSID为"+idString+"的脚本代码。",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    htmlString=htmlString.substring(m.start(),m.end());
+                    htmlString=htmlString.substring(htmlString.indexOf('{'));
+                    int brackets=1,posJSONEnd;
+                    for(posJSONEnd=1;posJSONEnd<htmlString.length();posJSONEnd++){
+                        if(htmlString.charAt(posJSONEnd)=='{')
+                            brackets++;
+                        else if(htmlString.charAt(posJSONEnd)=='}')
+                            brackets--;
+                        if(brackets==0){
+                            posJSONEnd++;
+                            break;
+                        }
+                    }
+                    if(brackets!=0){
+                        Toast.makeText(getBaseContext(),"JSON代码无效。",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    htmlString=htmlString.substring(0,posJSONEnd);
+                    JSONObject htmlJson=new JSONObject(htmlString);
+                    editDialogCover.setText(htmlJson.getJSONObject("mediaInfo").getString("cover"));
+                    editDialogTitle.setText(htmlJson.getJSONObject("mediaInfo").getString("title"));
+                    editDialogDescription.setText(htmlJson.getJSONObject("mediaInfo").getString("evaluate"));
+                    editDialogStartDate.setText(htmlJson.getJSONObject("pubInfo").getString("pub_time").split(" ")[0]);
+                    if(htmlJson.getJSONObject("pubInfo").getString("weekday").contentEquals("-1")){
                         editDialogUpdatePeriod.setText("1");
                         comboDialogUpdatePeriodUnit.setSelection(1,true);
-                    }else if("0123456".contains(biliResult.getString("weekday"))){
+                    }else if("0123456".contains(htmlJson.getJSONObject("pubInfo").getString("weekday"))){
                         editDialogUpdatePeriod.setText("7");
                         comboDialogUpdatePeriodUnit.setSelection(0,true);
                     }
-                    String countString=biliResult.getString("total_count");
+                    String countString=htmlJson.getJSONObject("mediaInfo").getString("total_ep");
                     if(countString.contentEquals("0"))
                         editDialogEpisodeCount.setText("-1");
                     else
                         editDialogEpisodeCount.setText(countString);
-                    editDialogRanking.setText(String.valueOf(Math.round(biliResult.getJSONObject("media").getJSONObject("rating").getDouble("score")/2)));
+                    editDialogRanking.setText(String.valueOf(Math.round(htmlJson.getJSONObject("mediaRating").getDouble("score")/2)));
                     StringBuilder tagString=new StringBuilder();
-                    for(int i=0;i<biliResult.getJSONArray("tags").length();i++){
+                    for(int i=0;i<htmlJson.getJSONObject("mediaInfo").getJSONArray("style").length();i++){
                         if(i!=0)
                             tagString.append(",");
-                        tagString.append(biliResult.getJSONArray("tags").getJSONObject(i).getString("tag_name"));
+                        tagString.append(htmlJson.getJSONObject("mediaInfo").getJSONArray("style").getString(i));
                     }
                     editDialogCategory.setText(tagString.toString());
+                    editDialogWatchUrl.setText(requestUrl);//为避免输入的URL无法被客户端打开把URL统一改成SSID形式
                 }catch (JSONException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }catch (IOException e){

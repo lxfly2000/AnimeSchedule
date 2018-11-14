@@ -38,8 +38,7 @@ public class Values {
         editPref.apply();
     }
     public static final String[]parsableLinksRegex={
-            "(.*bangumi.bilibili.com/anime/[0-9]*)|(.*bilibili.com/bangumi/play/ss[0-9]*)",
-            ".*bilibili.com/bangumi/play/ep[0-9]*",
+            "(.*bangumi.bilibili.com/anime/[0-9]+)|(.*bilibili.com/bangumi/play/ss[0-9]+)|(.*bilibili.com/bangumi/play/ep[0-9]+)|(.*bilibili.com/bangumi/media/md[0-9]+)",
             ".*iqiyi.com/[a|v]_.*.html"
     };
     public static final String[]webFiles={

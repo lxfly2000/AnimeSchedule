@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":124,
+	"last_watch_index":119,
 	"anime":[{
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -1881,7 +1881,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-9-4",
 		"last_watch_episode_anime":4
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/846123afffe2e3157b63cd712f48dba276fabc67.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/2087",
 		"title":"DI GI CHARAT Nyo",
@@ -1895,8 +1895,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":[],
-		"last_watch_date_anime":"2018-10-3",
-		"last_watch_episode_anime":32
+		"last_watch_date_anime":"2018-11-14",
+		"last_watch_episode_anime":53
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/4270c14cf6a0300e578a50f2b1b96356f29cbb23.jpg",
@@ -1966,7 +1966,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true,true,true],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a92892921f3209f7784a954c37467c9869a1d4c1.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25617",
 		"title":"魔法禁书目录 第三季",
@@ -1977,13 +1977,13 @@ setJsonData({
 		"episode_count":-1,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":3,
 		"color":"silver",
 		"category":["热血","奇幻","科幻","校园","战斗","轻改","魔法"],
-		"last_watch_date_anime":"2018-10-20",
-		"last_watch_episode_anime":3
+		"last_watch_date_anime":"2018-11-10",
+		"last_watch_episode_anime":6
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"https:\/\/wx2.sinaimg.cn\/large\/005Rye4oly1ffjqm5mlj7j306y09qq3u.jpg",
 		"watch_url":"https:\/\/www.nilinili.top\/930",
 		"title":"缘之空",
@@ -1994,11 +1994,11 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":[],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0
+		"last_watch_date_anime":"2018-10-24",
+		"last_watch_episode_anime":12
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/www.dilidili.wang\/images\/cover\/11200.jpg",
@@ -2051,7 +2051,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-10-15",
 		"last_watch_episode_anime":2
 	},{
-		"watched_episode":[true,true,true],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/9254b0bafd699c1a778c42658497948ba3038a77.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25622",
 		"title":"终将成为你",
@@ -2065,8 +2065,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["校园","恋爱","漫改"],
-		"last_watch_date_anime":"2018-10-20",
-		"last_watch_episode_anime":3
+		"last_watch_date_anime":"2018-11-10",
+		"last_watch_episode_anime":6
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/pic1.iqiyipic.com\/image\/20180706\/8c\/33\/a_100137085_m_601_m2.jpg",
@@ -2204,7 +2204,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true,true,true],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/60bcf90d945ae88d5a1b50e069672aea0869167f.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25613",
 		"title":"我家的女仆太烦人了！",
@@ -2218,10 +2218,10 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["日常","搞笑","萌系","漫画改"],
-		"last_watch_date_anime":"2018-10-20",
-		"last_watch_episode_anime":3
+		"last_watch_date_anime":"2018-11-10",
+		"last_watch_episode_anime":6
 	},{
-		"watched_episode":[true,true,true],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fa89d4ce62d87c6ff641c617c6bf62c8f19ceafd.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25619",
 		"title":"邻家索菲",
@@ -2235,10 +2235,10 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["萌系","漫改"],
-		"last_watch_date_anime":"2018-10-20",
-		"last_watch_episode_anime":3
+		"last_watch_date_anime":"2018-11-10",
+		"last_watch_episode_anime":6
 	},{
-		"watched_episode":[true,true,true],
+		"watched_episode":[true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/1cc333ff578e5ea9fded7e454953a4e2291440c2.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25733",
 		"title":"青春猪头少年不会梦到兔女郎学姐",
@@ -2252,10 +2252,10 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["奇幻","校园","恋爱","轻改"],
-		"last_watch_date_anime":"2018-10-18",
-		"last_watch_episode_anime":3
+		"last_watch_date_anime":"2018-11-1",
+		"last_watch_episode_anime":5
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/pic0.iqiyipic.com\/image\/20181008\/a6\/28\/a_100158531_m_601_m4.jpg",
 		"watch_url":"http:\/\/m.iqiyi.com\/v_19rr5a1lx4.html",
 		"title":"哥布林猎人",
@@ -2265,18 +2265,18 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":true,
-		"rank":3,
+		"abandoned":false,
+		"rank":4,
 		"color":"silver",
 		"category":["日漫","TV版","18以上","日语","番剧","轻改","热血","战斗","美少女","冒险","跟播新番"],
-		"last_watch_date_anime":"2018-10-14",
-		"last_watch_episode_anime":1
+		"last_watch_date_anime":"2018-11-14",
+		"last_watch_episode_anime":6
 	},{
 		"watched_episode":[true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/855402f9e050262bee5644e6d0b1df663e613c22.jpg",
-		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25607",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25959",
 		"title":"CONCEPTION",
-		"description":"本片改编自Spike Chunsoft发行的RPG游戏《为我而生！》，由GONZO制作。",
+		"description":"本片改編自Spike發行的一款遊戲，主人公弓削齋宮借住在青梅竹馬兼表親的粉月真晝家，在高中畢業典禮當天，真晝把齋叫了出去。而且還做出了衝擊性的告白…",
 		"start_date":"2018-10-10",
 		"update_period":7,
 		"update_period_unit":"day",
@@ -2333,7 +2333,7 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":true,
+		"abandoned":false,
 		"rank":4,
 		"color":"silver",
 		"category":["萌系","游戏改"],
@@ -2391,7 +2391,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25739",
 		"title":"关于我转生变成史莱姆这档事",
@@ -2405,8 +2405,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["后宫","奇幻","装逼","战斗","小说改","魔法"],
-		"last_watch_date_anime":"2018-10-18",
-		"last_watch_episode_anime":3
+		"last_watch_date_anime":"2018-11-14",
+		"last_watch_episode_anime":7
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/468ebdb93491b6fa263cf5eb829a0ec65ed266ab.png",
@@ -2422,6 +2422,176 @@ setJsonData({
 		"rank":0,
 		"color":"silver",
 		"category":["日常","奇幻","搞笑","萌系","恋爱","漫画改","神魔"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[true,true,true],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ac72dc1c91cec71ce1633083435320173e2d8c68.jpg",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25720",
+		"title":"叛逆性百万亚瑟王",
+		"description":"圣剑“Excalibur”。以不列颠的统治为目标，为了确定王而准备的选定之剑。拔出此剑之人将被称作“亚瑟”，并获得强大的力量。但，拔出Excalibur的不止一人。随着力量的大量产生，传说发生泛滥，并引发历史的歪曲。为了将历史导向正轨，被称为团长、铁拳、山猫、阁下、炼金、流浪的六位亚瑟，降临到过去之地“不列颠”。他们的使命，是将歪曲历史的Excalibur全部折断。其数量，约有100万。这是，对过去的叛逆。以及，守护未来（现在）的战斗——",
+		"start_date":"2018-10-25",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":4,
+		"color":"silver",
+		"category":["奇幻","战斗","游戏改"],
+		"last_watch_date_anime":"2018-11-9",
+		"last_watch_episode_anime":3
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/911c5a54441d614ac53b46574838d4721a80cf98.jpg",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25510",
+		"title":"刀剑神域",
+		"description":"【本片翻译由版权方提供】“这里是哪儿”察觉到的时候，桐人不知为什么陷入了庞大的幻想风格虚拟世界。登录前的记忆模糊不清，只得在周围徘徊寻找线索。之后，他同一名少年相遇了。“我的名字是尤吉欧。请多关照，桐人君。”少年是在虚拟世界的居民，即“NPC”，但是却如同人类一样“感情丰富”。在和尤吉欧加深交往的同时，桐人也在摸索着登出这个世界的方法。在桐人的脑海中，某一个记忆苏醒了。那是幼年时的桐人和尤吉欧在山野奔跑的记忆——不可能存在的记忆。在那个回忆中，有着一个金发少女的身影。她的名字，是爱丽丝，是绝对不应该忘记的、重要的名字。",
+		"start_date":"2018-10-07",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":-1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["热血","奇幻","战斗","小说改","励志"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/5f4beb5a7b94908790ad18b1e0f54c92fc646c12.jpg",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/835",
+		"title":"我们仍未知道那天所看见的花的名字。",
+		"description":"从小一起长大的六个孩子，在升上高中之后彼此有了距离。不太与人们接触的宅男宿海仁太、有点被小太妹熏染的安城鸣子、进入重点高中的松雪集与鹤见知利子、放弃读高中而展开旅行的久川铁道……只有幼年死去的本间芽衣子（只有仁太能看见的灵魂），还是单纯一如从前。\n有一天，芽衣子对仁太说：“帮我实现一个愿望吧。”仁太虽然有点为难，却还是答应了她。以此为契机，为了实现芽衣子的愿望，分散的大家又再次聚集在一起……",
+		"start_date":"2011-04-14",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":11,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["日常","治愈","致郁","催泪","原创"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/83d82954d76fab14154dc45118283d15a8b8d551.jpg",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/980",
+		"title":"MM一族",
+		"description":"以轻小说为原著制作的TV动画《MM一族》，公开了作品中的主要角色设定等情报。\n    原著由松野秋鸣所作、并由QP:flapper绘制插图的轻小说《MM一族》，主角「砂户太郎」是一被女性虐待就会觉得很舒服的被虐狂。认为在这样下去一辈子就别想谈恋爱的太郎，决定向专门实现学生愿望的第二义工社求助。但在第二义工社中，不但有自称是神的激进美少女「石动美绪」，还有引发太郎体质觉醒的不祥存在「结野嵐子」，她们对太郎的体质改善作战就此热闹展开。",
+		"start_date":"2010-10-02",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["后宫","日常"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/2071c921ddc29050e61332379021a1b7b996a0c3.png",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25689",
+		"title":"Zombie Land Saga",
+		"description":"一如往常的早晨。一如往常的音樂。一如往常的自己。\n7名少女的安寧，突然崩潰。\n因蠢動的死者——殭屍而崩潰……\n\n不容分說地踏入的世界，那裡是「最好×最壞的殭屍世界」\n少女們的願望，只有一個。\n「我們，想要活下去。」\n這是少女們引發奇蹟的故事。",
+		"start_date":"2018-10-05",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":-1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["猎奇","战斗","原创"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i.gtimg.cn\/qqlive\/img\/jpgcache\/files\/qqvideo\/o\/o28lfr4elqppz6q.jpg",
+		"watch_url":"https:\/\/v.qq.com\/detail\/o\/o28lfr4elqppz6q.html",
+		"title":"SSSS 古立特 日语版",
+		"description":"居住在踯躅台的高中1年级学生响裕太，某天醒来后失去了记忆。之后，裕太与旧电脑里显现出来的“Hyper Agent Gridman”相遇了。 Gridman告诉裕太“去完成使命”，而裕太则开始寻找这番话的意义以及自己的记忆。虽然对这一突发事件感到困惑，裕太仍然在同班同学内海将以及宝多六花、新条茜等人的帮助下过着每一天。然而，平稳的日子被突然现身的怪兽轻易地踏碎——",
+		"start_date":"2018-10-7",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["科幻"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e429e1bae20bfb31a7137053ad3e4f19572f1616.png",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25951",
+		"title":"吸血鬼仆人",
+		"description":"城田真昼是一个凡事都奉行简单的高中一年级男生。\n某天他在路上捡了一只黑猫回家，并将之取名为「小黑」。没想到那只猫其实是名为史利比亚修的吸血鬼仆人──SERVAMP，意外成为黑仔主人的真昼，随之被卷入了一场由名叫「椿」的真祖所引发的吸血鬼大战，究竟他能不能顺利地守护自己的朋友与家人，SERVAMP们的身上到底隐藏着什么样惊人的秘密？吸血鬼和主仆契约的战斗奇幻故事就此开始了。",
+		"start_date":"2018-11-01",
+		"update_period":1,
+		"update_period_unit":"month",
+		"episode_count":1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":[],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fe36ca8dc24e7afa4412e5883fdd3be89db8a323.png",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/24569",
+		"title":"BanG Dream! 小剧场",
+		"description":"Girls Band的秘密圣地、Live House「CIRCLE」，迷你偶像少女们将大显身手，带来有笑有泪还暖心(?)的少女偶像乐团喜剧！\n期待的超新星「Poppin'Party」、于顶点孤高绽放的苍蓝蔷薇「Roselia」、青梅竹马共组的王道女子摇滚「Afterglow」、华丽缤纷却又轻松随兴的偶像乐团 「Pastel＊Palettes」、让全世界充满笑容的「Hello,HappyWorld！」，众成员将为了炒热现场气氛东奔西走！",
+		"start_date":"2018-07-05",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":-1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["泡面","少女","音乐","萌系","偶像","游戏改"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/843c779682ab82af6bc3181070b56748a628044e.jpg",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/1476",
+		"title":"不可思议星球的双胞胎公主",
+		"description":"不可思議星球是這七個國家星系中最和平的星球，但是圍繞著星球中心太陽王國的太陽光環，突然出現異變！糟了！這樣下去星球會毀滅的！這個星球中有七個不同的國家，而每一個國家都一個屬於自己的工作。其中的一個國家可以說是掌管整個不可思議星球的生亡──太陽王國。因為太陽王國是管理不可思議星球的“太陽光環”，各國都是靠“太陽光環”的光芒和將“太陽光環”的力量變成溫暖，才能讓大家不會受凍死亡。而現在有一個星球危機，只有太陽王國的公主才能拯教這個不可思議星球！但是太陽王國的兩位雙胞胎公主──蓮音(蓮伊恩)和法音(法伊恩)是這個不可思議星球「有史以來最不像公主的公主」。而這套動畫講述這兩位公主如何拯救這個星球。\n\n《双子星公主》（ふしぎ星の☆ふたご姫）是日本电视动画作品，由株式会社BIRTHDAY原案，HAL FILM MAKER动画制作，东京电视台、NAS制作。总监督为佐藤顺一（曾任《美少女战士》监制），监督为河本升悟。《双子星公主》是一部人气日本少女动漫！在故事中，不可思议星球发生的种种事情总是那么不可思议！在这部动漫中，有轻松的语言、搞笑的话语，有最美妙的变身，甚至有华丽的真爱……无论是小孩还是大..",
+		"start_date":"2005-04-02",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":51,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["少女","奇幻","魔法"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/cc27b47f07d14e3de0f6f7d60ede625fb9ae9727.png",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss24572",
+		"title":"One Room 第二季",
+		"description":"《One Room》的舞台，发生在“主角（One）的居室（Room）”当中。观众们将会跟三位少女轮番邂逅，并跟三位少女展开一段以主角的居室为中心的故事。",
+		"start_date":"2018-07-03",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["萌系","恋爱","日常","治愈","原创"],
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	}]

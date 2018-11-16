@@ -1407,13 +1407,13 @@ setJsonData({
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f11dfac18d744518669b2d211263f03d41d619c.png",
-		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/24625",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss24625",
 		"title":"杀戮天使",
 		"description":"在一栋大楼最底层甦醒的13岁少女，瑞吉儿·加德纳(レイチェル・ガードナー)，她没有任何记忆，不知道自己为何在这里，而为了回到地面，她开始试着逃出去，但是突然在她面前出现了脸上缠满绷带、拿着有如死神般的镰刀的杀人鬼。\n“拜托你，杀了我。”“帮我一起从这里出去吧。那样的话，我就会杀了你。”两人之间的奇妙羁绊，随着那“荒诞的约定”而逐渐加深。这里究竟是什么地方？两人为何被囚禁于此？等待着两人的命运又是如何？为了从密闭大楼逃出的抱死觉悟之行揭开了序幕。两人最终是否能够坚守约定，并且安全地逃出这栋大楼呢？",
 		"start_date":"2018-07-06",
 		"update_period":7,
 		"update_period_unit":"day",
-		"episode_count":-1,
+		"episode_count":16,
 		"absense_count":1,
 		"abandoned":false,
 		"rank":0,
@@ -1881,7 +1881,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-9-4",
 		"last_watch_episode_anime":4
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/846123afffe2e3157b63cd712f48dba276fabc67.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/2087",
 		"title":"DI GI CHARAT Nyo",
@@ -1895,8 +1895,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":[],
-		"last_watch_date_anime":"2018-11-14",
-		"last_watch_episode_anime":53
+		"last_watch_date_anime":"2018-11-15",
+		"last_watch_episode_anime":58
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/4270c14cf6a0300e578a50f2b1b96356f29cbb23.jpg",
@@ -1976,7 +1976,7 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":-1,
 		"absense_count":0,
-		"abandoned":false,
+		"abandoned":true,
 		"rank":3,
 		"color":"silver",
 		"category":["热血","奇幻","科幻","校园","战斗","轻改","魔法"],
@@ -2408,7 +2408,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-11-14",
 		"last_watch_episode_anime":7
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/468ebdb93491b6fa263cf5eb829a0ec65ed266ab.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25697",
 		"title":"只要贝尔哲布布大小姐喜欢就好",
@@ -2419,11 +2419,11 @@ setJsonData({
 		"episode_count":-1,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["日常","奇幻","搞笑","萌系","恋爱","漫画改","神魔"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0
+		"last_watch_date_anime":"2018-11-15",
+		"last_watch_episode_anime":1
 	},{
 		"watched_episode":[true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ac72dc1c91cec71ce1633083435320173e2d8c68.jpg",

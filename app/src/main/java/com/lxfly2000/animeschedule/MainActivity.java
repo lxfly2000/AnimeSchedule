@@ -882,7 +882,7 @@ public class MainActivity extends AppCompatActivity {
                     htmlString=htmlString.substring(0,posJSONEnd);
                     JSONObject htmlJson=new JSONObject(htmlString);
                     editDialogCover.setText(htmlJson.getJSONObject("mediaInfo").getString("cover"));
-                    editDialogTitle.setText(htmlJson.getJSONObject("mediaInfo").getString("title"));
+                    editDialogTitle.setText(htmlJson.getJSONObject("mediaInfo").getString("series_title"));
                     editDialogDescription.setText(htmlJson.getJSONObject("mediaInfo").getString("evaluate"));
                     editDialogStartDate.setText(htmlJson.getJSONObject("pubInfo").getString("pub_time").split(" ")[0]);
                     if(htmlJson.getJSONObject("pubInfo").getString("weekday").contentEquals("-1")){

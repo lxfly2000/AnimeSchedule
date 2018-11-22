@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":119,
+	"last_watch_index":95,
 	"anime":[{
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -743,7 +743,7 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":5,
 		"color":"silver",
 		"category":["百合","日常","搞笑","漫改"],
 		"last_watch_episode_anime":12,
@@ -1083,7 +1083,7 @@ setJsonData({
 		"color":"silver",
 		"category":["百合","奇幻","校园","战斗"]
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,false,false,false],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/94b8e40429614d34374da619f0fc433e7c91a278.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/5786",
 		"title":"猫咪日常",
@@ -1096,7 +1096,9 @@ setJsonData({
 		"abandoned":false,
 		"rank":4,
 		"color":"orange",
-		"category":["泡面","百合","日常","萌系","漫改"]
+		"category":["泡面","百合","日常","萌系","漫改"],
+		"last_watch_episode_anime":12,
+		"last_watch_date_anime":"2018-11-19"
 	},{
 		"watched_episode":[true,true,true,true,true,true,false,false,false,false,false,false,false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/34ddd6d594caaa0ab21ab9bf91c4477c44ab50f4.jpg",
@@ -1473,7 +1475,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/cb536ffb951d5730075012375785d649ce8bccc8.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/1512",
 		"title":"路人女主的养成方法",
@@ -1484,11 +1486,11 @@ setJsonData({
 		"episode_count":13,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":3,
 		"color":"silver",
 		"category":["后宫","恋爱","轻改"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0
+		"last_watch_date_anime":"2018-11-22",
+		"last_watch_episode_anime":1
 	},{
 		"watched_episode":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
 		"cover":"http:\/\/i3.img.969g.com\/down\/imgx2013\/01\/16\/206_170140_00678.jpg",
@@ -1966,7 +1968,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a92892921f3209f7784a954c37467c9869a1d4c1.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25617",
 		"title":"魔法禁书目录 第三季",
@@ -1976,12 +1978,12 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":-1,
 		"absense_count":0,
-		"abandoned":true,
-		"rank":3,
+		"abandoned":false,
+		"rank":4,
 		"color":"silver",
 		"category":["热血","奇幻","科幻","校园","战斗","轻改","魔法"],
-		"last_watch_date_anime":"2018-11-10",
-		"last_watch_episode_anime":6
+		"last_watch_date_anime":"2018-11-17",
+		"last_watch_episode_anime":7
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"https:\/\/wx2.sinaimg.cn\/large\/005Rye4oly1ffjqm5mlj7j306y09qq3u.jpg",
@@ -2034,7 +2036,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true,true],
+		"watched_episode":[true,false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8732c37be58b87dc0bbe7347621206ff5c793ec5.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25624",
 		"title":"Anima Yell!",
@@ -2051,7 +2053,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-10-15",
 		"last_watch_episode_anime":2
 	},{
-		"watched_episode":[true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/9254b0bafd699c1a778c42658497948ba3038a77.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25622",
 		"title":"终将成为你",
@@ -2061,12 +2063,12 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":13,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":5,
+		"abandoned":true,
+		"rank":3,
 		"color":"silver",
 		"category":["校园","恋爱","漫改"],
-		"last_watch_date_anime":"2018-11-10",
-		"last_watch_episode_anime":6
+		"last_watch_date_anime":"2018-11-17",
+		"last_watch_episode_anime":7
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/pic1.iqiyipic.com\/image\/20180706\/8c\/33\/a_100137085_m_601_m2.jpg",
@@ -2204,7 +2206,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/60bcf90d945ae88d5a1b50e069672aea0869167f.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25613",
 		"title":"我家的女仆太烦人了！",
@@ -2215,13 +2217,13 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":5,
+		"rank":4,
 		"color":"silver",
 		"category":["日常","搞笑","萌系","漫画改"],
-		"last_watch_date_anime":"2018-11-10",
-		"last_watch_episode_anime":6
+		"last_watch_date_anime":"2018-11-17",
+		"last_watch_episode_anime":7
 	},{
-		"watched_episode":[true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fa89d4ce62d87c6ff641c617c6bf62c8f19ceafd.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25619",
 		"title":"邻家索菲",
@@ -2235,10 +2237,10 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["萌系","漫改"],
-		"last_watch_date_anime":"2018-11-10",
-		"last_watch_episode_anime":6
+		"last_watch_date_anime":"2018-11-16",
+		"last_watch_episode_anime":7
 	},{
-		"watched_episode":[true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/1cc333ff578e5ea9fded7e454953a4e2291440c2.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25733",
 		"title":"青春猪头少年不会梦到兔女郎学姐",
@@ -2249,18 +2251,18 @@ setJsonData({
 		"episode_count":-1,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":3,
 		"color":"silver",
 		"category":["奇幻","校园","恋爱","轻改"],
-		"last_watch_date_anime":"2018-11-1",
-		"last_watch_episode_anime":5
+		"last_watch_date_anime":"2018-11-22",
+		"last_watch_episode_anime":8
 	},{
-		"watched_episode":[true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/pic0.iqiyipic.com\/image\/20181008\/a6\/28\/a_100158531_m_601_m4.jpg",
 		"watch_url":"http:\/\/m.iqiyi.com\/v_19rr5a1lx4.html",
 		"title":"哥布林猎人",
 		"description":"凭借疯狂杀戮哥布林的哥布林杀手在公会排位第三还获得了「哥布林杀手」的称号，而女主角（之一）叫做女神官在首次外出组队挑战哥布林时队伍几乎遭到了全灭，幸好哥布林杀手及时出现救了女神官一命，后来女神官就和哥布林杀手组队一起冒险，除此之外还有妖精弓手、牧牛少女、柜台小姐等女性对哥布林杀手很有好感——",
-		"start_date":"2018-10-8",
+		"start_date":"2018-10-7",
 		"update_period":7,
 		"update_period_unit":"day",
 		"episode_count":12,
@@ -2269,8 +2271,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日漫","TV版","18以上","日语","番剧","轻改","热血","战斗","美少女","冒险","跟播新番"],
-		"last_watch_date_anime":"2018-11-14",
-		"last_watch_episode_anime":6
+		"last_watch_date_anime":"2018-11-19",
+		"last_watch_episode_anime":7
 	},{
 		"watched_episode":[true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/855402f9e050262bee5644e6d0b1df663e613c22.jpg",
@@ -2289,7 +2291,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-10-10",
 		"last_watch_episode_anime":1
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true,true],
 		"cover":"https:\/\/img.moegirl.org\/common\/e\/e0\/Shoujo_Ramune.jpg",
 		"watch_url":"http:\/\/www.maxzhe.com\/4925.html",
 		"title":"小女ラムネ",
@@ -2300,13 +2302,13 @@ setJsonData({
 		"episode_count":4,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":3,
 		"color":"silver",
 		"category":[],
-		"last_watch_date_anime":"2018-10-11",
-		"last_watch_episode_anime":1
+		"last_watch_date_anime":"2018-11-22",
+		"last_watch_episode_anime":3
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true,true,true,true],
 		"cover":"https:\/\/www.hmoegirl.com\/images\/4\/4d\/Jibril_fanbook.png",
 		"watch_url":"https:\/\/www.hmoegirl.com\/魔界天使ジブリール",
 		"title":"魔界天使ジブリール",
@@ -2317,13 +2319,13 @@ setJsonData({
 		"episode_count":4,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":[],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0
+		"last_watch_date_anime":"2018-11-22",
+		"last_watch_episode_anime":4
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e4644b38b29a34520b3affac71064faeb8a081fa.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25699",
 		"title":"梅露可物语 -无气力少年与瓶中少女-",
@@ -2337,8 +2339,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["萌系","游戏改"],
-		"last_watch_date_anime":"2018-10-13",
-		"last_watch_episode_anime":1
+		"last_watch_date_anime":"2018-11-17",
+		"last_watch_episode_anime":6
 	},{
 		"watched_episode":[false,false,false,false,false,false,false,false,false,null,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/5e273558ff8d966533a5cb44112ac257edc337a5.jpg",
@@ -2391,7 +2393,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25739",
 		"title":"关于我转生变成史莱姆这档事",
@@ -2405,10 +2407,10 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["后宫","奇幻","装逼","战斗","小说改","魔法"],
-		"last_watch_date_anime":"2018-11-14",
-		"last_watch_episode_anime":7
+		"last_watch_date_anime":"2018-11-20",
+		"last_watch_episode_anime":8
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/468ebdb93491b6fa263cf5eb829a0ec65ed266ab.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25697",
 		"title":"只要贝尔哲布布大小姐喜欢就好",
@@ -2419,13 +2421,13 @@ setJsonData({
 		"episode_count":-1,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":5,
 		"color":"silver",
 		"category":["日常","奇幻","搞笑","萌系","恋爱","漫画改","神魔"],
-		"last_watch_date_anime":"2018-11-15",
-		"last_watch_episode_anime":1
+		"last_watch_date_anime":"2018-11-22",
+		"last_watch_episode_anime":7
 	},{
-		"watched_episode":[true,true,true],
+		"watched_episode":[true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ac72dc1c91cec71ce1633083435320173e2d8c68.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25720",
 		"title":"叛逆性百万亚瑟王",
@@ -2439,8 +2441,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["奇幻","战斗","游戏改"],
-		"last_watch_date_anime":"2018-11-9",
-		"last_watch_episode_anime":3
+		"last_watch_date_anime":"2018-11-16",
+		"last_watch_episode_anime":4
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/911c5a54441d614ac53b46574838d4721a80cf98.jpg",
@@ -2594,5 +2596,90 @@ setJsonData({
 		"category":["萌系","恋爱","日常","治愈","原创"],
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ed3262e5dddb8747d83632ddec093db1342e5c60.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss25152",
+		"title":"nekopara extra 小猫篇",
+		"description":"时间回到嘉祥担任店长的猫娘蛋糕店『La Soleil』开张的半年前，\n还是小猫的巧克力跟香草刚来到水无月家，还没跟其他猫娘们打成一片的时候。\n开始用「主人」称呼嘉祥，并且在水无月家度过第一个圣诞节的两人，和嘉祥立下了一个约定。\n\nNekoparaOVA的募资达标感谢礼，将为各位送上一段全新前传！",
+		"start_date":"2018-07-27",
+		"update_period":1,
+		"update_period_unit":"month",
+		"episode_count":1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["萌系","日常","治愈","游戏改"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/137420e2bbdb965b286121d0be93dc31c12424df.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1308",
+		"title":"小女神花铃",
+		"description":"花园花铃是一个普通的中学一年级生。父母在小时候过世，与她的叔母单独居住，但是不擅长运动的她总是被叔母骂。但在她心爱的宠物猫──小西过世之后，她的运气开始慢慢的转好。花铃很快发现她的母亲的遗物，一枚神秘的粉红色戒指，借由维纳斯女神的神力的帮助下（其实是由戒指产生出来的力量），可以让她变成维纳斯女神。之后她亦开始帮助九条和音寻找其他的戒指，尝试破解关于“神化”的谜题。\n\n《小女神花铃》是日本漫画家小夏钝帆所创作的少女漫画，以及依此改编的电视动画。本作品于2002年12月号（2002年11月发行）开始在讲谈社少女漫画杂志《Nakayoshi》（なかよし）上连载。漫画单行本全7册。当初是以前后篇短篇故事方式刊载，后来受到不错的评价而正式连载。",
+		"start_date":"2007-04-06",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":26,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["萌系","奇幻","少女"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a7d604cb9024faeb775a79a95c33542e3cdd420c.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss5540",
+		"title":"斯特拉的魔法",
+		"description":"高中开学典礼当天与制作同人游戏的社团“SNS部”相遇的本田珠辉。\n她觉得自己找到了想要做的事情而入部，但不论是绘图、编程、剧本还是音乐，全部都要从零开始由自己这些人来完成，实在是不得了！\n与学姐和幼时的好友一起，以完成为目标加油吧！",
+		"start_date":"2016-10-03",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["萌系","校园","社团"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/afcfb11c77ca87bf44e010d8dd349e4a723fde32.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss915",
+		"title":"A CHANNEL",
+		"description":"A Channel是漫画家黑田bb所作的一部校园题材的四格漫画作品。故事是讲的是4个高中女生轻松快乐的校园生活。在校园里她们每天都互相吐槽，互相打闹，彼此关心。她们之间真挚温暖的友情是维系着四个女生的纽带。这样一部温馨的漫画，已于2010年11月动画化决定，于2011年4月以新番动画的形式呈现给大家。\n",
+		"start_date":"2011-04-07",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["萌系","日常","校园","治愈"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0
+	},{
+		"watched_episode":[true,true],
+		"cover":"https:\/\/www.hmoegirl.com\/images\/4\/4d\/Jibril_fanbook.png",
+		"watch_url":"https:\/\/www.hmoegirl.com\/魔界天使ジブリール",
+		"title":"魔界天使ジブリール2",
+		"description":"信息不准确。",
+		"start_date":"2007-11-26",
+		"update_period":2,
+		"update_period_unit":"month",
+		"episode_count":4,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":4,
+		"color":"silver",
+		"category":[],
+		"last_watch_date_anime":"2018-11-22",
+		"last_watch_episode_anime":2
 	}]
 });

@@ -95,7 +95,7 @@ public class AnimeJson {
         try{
             return json.getJSONArray("anime").getJSONObject(index).getString("last_watch_date_anime");
         }catch (JSONException e){
-            return "1900-1-1";
+            return Values.dateStringDefault;
         }
     }
 
@@ -120,6 +120,23 @@ public class AnimeJson {
     public boolean SetLastWatchEpisodeForAnime(int index,int epi_from_one){
         try{
             json.getJSONArray("anime").getJSONObject(index).put("last_watch_episode_anime",epi_from_one);
+            return true;
+        }catch (JSONException e){
+            return false;
+        }
+    }
+
+    public String GetCreationDateStringForAnime(int index){
+        try{
+            return json.getJSONArray("anime").getJSONObject(index).getString("create_date");
+        }catch (JSONException e){
+            return Values.dateStringDefault;
+        }
+    }
+
+    public boolean SetCreationDateStringForAnime(int index,String date){
+        try {
+            json.getJSONArray("anime").getJSONObject(index).put("create_date",date);
             return true;
         }catch (JSONException e){
             return false;
@@ -227,7 +244,7 @@ public class AnimeJson {
         try {
             return json.getJSONArray("anime").getJSONObject(index).getString("start_date");
         }catch (JSONException e){
-            return "1900-1-1";
+            return Values.dateStringDefault;
         }
     }
 
@@ -456,8 +473,9 @@ public class AnimeJson {
             SetRank(ni,0);
             SetColor(ni,"silver");
             SetCategory(ni,new String[]{});
-            SetLastWatchDateForAnime(ni,"1900-1-1");
+            SetLastWatchDateForAnime(ni,Values.dateStringDefault);
             SetLastWatchEpisodeForAnime(ni,0);
+            SetCreationDateStringForAnime(ni,YMDDate.GetTodayDate().ToYMDString());
             CalculateExtraInfomation();
         }catch (JSONException e){
             return -1;

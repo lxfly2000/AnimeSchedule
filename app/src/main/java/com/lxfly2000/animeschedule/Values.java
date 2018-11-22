@@ -16,6 +16,7 @@ public class Values {
     public static final int vDefaultSortOrder=2;
     public static final String keySortSeperateAbandoned="anime_sort_separate_abandoned";
     public static final boolean vDefaultSortSeperateAbandoned=true;
+    public static final String dateStringDefault="1900-1-1";
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
     }

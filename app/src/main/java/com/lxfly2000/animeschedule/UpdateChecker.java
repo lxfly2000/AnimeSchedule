@@ -75,7 +75,7 @@ public class UpdateChecker {
 
     public String GetUpdateVersionName(){
         String versionName="";
-        String searchRegex="versionName \"[0-9.]*\"";
+        String searchRegex="versionName \".*\"";
         Pattern p=Pattern.compile(searchRegex);
         Matcher m=p.matcher(fileContentString);
         if(m.find()){

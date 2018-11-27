@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":124,
+	"last_watch_index":149,
 	"anime":[{
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -2257,7 +2257,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-11-22",
 		"last_watch_episode_anime":8
 	},{
-		"watched_episode":[true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/pic0.iqiyipic.com\/image\/20181008\/a6\/28\/a_100158531_m_601_m4.jpg",
 		"watch_url":"http:\/\/m.iqiyi.com\/v_19rr5a1lx4.html",
 		"title":"哥布林猎人",
@@ -2271,8 +2271,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日漫","TV版","18以上","日语","番剧","轻改","热血","战斗","美少女","冒险","跟播新番"],
-		"last_watch_date_anime":"2018-11-19",
-		"last_watch_episode_anime":7
+		"last_watch_date_anime":"2018-11-25",
+		"last_watch_episode_anime":8
 	},{
 		"watched_episode":[true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/855402f9e050262bee5644e6d0b1df663e613c22.jpg",
@@ -2393,7 +2393,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25739",
 		"title":"关于我转生变成史莱姆这档事",
@@ -2407,8 +2407,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["后宫","奇幻","装逼","战斗","小说改","魔法"],
-		"last_watch_date_anime":"2018-11-20",
-		"last_watch_episode_anime":8
+		"last_watch_date_anime":"2018-11-27",
+		"last_watch_episode_anime":9
 	},{
 		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/468ebdb93491b6fa263cf5eb829a0ec65ed266ab.png",
@@ -2665,8 +2665,8 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true,true],
-		"cover":"https:\/\/www.hmoegirl.com\/images\/4\/4d\/Jibril_fanbook.png",
+		"watched_episode":[true,true,true,true],
+		"cover":"https:\/\/www.hmoegirl.com\/images\/b\/b0\/Main_2.png",
 		"watch_url":"https:\/\/www.hmoegirl.com\/魔界天使ジブリール",
 		"title":"魔界天使ジブリール2",
 		"description":"信息不准确。",
@@ -2679,7 +2679,25 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":[],
-		"last_watch_date_anime":"2018-11-22",
-		"last_watch_episode_anime":2
+		"last_watch_date_anime":"2018-11-26",
+		"last_watch_episode_anime":4
+	},{
+		"watched_episode":[true,true],
+		"cover":"https:\/\/www.hmoegirl.com\/images\/6\/61\/Top.jpg",
+		"watch_url":"https:\/\/www.hmoegirl.com\/魔界天使ジブリール",
+		"title":"魔界天使ジブリール3",
+		"description":"信息不准确。\n原作：Front Wing公司R18 GalGame\n动画制作：Studio魂\n动画未完结，制作公司绝赞弃坑中。",
+		"start_date":"2009-11-26",
+		"update_period":2,
+		"update_period_unit":"month",
+		"episode_count":2,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":4,
+		"color":"silver",
+		"category":[],
+		"last_watch_date_anime":"2018-11-26",
+		"last_watch_episode_anime":2,
+		"create_date":"2018-11-26"
 	}]
 });

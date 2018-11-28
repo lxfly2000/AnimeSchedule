@@ -6,7 +6,7 @@
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" android:id="@+id/scrollViewEditAnime">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical">
             <TextView
@@ -58,6 +58,24 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:id="@+id/editTextDescription" android:hint="@string/label_anime_description"/>
+            <TextView
+                    android:text="@string/label_anime_actors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textDialogActors"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/editTextActors" android:hint="@string/label_anime_actors"/>
+            <TextView
+                    android:text="@string/label_anime_staff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textDialogStaff"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/editTextStaff" android:hint="@string/label_anime_staff"/>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"

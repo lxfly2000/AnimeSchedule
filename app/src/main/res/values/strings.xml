@@ -85,4 +85,7 @@
     <string name="label_count_stat_end">End</string>
     <string name="label_count_stat_total">Total</string>
     <string name="message_no_anime_json">You have not made an Anime schedule, do you want to try the sample?</string>
+    <string name="label_anime_actors">Actors</string>
+    <string name="label_anime_staff">Staff</string>
+    <string name="menu_anime_show_detail">Show Detail</string>
 </resources>

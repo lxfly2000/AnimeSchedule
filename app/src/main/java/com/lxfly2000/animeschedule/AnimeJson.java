@@ -231,6 +231,40 @@ public class AnimeJson {
         }
     }
 
+    public boolean SetActors(int index,String actors){
+        try{
+            json.getJSONArray("anime").getJSONObject(index).put("actors",actors);
+        }catch (JSONException e){
+            return false;
+        }
+        return true;
+    }
+
+    public String GetActors(int index){
+        try{
+            return json.getJSONArray("anime").getJSONObject(index).getString("actors");
+        }catch (JSONException e){
+            return Values.vDefaultString;
+        }
+    }
+
+    public boolean SetStaff(int index,String staff){
+        try{
+            json.getJSONArray("anime").getJSONObject(index).put("staff",staff);
+        }catch (JSONException e){
+            return false;
+        }
+        return true;
+    }
+
+    public String GetStaff(int index){
+        try{
+            return json.getJSONArray("anime").getJSONObject(index).getString("staff");
+        }catch (JSONException e){
+            return Values.vDefaultString;
+        }
+    }
+
     public boolean SetStartDate(int index,String date){
         try {
             json.getJSONArray("anime").getJSONObject(index).put("start_date",date);
@@ -463,6 +497,8 @@ public class AnimeJson {
             SetWatchUrl(ni,"http://bangumi.bilibili.com/anime/");
             SetTitle(ni,"");
             SetDescription(ni,"Bili:");
+            SetActors(ni,"");
+            SetStaff(ni,"");
             SetStartDate(ni,YMDDate.GetTodayDate().ToYMDString());
             SetUpdatePeriod(ni,7);
             SetUpdatePeriodUnit(ni,unitDay);

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:orientation="vertical">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical" android:layout_marginStart="8dp" android:layout_marginEnd="8dp">
+            <TextView
+                    android:text="@string/label_anime_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textLabelDescription"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:textSize="18sp"/>
+            <TextView
+                    android:text="@string/label_anime_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAnimeDescription"/>
+            <TextView
+                    android:text="@string/label_anime_actors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textLabelActors"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:textSize="18sp"/>
+            <TextView
+                    android:text="@string/label_anime_actors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textAnimeActors"/>
+            <TextView
+                    android:text="@string/label_anime_staff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textLabelStaff" android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="18sp"/>
+            <TextView
+                    android:text="@string/label_anime_staff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textAnimeStaff"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

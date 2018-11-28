@@ -86,4 +86,7 @@
     <string name="label_count_stat_end">完结</string>
     <string name="label_count_stat_total">总计</string>
     <string name="message_no_anime_json">你还没有制作一个追番表，是否需要加载示例？</string>
+    <string name="label_anime_actors">CV</string>
+    <string name="label_anime_staff">制作人员</string>
+    <string name="menu_anime_show_detail">显示详细信息</string>
 </resources>

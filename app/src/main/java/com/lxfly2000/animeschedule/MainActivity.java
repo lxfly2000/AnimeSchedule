@@ -26,10 +26,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.*;
 import com.google.android.flexbox.FlexboxLayout;
 import com.lxfly2000.utilities.*;
@@ -517,6 +514,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item){
         switch (item.getItemId()){
+            case R.id.action_show_detail:ShowAnimeDetail(jsonSortTable.get(longPressedListItem));break;
             case R.id.action_edit_item:EditAnime(jsonSortTable.get(longPressedListItem),false);break;
             case R.id.action_remove_item:RemoveItem(jsonSortTable.get(longPressedListItem));break;
         }
@@ -631,7 +629,20 @@ public class MainActivity extends AppCompatActivity {
         return Integer.parseInt(str);
     }
 
+    private void ShowAnimeDetail(int index){
+        AlertDialog detailDialog=new AlertDialog.Builder(this)
+                .setTitle(animeJson.GetTitle(index))
+                .setView(R.layout.anime_detail_dialog)
+                .setPositiveButton(android.R.string.ok,null)
+                .show();
+        ((TextView)detailDialog.findViewById(R.id.textAnimeDescription)).setText(animeJson.GetDescription(index));
+        ((TextView)detailDialog.findViewById(R.id.textAnimeActors)).setText(animeJson.GetActors(index));
+        ((TextView)detailDialog.findViewById(R.id.textAnimeStaff)).setText(animeJson.GetStaff(index));
+    }
+
     private EditText editDialogDescription;
+    private EditText editDialogActors;
+    private EditText editDialogStaff;
     private EditText editDialogCover;
     private EditText editDialogTitle;
     private EditText editDialogStartDate;
@@ -656,6 +667,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         animeJson.SetDescription(index,editDialogDescription.getText().toString());
+                        animeJson.SetActors(index,editDialogActors.getText().toString());
+                        animeJson.SetStaff(index,editDialogStaff.getText().toString());
                         animeJson.SetCoverUrl(index,editDialogCover.getText().toString());
                         animeJson.SetTitle(index,editDialogTitle.getText().toString());
                         animeJson.SetStartDate(index,editDialogStartDate.getText().toString());
@@ -700,8 +713,22 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+        //https://www.jianshu.com/p/132398300738
+        ScrollView scrollView=(ScrollView)editDialog.findViewById(R.id.scrollViewEditAnime);
+        scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+        scrollView.setFocusable(true);
+        scrollView.setFocusableInTouchMode(true);
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                view.requestFocusFromTouch();
+                return false;
+            }
+        });
         //http://blog.csdn.net/nihaoqiulinhe/article/details/49026263
         editDialogDescription=(EditText)editDialog.findViewById(R.id.editTextDescription);
+        editDialogActors=(EditText)editDialog.findViewById(R.id.editTextActors);
+        editDialogStaff=(EditText)editDialog.findViewById(R.id.editTextStaff);
         editDialogCover=(EditText)editDialog.findViewById(R.id.editDialogCover);
         editDialogTitle=(EditText)editDialog.findViewById(R.id.editDialogTitle);
         editDialogStartDate=(EditText)editDialog.findViewById(R.id.editDialogStartDate);
@@ -717,6 +744,8 @@ public class MainActivity extends AppCompatActivity {
         editDialogRanking=(EditText)editDialog.findViewById(R.id.editDialogRank);
 
         editDialogDescription.setText(animeJson.GetDescription(index));
+        editDialogActors.setText(animeJson.GetActors(index));
+        editDialogStaff.setText(animeJson.GetStaff(index));
         editDialogCover.setText(animeJson.GetCoverUrl(index));
         editDialogTitle.setText(animeJson.GetTitle(index));
         editDialogStartDate.setText(animeJson.GetStartDate(index));
@@ -729,6 +758,7 @@ public class MainActivity extends AppCompatActivity {
         editDialogEpisodeCount.setText(String.valueOf(animeJson.GetEpisodeCount(index)));
         editDialogAbsenseCount.setText(String.valueOf(animeJson.GetAbsenseCount(index)));
         editDialogWatchUrl.setText(String.valueOf(animeJson.GetWatchUrl(index)));
+        editDialogWatchUrl.requestFocus();
         //显示观看的集数
         StringBuilder stringBuilder=new StringBuilder();
         ToggleButton toggleEpisode;
@@ -884,6 +914,8 @@ public class MainActivity extends AppCompatActivity {
                     editDialogCover.setText(htmlJson.getJSONObject("mediaInfo").getString("cover"));
                     editDialogTitle.setText(htmlJson.getJSONObject("mediaInfo").getString("series_title"));
                     editDialogDescription.setText(htmlJson.getJSONObject("mediaInfo").getString("evaluate"));
+                    editDialogActors.setText(htmlJson.getJSONObject("mediaInfo").getString("actors"));
+                    editDialogStaff.setText(htmlJson.getJSONObject("mediaInfo").getString("staff"));
                     editDialogStartDate.setText(htmlJson.getJSONObject("pubInfo").getString("pub_time").split(" ")[0]);
                     if(htmlJson.getJSONObject("pubInfo").getString("weekday").contentEquals("-1")){
                         editDialogUpdatePeriod.setText("1");

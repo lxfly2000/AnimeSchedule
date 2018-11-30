@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":149,
+	"last_watch_index":145,
 	"anime":[{
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -2464,7 +2464,7 @@ setJsonData({
 		"staff":"原作：甘党「月刊コミックキューン」(KADOKAWA)\n监督：秋田谷典昭\n副监督：福島利規\n系列构成：髙橋龍也\n角色设计 \/ 总作画监督：酒井孝裕\n概念设计：杉村苑美\n道具设计：コレサワシゲユキ(デジタルノイズ)、灯夢(デジタルノイズ)\n美术监督：松本浩樹(アトリエPlatz)\n色彩设计：鈴木ようこ\n摄影监督：廣岡岳\n编集：坪根健太郎\n音乐监督：明田川仁\n音乐：藤澤慶昌\n音乐制作：日本コロムビア\n动画制作：Studio五组、AXsiZ",
 		"actors":"索菲·暮光：富田美忧\n天野灯：篠原侑\n夏木日向：Lynn\n艾莉：和气杏未\n仓井朔夜：日高里菜\n青木夕：内田彩"
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/1cc333ff578e5ea9fded7e454953a4e2291440c2.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25733",
 		"title":"青春猪头少年不会梦到兔女郎学姐",
@@ -2478,8 +2478,8 @@ setJsonData({
 		"rank":3,
 		"color":"silver",
 		"category":["奇幻","校园","恋爱","轻改"],
-		"last_watch_date_anime":"2018-11-22",
-		"last_watch_episode_anime":8,
+		"last_watch_date_anime":"2018-11-29",
+		"last_watch_episode_anime":9,
 		"staff":"原作：鸭志田一（电撃文库刊《青春猪头少年系列》）\n原作插画：沟口凯吉\n监督：增井壮一\n总编剧：横谷昌宏\n角色设计：田村里美\n总作画监督：田村里美、高田晃\n助监督：いわたかずや\n道具设计：高田晃\n美术设定：藤井一志\n美术监督：涉谷幸弘\n色彩设计：横田明日香\n3D监督：野间裕介、唐泽佑人\n摄影监督：关谷能弘\n2D工作、特殊效果：内海纱耶\n编辑：三嶋章纪\n音响监督：岩浪美和\n音乐：fox capture plan\n动画制作：CloverWorks",
 		"actors":"梓川咲太：石川界人\n樱岛麻衣：濑户麻沙美\n梓川枫：久保由利香\n古贺朋绘：东山奈央\n双叶理央：种崎敦美\n丰滨和花：内田真礼\n牧之原翔子：水濑祈"
 	},{
@@ -2500,7 +2500,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-11-25",
 		"last_watch_episode_anime":8
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/855402f9e050262bee5644e6d0b1df663e613c22.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25959",
 		"title":"CONCEPTION",
@@ -2514,8 +2514,8 @@ setJsonData({
 		"rank":2,
 		"color":"silver",
 		"category":["后宫","游戏改"],
-		"last_watch_date_anime":"2018-10-10",
-		"last_watch_episode_anime":1,
+		"last_watch_date_anime":"2018-11-28",
+		"last_watch_episode_anime":2,
 		"staff":"原作：Spike Chunsoft（スパイク・チュンソフト）\n導演：元永慶太郎\n人物設定：奥田陽介\n人物原案：大塚真一郎\n系列構成：柿原優子\n音樂：甲田雅人\n動畫製作：GONZO",
 		"actors":"弓削齋宮：小野友樹\n粉月真晝：加藤英美里\n亞莉：遠藤綾\n菲米露娜：藤田咲\n柯蕾特：下田麻美\n柚葉：藤井雪代\n露卡：大本真基子\n蕾歐妮：山口由里子\n法蓮：荒浪和沙\n塔魯亞：杉山里穗\n莉莉絲&莉莉：阿澄佳奈\n米蕾：小林沙苗\n梳：喜多村英梨\n瑪娜：ゆりん\n香格里拉：松田健一郎\n納魯希斯特斯：平川大輔"
 	},{
@@ -2553,7 +2553,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-11-22",
 		"last_watch_episode_anime":4
 	},{
-		"watched_episode":[true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e4644b38b29a34520b3affac71064faeb8a081fa.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25699",
 		"title":"梅露可物语 -无气力少年与瓶中少女-",
@@ -2567,8 +2567,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["萌系","游戏改"],
-		"last_watch_date_anime":"2018-11-23",
-		"last_watch_episode_anime":7,
+		"last_watch_date_anime":"2018-11-30",
+		"last_watch_episode_anime":8,
 		"staff":"原作、剧本监修：乐元素\n监督：追崎史敏\n系列构成：追崎史敏、内田裕基、雨宫瞳\n角色设计：秋山由树子\n总作画监督：秋山由树子、涩谷秀、新井博慧\n怪物设计：福岛秀机、陆田青享\n道具设计：新谷真昼\n色彩设计：辻田邦夫\n色彩设计辅助：大场将生\n美术监督：空闲由美子（Studio Jack）\n2D Works：蓬田佑季\n摄影监督：松本乃吾（稻穗）\n编辑：斋藤朱里（Graphinica）\n音乐制作人：Mili\n动画制作：Encourage Films",
 		"actors":"优：田村睦心\n梅露可：水濑祈\n图图：花守由美里\n加墨：长岛雄一"
 	},{
@@ -2644,7 +2644,7 @@ setJsonData({
 		"staff":"原作：川上泰树、伏濑、みっつばー《关于我转生变成史莱姆这档事》（讲谈社《月刊少年天狼星》连载）\n监督：菊地康仁\n副监督：中山敦史\n系列构成：笔安一幸\n角色设计：江畑谅真\n怪物设计：岸田隆宏\n美术监督：佐藤步\n美术设定：藤濑智康、佐藤正浩\n色彩设计：齐藤麻记\n摄影监督：佐藤洋\n图形设计：生原雄次\n编辑：神宫司由美\n音响监督：明田川仁\n音乐：Elements Garden\n动画制作：8bit（8-bit）",
 		"actors":"利姆鲁·特恩佩斯特：冈咲美保\n大贤者：丰口惠美\n维鲁德拉·特恩佩斯特：前野智昭\n井沢静江：花守由美里\n岚牙：小林亲弘\n红丸：古川慎\n朱菜：千本木彩花\n紫苑：M・A・O\n苍影：江口拓也\n白老：大塚芳忠\n三上悟：寺岛拓笃\n希兹：花守由美里\n利古鲁德：山本兼平\n利古鲁：石谷春贵\n哥布塔：泊明日菜\n凯金：斧敦\n托蕾妮：田中理惠\n艾莲：熊田茜音\n卡巴尔：高梨谦吾\n米莉姆：日高里菜"
 	},{
-		"watched_episode":[true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/468ebdb93491b6fa263cf5eb829a0ec65ed266ab.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25697",
 		"title":"只要贝尔哲布布大小姐喜欢就好",
@@ -2658,12 +2658,12 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["日常","奇幻","搞笑","萌系","恋爱","漫画改","神魔"],
-		"last_watch_date_anime":"2018-11-22",
-		"last_watch_episode_anime":7,
+		"last_watch_date_anime":"2018-11-29",
+		"last_watch_episode_anime":8,
 		"staff":"原作：Matoba\n监督：和卜凑\n系列构成 \/ 脚本：富田赖子\n角色设计：住本悦子\n音乐：分岛花音 \/ 千叶“naotyu-”直树\n音响监督：本山哲\n动画制作：LIDENFILMS",
 		"actors":"贝尔哲布布：大西沙织\n穆林：安田陆矢\n贝尔芬格尔：久野美咲\n阿撒塞尔：日野聪\n莎尔葛塔纳斯：加隈亚衣\n亚斯塔洛特：松冈祯丞\n欧莉诺姆：赤崎千夏\n但他林：悠木碧\n摩洛：兴津和幸\n旁白：井上喜久子"
 	},{
-		"watched_episode":[true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ac72dc1c91cec71ce1633083435320173e2d8c68.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25720",
 		"title":"叛逆性百万亚瑟王",
@@ -2677,8 +2677,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["奇幻","战斗","游戏改"],
-		"last_watch_date_anime":"2018-11-23",
-		"last_watch_episode_anime":5,
+		"last_watch_date_anime":"2018-11-30",
+		"last_watch_episode_anime":6,
 		"staff":"原作：SQUARE ENIX\n监督：铃木洋平\n总编剧：玉井☆豪\n角色设计：斋藤良成\n次要角色设计：小野田将人\n美术监督：内藤健\n色彩设计：沟江诗帆\n编辑：近藤勇二\n音响监督：岩浪美和\n音响制作：Magic Capsule\n音乐：椎名豪\n音乐制作：Lantis\n监制：GENCO\n动画制作：J.C.STAFF",
 		"actors":"团长亚瑟：雨宮天\n铁拳亚瑟：柿原彻也\n山猫亚瑟：竹达彩奈\n阁下亚瑟：花江夏树\n炼金亚瑟：水濑祈\n流浪亚瑟：中村悠一\n纳克拉维：茜屋日海夏\n碧姬：芹泽优\n泰坦尼亚：高桥李依\n丘比特：东山奈央\n伯达克：三森铃子\n贝托尔：日高里菜"
 	},{
@@ -2961,5 +2961,85 @@ setJsonData({
 		"last_watch_date_anime":"2018-11-26",
 		"last_watch_episode_anime":2,
 		"create_date":"2018-11-26"
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fa4cce5af008563c73ad942d5bc04124ec4fe44f.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1983",
+		"title":"真月谭月姬",
+		"description":"名叫远野志贵的十七岁少年，在八年前的某次意外中身受重伤，之后获得了能“杀死”事物的“直死之魔眼”。由于对这种能力无法适应，年幼的志贵在当天逃离了医院，并意外邂逅了一个名叫苍崎青子的魔法使。在她的帮助下，魔眼的能力被一副眼镜封印了起来。之后的八年间，志贵作为养子在远野的分家·有间家过着平静的生活。\n八年后，由于父亲的去世，志贵被成为新任家主的妹妹秋叶召回了远野家。某天在上学的路上，志贵仿佛受到呼唤般，难以抑制地用直死之眼杀死了一名女性。但第二天，这个女性却若无其事地站在了他眼前……？！",
+		"actors":"远野志贵：鈴村健一\n爱尔奎特·布伦史坦德：生天目仁美\n希耶尔：折笠富美子\n远野秋叶：伊藤静\n尼禄·卡欧斯：三宅健太\n远野四季\/米海尔‧罗亚：吉野裕行\n乾有彦：櫻井孝宏\n弓塚五月：田中かほり",
+		"staff":"原作：TYPE-MOON、奈須きのこ\n监督：桜美かつし\n脚本：ときたひろこ\n分镜：渡部高志、又野弘道、阿保孝雄、島津裕行、桜美かつし\n演出：浅見松雄、阿保孝雄、又野弘道、鈴木行、小川浩司\n人物原案：武内崇\n人物设定：小澤郁\n系列构成：ときたひろこ\n色彩设计：安藤智美\n音乐：大森俊之\n音响监督：明田川仁\n摄影监督：田沢二郎\n动画制作：J.C.STAFF",
+		"start_date":"2003-10-09",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["奇幻","校园","战斗"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0,
+		"create_date":"2018-11-28"
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/pic1.iqiyipic.com\/image\/20181117\/55\/d5\/a_100176493_m_601_m4.jpg",
+		"watch_url":"https:\/\/www.iqiyi.com\/a_19rrh5ky7t.html",
+		"title":"寄宿学校的朱丽叶",
+		"description":"两人之间的恋爱，是秘密——。\n寄宿学校，达利亚学园。伫立在孤岛的这个名门学校中，聚集了敌对两国的学生，每一天他们都在持续着互相的斗争……\n就在这种状况下，东和国专用公寓的一年级生领袖——犬冢露壬雄，与威斯特公国专用公寓的一年级生领袖——朱丽叶·贝尔西亚，其实是对秘密的情侣！\n由于犬冢的告白而开始的这份恋情，无论对学园中的任何人！绝对！！！无论发生任何情况！！！都不能暴露！！！\n绝对不能被发现的学园恋爱喜剧，开幕！！！",
+		"actors":"",
+		"staff":"",
+		"start_date":"2018-10-05",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["日漫","TV版","14-17","18以上","日语","番剧","漫改","搞笑","恋爱","校园","美少女"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0,
+		"create_date":"2018-11-28"
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8f9d3245e8e9f49cfa604f55d1dff43c4b21b8eb.png",
+		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25687",
+		"title":"宇宙与瀚海之间",
+		"description":"某天，大海中的魚群們消失了。\n水產省準備啟動很早以前就已經計畫好的「宇宙魚池」實驗。\n全新職業「宇宙漁師」就此誕生。\n由於兩性工作平等法的強化宣導，「女性也可成為漁師」的呼聲不斷高漲。\n於是，6位新手宇宙漁師候補生雀屏中選。\n從此，她們動人心弦的成長物語，就此展開。",
+		"actors":"空町春：高橋花林\n村上波乃：立花理香\n露比·安曇：井上穗乃花\n櫻舞湖：鈴木桃子\n薪真紀子：米野真織\n美劍真：神坂和\n宇田川源太：池田勝\n黑部梵：內田直哉\n狸穴浩二郎：堀內賢雄\n須田加世子：真山亞子\n萬年玲二：高木渉\n風祭讓次：櫻井孝宏\n鳴海高子：淺川悠\n松島芽衣子：今井麻美\n鍵谷厚志：泰勇氣\n榊原麻里子：桃野春菜\n綠川里加：東城日沙子\n宇田川美奈：西川舞\n下神部日向：富澤惠莉\n下神部月葉：長島陽香",
+		"staff":"原作： 広井王子 \/ フォワードワークス\n監督：濁川敦\n系列構成：山田隆司\n原作角色設計：植田和幸\n動畫角色設計：山本周平\n機械設計：いしはらいくろう\n動畫製作：TMS",
+		"start_date":"2018-10-04",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":[],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0,
+		"create_date":"2018-11-29"
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/42a3e02c287b5b6ecce1d52760620793b9d9ce0c.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss6036",
+		"title":"田中君总是如此慵懒SP",
+		"description":"田中君总是如此慵懒 动画特典",
+		"actors":"田中：小野賢章\n太田：細谷佳正\n宫野：高森奈津美\n白石：小岩井ことり\n越前：諏訪彩花\n田中莉乃：悠木碧\n太田早夜：東山奈央\n志村：興津和幸\n加藤：井口祐一",
+		"staff":"脚本：面出明美\n导演：川面真也\n人物设定：飯塚晴子\n总作画监督：飯塚晴子\n色彩设计：重冨英里\n演出：伊部勇志\n分镜：井上圭介\n美术监督：栗林大貴\n音乐：水谷広実\n",
+		"start_date":"2016-06-24",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":7,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["搞笑","治愈"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0,
+		"create_date":"2018-11-30"
 	}]
 });

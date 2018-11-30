@@ -89,4 +89,9 @@
     <string name="label_anime_actors">CV</string>
     <string name="label_anime_staff">制作人员</string>
     <string name="menu_anime_show_detail">显示详细信息</string>
+    <string name="message_fetching_bilibili_ssid">获取SSID中…</string>
+    <string name="message_bilibili_ssid_not_found">未找到SSID属性。</string>
+    <string name="message_bilibili_ssid_not_found_advise">请尝试将URL前面的HTTP改为HTTPS。</string>
+    <string name="message_bilibili_ssid_code_not_found">未找到含有SSID为%s的脚本代码。</string>
+    <string name="message_invalid_json">JSON代码无效。</string>
 </resources>

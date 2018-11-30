@@ -828,7 +828,7 @@ public class MainActivity extends AppCompatActivity {
             ReadBilibiliSSID_OnCallback(urlString.substring(mssid.start()+3,mssid.end()));
             return;
         }
-        editDialogTitle.setText("获取SSID中……");
+        editDialogTitle.setText(R.string.message_fetching_bilibili_ssid);
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
@@ -863,9 +863,9 @@ public class MainActivity extends AppCompatActivity {
                         ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+7,m.end()));
                         return;
                     }
-                    String ssid_not_found_string="未找到SSID属性。";
+                    String ssid_not_found_string=getString(R.string.message_bilibili_ssid_not_found);
                     if(urlString.startsWith("http:"))
-                        ssid_not_found_string+="\n请尝试将URL前面的HTTP改为HTTPS。";
+                        ssid_not_found_string+="\n"+getString(R.string.message_bilibili_ssid_not_found_advise);
                     Toast.makeText(getBaseContext(),ssid_not_found_string,Toast.LENGTH_LONG).show();
                 }catch (IOException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_io_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
@@ -889,7 +889,7 @@ public class MainActivity extends AppCompatActivity {
                     String htmlString=StreamUtility.GetStringFromStream(stream);
                     Matcher m=Pattern.compile("<script>[^<>]+"+idString+"[^<>]+</script>").matcher(htmlString);
                     if(!m.find()){
-                        Toast.makeText(getBaseContext(),"未找到含有SSID为"+idString+"的脚本代码。",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(),getString(R.string.message_bilibili_ssid_code_not_found,idString),Toast.LENGTH_LONG).show();
                         return;
                     }
                     htmlString=htmlString.substring(m.start(),m.end());
@@ -906,7 +906,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     if(brackets!=0){
-                        Toast.makeText(getBaseContext(),"JSON代码无效。",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(),R.string.message_invalid_json,Toast.LENGTH_LONG).show();
                         return;
                     }
                     htmlString=htmlString.substring(0,posJSONEnd);

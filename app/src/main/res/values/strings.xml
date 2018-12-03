@@ -93,4 +93,10 @@
     <string name="message_bilibili_ssid_not_found_advise">Try to modify the beginning \"http\" in URL to \"https\" and try again.</string>
     <string name="message_bilibili_ssid_code_not_found">Not found codes containing property ssid of %s.</string>
     <string name="message_invalid_json">Invalid JSON codes.</string>
+    <string name="action_google_drive_upload">Backup to Drive</string>
+    <string name="action_google_drive_download">Restore from Drive</string>
+    <string name="message_login_success">Login successed.</string>
+    <string name="message_login_failed">Login failed.</string>
+    <string name="message_uploaded_to_google_drive">Uploaded to Google Drive.</string>
+    <string name="message_error_upload_google_drive">Error uploading to Google Drive.</string>
 </resources>

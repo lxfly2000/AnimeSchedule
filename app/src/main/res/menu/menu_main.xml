@@ -7,11 +7,11 @@
           android:icon="@android:drawable/ic_menu_help"/>
     <item android:title="@string/action_show_count_statistics" android:id="@+id/action_show_count_statistics"/>
     <item android:title="@string/action_view_web_page" android:id="@+id/action_view_web_page"/>
+    <item android:title="@string/action_google_drive_upload" android:id="@+id/action_drive_upload"/>
+    <item android:title="@string/action_google_drive_download" android:id="@+id/action_drive_download"/>
     <item android:title="@string/menu_check_update" android:id="@+id/action_check_update"/>
     <item android:title="@string/action_settings" android:id="@+id/action_settings"
           android:icon="@android:drawable/ic_menu_preferences"/>
-    <item android:title="Upload" android:id="@+id/action_drive_upload"/>
-    <item android:title="Download" android:id="@+id/action_drive_download"/>
     <item
             android:id="@+id/app_bar_search"
             android:icon="@drawable/ic_search_black_24dp"

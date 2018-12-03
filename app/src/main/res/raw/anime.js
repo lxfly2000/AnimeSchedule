@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":145,
+	"last_watch_index":92,
 	"anime":[{
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -1578,22 +1578,22 @@ setJsonData({
 		"staff":"原作：真田まこと\n监督：铃木健太郎\n系列构成：藤冈美畅\n角色设计&总作画监督：松元美季\n美术监督：魏斯曼（スタジオちゅーりっぷ）\n色彩设计：田边香奈\n摄影监督：高桥昭裕\n编集：近藤勇二（Real-T）\n音响监督：岩浪美和\n音响效果：小山恭正\n音乐：ノイジークローク\n音乐制作：Lantis\n动画制作：J.C.STAFF\n制作：「杀戮天使」制作委员会",
 		"actors":"艾札克·佛斯特（札克）：冈本信彦\n瑞吉儿·加德纳：千菅春香\n丹尼尔·狄更斯：樱井孝宏\n爱德华·梅森（埃迪）：藤原夏海\n凯瑟琳·华特（凯西）：伊濑茉莉也\n亚伯拉罕·葛雷（葛雷）：大冢芳忠"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/df92247e200aeb61f8aceda2e2b661c7dc07a328.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/24583",
 		"title":"春原庄的管理人",
-		"description":"椎名亚树由于外表的缘故而总不被人当成男人看待，他为了改变自己而在升入初中时前往东京，住进了春原庄。在那里等着亚树的，是受到性格天然又爱恶作剧的春原庄管理员·春原彩花从身心两方面疼爱有加的每一天。不止如此，其他的同居人也全都是年长的女生……。治愈与心跳满载，不由得想要向管理员姐姐撒娇的年龄差（御姐正太）恋爱喜剧决定版！\n动画制作：银链",
+		"description":"椎名亚树由于外表的缘故而总不被人当成男人看待，他为了改变自己而在升入初中时前往东京，住进了春原庄。在那里等着亚树的，是受到性格天然又爱恶作剧的春原庄管理员·春原彩花从身心两方面疼爱有加的每一天。不止如此，其他的同居人也全都是年长的女生……。治愈与心跳满载，不由得想要向管理员姐姐撒娇的年龄差（御姐正太）恋爱喜剧决定版！\n动画制作：银链\n========\n这剪辑得快没法看了。",
 		"start_date":"2018-07-05",
 		"update_period":7,
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["日常","声控","漫改"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_date_anime":"2018-12-3",
+		"last_watch_episode_anime":6,
 		"staff":"原作：ねこうめ（漫画4格Palette\/一迅社刊）\n总监督：大沼心\n监督：凑未来\n助监督：井上圭介\n系列构成：志茂文彦\n角色设计：平田和也\n音乐：川田瑠夏\n音乐制作：FlyingDog\n动画制作：SILVER LINK.\n制作：春原庄的管理人小姐制作委员会",
 		"actors":"春原彩花：佐藤利奈\n椎名亚树：喜多村英梨\n雪本柚子：高森奈津美\n月见里堇：濑户麻沙美\n风见百合：宫本侑芽\n春原菜菜：佐仓绫音\n内藤莓爱：长妻树里\n小薗井舞子：中岛爱\n八穗锦：伊藤静\n椎名茉莉：茅野爱衣"
 	},{
@@ -1633,7 +1633,7 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/cb536ffb951d5730075012375785d649ce8bccc8.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/1512",
 		"title":"路人女主的养成方法",
@@ -1644,11 +1644,11 @@ setJsonData({
 		"episode_count":13,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":3,
+		"rank":4,
 		"color":"silver",
 		"category":["后宫","恋爱","轻改"],
-		"last_watch_date_anime":"2018-11-22",
-		"last_watch_episode_anime":1,
+		"last_watch_date_anime":"2018-11-30",
+		"last_watch_episode_anime":13,
 		"staff":"原作：丸戸史明\n监督：亀井幹太\n脚本：丸戸史明\n分镜：小寺勝之、室井ふみえ、亀井幹太、福田道生\n演出：神戸守、岩月甚、川越崇弘、徳本善信、曽我準、高島大輔、横田一平、亀井幹太\n人物原案：深崎暮人\n人物设定：高瀬智章\n系列构成：丸戸史明\n美术监督：日下部夏月\n色彩设计：ホカリカナコ\n总作画监督：高瀬智章\n作画监督：高瀬智章、奥田佳子、明珍宇作、野田康行、仁井学、荒川絵里花、梅津茜、広尾佳奈子\n音乐：百石元\n音响监督：藤田亜紀子\n音乐制作：フジパシフィック音楽出版\n摄影监督：戸澤雄一郎\n动画制作：A-1 Pictures",
 		"actors":"安艺伦也：大地葉、松岡禎丞\n泽村·史宾瑟·英梨梨：大西沙織\n霞之丘诗羽：茅野愛衣\n加藤惠：安野希世乃\n冰堂美智留：矢作紗友里\n波岛出海：赤﨑千夏\n波岛伊织：柿原徹也\n泽村小百合：中原麻衣"
 	},{
@@ -1971,7 +1971,7 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":1,
 		"absense_count":0,
-		"abandoned":false,
+		"abandoned":true,
 		"rank":3,
 		"color":"silver",
 		"category":[],
@@ -2168,7 +2168,7 @@ setJsonData({
 		"staff":"原作：高桥弥七郎、伊东杂音、高橋弥七郎、畑博之\n监督：渡部高志\n脚本：小林靖子\n分镜：米たにヨシトモ、渡部高志、福田道生\n演出：秋田谷典昭、高島大輔\n人物原案：いとうのいぢ\n人物设定：大塚舞\n系列构成：小林靖子\n色彩设计：伊藤由紀子\n作画监督：大冢舞、藤井昌宏、住本悦子、冷水由紀絵、武本大介、岡野幸男\n音乐：大谷幸\n音响监督：明田川仁\n摄影监督：福世晋吾\n动画制作：J.C.STAFF\n官方网站：http：\/\/www.shakugan.com\/",
 		"actors":"夏娜：釘宮理恵\n威尔艾米娜·卡梅尔：伊藤静\n玛琼琳·朵：生天目仁美\n吉田一美：川澄綾子\n坂井悠二：日野聡\n修德南：三宅健太\n平井缘：浅野真澄\n坂井贯太郎：藤原啓治\n中村公子：藤村歩"
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a92892921f3209f7784a954c37467c9869a1d4c1.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25617",
 		"title":"魔法禁书目录 第三季",
@@ -2182,8 +2182,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["热血","奇幻","科幻","校园","战斗","轻改","魔法"],
-		"last_watch_date_anime":"2018-11-24",
-		"last_watch_episode_anime":8,
+		"last_watch_date_anime":"2018-12-1",
+		"last_watch_episode_anime":9,
 		"staff":"原作：镰池和马\n角色原案：灰村清孝\n监督：锦织博\n系列构成：吉野弘幸\n角色设计：田中雄一\n美术监督：黑田友范\n色彩设计：中村真衣、安藤知美\n摄影监督：福世晋吾\n编辑：西山茂（REAL-T）\n音响监督：山口贵之\n音乐：井内舞子\n动画制作：J.C.STAFF",
 		"actors":"上条当麻：阿部敦\n茵蒂克丝：井口裕香\n御坂美琴：佐藤利奈\n一方通行：冈本信彦\n滨面仕上：日野聪"
 	},{
@@ -2426,7 +2426,7 @@ setJsonData({
 		"staff":"原作：Bushiroad、Nelke Planning、KINEMA CITRUS\n监督：古川知宏\n系列构成、剧本：樋口达人\n角色设计：齐田博之\n副监督：小出卓史\n道具设计：高仓武史、谷紫织\n图形设计：滨祐斗、山口真生\n色彩设计：吉村智惠美术监督：秋山健太郎、福田健二（studio Pablo）\n3D监督：秋元央（T2studio）\n3D舞台照明：神谷久安\n摄影监督：出水田和人（T2studio）\n编辑：黑泽雅之\n音响监督：山田阳\n音乐：藤泽庆昌、加藤达也\n戏剧剧本、剧中曲作词：中村彼方\n动画制作：KINEMA CITRUS",
 		"actors":"爱城华恋：小山百代\n神乐光：三森铃子\n天堂真矢：富田麻帆\n星见纯那：佐藤日向\n露崎真昼：岩田阳葵\n大场奈奈：小泉萌香\n西条克洛迪娜：相羽爱奈\n石动双叶：生田辉\n花柳香子：伊藤彩沙"
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/60bcf90d945ae88d5a1b50e069672aea0869167f.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25613",
 		"title":"我家的女仆太烦人了！",
@@ -2440,12 +2440,12 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日常","搞笑","萌系","漫画改"],
-		"last_watch_date_anime":"2018-11-24",
-		"last_watch_episode_anime":8,
+		"last_watch_date_anime":"2018-12-1",
+		"last_watch_episode_anime":9,
 		"staff":"原作：中村カンコ（双叶社《月刊Action》连载中）\n监督：太田雅彦\n副监督：大隈孝晴\n系列构成 \/ 音响监督：あおしまたかし\n角色设计：山崎淳\n道具设计：松本恵\n美术设定：中島美佳\n美术监督：安田ゆかり\n背景：オリーブ\n色彩设计：真壁源太\n摄影监督：桑野貴文\n编集：小野寺絵美\n音乐：三澤康広\n音乐制作：KADOKAWA\n动画制作：动画工房",
 		"actors":"高梨米夏：白石晴香\n鸭居燕：沼仓爱美\n鹈饲绿：M·A·O\n鹫崎美美香：原田彩枫\n森川唯：井泽诗织\n高梨康弘：加藤将之"
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fa89d4ce62d87c6ff641c617c6bf62c8f19ceafd.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25619",
 		"title":"邻家索菲",
@@ -2459,8 +2459,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["萌系","漫改"],
-		"last_watch_date_anime":"2018-11-24",
-		"last_watch_episode_anime":8,
+		"last_watch_date_anime":"2018-12-1",
+		"last_watch_episode_anime":9,
 		"staff":"原作：甘党「月刊コミックキューン」(KADOKAWA)\n监督：秋田谷典昭\n副监督：福島利規\n系列构成：髙橋龍也\n角色设计 \/ 总作画监督：酒井孝裕\n概念设计：杉村苑美\n道具设计：コレサワシゲユキ(デジタルノイズ)、灯夢(デジタルノイズ)\n美术监督：松本浩樹(アトリエPlatz)\n色彩设计：鈴木ようこ\n摄影监督：廣岡岳\n编集：坪根健太郎\n音乐监督：明田川仁\n音乐：藤澤慶昌\n音乐制作：日本コロムビア\n动画制作：Studio五组、AXsiZ",
 		"actors":"索菲·暮光：富田美忧\n天野灯：篠原侑\n夏木日向：Lynn\n艾莉：和气杏未\n仓井朔夜：日高里菜\n青木夕：内田彩"
 	},{
@@ -2483,7 +2483,7 @@ setJsonData({
 		"staff":"原作：鸭志田一（电撃文库刊《青春猪头少年系列》）\n原作插画：沟口凯吉\n监督：增井壮一\n总编剧：横谷昌宏\n角色设计：田村里美\n总作画监督：田村里美、高田晃\n助监督：いわたかずや\n道具设计：高田晃\n美术设定：藤井一志\n美术监督：涉谷幸弘\n色彩设计：横田明日香\n3D监督：野间裕介、唐泽佑人\n摄影监督：关谷能弘\n2D工作、特殊效果：内海纱耶\n编辑：三嶋章纪\n音响监督：岩浪美和\n音乐：fox capture plan\n动画制作：CloverWorks",
 		"actors":"梓川咲太：石川界人\n樱岛麻衣：濑户麻沙美\n梓川枫：久保由利香\n古贺朋绘：东山奈央\n双叶理央：种崎敦美\n丰滨和花：内田真礼\n牧之原翔子：水濑祈"
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/pic0.iqiyipic.com\/image\/20181008\/a6\/28\/a_100158531_m_601_m4.jpg",
 		"watch_url":"http:\/\/m.iqiyi.com\/v_19rr5a1lx4.html",
 		"title":"哥布林猎人",
@@ -2493,12 +2493,14 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":4,
+		"abandoned":true,
+		"rank":3,
 		"color":"silver",
 		"category":["日漫","TV版","18以上","日语","番剧","轻改","热血","战斗","美少女","冒险","跟播新番"],
-		"last_watch_date_anime":"2018-11-25",
-		"last_watch_episode_anime":8
+		"last_watch_date_anime":"2018-12-2",
+		"last_watch_episode_anime":9,
+		"actors":"(NOT SET)",
+		"staff":"(NOT SET)"
 	},{
 		"watched_episode":[true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/855402f9e050262bee5644e6d0b1df663e613c22.jpg",
@@ -2758,7 +2760,7 @@ setJsonData({
 		"staff":"原作：廣報廣聽課殭屍系\n監督：境宗久\n系列構成：村越繁\n角色設計：深川可純\n美術監督：小倉一男\n攝影監督：柳田貴志\n色彩設計：佐佐木梓\n編輯：後藤正浩\n音樂：高梨康治\n音樂製作：avex pictures\n音響監督：境宗久\n音響製作：dugout\n動畫製作：MAPPA",
 		"actors":"巽幸太郎：宮野真守\n源櫻：本渡楓\n二階堂沙希：田野麻美‎\n水野愛：種田梨沙\n紺野純子：河瀨茉希\n夕霧：衣川里佳\n星川莉莉：田中美海\n山田多惠：?\n警察官A：吉野裕行\n羅梅羅：高戶靖廣"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i.gtimg.cn\/qqlive\/img\/jpgcache\/files\/qqvideo\/o\/o28lfr4elqppz6q.jpg",
 		"watch_url":"https:\/\/v.qq.com\/detail\/o\/o28lfr4elqppz6q.html",
 		"title":"SSSS 古立特 日语版",
@@ -2768,12 +2770,14 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":0,
+		"abandoned":true,
+		"rank":4,
 		"color":"silver",
 		"category":["科幻"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0
+		"last_watch_date_anime":"2018-12-2",
+		"last_watch_episode_anime":9,
+		"actors":"(NOT SET)",
+		"staff":"(NOT SET)"
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e429e1bae20bfb31a7137053ad3e4f19572f1616.png",
@@ -3038,6 +3042,46 @@ setJsonData({
 		"rank":0,
 		"color":"silver",
 		"category":["搞笑","治愈"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0,
+		"create_date":"2018-11-30"
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0406cd1398ad8ae0e9623bed5544d6002d8d30be.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1539",
+		"title":"我的青春恋爱物语果然有问题。",
+		"description":"就读于千叶市立综武高等学校高二年级的比企谷八幡，从幼年时代就交不到什么朋友。正当他已经放弃了交朋友这种念头的时候，生活指导老师平冢静介绍他进入了学校第一美女——俗称校花的雪之下雪乃所在的“奉仕部”。奉仕部是一个暗中帮助学生们解决问题的部门，所以不对外招募部员，都是以介绍的方式为部门输送新鲜血液。进入了奉仕部的八幡，和与他有着完全相反个性的由比滨结衣、中二病全开的材木座义辉、网球部的可爱男孩子户冢彩加等人，展开了一段段奇妙的故事……",
+		"actors":"比企谷八幡：江口拓也\n雪之下雪乃：早见沙织\n由比滨结衣：东山奈央\n户冢彩加：小松未可子\n材木座义辉 ：桧山修之\n比企谷小町：悠木碧\n平冢静：柚木凉香\n雪之下阳乃：中原麻衣\n叶山隼人：近藤隆\n三浦优..",
+		"staff":"原作：渡航\n监督：吉村爱\n系列构成：菅正太郎\n角色设计：进藤优\n道具设计：樋口聪美\n美术监督：池田繁美\n色彩设计：辻田邦夫\n音乐：石滨翔\\MONACA\n音响监督：本山哲\n音响制作：德尔福音响\n编辑：关一彦\n动画制作：Brain's Base",
+		"start_date":"2013-04-04",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["日常","校园","智斗","恋爱","小说改","伪娘"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0,
+		"create_date":"2018-11-30"
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8fb5d161ebb467f33d981aa65edc3b8217a3503c.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss2660",
+		"title":"我的妹妹不可能那么可爱",
+		"description":"哥哥高坂京介（17岁）和妹妹高坂桐乃（14岁）兄妹两人的关系近几年处于冷战状态。本以为这种关系也会一直持续下去的京介，一天在门口捡到从来没看过的魔法少女动画《星尘☆小魔女梅露露》的DVD盒子，里面竟然不是动画的DVD，而是成人游戏《和妹妹恋爱吧♪ 》的光碟。京介在晚餐时用梅露露的话题试探谁是光碟的物主，但只得到父母充满偏见的否定意见。\n而就在那天晚上，连打招呼都不会的妹妹突然来到京介房间，并且说她有事情想要商量。原来桐乃迷上了萌系动画以及美少女游戏中的妹系角色，却都不敢告诉别人，只能一直闷在心里。被哥哥知道了自己的秘密后，从此开始了和哥哥之间的“人生咨询”。\n\n《我的妹妹不可能那么可爱》（俺の妹がこんなに可爱いわけがない，正式译名：《我的妹妹哪有这么可爱！》）是由伏见司所写的轻小说，かんざきひろ插画，电击文库出版。漫画化作品在《电击G's magazine》2009年3月号起连载。发售当初于秋叶原曾数度断货，初版已超过万本以上。",
+		"actors":"高坂桐乃：竹達彩奈\n高坂京介：中村悠一\n五更琉璃：花澤香菜\n田村麻奈实：佐藤聡美\n新垣绫濑：早見沙織\n槙岛沙织：生天目仁美\n来栖加奈子：田村由香里\n赤城浩平：間島淳司\n高坂大介：立木文彦",
+		"staff":"原作： 伏見つかさ（伏见司）\n导演： 神戸洋行\n脚本： 倉田英之、伏見つかさ\n分镜： 吉村愛、舛成孝二、川口敬一郎、渡邊哲哉、神戸洋行、喜多幡徹、佐野隆史、古川順康、安藤貴史\n演出： 吉村愛、神戸洋行、喜多幡徹、町谷俊輔、渡邊哲哉、安藤貴史、奥野耕太\n音乐： 神前暁\n人物原案： かんざきひろ\n人物设定： 織田広之、かんざきひろ\n系列构成： 倉田英之\n美术监督： 衛藤功二\n色彩设计： 末永康子\n总作画监督： 川上哲也、石田可奈\n作画监督： 大杉尚広、小松麻美、沈宏、岡崎洋美\n摄影监督： 北村直樹、今泉秀樹、設楽希\n监修： 川口敬一郎\n剪辑： 宇都宮正記",
+		"start_date":"2010-10-03",
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":16,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["后宫","萌系","校园","日常","恋爱","小说改"],
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0,
 		"create_date":"2018-11-30"

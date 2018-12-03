@@ -25,7 +25,11 @@ public class AndroidUtility {
     }
 
     public static void MessageBox(Context activity, String msg){
+        MessageBox(activity,msg,null);
+    }
+    public static void MessageBox(Context activity, String msg, String title){
         new AlertDialog.Builder(activity)
+                .setTitle(title)
                 .setMessage(msg)
                 .setPositiveButton(android.R.string.ok,null)
                 .show();

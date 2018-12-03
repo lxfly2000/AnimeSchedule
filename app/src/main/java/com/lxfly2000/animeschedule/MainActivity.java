@@ -1,15 +1,3 @@
-/*TODO:
-* 读取json文件并显示（OK）
-* 异步加载图片，更新列表显示（OK）
-* 根据json中项目的更新日期排序（OK）
-* 可增加/删除/长按修改项目，并保存至本地文件（OK）
-* 对于B站链接，可根据链接自动获取所需信息（简介，时间，分类等）（OK）
-* 可直接在列表上标记观看集数
-* 点击打开链接（OK）
-* 更新集数提示（用对话框显示，可选择今日不再提示(Neu)/关闭(Posi)）（OK）
-* 完善搜索功能（OK）
-*/
-
 package com.lxfly2000.animeschedule;
 
 import android.app.SearchManager;
@@ -29,8 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.*;
 import com.google.android.flexbox.FlexboxLayout;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
 import com.lxfly2000.utilities.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -136,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
         final int[]suggestionsIds=new int[]{android.R.id.text1};
         suggestionsAdapter=new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,null,suggestionKeys,
                 suggestionsIds,CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+
+        googleDriveOperator=new GoogleDriveOperator(this);
     }
 
     @Override
@@ -510,54 +499,39 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private GoogleDriveOperator googleDriveOperator;
+
     private void GoogleDriveDownload(){
-        GoogleDriveOperator operator=new GoogleDriveOperator(this) {
-            @Override
-            public void OnSignInSuccess(Context context, GoogleSignInAccount account) {
-                DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
-            }
-
-            @Override
-            public void OnSignInException(Context context, ApiException e) {
-                Toast.makeText(context,"无法下载，登录GoogleDrive失败。",Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnSignOutSuccess(Context context) {
-                Toast.makeText(context,"Logout.",Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTransferComplete(Context context) {
-                SignOutClient();
-            }
-        };
-        operator.SignInClient();
+        AndroidUtility.MessageBox(this,"这个功能正在制作中。","TODO");
+        /*if(googleDriveOperator==null)
+            return;
+        if(googleDriveOperator.IsAccountSignIn())
+            googleDriveOperator.DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
+        else {
+            googleDriveOperator.SetOnSignedInSuccessActions(new GoogleDriveOperator.OnSignedInSuccessActions() {
+                @Override
+                public void OnSignedInSuccess(Object extra) {
+                    ((GoogleDriveOperator)extra).DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
+                }
+            }.SetExtra(googleDriveOperator));
+            googleDriveOperator.SignInClient();
+        }*/
     }
 
     private void GoogleDriveUpload(){
-        GoogleDriveOperator operator=new GoogleDriveOperator(this) {
-            @Override
-            public void OnSignInSuccess(Context context, GoogleSignInAccount account) {
-                UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
-            }
-
-            @Override
-            public void OnSignInException(Context context, ApiException e) {
-                Toast.makeText(context,"无法上传，登录GoogleDrive失败。",Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnSignOutSuccess(Context context) {
-                Toast.makeText(context,"Logout.",Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void OnTransferComplete(Context context) {
-                SignOutClient();
-            }
-        };
-        operator.SignInClient();
+        if(googleDriveOperator==null)
+            return;
+        if(googleDriveOperator.IsAccountSignIn())
+            googleDriveOperator.UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
+        else {
+            googleDriveOperator.SetOnSignedInSuccessActions(new GoogleDriveOperator.OnSignedInSuccessActions() {
+                @Override
+                public void OnSignedInSuccess(Object extra) {
+                    ((GoogleDriveOperator)extra).UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
+                }
+            }.SetExtra(googleDriveOperator));
+            googleDriveOperator.SignInClient();
+        }
     }
 
     @Override
@@ -983,7 +957,6 @@ public class MainActivity extends AppCompatActivity {
                         editDialogEpisodeCount.setText("-1");
                     else
                         editDialogEpisodeCount.setText(countString);
-                    editDialogRanking.setText(String.valueOf(Math.round(htmlJson.getJSONObject("mediaRating").getDouble("score")/2)));
                     StringBuilder tagString=new StringBuilder();
                     for(int i=0;i<htmlJson.getJSONObject("mediaInfo").getJSONArray("style").length();i++){
                         if(i!=0)
@@ -992,6 +965,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     editDialogCategory.setText(tagString.toString());
                     editDialogWatchUrl.setText(requestUrl);//为避免输入的URL无法被客户端打开把URL统一改成SSID形式
+                    editDialogRanking.setText(String.valueOf(Math.round(htmlJson.getJSONObject("mediaRating").getDouble("score")/2)));
                 }catch (JSONException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }catch (IOException e){
@@ -1213,6 +1187,9 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode==(R.id.action_settings&0xFFFF)&&resultCode==RESULT_OK){
             if(data.getBooleanExtra(SettingsActivity.keyNeedReload,false))
                 SaveAndReloadJsonFile(false);
+        }else if(requestCode== (GoogleSignInStatusCodes.SIGN_IN_REQUIRED&0xFFFF)){
+            if(googleDriveOperator!=null)
+                googleDriveOperator.OnSignInResultReturn(resultCode, data);
         }
     }
 
@@ -1261,6 +1238,8 @@ public class MainActivity extends AppCompatActivity {
             unregisterReceiver(checkUpdateReceiver);
             checkUpdateReceiver=null;
         }
+        if(googleDriveOperator!=null&&googleDriveOperator.IsAccountSignIn())
+            googleDriveOperator.SignOutClient();
         super.onStop();
     }
 

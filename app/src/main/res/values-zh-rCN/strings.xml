@@ -94,4 +94,10 @@
     <string name="message_bilibili_ssid_not_found_advise">请尝试将URL前面的HTTP改为HTTPS。</string>
     <string name="message_bilibili_ssid_code_not_found">未找到含有SSID为%s的脚本代码。</string>
     <string name="message_invalid_json">JSON代码无效。</string>
+    <string name="action_google_drive_upload">备份至Google网盘</string>
+    <string name="action_google_drive_download">从Google网盘恢复</string>
+    <string name="message_login_success">登录成功。</string>
+    <string name="message_login_failed">登录失败。</string>
+    <string name="message_uploaded_to_google_drive">已上传至 Google Drive.</string>
+    <string name="message_error_upload_google_drive">上传至 Google Drive 时出错。</string>
 </resources>

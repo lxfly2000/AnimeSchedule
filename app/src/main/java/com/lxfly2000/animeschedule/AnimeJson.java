@@ -95,7 +95,7 @@ public class AnimeJson {
         try{
             return json.getJSONArray("anime").getJSONObject(index).getString("last_watch_date_anime");
         }catch (JSONException e){
-            return "1900-1-1";
+            return Values.dateStringDefault;
         }
     }
 
@@ -120,6 +120,23 @@ public class AnimeJson {
     public boolean SetLastWatchEpisodeForAnime(int index,int epi_from_one){
         try{
             json.getJSONArray("anime").getJSONObject(index).put("last_watch_episode_anime",epi_from_one);
+            return true;
+        }catch (JSONException e){
+            return false;
+        }
+    }
+
+    public String GetCreationDateStringForAnime(int index){
+        try{
+            return json.getJSONArray("anime").getJSONObject(index).getString("create_date");
+        }catch (JSONException e){
+            return Values.dateStringDefault;
+        }
+    }
+
+    public boolean SetCreationDateStringForAnime(int index,String date){
+        try {
+            json.getJSONArray("anime").getJSONObject(index).put("create_date",date);
             return true;
         }catch (JSONException e){
             return false;
@@ -214,6 +231,40 @@ public class AnimeJson {
         }
     }
 
+    public boolean SetActors(int index,String actors){
+        try{
+            json.getJSONArray("anime").getJSONObject(index).put("actors",actors);
+        }catch (JSONException e){
+            return false;
+        }
+        return true;
+    }
+
+    public String GetActors(int index){
+        try{
+            return json.getJSONArray("anime").getJSONObject(index).getString("actors");
+        }catch (JSONException e){
+            return Values.vDefaultString;
+        }
+    }
+
+    public boolean SetStaff(int index,String staff){
+        try{
+            json.getJSONArray("anime").getJSONObject(index).put("staff",staff);
+        }catch (JSONException e){
+            return false;
+        }
+        return true;
+    }
+
+    public String GetStaff(int index){
+        try{
+            return json.getJSONArray("anime").getJSONObject(index).getString("staff");
+        }catch (JSONException e){
+            return Values.vDefaultString;
+        }
+    }
+
     public boolean SetStartDate(int index,String date){
         try {
             json.getJSONArray("anime").getJSONObject(index).put("start_date",date);
@@ -227,7 +278,7 @@ public class AnimeJson {
         try {
             return json.getJSONArray("anime").getJSONObject(index).getString("start_date");
         }catch (JSONException e){
-            return "1900-1-1";
+            return Values.dateStringDefault;
         }
     }
 
@@ -446,6 +497,8 @@ public class AnimeJson {
             SetWatchUrl(ni,"http://bangumi.bilibili.com/anime/");
             SetTitle(ni,"");
             SetDescription(ni,"Bili:");
+            SetActors(ni,"");
+            SetStaff(ni,"");
             SetStartDate(ni,YMDDate.GetTodayDate().ToYMDString());
             SetUpdatePeriod(ni,7);
             SetUpdatePeriodUnit(ni,unitDay);
@@ -456,8 +509,9 @@ public class AnimeJson {
             SetRank(ni,0);
             SetColor(ni,"silver");
             SetCategory(ni,new String[]{});
-            SetLastWatchDateForAnime(ni,"1900-1-1");
+            SetLastWatchDateForAnime(ni,Values.dateStringDefault);
             SetLastWatchEpisodeForAnime(ni,0);
+            SetCreationDateStringForAnime(ni,YMDDate.GetTodayDate().ToYMDString());
             CalculateExtraInfomation();
         }catch (JSONException e){
             return -1;

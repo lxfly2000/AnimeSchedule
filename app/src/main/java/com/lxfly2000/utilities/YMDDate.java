@@ -2,6 +2,7 @@ package com.lxfly2000.utilities;
 
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 //仅处理“yyyy-M-d”格式日期
 public class YMDDate {
@@ -21,10 +22,13 @@ public class YMDDate {
     }
 
     public void FromString(String strDate){
-        String[]parts=strDate.split("-");
-        SetYear(Integer.parseInt(parts[0]));
-        SetMonth(Integer.parseInt(parts[1]));
-        SetDate(Integer.parseInt(parts[2]));
+        Pattern p=Pattern.compile("^\\d+-\\d+-\\d+$");
+        if(p.matcher(strDate).find()) {
+            String[] parts = strDate.split("-");
+            SetYear(Integer.parseInt(parts[0]));
+            SetMonth(Integer.parseInt(parts[1]));
+            SetDate(Integer.parseInt(parts[2]));
+        }
     }
 
     public boolean IsLaterThanDate(YMDDate otherDate){

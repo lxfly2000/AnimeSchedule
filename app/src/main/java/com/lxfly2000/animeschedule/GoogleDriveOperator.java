@@ -18,7 +18,7 @@ import com.lxfly2000.utilities.FileUtility;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-public class GoogleDriveOperator {
+public abstract class GoogleDriveOperator {
     private Context androidContext;
     private GoogleSignInClient client=null;
     private GoogleSignInAccount googleAccount=null;
@@ -50,12 +50,8 @@ public class GoogleDriveOperator {
             });
         }
     }
-    public void OnSignInSuccess(Context context,GoogleSignInAccount account){
-        //Nothing to do.
-    }
-    public void OnSignInException(Context context,ApiException e){
-        Toast.makeText(context,"无法登录账号。\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-    }
+    public abstract void OnSignInSuccess(Context context,GoogleSignInAccount account);
+    public abstract void OnSignInException(Context context,ApiException e);
     private void GetDriveClient(GoogleSignInAccount taskResultAccount){
         googleAccount=taskResultAccount;
         driveClient=Drive.getDriveClient(androidContext.getApplicationContext(),googleAccount);
@@ -77,9 +73,8 @@ public class GoogleDriveOperator {
             });
         }
     }
-    public void OnSignOutSuccess(Context context){
-        //Nothing to do.
-    }
+    public abstract void OnSignOutSuccess(Context context);
+    public abstract void OnTransferComplete(Context context);
     private void AccountSignOut(){
         googleAccount=null;
     }
@@ -124,6 +119,12 @@ public class GoogleDriveOperator {
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(androidContext,"无法在Google Drive上创建文件。\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
                     }
+                })
+                .addOnSuccessListener(new OnSuccessListener<DriveFile>() {
+                    @Override
+                    public void onSuccess(DriveFile driveFile) {
+                        OnTransferComplete(androidContext);
+                    }
                 });
             }
         })
@@ -154,6 +155,12 @@ public class GoogleDriveOperator {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(androidContext,"无法从Google Drive读取文件。\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .addOnSuccessListener(new OnSuccessListener<MetadataBuffer>() {
+                            @Override
+                            public void onSuccess(MetadataBuffer metadata) {
+                                OnTransferComplete(androidContext);
                             }
                         });
                 return null;//TODO：怎么返回次级目录？？

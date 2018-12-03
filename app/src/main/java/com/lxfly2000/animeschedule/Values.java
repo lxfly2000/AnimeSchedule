@@ -16,6 +16,7 @@ public class Values {
     public static final int vDefaultSortOrder=2;
     public static final String keySortSeperateAbandoned="anime_sort_separate_abandoned";
     public static final boolean vDefaultSortSeperateAbandoned=true;
+    public static final String dateStringDefault="1900-1-1";
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
     }
@@ -38,8 +39,7 @@ public class Values {
         editPref.apply();
     }
     public static final String[]parsableLinksRegex={
-            "(.*bangumi.bilibili.com/anime/[0-9]*)|(.*bilibili.com/bangumi/play/ss[0-9]*)",
-            ".*bilibili.com/bangumi/play/ep[0-9]*",
+            "(.*bangumi.bilibili.com/anime/[0-9]+)|(.*bilibili.com/bangumi/play/ss[0-9]+)|(.*bilibili.com/bangumi/play/ep[0-9]+)|(.*bilibili.com/bangumi/media/md[0-9]+)",
             ".*iqiyi.com/[a|v]_.*.html"
     };
     public static final String[]webFiles={

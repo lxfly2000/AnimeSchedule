@@ -2,6 +2,7 @@ package com.lxfly2000.animeschedule;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.StreamUtility;
 
@@ -38,7 +39,7 @@ public class UpdateChecker {
             }
         };
         task.SetExtra(this);
-        task.execute(fileURL);
+        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,fileURL);
     }
 
     public boolean IsError(){
@@ -74,7 +75,7 @@ public class UpdateChecker {
 
     public String GetUpdateVersionName(){
         String versionName="";
-        String searchRegex="versionName \"[0-9.]*\"";
+        String searchRegex="versionName \".*\"";
         Pattern p=Pattern.compile(searchRegex);
         Matcher m=p.matcher(fileContentString);
         if(m.find()){

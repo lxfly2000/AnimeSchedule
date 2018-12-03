@@ -97,6 +97,6 @@
     <string name="action_google_drive_download">Restore from Drive</string>
     <string name="message_login_success">Login successed.</string>
     <string name="message_login_failed">Login failed.</string>
-    <string name="message_uploaded_to_google_drive">Uploaded to Google Drive.</string>
+    <string name="message_uploading_to_google_drive">Uploading to Google Drive...</string>
     <string name="message_error_upload_google_drive">Error uploading to Google Drive.</string>
 </resources>

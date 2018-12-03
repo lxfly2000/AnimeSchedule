@@ -3008,7 +3008,7 @@ setJsonData({
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8f9d3245e8e9f49cfa604f55d1dff43c4b21b8eb.png",
-		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25687",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss25687",
 		"title":"宇宙与瀚海之间",
 		"description":"某天，大海中的魚群們消失了。\n水產省準備啟動很早以前就已經計畫好的「宇宙魚池」實驗。\n全新職業「宇宙漁師」就此誕生。\n由於兩性工作平等法的強化宣導，「女性也可成為漁師」的呼聲不斷高漲。\n於是，6位新手宇宙漁師候補生雀屏中選。\n從此，她們動人心弦的成長物語，就此展開。",
 		"actors":"空町春：高橋花林\n村上波乃：立花理香\n露比·安曇：井上穗乃花\n櫻舞湖：鈴木桃子\n薪真紀子：米野真織\n美劍真：神坂和\n宇田川源太：池田勝\n黑部梵：內田直哉\n狸穴浩二郎：堀內賢雄\n須田加世子：真山亞子\n萬年玲二：高木渉\n風祭讓次：櫻井孝宏\n鳴海高子：淺川悠\n松島芽衣子：今井麻美\n鍵谷厚志：泰勇氣\n榊原麻里子：桃野春菜\n綠川里加：東城日沙子\n宇田川美奈：西川舞\n下神部日向：富澤惠莉\n下神部月葉：長島陽香",
@@ -3021,7 +3021,7 @@ setJsonData({
 		"abandoned":false,
 		"rank":0,
 		"color":"silver",
-		"category":[],
+		"category":["萌系","科幻","游戏改"],
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0,
 		"create_date":"2018-11-29"

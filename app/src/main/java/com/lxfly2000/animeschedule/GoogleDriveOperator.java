@@ -164,7 +164,7 @@ public class GoogleDriveOperator {
                                                                 .addOnSuccessListener(new OnSuccessListener<DriveFile>() {
                                                                     @Override
                                                                     public void onSuccess(DriveFile driveFile) {
-                                                                        Toast.makeText(androidContext,R.string.message_uploaded_to_google_drive,Toast.LENGTH_LONG).show();
+                                                                        Toast.makeText(androidContext,R.string.message_uploading_to_google_drive,Toast.LENGTH_LONG).show();
                                                                     }
                                                                 });
                                                     }

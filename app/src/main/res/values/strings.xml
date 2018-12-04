@@ -110,13 +110,13 @@
     <string name="label_author">Made by: lxfly2000</string>
     <string name="label_view_github_repo">Go to this app\'s GitHub Repository</string>
     <string name="label_contact">Contact with the author</string>
-    <string name="label_app_name_qq">QQ</string>
+    <string name="label_app_name_qq" translatable="false">QQ</string>
     <string name="label_app_name_email">Email</string>
-    <string name="label_app_name_twitter">Twitter</string>
+    <string name="label_app_name_twitter" translatable="false">Twitter</string>
     <string name="label_donate">Donate</string>
     <string name="label_donate_explanation">If you feel this app helpful, please consider donate me with the following methods.</string>
     <string name="label_app_name_alipay">Alipay</string>
     <string name="label_app_name_wechat">WeChat</string>
-    <string name="label_app_name_paypal">PayPal</string>
+    <string name="label_app_name_paypal" translatable="false">PayPal</string>
     <string name="message_exception_no_activity_available">No application to open this URL.</string>
 </resources>

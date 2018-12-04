@@ -100,4 +100,9 @@
     <string name="message_login_failed">登录失败。</string>
     <string name="message_uploading_to_google_drive">上传至 Google Drive…</string>
     <string name="message_error_upload_google_drive">上传至 Google Drive 时出错。</string>
+    <string name="message_google_drive_no_login">请先登录Google账号。</string>
+    <string name="message_error_download_google_drive">从 Google Drive 下载时出错。</string>
+    <string name="message_google_drive_download_success">已从 Google Drive 恢复。</string>
+    <string name="message_overwrite_google_drive_warning">这会覆盖你Google网盘上的内容（如果有的话），是否继续？</string>
+    <string name="message_overwrite_local_warning">这会覆盖你设备中当前已存储的内容，是否继续？</string>
 </resources>

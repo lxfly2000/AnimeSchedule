@@ -95,8 +95,13 @@
     <string name="message_invalid_json">Invalid JSON codes.</string>
     <string name="action_google_drive_upload">Backup to Drive</string>
     <string name="action_google_drive_download">Restore from Drive</string>
-    <string name="message_login_success">Login successed.</string>
+    <string name="message_login_success">Login success.</string>
     <string name="message_login_failed">Login failed.</string>
     <string name="message_uploading_to_google_drive">Uploading to Google Drive...</string>
     <string name="message_error_upload_google_drive">Error uploading to Google Drive.</string>
+    <string name="message_google_drive_no_login">You have not logged in to Google Drive.</string>
+    <string name="message_error_download_google_drive">Error downloading from Google Drive.</string>
+    <string name="message_google_drive_download_success">Downloaded from Google Drive.</string>
+    <string name="message_overwrite_google_drive_warning">This will overwrite your existing data on Google Drive, continue?</string>
+    <string name="message_overwrite_local_warning">This will overwrite your existing data on your storage, continue?</string>
 </resources>

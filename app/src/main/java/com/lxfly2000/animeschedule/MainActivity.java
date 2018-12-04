@@ -502,36 +502,64 @@ public class MainActivity extends AppCompatActivity {
     private GoogleDriveOperator googleDriveOperator;
 
     private void GoogleDriveDownload(){
-        AndroidUtility.MessageBox(this,"这个功能正在制作中。","TODO");
-        /*if(googleDriveOperator==null)
+        if(googleDriveOperator==null)
             return;
-        if(googleDriveOperator.IsAccountSignIn())
-            googleDriveOperator.DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
-        else {
-            googleDriveOperator.SetOnSignedInSuccessActions(new GoogleDriveOperator.OnSignedInSuccessActions() {
-                @Override
-                public void OnSignedInSuccess(Object extra) {
-                    ((GoogleDriveOperator)extra).DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
-                }
-            }.SetExtra(googleDriveOperator));
-            googleDriveOperator.SignInClient();
-        }*/
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.action_google_drive_download)
+                .setMessage(R.string.message_overwrite_local_warning)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(googleDriveOperator.IsAccountSignIn())
+                            googleDriveOperator.DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
+                        else {
+                            googleDriveOperator.SetOnSignInSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
+                                @Override
+                                public void OnOperationSuccess(Object extra) {
+                                    ((GoogleDriveOperator)extra).SetOnGoogleDriveDownloadSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
+                                        @Override
+                                        public void OnOperationSuccess(Object extra) {
+                                            Toast.makeText(getBaseContext(),R.string.message_google_drive_download_success,Toast.LENGTH_LONG).show();
+                                            SaveAndReloadJsonFile(false);
+                                        }
+                                    });
+                                    ((GoogleDriveOperator)extra).DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
+                                }
+                            }.SetExtra(googleDriveOperator));
+                            googleDriveOperator.SignInClient();
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.no,null)
+                .show();
     }
 
     private void GoogleDriveUpload(){
         if(googleDriveOperator==null)
             return;
-        if(googleDriveOperator.IsAccountSignIn())
-            googleDriveOperator.UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
-        else {
-            googleDriveOperator.SetOnSignedInSuccessActions(new GoogleDriveOperator.OnSignedInSuccessActions() {
-                @Override
-                public void OnSignedInSuccess(Object extra) {
-                    ((GoogleDriveOperator)extra).UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
-                }
-            }.SetExtra(googleDriveOperator));
-            googleDriveOperator.SignInClient();
-        }
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.action_google_drive_upload)
+                .setMessage(R.string.message_overwrite_google_drive_warning)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(googleDriveOperator.IsAccountSignIn())
+                            googleDriveOperator.UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
+                        else {
+                            googleDriveOperator.SetOnSignInSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
+                                @Override
+                                public void OnOperationSuccess(Object extra) {
+                                    ((GoogleDriveOperator)extra).UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
+                                }
+                            }.SetExtra(googleDriveOperator));
+                            googleDriveOperator.SignInClient();
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.no,null)
+                .show();
     }
 
     @Override

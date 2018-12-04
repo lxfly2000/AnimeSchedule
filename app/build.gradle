@@ -7,8 +7,8 @@ android {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 53
-        versionName "4.3.1"
+        versionCode 54
+        versionName "4.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String","BUILD_DATE",getBuildDate()
     }
@@ -18,6 +18,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    /*signingConfigs{
+        debug{
+            storeFile file("D:\\Yueyu\\Yueyu\\lxfly2000.jks")
+            storePassword ''
+            keyAlias 'lxfly2000 android key'
+            keyPassword ''
+        }
+    }*/
 }
 
 dependencies {

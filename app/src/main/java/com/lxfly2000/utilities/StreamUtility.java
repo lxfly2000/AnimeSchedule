@@ -4,8 +4,9 @@ import java.io.*;
 
 public class StreamUtility {
     //http://blog.csdn.net/hanqunfeng/article/details/4364583
-    public static String GetStringFromStream(InputStream stream)throws IOException {
-        stream.reset();
+    public static String GetStringFromStream(InputStream stream,boolean resetStream)throws IOException {
+        if(resetStream)
+            stream.reset();
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         StringBuilder getString = new StringBuilder();
         String newString;
@@ -16,5 +17,8 @@ public class StreamUtility {
             getString.append(newString).append("\n");
         }
         return getString.toString();
+    }
+    public static String GetStringFromStream(InputStream stream)throws IOException {
+        return GetStringFromStream(stream,true);
     }
 }

@@ -1,5 +1,7 @@
 package com.lxfly2000.utilities;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -13,7 +15,11 @@ public class YMDDate {
     }
 
     public String ToYMDString(){
-        return String.format(Locale.getDefault(),"%d-%d-%d",GetYear(),GetMonth(),GetDate());
+        return new SimpleDateFormat("yyyy-M-d",Locale.getDefault()).format(date);
+    }
+
+    public String ToLocalizedFormatString(){
+        return DateFormat.getDateInstance().format(date);
     }
 
     public static YMDDate GetTodayDate(){

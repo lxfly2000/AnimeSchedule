@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener listAnimeCallback=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(animeJson.GetWatchUrl(jsonSortTable.get(i)))));
+            AndroidUtility.OpenUri(getBaseContext(),animeJson.GetWatchUrl(jsonSortTable.get(i)));
         }
     };
 
@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
             }
             listItem.put("ranking",rankingString.toString());
             StringBuilder strSchedule=new StringBuilder();
-            strSchedule.append(animeJson.GetLastUpdateYMDDate(jsonSortTable.get(i)).ToYMDString())
+            strSchedule.append(animeJson.GetLastUpdateYMDDate(jsonSortTable.get(i)).ToLocalizedFormatString())
                     .append(getString(R.string.label_schedule_update_episode,animeJson.GetLastUpdateEpisode(jsonSortTable.get(i))));
             int haveNotWatched=0;
             for(int j=1;j<=animeJson.GetLastUpdateEpisode(jsonSortTable.get(i));j++){
@@ -383,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
         if(animeJson.GetAnimeCount()==0)
             msg.append(getString(R.string.message_no_data));
         else
-            msg.append(getString(R.string.message_last_watched_info,animeJson.GetLastWatchDateString(),
+            msg.append(getString(R.string.message_last_watched_info,new YMDDate(animeJson.GetLastWatchDateString()).ToLocalizedFormatString(),
                     animeJson.GetTitle(animeJson.GetLastWatchIndex()),animeJson.GetLastWatchEpisode()));
         msg.append("\n").append(getString(R.string.message_update_info));
         int behindCount=0;
@@ -406,7 +406,7 @@ public class MainActivity extends AppCompatActivity {
                 if(haveNotWatched) {
                     behindCount++;
                     msg.append("\n").append(getString(R.string.message_title_updated_to,animeJson.GetTitle(uTable.get(i)),
-                            animeJson.GetLastUpdateYMDDate(uTable.get(i)).ToYMDString(),animeJson.GetLastUpdateEpisode(uTable.get(i))));
+                            animeJson.GetLastUpdateYMDDate(uTable.get(i)).ToLocalizedFormatString(),animeJson.GetLastUpdateEpisode(uTable.get(i))));
                 }
             }
         }
@@ -495,8 +495,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_show_count_statistics:ShowCountStatistics();return true;
             case R.id.action_drive_download:GoogleDriveDownload();return true;
             case R.id.action_drive_upload:GoogleDriveUpload();return true;
+            case R.id.action_about:OnActionAbout();return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void OnActionAbout(){
+        startActivity(new Intent(this,AboutActivity.class));
     }
 
     private GoogleDriveOperator googleDriveOperator;
@@ -1242,9 +1247,7 @@ public class MainActivity extends AppCompatActivity {
                 msgBox.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent=new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(Values.urlAuthor));
-                        startActivity(intent);
+                        AndroidUtility.OpenUri(getBaseContext(),Values.urlAuthor);
                     }
                 });
                 msgBox.setNegativeButton(android.R.string.cancel,null);

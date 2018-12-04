@@ -26,7 +26,6 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         findViewById(R.id.buttonSaveSettings).setOnClickListener(buttonCallbacks);
         preferences=Values.GetPreference(this);
-        ((TextView)findViewById(R.id.textVersionInfo)).setText(getString(R.string.label_version_info,BuildConfig.VERSION_NAME,BuildConfig.BUILD_DATE));
         spinnerSortMethods=(Spinner)findViewById(R.id.spinnerSortMethod);
         spinnerSortOrder=(Spinner)findViewById(R.id.spinnerSortOrder);
         checkSeperateAbandoned=(CheckBox)findViewById(R.id.checkBoxSeperateAbandoned);
@@ -91,7 +90,6 @@ public class SettingsActivity extends AppCompatActivity {
         wPreference.apply();
         modified=false;
         Toast.makeText(this,R.string.message_settings_saved,Toast.LENGTH_LONG).show();
-        //TODO：放置要求更新数据的Extra信息
         Intent rIntent=new Intent();
         rIntent.putExtra(keyNeedReload,true);
         setResult(RESULT_OK,rIntent);

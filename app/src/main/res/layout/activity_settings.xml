@@ -39,10 +39,6 @@
                         android:layout_height="wrap_content" android:id="@+id/checkBoxSeperateAbandoned"
                         android:layout_weight="1"/>
             </LinearLayout>
-            <TextView
-                    android:text="@string/label_version_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textVersionInfo"/>
         </LinearLayout>
     </ScrollView>
     <Button

@@ -105,4 +105,16 @@
     <string name="message_google_drive_download_success">已从 Google Drive 恢复。</string>
     <string name="message_overwrite_google_drive_warning">这会覆盖你Google网盘上的内容（如果有的话），是否继续？</string>
     <string name="message_overwrite_local_warning">这会覆盖你设备中当前已存储的内容，是否继续？</string>
+    <string name="action_about">关于</string>
+    <string name="label_app_intro">这是一个可以帮助你规划追番的时间提醒类APP，目前支持B站和爱奇艺的番剧信息读取。适合追番党使用。</string>
+    <string name="label_report_bug">报告 Bug</string>
+    <string name="label_author">制作：lxfly2000</string>
+    <string name="label_view_github_repo">前往本APP的GitHub</string>
+    <string name="label_contact">联系作者</string>
+    <string name="label_app_name_email">电子邮件</string>
+    <string name="label_donate">赞助</string>
+    <string name="label_donate_explanation">如果你觉得这个APP对你有帮助，就请赞助我一下吧。</string>
+    <string name="label_app_name_wechat">微信</string>
+    <string name="label_app_name_alipay">支付宝</string>
+    <string name="message_exception_no_activity_available">没有能够处理该链接的应用程序。</string>
 </resources>

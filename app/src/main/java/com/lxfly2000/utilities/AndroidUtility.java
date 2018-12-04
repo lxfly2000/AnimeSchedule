@@ -2,9 +2,12 @@ package com.lxfly2000.utilities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 
 public class AndroidUtility {
     //检查权限，有返回true，无返回false并显示提示信息并关闭当前Activity
@@ -33,5 +36,9 @@ public class AndroidUtility {
                 .setMessage(msg)
                 .setPositiveButton(android.R.string.ok,null)
                 .show();
+    }
+
+    public static void OpenUri(Context ctx,String uriString)throws ActivityNotFoundException {
+        ctx.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(uriString)));
     }
 }

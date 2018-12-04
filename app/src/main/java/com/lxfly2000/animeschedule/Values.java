@@ -56,6 +56,15 @@ public class Values {
     };
     public static final String jsCallback="setJsonData";
     public static final String urlAuthor="https://github.com/lxfly2000/AnimeSchedule";
+    public static final String urlAuthorGithubHome="https://github.com/lxfly2000";
+    public static final String urlReportIssue="https://github.com/lxfly2000/AnimeSchedule/issues";
+    public static final String urlAuthorEmailBase64="bWFpbHRvOmdhb2JveXVhbjhAcXEuY29t";
+    public static final String urlContactQQBase64="aHR0cDovL3FtLnFxLmNvbS9jZ2ktYmluL3FtL3FyP2s9N2c0UjJySi1NYW1LNFVLQkNoVS1PcWpkZHZzNGExN0g=";
+    public static final String urlContactTwitter="https://twitter.com/lxf2000";
+    public static final String urlDonateQQBase64="aHR0cDovL3ZhYy5xcS5jb20vd2FsbGV0L3FyY29kZS5odG0/bT10ZW5wYXkmYT0xJnU9ODM2MDEzMDM5JmFjPUNCQzI3N0ZCNDQ1QUM3NjY0N0IyREE1ODI0OTBDOUE0MUI2OTA2RERGRDdDMUI5OTM4RDc1ODk5NTRFNjQxMTkmZj13YWxsZXQ=";
+    public static final String urlDonateAlipayBase64="aHR0cHM6Ly9xci5hbGlwYXkuY29tL2ZreDA5ODkwNHZ1ODZtOTF0NnJ6dGEx";
+    public static final String urlDonateWechatBase64="d3hwOi8vZjJmMHI2RlNlR3ZzNEIyTUhzTUZLdWdudEZMZDhhOG5KWnB3";
+    public static final String urlDonatePaypalBase64="aHR0cHM6Ly93d3cucGF5cGFsLm1lL2x4Zmx5MjAwMA==";
     public static String GetCheckUpdateURL(){
         return urlAuthor+"/raw/master/app/build.gradle";
     }

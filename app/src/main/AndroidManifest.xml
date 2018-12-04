@@ -35,6 +35,8 @@
                     android:name="android.app.searchable"
                     android:resource="@xml/searchable"/>
         </activity>
+        <activity android:name=".AboutActivity" android:label="@string/action_about">
+        </activity>
     </application>
 
 </manifest>

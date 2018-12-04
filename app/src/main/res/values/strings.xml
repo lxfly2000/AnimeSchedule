@@ -22,7 +22,7 @@
     <string name="action_remove_all_item">Remove All Anime</string>
     <string name="message_remove_all_warning">This will remove all Anime in the list, continue?</string>
     <string name="action_edit_item">Edit Anime</string>
-    <string name="label_start_date">Start Date</string>
+    <string name="label_start_date">Start Date (yyyy-M-d)</string>
     <string name="label_update_period">Update Period</string>
     <string name="label_anime_episode_count">Episode Count</string>
     <string name="label_anime_absense_count">Absense Count</string>
@@ -104,4 +104,19 @@
     <string name="message_google_drive_download_success">Downloaded from Google Drive.</string>
     <string name="message_overwrite_google_drive_warning">This will overwrite your existing data on Google Drive, continue?</string>
     <string name="message_overwrite_local_warning">This will overwrite your existing data on your storage, continue?</string>
+    <string name="action_about">About</string>
+    <string name="label_app_intro">This app can help you scheduling time for anime, useful for anime fans.</string>
+    <string name="label_report_bug">Report Bugs</string>
+    <string name="label_author">Made by: lxfly2000</string>
+    <string name="label_view_github_repo">Go to this app\'s GitHub Repository</string>
+    <string name="label_contact">Contact with the author</string>
+    <string name="label_app_name_qq">QQ</string>
+    <string name="label_app_name_email">Email</string>
+    <string name="label_app_name_twitter">Twitter</string>
+    <string name="label_donate">Donate</string>
+    <string name="label_donate_explanation">If you feel this app helpful, please consider donate me with the following methods.</string>
+    <string name="label_app_name_alipay">Alipay</string>
+    <string name="label_app_name_wechat">WeChat</string>
+    <string name="label_app_name_paypal">PayPal</string>
+    <string name="message_exception_no_activity_available">No application to open this URL.</string>
 </resources>

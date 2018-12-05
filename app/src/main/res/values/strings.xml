@@ -129,4 +129,6 @@
     <string name="menu_download_not_available">Download (Only available for Bilibili link)</string>
     <string name="label_thanks">Special Thanks</string>
     <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>: helped with the download function.</string>
+    <string name="message_bilibili_download_task_created">Download tasks are created, please go to Bilibili client and manually start them.</string>
+    <string name="message_bilibili_download_region_restricted_warning">Region-restricted Anime, confirm if downloadable</string>
 </resources>

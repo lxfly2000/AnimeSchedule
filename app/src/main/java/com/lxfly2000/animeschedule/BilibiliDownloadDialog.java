@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.widget.*;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.AndroidUtility;
+import com.lxfly2000.utilities.FileUtility;
 import com.lxfly2000.utilities.StreamUtility;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,7 +65,35 @@ public class BilibiliDownloadDialog {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String pkgName=Values.pkgNameBilibiliVersions[preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex)];
-                        Toast.makeText(ctx,"TODO:这个功能正在制作中。",Toast.LENGTH_LONG).show();
+                        for(int i_check=0;i_check<checkEpisodes.size();i_check++){
+                            if(!checkEpisodes.get(i_check).isChecked())
+                                continue;
+                            try {
+                                JSONObject jsonEntry = new JSONObject(Values.jsonRawBilibiliEntry);
+                                JSONObject checkedEp=htmlJson.getJSONArray("epList").getJSONObject(i_check);
+                                jsonEntry.put("title",htmlJson.getJSONObject("mediaInfo").getString("title"));
+                                jsonEntry.put("cover",htmlJson.getJSONObject("mediaInfo").getString("cover"));
+                                jsonEntry.put("prefered_video_quality",Values.typeBilibiliPreferredVideoQualities[spinnerVideoQuality.getSelectedItemPosition()]);
+                                jsonEntry.put("time_create_stamp",System.currentTimeMillis());
+                                jsonEntry.put("time_update_stamp",System.currentTimeMillis());
+                                jsonEntry.put("season_id",String.valueOf(htmlJson.getInt("ssId")));
+                                jsonEntry.getJSONObject("ep").put("av_id",checkedEp.getInt("aid"));
+                                jsonEntry.getJSONObject("ep").put("page",checkedEp.getInt("page"));
+                                jsonEntry.getJSONObject("ep").put("danmaku",checkedEp.getInt("cid"));
+                                jsonEntry.getJSONObject("ep").put("cover",checkedEp.getString("cover"));
+                                jsonEntry.getJSONObject("ep").put("episode_id",checkedEp.getInt("ep_id"));
+                                jsonEntry.getJSONObject("ep").put("index",checkedEp.getString("index"));
+                                jsonEntry.getJSONObject("ep").put("index_title",checkedEp.getString("index_title"));
+                                jsonEntry.getJSONObject("ep").put("from",checkedEp.getString("from"));
+                                jsonEntry.getJSONObject("ep").put("season_type",htmlJson.getJSONObject("mediaInfo").getInt("season_type"));
+                                FileUtility.WriteFile(GetBilibiliDownloadEntryPath(jsonEntry.getString("season_id"),
+                                        String.valueOf(jsonEntry.getJSONObject("ep").getInt("episode_id"))),jsonEntry.toString());
+                            }catch (JSONException e){
+                                Toast.makeText(ctx,ctx.getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                        }
+                        Toast.makeText(ctx,R.string.message_bilibili_download_task_created,Toast.LENGTH_LONG).show();
                         AndroidUtility.KillProcess(ctx,pkgName);
                         if(checkOpenBilibili.isChecked()) {
                             try {
@@ -99,7 +128,10 @@ public class BilibiliDownloadDialog {
                         return;
                     }
                     htmlJson = new JSONObject(jsonString);
-                    dialog.setTitle(htmlJson.getJSONObject("mediaInfo").getString("title"));
+                    String animeTitle=htmlJson.getJSONObject("mediaInfo").getString("title");
+                    dialog.setTitle(animeTitle);
+                    if(animeTitle.contains("僅"))
+                        buttonOk.setText(R.string.message_bilibili_download_region_restricted_warning);
                     JSONArray epArray=htmlJson.getJSONArray("epList");
                     for(int i=0;i<epArray.length();i++){
                         CheckBox checkBox=new CheckBox(dialog.getContext());

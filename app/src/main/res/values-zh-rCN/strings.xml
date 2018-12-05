@@ -127,4 +127,6 @@
     <string name="menu_download_not_available">下载（只对B站链接有效）</string>
     <string name="label_thanks">特别感谢</string>
     <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>：对本程序的下载功能提供了帮助。</string>
+    <string name="message_bilibili_download_task_created">下载任务已创建，请到哔哩哔哩客户端中手动开启下载。</string>
+    <string name="message_bilibili_download_region_restricted_warning">注意！这是地区限制番，请确认你能够下载后再继续</string>
 </resources>

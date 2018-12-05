@@ -107,7 +107,7 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerSortOrder.setSelection(preferences.getInt(Values.keySortOrder,Values.vDefaultSortOrder));
         spinnerSortMethods.setSelection(preferences.getInt(Values.keySortMethod,Values.vDefaultSortMethod));
         checkSeperateAbandoned.setChecked(preferences.getBoolean(Values.keySortSeperateAbandoned,Values.vDefaultSortSeperateAbandoned));
-        spinnerBilibiliVersions.setSelection(preferences.getInt(Values.keyBilibiliVersion,Values.vDefaultBilibiliVersion));
+        spinnerBilibiliVersions.setSelection(preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersion));
         editBilibiliSavePath.setText(preferences.getString(Values.keyBilibiliSavePath,Values.GetvDefaultBilibiliSavePath(this)));
         modified=false;
     }
@@ -117,7 +117,7 @@ public class SettingsActivity extends AppCompatActivity {
         wPreference.putInt(Values.keySortOrder,spinnerSortOrder.getSelectedItemPosition());
         wPreference.putInt(Values.keySortMethod,spinnerSortMethods.getSelectedItemPosition());
         wPreference.putBoolean(Values.keySortSeperateAbandoned,checkSeperateAbandoned.isChecked());
-        wPreference.putInt(Values.keyBilibiliVersion,spinnerBilibiliVersions.getSelectedItemPosition());
+        wPreference.putInt(Values.keyBilibiliVersionIndex,spinnerBilibiliVersions.getSelectedItemPosition());
         wPreference.putString(Values.keyBilibiliSavePath,editBilibiliSavePath.getText().toString());
         wPreference.apply();
         modified=false;

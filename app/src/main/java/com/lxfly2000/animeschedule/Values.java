@@ -20,7 +20,7 @@ public class Values {
     public static String GetvDefaultBilibiliSavePath(Context ctx){
         return GetAppDataPathExternal(ctx);
     }
-    public static final String keyBilibiliVersion="bilibili_version";
+    public static final String keyBilibiliVersionIndex="bilibili_version_index";
     public static final int vDefaultBilibiliVersion=0;
     public static final String dateStringDefault="1900-1-1";
     public static String GetRepositoryPathOnLocal(){
@@ -74,15 +74,35 @@ public class Values {
     public static String GetCheckUpdateURL(){
         return urlAuthor+"/raw/master/app/build.gradle";
     }
-    public static final String pkgNameBilibiliDanmaku="tv.danmaku.bili";
-    public static final String pkgNameBilibiliInternational="com.bilibili.app.in";
-    public static final String pkgNameBilibiliBlue="com.bilibili.app.blue";
+    public static final String pkgNameBilibiliVersions[]={"tv.danmaku.bili","com.bilibili.app.in","com.bilibili.app.blue"};
     public static String GetAppDataPathExternal(Context ctx){
         return ctx.getExternalCacheDir().getParentFile().getParent();
     }
-    public static final int typeBilibiliPreferredVideoQualityLiuchang=100;
-    public static final int typeBilibiliPreferredVideoQualityQingxi=150;
-    public static final int typeBilibiliPreferredVideoQualityGaoqing=200;
-    public static final int typeBilibiliPreferredVideoQualityChaoqing=400;
-    public static final int typeBilibiliPreferredVideoQuality1080p=800;
+    public static final int typeBilibiliPreferredVideoQualities[]={100,150,200,400,800};
+
+    public static final String jsonRawBilibiliEntry="{" +
+            "    \"is_completed\":false,\n" +
+            "    \"total_bytes\":0,\n" +
+            "    \"downloaded_bytes\":0,\n" +
+            "    \"title\":\"(番剧的正式标题)\",\n" +
+            "    \"cover\":\"(番剧的封面)\",\n" +
+            "    \"prefered_video_quality\":0,\n" +//清晰度代码
+            "    \"guessed_total_bytes\":0,\n" +
+            "    \"total_time_milli\":0,\n" +
+            "    \"danmaku_count\":0,\n" +
+            "    \"time_update_stamp\":0,\n" +//现在的时间戳，毫秒
+            "    \"time_create_stamp\":0,\n" +//现在的时间戳，毫秒
+            "    \"season_id\":\"(番剧SSID)\",\n" +
+            "    \"ep\":{\n" +
+            "        \"av_id\":0,\n" +//视频AV号
+            "        \"page\":1,\n" +
+            "        \"danmaku\":0,\n" +//弹幕CID
+            "        \"cover\":\"(本集的封面)\",\n" +
+            "        \"episode_id\":0,\n" +//本集的EPID
+            "        \"index\":\"1\",\n" +
+            "        \"index_title\":\"(本集的标题)\",\n" +
+            "        \"from\":\"bangumi\",\n" +
+            "        \"season_type\":1\n" +
+            "    }\n" +
+            "}";
 }

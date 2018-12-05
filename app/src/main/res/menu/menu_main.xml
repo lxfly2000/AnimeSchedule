@@ -9,7 +9,6 @@
     <item android:title="@string/action_view_web_page" android:id="@+id/action_view_web_page"/>
     <item android:title="@string/action_google_drive_upload" android:id="@+id/action_drive_upload"/>
     <item android:title="@string/action_google_drive_download" android:id="@+id/action_drive_download"/>
-    <item android:title="@string/menu_check_update" android:id="@+id/action_check_update"/>
     <item android:title="@string/action_settings" android:id="@+id/action_settings"
           android:icon="@android:drawable/ic_menu_preferences"/>
     <item android:title="@string/action_about" android:id="@+id/action_about"/>

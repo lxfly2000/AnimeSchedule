@@ -1,9 +1,13 @@
 package com.lxfly2000.animeschedule;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
+import com.lxfly2000.utilities.AndroidUtility;
 import com.lxfly2000.utilities.StreamUtility;
 
 import java.io.ByteArrayInputStream;
@@ -12,21 +16,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UpdateChecker {
-    private String fileURL;
     private String fileContentString;
     private boolean errorOccurred =false;
-    private ResultHandler resultHandler;
-    public UpdateChecker SetCheckURL(String url){
-        fileURL=url;
-        return this;
+    private boolean updateOnlyReportNewVersion=false;
+    private Context ctx;
+
+    UpdateChecker(@NonNull Context context){
+        ctx=context;
     }
 
-    public UpdateChecker SetResultHandler(ResultHandler handler){
-        resultHandler=handler;
-        return this;
-    }
-
-    public void CheckForUpdate(){
+    private void CheckForUpdateMain(){
         //https://stackoverflow.com/questions/5150637/networkonmainthreadexception
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
@@ -39,25 +38,51 @@ public class UpdateChecker {
             }
         };
         task.SetExtra(this);
-        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,fileURL);
+        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,Values.GetCheckUpdateURL());
     }
 
-    public boolean IsError(){
+    private boolean IsError(){
         return errorOccurred;
     }
 
-    public void OnReceiveData(String data){
+    private void OnReceiveData(String data){
         fileContentString=data;
         if(fileContentString==null){
             errorOccurred=true;
         }else if(GetUpdateVersionCode()>BuildConfig.VERSION_CODE){
-            resultHandler.OnReceive(true);
+            OnReceive(true);
             return;
         }
-        resultHandler.OnReceive(false);
+        OnReceive(false);
     }
 
-    public int GetUpdateVersionCode(){
+    private void OnReceive(boolean foundNewVersion){
+        AlertDialog.Builder msgBox=new AlertDialog.Builder(ctx);//这里不能用getApplicationContext.
+        msgBox.setPositiveButton(android.R.string.ok,null);
+        msgBox.setTitle(R.string.menu_check_update);
+        if (foundNewVersion) {
+            String msg = String.format(ctx.getString(R.string.message_new_version), BuildConfig.VERSION_NAME, GetUpdateVersionName());
+            msgBox.setMessage(msg);
+            msgBox.setIcon(android.R.drawable.ic_dialog_info);
+            msgBox.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    AndroidUtility.OpenUri(ctx,Values.urlAuthor);
+                }
+            });
+            msgBox.setNegativeButton(android.R.string.cancel,null);
+        }else if (updateOnlyReportNewVersion){
+            return;
+        }else if (IsError()){
+            msgBox.setMessage(R.string.error_check_update);
+            msgBox.setIcon(android.R.drawable.ic_dialog_alert);
+        }else {
+            msgBox.setMessage(R.string.message_no_update);
+        }
+        msgBox.show();
+    }
+
+    private int GetUpdateVersionCode(){
         String searchRegex="versionCode [0-9]*";
         Pattern p=Pattern.compile(searchRegex);
         Matcher m=p.matcher(fileContentString);
@@ -73,7 +98,7 @@ public class UpdateChecker {
         return 0;
     }
 
-    public String GetUpdateVersionName(){
+    private String GetUpdateVersionName(){
         String versionName="";
         String searchRegex="versionName \".*\"";
         Pattern p=Pattern.compile(searchRegex);
@@ -86,22 +111,18 @@ public class UpdateChecker {
         return versionName;
     }
 
-    public static abstract class ResultHandler{
-        private Context androidContext;
-        public ResultHandler(Context context){
-            androidContext=context;
+    void CheckForUpdate(boolean onlyReportNewVersion) {
+        if (ctx.checkCallingOrSelfPermission("android.permission.INTERNET") != PackageManager.PERMISSION_GRANTED) {
+            if (onlyReportNewVersion)
+                return;
+            AlertDialog.Builder msgBox = new AlertDialog.Builder(ctx)
+                    .setTitle(R.string.menu_check_update)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setMessage(R.string.error_permission_network);
+            msgBox.show();
+        } else {
+            updateOnlyReportNewVersion=onlyReportNewVersion;
+            CheckForUpdateMain();
         }
-        private boolean onlyReportUpdate=true;
-        public ResultHandler SetOnlyReportUpdate(boolean b){
-            onlyReportUpdate=b;
-            return this;
-        }
-        public boolean GetOnlyReportUpdate(){
-            return onlyReportUpdate;
-        }
-        public void HandlerSendBroadcast(Intent intent){
-            androidContext.sendBroadcast(intent);
-        }
-        protected abstract void OnReceive(boolean foundNewVersion);
     }
 }

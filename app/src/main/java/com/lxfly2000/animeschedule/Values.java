@@ -16,6 +16,12 @@ public class Values {
     public static final int vDefaultSortOrder=2;
     public static final String keySortSeperateAbandoned="anime_sort_separate_abandoned";
     public static final boolean vDefaultSortSeperateAbandoned=true;
+    public static final String keyBilibiliSavePath="bilibili_save_path";
+    public static String GetvDefaultBilibiliSavePath(Context ctx){
+        return GetAppDataPathExternal(ctx);
+    }
+    public static final String keyBilibiliVersion="bilibili_version";
+    public static final int vDefaultBilibiliVersion=0;
     public static final String dateStringDefault="1900-1-1";
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
@@ -68,4 +74,15 @@ public class Values {
     public static String GetCheckUpdateURL(){
         return urlAuthor+"/raw/master/app/build.gradle";
     }
+    public static final String pkgNameBilibiliDanmaku="tv.danmaku.bili";
+    public static final String pkgNameBilibiliInternational="com.bilibili.app.in";
+    public static final String pkgNameBilibiliBlue="com.bilibili.app.blue";
+    public static String GetAppDataPathExternal(Context ctx){
+        return ctx.getExternalCacheDir().getParentFile().getParent();
+    }
+    public static final int typeBilibiliPreferredVideoQualityLiuchang=100;
+    public static final int typeBilibiliPreferredVideoQualityQingxi=150;
+    public static final int typeBilibiliPreferredVideoQualityGaoqing=200;
+    public static final int typeBilibiliPreferredVideoQualityChaoqing=400;
+    public static final int typeBilibiliPreferredVideoQuality1080p=800;
 }

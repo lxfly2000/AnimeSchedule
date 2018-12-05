@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,9 +16,10 @@ import android.widget.*;
 public class SettingsActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private boolean modified;
-    private Spinner spinnerSortMethods,spinnerSortOrder;
+    private Spinner spinnerSortMethods,spinnerSortOrder,spinnerBilibiliVersions;
+    private EditText editBilibiliSavePath;
     private CheckBox checkSeperateAbandoned;
-    public static final String keyNeedReload="need_reload";
+    static final String keyNeedReload="need_reload";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +31,30 @@ public class SettingsActivity extends AppCompatActivity {
         preferences=Values.GetPreference(this);
         spinnerSortMethods=(Spinner)findViewById(R.id.spinnerSortMethod);
         spinnerSortOrder=(Spinner)findViewById(R.id.spinnerSortOrder);
+        spinnerBilibiliVersions=(Spinner)findViewById(R.id.spinnerBilibiliVersions);
         checkSeperateAbandoned=(CheckBox)findViewById(R.id.checkBoxSeperateAbandoned);
+        editBilibiliSavePath=(EditText)findViewById(R.id.editBilibiliDownloadPath);
+
         spinnerSortMethods.setOnItemSelectedListener(spinnerSelectListener);
         spinnerSortOrder.setOnItemSelectedListener(spinnerSelectListener);
+        spinnerBilibiliVersions.setOnItemSelectedListener(spinnerSelectListener);
         checkSeperateAbandoned.setOnClickListener(buttonCallbacks);
+        editBilibiliSavePath.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //Nothing.
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                modified=true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                //Nothing.
+            }
+        });
         LoadSettings();
     }
 
@@ -51,7 +74,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
     };
 
-    private int originalMethod=-1,originalOrder=-1;
+    private int originalMethod=-1,originalOrder=-1,originalBilibiliVersion=-1;
     private AdapterView.OnItemSelectedListener spinnerSelectListener=new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -66,6 +89,11 @@ public class SettingsActivity extends AppCompatActivity {
                         modified=true;
                     originalOrder=position;
                     break;
+                case R.id.spinnerBilibiliVersions:
+                    if(originalBilibiliVersion!=-1&&originalBilibiliVersion!=position)
+                        modified=true;
+                    originalBilibiliVersion=position;
+                    break;
             }
         }
 
@@ -79,6 +107,8 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerSortOrder.setSelection(preferences.getInt(Values.keySortOrder,Values.vDefaultSortOrder));
         spinnerSortMethods.setSelection(preferences.getInt(Values.keySortMethod,Values.vDefaultSortMethod));
         checkSeperateAbandoned.setChecked(preferences.getBoolean(Values.keySortSeperateAbandoned,Values.vDefaultSortSeperateAbandoned));
+        spinnerBilibiliVersions.setSelection(preferences.getInt(Values.keyBilibiliVersion,Values.vDefaultBilibiliVersion));
+        editBilibiliSavePath.setText(preferences.getString(Values.keyBilibiliSavePath,Values.GetvDefaultBilibiliSavePath(this)));
         modified=false;
     }
 
@@ -87,6 +117,8 @@ public class SettingsActivity extends AppCompatActivity {
         wPreference.putInt(Values.keySortOrder,spinnerSortOrder.getSelectedItemPosition());
         wPreference.putInt(Values.keySortMethod,spinnerSortMethods.getSelectedItemPosition());
         wPreference.putBoolean(Values.keySortSeperateAbandoned,checkSeperateAbandoned.isChecked());
+        wPreference.putInt(Values.keyBilibiliVersion,spinnerBilibiliVersions.getSelectedItemPosition());
+        wPreference.putString(Values.keyBilibiliSavePath,editBilibiliSavePath.getText().toString());
         wPreference.apply();
         modified=false;
         Toast.makeText(this,R.string.message_settings_saved,Toast.LENGTH_LONG).show();

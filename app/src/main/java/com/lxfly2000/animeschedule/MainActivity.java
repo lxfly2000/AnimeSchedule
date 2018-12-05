@@ -563,6 +563,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu,View v,ContextMenu.ContextMenuInfo menuInfo){
         getMenuInflater().inflate(R.menu.menu_anime_list,menu);
+        menu.findItem(R.id.action_download).setEnabled(URLUtility.IsBilibiliSeasonLink(animeJson.GetWatchUrl(jsonSortTable.get(longPressedListItem))));
     }
 
     @Override
@@ -571,8 +572,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_show_detail:ShowAnimeDetail(jsonSortTable.get(longPressedListItem));break;
             case R.id.action_edit_item:EditAnime(jsonSortTable.get(longPressedListItem),false);break;
             case R.id.action_remove_item:RemoveItem(jsonSortTable.get(longPressedListItem));break;
+            case R.id.action_download:OpenDownloadDialog(jsonSortTable.get(longPressedListItem));break;
         }
         return false;
+    }
+
+    private void OpenDownloadDialog(int index){//这个index已经是json中的索引了，无需再通过排序表查找
+        AndroidUtility.MessageBox(this,"TODO：这个功能还在制作中。",animeJson.GetTitle(index));
     }
 
     public void ShowCountStatistics(){
@@ -847,10 +853,10 @@ public class MainActivity extends AppCompatActivity {
                     Pattern p=Pattern.compile(Values.parsableLinksRegex[i_regex]);
                     Matcher m=p.matcher(urlString);
                     if(m.find()){
-                        if(urlString.toLowerCase().contains("bilibili")){
+                        if(URLUtility.IsBilibiliLink(urlString.toLowerCase())){
                             ReadBilibiliURL_OnCallback(urlString);
                             break;
-                        }else if(urlString.toLowerCase().contains("iqiyi")){
+                        }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())){
                             GetIQiyiAnimeIDFromURL(urlString);
                             break;
                         }
@@ -872,14 +878,8 @@ public class MainActivity extends AppCompatActivity {
         * 在返回的HTML文本（转换成小写）里找ss#####, season_id:#####, "season_id":#####, ssid:#####, "ssid":#####
         * 得到的数值均为 Season ID, 然后就可以从ss##### URL里获取信息了。
         * */
-        Matcher mssid=Pattern.compile("/[0-9]+").matcher(urlString);
-        if(mssid.find()){
-            ReadBilibiliSSID_OnCallback(urlString.substring(mssid.start()+1,mssid.end()));
-            return;
-        }
-        mssid=Pattern.compile("/ss[0-9]+").matcher(urlString);
-        if(mssid.find()){
-            ReadBilibiliSSID_OnCallback(urlString.substring(mssid.start()+3,mssid.end()));
+        if(URLUtility.IsBilibiliSeasonLink(urlString)){
+            ReadBilibiliSSID_OnCallback(URLUtility.GetBilibiliSeasonIdString(urlString));
             return;
         }
         editDialogTitle.setText(R.string.message_fetching_bilibili_ssid);

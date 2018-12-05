@@ -119,4 +119,14 @@
     <string name="label_app_name_wechat">WeChat</string>
     <string name="label_app_name_paypal" translatable="false">PayPal</string>
     <string name="message_exception_no_activity_available">No application to open this URL.</string>
+    <string name="label_bilibili_download_settings">Bilibili download settings</string>
+    <string name="label_bilibili_download_path">Path to save</string>
+    <string name="label_bilibili_download_app_version">Client version</string>
+    <string name="label_bilibili_quality_liuchang">Low</string>
+    <string name="label_bilibili_quality_qingxi">Medium</string>
+    <string name="label_bilibili_quality_gaoqing">High</string>
+    <string name="label_bilibili_quality_chaoqing">High+</string>
+    <string name="label_bilibili_quality_1080p">1080p</string>
+    <string name="label_bilibili_video_quality">Video quality</string>
+    <string name="menu_download">Download</string>
 </resources>

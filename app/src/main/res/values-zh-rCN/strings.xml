@@ -117,4 +117,14 @@
     <string name="label_app_name_wechat">微信</string>
     <string name="label_app_name_alipay">支付宝</string>
     <string name="message_exception_no_activity_available">没有能够处理该链接的应用程序。</string>
+    <string name="label_bilibili_download_settings">B站番剧下载设置</string>
+    <string name="label_bilibili_download_path">选择保存位置</string>
+    <string name="label_bilibili_download_app_version">选择客户端种类</string>
+    <string name="label_bilibili_quality_liuchang">流畅</string>
+    <string name="label_bilibili_quality_qingxi">清晰</string>
+    <string name="label_bilibili_quality_gaoqing">高清</string>
+    <string name="label_bilibili_quality_chaoqing">超清</string>
+    <string name="label_bilibili_quality_1080p">1080P</string>
+    <string name="label_bilibili_video_quality">选择清晰度</string>
+    <string name="menu_download">下载</string>
 </resources>

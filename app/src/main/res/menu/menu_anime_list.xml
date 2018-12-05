@@ -3,5 +3,6 @@
 
     <item android:title="@string/menu_anime_show_detail" android:id="@+id/action_show_detail"/>
     <item android:title="@string/action_edit_item" android:id="@+id/action_edit_item"/>
+    <item android:title="@string/menu_download" android:id="@+id/action_download"/>
     <item android:title="@string/action_remove_item" android:id="@+id/action_remove_item"/>
 </menu>

@@ -14,4 +14,9 @@
         <item>升序</item>
         <item>降序</item>
     </string-array>
+    <string-array name="list_bilibili_client_versions">
+        <item>哔哩哔哩弹幕 (tv.danmaku.bili)</item>
+        <item>哔哩哔哩国际版 (com.bilibili.app.in)</item>
+        <item>哔哩哔哩概念 (com.bilibili.app.blue)</item>
+    </string-array>
 </resources>

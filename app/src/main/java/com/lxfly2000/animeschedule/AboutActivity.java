@@ -8,7 +8,6 @@ import android.text.method.LinkMovementMethod;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.lxfly2000.utilities.AndroidUtility;
@@ -53,13 +52,13 @@ public class AboutActivity extends AppCompatActivity {
         SetTextViewWithURL((TextView)findViewById(R.id.textViewReportBug),Values.urlReportIssue);
         SetTextViewWithURL((TextView)findViewById(R.id.textViewGotoGithub),Values.urlAuthor);
         SetTextViewWithURL((TextView)findViewById(R.id.textViewMadeBy),Values.urlAuthorGithubHome);
-        ((Button)findViewById(R.id.buttonDonateQQ)).setOnClickListener(buttonClickListener);
-        ((Button)findViewById(R.id.buttonDonateAlipay)).setOnClickListener(buttonClickListener);
-        ((Button)findViewById(R.id.buttonDonateWechat)).setOnClickListener(buttonClickListener);
-        ((Button)findViewById(R.id.buttonDonatePaypal)).setOnClickListener(buttonClickListener);
-        ((Button)findViewById(R.id.buttonContactQQ)).setOnClickListener(buttonClickListener);
-        ((Button)findViewById(R.id.buttonContactTwitter)).setOnClickListener(buttonClickListener);
-        ((Button)findViewById(R.id.buttonContactEmail)).setOnClickListener(buttonClickListener);
+        findViewById(R.id.buttonDonateQQ).setOnClickListener(buttonClickListener);
+        findViewById(R.id.buttonDonateAlipay).setOnClickListener(buttonClickListener);
+        findViewById(R.id.buttonDonateWechat).setOnClickListener(buttonClickListener);
+        findViewById(R.id.buttonDonatePaypal).setOnClickListener(buttonClickListener);
+        findViewById(R.id.buttonContactQQ).setOnClickListener(buttonClickListener);
+        findViewById(R.id.buttonContactTwitter).setOnClickListener(buttonClickListener);
+        findViewById(R.id.buttonContactEmail).setOnClickListener(buttonClickListener);
     }
 
     @Override

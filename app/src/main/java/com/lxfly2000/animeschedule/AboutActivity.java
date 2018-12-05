@@ -15,7 +15,8 @@ import com.lxfly2000.utilities.AndroidUtility;
 
 public class AboutActivity extends AppCompatActivity {
     private void SetTextViewWithURL(TextView textView,String url){
-        textView.setText(Html.fromHtml(String.format("<a href=\"%s\">%s</a>",url,textView.getText())));
+        if(url!=null)
+            textView.setText(Html.fromHtml(String.format("<a href=\"%s\">%s</a>",url,textView.getText())));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
@@ -53,6 +54,7 @@ public class AboutActivity extends AppCompatActivity {
         SetTextViewWithURL((TextView)findViewById(R.id.textViewReportBug),Values.urlReportIssue);
         SetTextViewWithURL((TextView)findViewById(R.id.textViewGotoGithub),Values.urlAuthor);
         SetTextViewWithURL((TextView)findViewById(R.id.textViewMadeBy),Values.urlAuthorGithubHome);
+        SetTextViewWithURL((TextView)findViewById(R.id.textViewThanksXiaoyaocz),null);
         findViewById(R.id.buttonDonateQQ).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonDonateAlipay).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonDonateWechat).setOnClickListener(buttonClickListener);

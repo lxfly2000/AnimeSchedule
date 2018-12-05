@@ -21,7 +21,7 @@ public class Values {
         return GetAppDataPathExternal(ctx);
     }
     public static final String keyBilibiliVersionIndex="bilibili_version_index";
-    public static final int vDefaultBilibiliVersion=0;
+    public static final int vDefaultBilibiliVersionIndex =0;
     public static final String dateStringDefault="1900-1-1";
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;

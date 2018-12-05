@@ -34,4 +34,26 @@ public class URLUtility {
         Matcher matcher=Pattern.compile(Values.parsableLinksRegex[1]).matcher(url);
         return matcher.find();
     }
+
+    public static String GetBilibiliJsonContainingSSID(String htmlString,String ssid){
+        Matcher m=Pattern.compile("<script>[^<>]+"+ssid+"[^<>]+</script>").matcher(htmlString);
+        if(!m.find())
+            return null;
+        htmlString=htmlString.substring(m.start(),m.end());
+        htmlString=htmlString.substring(htmlString.indexOf('{'));
+        int brackets=1,posJSONEnd;
+        for(posJSONEnd=1;posJSONEnd<htmlString.length();posJSONEnd++){
+            if(htmlString.charAt(posJSONEnd)=='{')
+                brackets++;
+            else if(htmlString.charAt(posJSONEnd)=='}')
+                brackets--;
+            if(brackets==0){
+                posJSONEnd++;
+                break;
+            }
+        }
+        if(brackets!=0)
+            return null;
+        return htmlString.substring(0,posJSONEnd);
+    }
 }

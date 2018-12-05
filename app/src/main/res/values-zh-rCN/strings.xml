@@ -92,8 +92,7 @@
     <string name="message_fetching_bilibili_ssid">获取SSID中…</string>
     <string name="message_bilibili_ssid_not_found">未找到SSID属性。</string>
     <string name="message_bilibili_ssid_not_found_advise">请尝试将URL前面的HTTP改为HTTPS。</string>
-    <string name="message_bilibili_ssid_code_not_found">未找到含有SSID为%s的脚本代码。</string>
-    <string name="message_invalid_json">JSON代码无效。</string>
+    <string name="message_bilibili_ssid_code_not_found">未找到有效的含有SSID为%s的脚本代码。</string>
     <string name="action_google_drive_upload">备份至Google网盘</string>
     <string name="action_google_drive_download">从Google网盘恢复</string>
     <string name="message_login_success">登录成功。</string>
@@ -126,4 +125,6 @@
     <string name="label_download_open_bilibili_app">创建任务后打开B站APP</string>
     <string name="message_app_not_found">未找到“%s”，该应用可能未安装。</string>
     <string name="menu_download_not_available">下载（只对B站链接有效）</string>
+    <string name="label_thanks">特别感谢</string>
+    <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>：对本程序的下载功能提供了帮助。</string>
 </resources>

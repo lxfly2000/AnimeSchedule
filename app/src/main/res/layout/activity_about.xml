@@ -121,6 +121,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textViewMadeBy"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:textSize="18sp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView18"/>
+            <TextView
+                    android:text="@string/label_thanks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView19"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:textSize="18sp"/>
+            <TextView
+                    android:text="@string/label_thanks_xiaoyaocz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textViewThanksXiaoyaocz"
+                    android:textSize="18sp"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

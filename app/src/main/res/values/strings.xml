@@ -91,8 +91,7 @@
     <string name="message_fetching_bilibili_ssid">Fetching SSID...</string>
     <string name="message_bilibili_ssid_not_found">Property of SSID not found.</string>
     <string name="message_bilibili_ssid_not_found_advise">Try to modify the beginning \"http\" in URL to \"https\" and try again.</string>
-    <string name="message_bilibili_ssid_code_not_found">Not found codes containing property ssid of %s.</string>
-    <string name="message_invalid_json">Invalid JSON codes.</string>
+    <string name="message_bilibili_ssid_code_not_found">Not found valid codes containing property ssid of %s.</string>
     <string name="action_google_drive_upload">Backup to Drive</string>
     <string name="action_google_drive_download">Restore from Drive</string>
     <string name="message_login_success">Login success.</string>
@@ -128,4 +127,6 @@
     <string name="label_download_open_bilibili_app">Open Bilibili after this operation</string>
     <string name="message_app_not_found">\"%s\" not found, you might not install this application.</string>
     <string name="menu_download_not_available">Download (Only available for Bilibili link)</string>
+    <string name="label_thanks">Special Thanks</string>
+    <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>: helped with the download function.</string>
 </resources>

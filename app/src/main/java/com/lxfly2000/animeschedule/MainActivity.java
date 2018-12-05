@@ -941,31 +941,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 try {
-                    String htmlString=StreamUtility.GetStringFromStream(stream);
-                    Matcher m=Pattern.compile("<script>[^<>]+"+idString+"[^<>]+</script>").matcher(htmlString);
-                    if(!m.find()){
-                        Toast.makeText(getBaseContext(),getString(R.string.message_bilibili_ssid_code_not_found,idString),Toast.LENGTH_LONG).show();
+                    String jsonString=URLUtility.GetBilibiliJsonContainingSSID(StreamUtility.GetStringFromStream(stream),idString);
+                    if(jsonString==null){
+                        Toast.makeText(getBaseContext(),R.string.message_bilibili_ssid_code_not_found,Toast.LENGTH_LONG).show();
                         return;
                     }
-                    htmlString=htmlString.substring(m.start(),m.end());
-                    htmlString=htmlString.substring(htmlString.indexOf('{'));
-                    int brackets=1,posJSONEnd;
-                    for(posJSONEnd=1;posJSONEnd<htmlString.length();posJSONEnd++){
-                        if(htmlString.charAt(posJSONEnd)=='{')
-                            brackets++;
-                        else if(htmlString.charAt(posJSONEnd)=='}')
-                            brackets--;
-                        if(brackets==0){
-                            posJSONEnd++;
-                            break;
-                        }
-                    }
-                    if(brackets!=0){
-                        Toast.makeText(getBaseContext(),R.string.message_invalid_json,Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    htmlString=htmlString.substring(0,posJSONEnd);
-                    JSONObject htmlJson=new JSONObject(htmlString);
+                    JSONObject htmlJson=new JSONObject(jsonString);
                     editDialogCover.setText(htmlJson.getJSONObject("mediaInfo").getString("cover"));
                     editDialogTitle.setText(htmlJson.getJSONObject("mediaInfo").getString("series_title"));
                     editDialogDescription.setText(htmlJson.getJSONObject("mediaInfo").getString("evaluate"));

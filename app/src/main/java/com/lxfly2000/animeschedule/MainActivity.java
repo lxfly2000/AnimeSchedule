@@ -25,6 +25,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -306,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<listCount;i++)
             jsonSortTable.add(i);
         final YMDDate last_watch_date_a=new YMDDate(),last_watch_date_b=new YMDDate();//这样真的OK？
-        jsonSortTable.sort(new Comparator<Integer>() {
+        Collections.sort(jsonSortTable,new Comparator<Integer>() {
             @Override
             public int compare(Integer a, Integer b) {
                 switch (order){
@@ -717,10 +718,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText editDialogCategory;
     private CheckBox checkDialogAbandoned;
     private EditText editDialogRanking;
-    //TODO：其他对话框中的控件
     private void EditAnime(final int index, final boolean fromAddAction){
         //此处的index已经是对应到JSON的序号了，不用再从排序表里找
-        //TODO：完善对话框
         AlertDialog editDialog=new AlertDialog.Builder(this)
                 .setTitle(R.string.action_edit_item)
                 .setView(R.layout.dialog_edit_anime)

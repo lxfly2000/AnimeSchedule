@@ -112,7 +112,7 @@ public class BilibiliDownloadDialog {
         linearLayout=(LinearLayout)dialog.findViewById(R.id.linearLayoutEpisodes);
         buttonOk=(Button)dialog.findViewById(android.R.id.button1);
         buttonOk.setEnabled(false);
-        spinnerVideoQuality.setSelection(4);
+        spinnerVideoQuality.setSelection(3);
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {

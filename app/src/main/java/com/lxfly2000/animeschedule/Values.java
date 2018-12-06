@@ -78,7 +78,7 @@ public class Values {
     public static String GetAppDataPathExternal(Context ctx){
         return ctx.getExternalCacheDir().getParentFile().getParent();
     }
-    public static final int typeBilibiliPreferredVideoQualities[]={100,150,200,400,800};
+    public static final int typeBilibiliPreferredVideoQualities[]={100,150,200,400,800,112,74,116};
 
     public static final String jsonRawBilibiliEntry="{" +
             "    \"is_completed\":false,\n" +

@@ -25,5 +25,8 @@
         <item>高清</item>
         <item>超清</item>
         <item>1080P</item>
+        <item>1080P+</item>
+        <item>720P 60</item>
+        <item>1080P 60</item>
     </string-array>
 </resources>

@@ -134,6 +134,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textViewThanksXiaoyaocz"
                     android:textSize="18sp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView20"/>
+            <TextView
+                    android:text="@string/label_using_3rdparty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView21"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:textSize="18sp"/>
+            <TextView
+                    android:text="@string/label_using_3rdparty_filepicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textViewUsingFilepicker"
+                    android:textSize="18sp"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

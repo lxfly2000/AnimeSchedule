@@ -123,7 +123,7 @@
     <string name="label_bilibili_download_app_version">Client version</string>
     <string name="label_bilibili_video_quality">Video quality</string>
     <string name="menu_download">Download</string>
-    <string name="label_bilibili_download_notice">Choose the episodes you want to download.\nAttention:\n1. VIP account is required to download 1080p or higher quality.\n2. Some Animes don\'t have all video qualities.\n3. Region-Restricted Anime is not supported.\n4. You need to manually start downloading in the application.</string>
+    <string name="label_bilibili_download_notice">Choose the episodes you want to download.\nAttention:\n1. VIP account is required to download 1080p or higher quality.\n2. VIP account or account that purchased the Anime is required to download paid Anime.\n3. Some Animes don\'t have all video qualities.\n4. Region-Restricted Anime is not supported.\n5. You need to manually start downloading in the application.</string>
     <string name="label_download_open_bilibili_app">Open Bilibili after this operation</string>
     <string name="message_app_not_found">\"%s\" not found, you might not install this application.</string>
     <string name="menu_download_not_available">Download (Only available for Bilibili link)</string>
@@ -131,4 +131,6 @@
     <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>: helped with the download function.</string>
     <string name="message_bilibili_download_task_created">Download tasks are created, please go to Bilibili client and manually start them.</string>
     <string name="message_bilibili_download_region_restricted_warning">Region-restricted Anime, confirm if downloadable</string>
+    <string name="label_using_3rdparty">Using third-party components</string>
+    <string name="label_using_3rdparty_filepicker" translatable="false"><a href="https://github.com/hedzr/android-file-chooser">hedzr/android-file-chooser</a></string>
 </resources>

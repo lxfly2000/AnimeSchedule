@@ -52,12 +52,14 @@
                     android:text="@string/label_bilibili_download_path"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textView6"/>
-            <EditText
+            <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editBilibiliDownloadPath" android:hint="@string/label_bilibili_download_path"/>
+                    android:layout_height="wrap_content" android:id="@+id/textBilibiliSavePath"
+                    android:layout_weight="1" android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="18sp" android:text="@string/label_bilibili_download_path"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView23"/>
             <TextView
                     android:text="@string/label_bilibili_download_app_version"
                     android:layout_width="match_parent"

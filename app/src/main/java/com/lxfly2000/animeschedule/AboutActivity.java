@@ -55,6 +55,7 @@ public class AboutActivity extends AppCompatActivity {
         SetTextViewWithURL((TextView)findViewById(R.id.textViewGotoGithub),Values.urlAuthor);
         SetTextViewWithURL((TextView)findViewById(R.id.textViewMadeBy),Values.urlAuthorGithubHome);
         SetTextViewWithURL((TextView)findViewById(R.id.textViewThanksXiaoyaocz),null);
+        SetTextViewWithURL((TextView)findViewById(R.id.textViewUsingFilepicker),null);
         findViewById(R.id.buttonDonateQQ).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonDonateAlipay).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonDonateWechat).setOnClickListener(buttonClickListener);

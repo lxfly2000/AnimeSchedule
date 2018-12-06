@@ -3,21 +3,29 @@ package com.lxfly2000.animeschedule;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.UnderlineSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
+import com.obsez.android.lib.filechooser.ChooserDialog;
+
+import java.io.File;
 
 public class SettingsActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private boolean modified;
     private Spinner spinnerSortMethods,spinnerSortOrder,spinnerBilibiliVersions;
-    private EditText editBilibiliSavePath;
+    private TextView textBilibiliSavePath;
     private CheckBox checkSeperateAbandoned;
     static final String keyNeedReload="need_reload";
 
@@ -33,29 +41,28 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerSortOrder=(Spinner)findViewById(R.id.spinnerSortOrder);
         spinnerBilibiliVersions=(Spinner)findViewById(R.id.spinnerBilibiliVersions);
         checkSeperateAbandoned=(CheckBox)findViewById(R.id.checkBoxSeperateAbandoned);
-        editBilibiliSavePath=(EditText)findViewById(R.id.editBilibiliDownloadPath);
+        textBilibiliSavePath=(TextView) findViewById(R.id.textBilibiliSavePath);
 
         spinnerSortMethods.setOnItemSelectedListener(spinnerSelectListener);
         spinnerSortOrder.setOnItemSelectedListener(spinnerSelectListener);
         spinnerBilibiliVersions.setOnItemSelectedListener(spinnerSelectListener);
         checkSeperateAbandoned.setOnClickListener(buttonCallbacks);
-        editBilibiliSavePath.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //Nothing.
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                modified=true;
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //Nothing.
-            }
-        });
         LoadSettings();
+    }
+
+    private void SetBilibiliSavePathText(String text){
+        //https://www.jianshu.com/p/29a379512a13
+        SpannableString spanString=new SpannableString(text);
+        spanString.setSpan(new UnderlineSpan(),0,text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spanString.setSpan(new ForegroundColorSpan(Color.RED),0,text.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spanString.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                OpenBrowseDialog();
+            }
+        },0,text.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textBilibiliSavePath.setText(spanString);
+        textBilibiliSavePath.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override
@@ -73,6 +80,20 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void OpenBrowseDialog(){
+        new ChooserDialog(this)
+                .withFilter(true,false)
+                .withStartFile(textBilibiliSavePath.getText().toString())
+                .withResources(R.string.label_bilibili_download_path,android.R.string.ok,android.R.string.cancel)
+                .withChosenListener(new ChooserDialog.Result() {
+                    @Override
+                    public void onChoosePath(String s, File file) {
+                        SetBilibiliSavePathText(s);
+                        modified=true;
+                    }
+                }).build().show();
+    }
 
     private int originalMethod=-1,originalOrder=-1,originalBilibiliVersion=-1;
     private AdapterView.OnItemSelectedListener spinnerSelectListener=new AdapterView.OnItemSelectedListener() {
@@ -108,7 +129,7 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerSortMethods.setSelection(preferences.getInt(Values.keySortMethod,Values.vDefaultSortMethod));
         checkSeperateAbandoned.setChecked(preferences.getBoolean(Values.keySortSeperateAbandoned,Values.vDefaultSortSeperateAbandoned));
         spinnerBilibiliVersions.setSelection(preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex));
-        editBilibiliSavePath.setText(preferences.getString(Values.keyBilibiliSavePath,Values.GetvDefaultBilibiliSavePath(this)));
+        SetBilibiliSavePathText(preferences.getString(Values.keyBilibiliSavePath,Values.GetvDefaultBilibiliSavePath(this)));
         modified=false;
     }
 
@@ -118,7 +139,7 @@ public class SettingsActivity extends AppCompatActivity {
         wPreference.putInt(Values.keySortMethod,spinnerSortMethods.getSelectedItemPosition());
         wPreference.putBoolean(Values.keySortSeperateAbandoned,checkSeperateAbandoned.isChecked());
         wPreference.putInt(Values.keyBilibiliVersionIndex,spinnerBilibiliVersions.getSelectedItemPosition());
-        wPreference.putString(Values.keyBilibiliSavePath,editBilibiliSavePath.getText().toString());
+        wPreference.putString(Values.keyBilibiliSavePath,textBilibiliSavePath.getText().toString());
         wPreference.apply();
         modified=false;
         Toast.makeText(this,R.string.message_settings_saved,Toast.LENGTH_LONG).show();

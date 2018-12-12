@@ -268,8 +268,11 @@ public class MainActivity extends AppCompatActivity {
             }
             listItem.put("ranking",rankingString.toString());
             StringBuilder strSchedule=new StringBuilder();
-            strSchedule.append(animeJson.GetLastUpdateYMDDate(jsonSortTable.get(i)).ToLocalizedFormatString())
-                    .append(getString(R.string.label_schedule_update_episode,animeJson.GetLastUpdateEpisode(jsonSortTable.get(i))));
+            strSchedule.append(animeJson.GetLastUpdateYMDDate(jsonSortTable.get(i)).ToLocalizedFormatString());
+            if(strSchedule.toString().contains(" ")||Character.isDigit(strSchedule.charAt(strSchedule.length()-1)))
+                strSchedule.append(" ");
+            strSchedule.append(new MinuteStamp(animeJson.GetUpdateTime(jsonSortTable.get(i))).ToString());
+            strSchedule.append(getString(R.string.label_schedule_update_episode,animeJson.GetLastUpdateEpisode(jsonSortTable.get(i))));
             int haveNotWatched=0;
             for(int j=1;j<=animeJson.GetLastUpdateEpisode(jsonSortTable.get(i));j++){
                 if(!animeJson.GetEpisodeWatched(jsonSortTable.get(i),j)){
@@ -328,7 +331,7 @@ public class MainActivity extends AppCompatActivity {
                                 if(animeJson.GetLastUpdateYMDDate(a).IsEarlierThanDate(animeJson.GetLastUpdateYMDDate(b)))
                                     return -1;
                                 else if(animeJson.GetLastUpdateYMDDate(a).IsSameToDate(animeJson.GetLastUpdateYMDDate(b)))
-                                    return 0;
+                                    return Integer.compare(animeJson.GetUpdateTime(a),animeJson.GetUpdateTime(b));
                                 else
                                     return 1;
                         }
@@ -348,8 +351,8 @@ public class MainActivity extends AppCompatActivity {
                             case 1:default:
                                 if(animeJson.GetLastUpdateYMDDate(a).IsLaterThanDate(animeJson.GetLastUpdateYMDDate(b)))
                                     return -1;
-                                else if(animeJson.GetLastUpdateYMDDate(a).IsLaterThanDate(animeJson.GetLastUpdateYMDDate(b)))
-                                    return 0;
+                                else if(animeJson.GetLastUpdateYMDDate(a).IsSameToDate(animeJson.GetLastUpdateYMDDate(b)))
+                                    return Integer.compare(animeJson.GetUpdateTime(b),animeJson.GetUpdateTime(a));
                                 else
                                     return 1;
                         }

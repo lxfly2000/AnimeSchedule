@@ -35,12 +35,12 @@ public class BadgeUtility {
                 case "htc":setBadgeOfHTC(context, count);return;//HTC
                 case "nova":setBadgeOfNova(context, count);return;//NOVA桌面启动器
                 case "oppo":setBadgeOfOPPO(context, count);return;//OPPO
-                case "lemobile":/*TODO:???*/return;//乐视
+                case "lemobile":/*???*/return;//乐视
                 case "vivo":setBadgeOfVIVO(context, count);return;//VIVO
                 case "huawei": case "honor":setHuaweiBadge(context,count);return;//华为
-                case "meizu":/*TODO:???*/return;//魅族
-                case "gionee":/*TODO:???*/return;//金立
-                case "smartisan":/*TODO:???*/return;//锤子
+                case "meizu":/*???*/return;//魅族
+                case "gionee":/*???*/return;//金立
+                case "smartisan":/*???*/return;//锤子
             }
         }
         Toast.makeText(context, "Not found supported launcher.", Toast.LENGTH_LONG).show();

@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.BaseColumns;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private int posListAnimeScroll=0,posListAnimeTop=0;
     private SharedPreferences preferences;
     private int longPressedListItem=-1;
+    private AnimeUpdateNotify notifyService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +123,27 @@ public class MainActivity extends AppCompatActivity {
 
         googleDriveOperator=new GoogleDriveOperator(this);
         BadgeUtility.resetBadgeCount(this,R.mipmap.ic_launcher);
-        //TODO:检查服务是否在运行，如果没有就启动
+    }
+
+    private void BindNotifyService(){
+        //这个不能在启动时就调用，因为回调函数有延迟
+        //启动，获取服务，https://github.com/lxfly2000/lxplayer/blob/master/app/src/main/java/com/lxfly2000/lxplayer/MainActivity.java
+        bindService(new Intent(this, AnimeUpdateNotify.class), new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+                notifyService=((AnimeUpdateNotify.GetServiceBinder)iBinder).GetService();
+                ServiceConnectedActions();
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName componentName) {
+                notifyService=null;
+            }
+        }, BIND_AUTO_CREATE);//这个参数表示服务如果未启动就自动创建
+    }
+
+    private void ServiceConnectedActions(){
+        notifyService.UpdateData(animeJson).RestartTimer();
     }
 
     @Override
@@ -1166,6 +1188,10 @@ public class MainActivity extends AppCompatActivity {
             SaveJsonFile();
         ReadJsonFile();
         DisplayList();
+        if(notifyService==null)
+            BindNotifyService();
+        else
+            ServiceConnectedActions();
     }
 
     private void OnShowAnimeUpdate(){

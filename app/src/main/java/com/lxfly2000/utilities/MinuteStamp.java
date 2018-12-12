@@ -1,5 +1,6 @@
 package com.lxfly2000.utilities;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 public class MinuteStamp {
@@ -17,6 +18,12 @@ public class MinuteStamp {
     public MinuteStamp(String strTime){
         this();
         FromString(strTime);
+    }
+
+    public static MinuteStamp GetNowTime(){
+        //https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html
+        Calendar nowDate=Calendar.getInstance();
+        return new MinuteStamp(nowDate.get(Calendar.HOUR_OF_DAY)*60+nowDate.get(Calendar.MINUTE));
     }
 
     //可以接受含有秒的时间

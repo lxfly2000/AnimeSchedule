@@ -120,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
                 suggestionsIds,CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
         googleDriveOperator=new GoogleDriveOperator(this);
+        BadgeUtility.resetBadgeCount(this,R.mipmap.ic_launcher);
+        //TODO:检查服务是否在运行，如果没有就启动
     }
 
     @Override

@@ -708,6 +708,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editDialogCover;
     private EditText editDialogTitle;
     private EditText editDialogStartDate;
+    private EditText editDialogUpdateTime;
     private EditText editDialogUpdatePeriod;
     private Spinner comboDialogUpdatePeriodUnit;
     private EditText editDialogEpisodeCount;
@@ -732,6 +733,7 @@ public class MainActivity extends AppCompatActivity {
                         animeJson.SetCoverUrl(index,editDialogCover.getText().toString());
                         animeJson.SetTitle(index,editDialogTitle.getText().toString());
                         animeJson.SetStartDate(index,editDialogStartDate.getText().toString());
+                        animeJson.SetUpdateTime(index,new MinuteStamp(editDialogUpdateTime.getText().toString()).GetStamp());
                         animeJson.SetUpdatePeriod(index,ParseStringToInt(editDialogUpdatePeriod.getText().toString(),7));
                         switch (comboDialogUpdatePeriodUnit.getSelectedItemPosition()){
                             case 0:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitDay);break;
@@ -792,6 +794,7 @@ public class MainActivity extends AppCompatActivity {
         editDialogCover=(EditText)editDialog.findViewById(R.id.editDialogCover);
         editDialogTitle=(EditText)editDialog.findViewById(R.id.editDialogTitle);
         editDialogStartDate=(EditText)editDialog.findViewById(R.id.editDialogStartDate);
+        editDialogUpdateTime=(EditText)editDialog.findViewById(R.id.editDialogUpdateTime);
         editDialogUpdatePeriod=(EditText)editDialog.findViewById(R.id.editDialogUpdatePeriod);
         comboDialogUpdatePeriodUnit=(Spinner)editDialog.findViewById(R.id.comboDialogUpdatePeriodUnit);
         editDialogEpisodeCount=(EditText)editDialog.findViewById(R.id.editDialogEpisodeCount);
@@ -809,6 +812,7 @@ public class MainActivity extends AppCompatActivity {
         editDialogCover.setText(animeJson.GetCoverUrl(index));
         editDialogTitle.setText(animeJson.GetTitle(index));
         editDialogStartDate.setText(animeJson.GetStartDate(index));
+        editDialogUpdateTime.setText(new MinuteStamp(animeJson.GetUpdateTime(index)).ToString());
         editDialogUpdatePeriod.setText(String.valueOf(animeJson.GetUpdatePeriod(index)));
         switch (animeJson.GetUpdatePeriodUnit(index)){
             case AnimeJson.unitDay:comboDialogUpdatePeriodUnit.setSelection(0,true);break;
@@ -951,7 +955,9 @@ public class MainActivity extends AppCompatActivity {
                     editDialogDescription.setText(htmlJson.getJSONObject("mediaInfo").getString("evaluate"));
                     editDialogActors.setText(htmlJson.getJSONObject("mediaInfo").getString("actors"));
                     editDialogStaff.setText(htmlJson.getJSONObject("mediaInfo").getString("staff"));
-                    editDialogStartDate.setText(htmlJson.getJSONObject("pubInfo").getString("pub_time").split(" ")[0]);
+                    String[]pubTimeParts=htmlJson.getJSONObject("pubInfo").getString("pub_time").split(" ");
+                    editDialogStartDate.setText(pubTimeParts[0]);
+                    editDialogUpdateTime.setText(pubTimeParts[1]);
                     if(htmlJson.getJSONObject("pubInfo").getString("weekday").contentEquals("-1")){
                         editDialogUpdatePeriod.setText("1");
                         comboDialogUpdatePeriodUnit.setSelection(1,true);
@@ -993,7 +999,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_LONG).show();
                     return;
                 }
-                Pattern p=Pattern.compile("albumId: *[0-9]+,");
+                Pattern p=Pattern.compile("albumId: *\"?[0-9]+\"?,");
                 try {
                     String htmlString = StreamUtility.GetStringFromStream(stream);//整个网页的内容
                     Matcher m = p.matcher(htmlString);
@@ -1091,10 +1097,14 @@ public class MainActivity extends AppCompatActivity {
                     jsonString=jsonString.substring(jsonString.indexOf('{'),jsonString.lastIndexOf('}')+1);
                     JSONObject jsonObject=new JSONObject(jsonString);
                     editDialogDescription.setText(jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("desc"));
-                    if(jsonObject.getJSONObject("data").getString("ps").contains("每周")){
+                    String qiyiPlayStrategy=jsonObject.getJSONObject("data").getString("ps");
+                    if(qiyiPlayStrategy.contains("每周")){
                         editDialogUpdatePeriod.setText("7");
                         comboDialogUpdatePeriodUnit.setSelection(0,true);
                     }
+                    Matcher mTime=Pattern.compile("[0-9]+:[0-9]+").matcher(qiyiPlayStrategy);
+                    if(mTime.find())
+                        editDialogUpdateTime.setText(qiyiPlayStrategy.substring(mTime.start(),mTime.end()));
                     ReadIQiyiJsonpAnimeCategory_OnCallback(String.valueOf(jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getInt("id")),
                             jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("vid"));
                 }catch (JSONException e){
@@ -1129,7 +1139,7 @@ public class MainActivity extends AppCompatActivity {
                         editDialogStartDate.setText(startTimeString.substring(0,4)+"-"+startTimeString.substring(4,6)+"-"+startTimeString.substring(6));
                     else
                         Toast.makeText(getBaseContext(),getString(R.string.message_date_string_too_short,startTimeString.length()),Toast.LENGTH_LONG).show();
-                    editDialogEpisodeCount.setText(String.valueOf(jsonObject.getInt("es")));//TODO:其他地方也有疑似总集数的属性
+                    editDialogEpisodeCount.setText(String.valueOf(jsonObject.getInt("es")));//其他地方也有疑似总集数的属性
                     editDialogCover.setText(jsonObject.getString("apic"));
                 }catch (JSONException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
@@ -81,24 +81,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    <TextView
-                            android:text="@string/label_start_date"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/textDialogStartDate"/>
-                    <EditText
+                            android:layout_height="match_parent" android:layout_weight="1">
+                        <TextView
+                                android:text="@string/label_start_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" android:id="@+id/textDialogStartDate"/>
+                        <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:id="@+id/editDialogStartDate"
+                                android:hint="@string/label_start_date" android:inputType="date"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:id="@+id/editDialogStartDate"
-                            android:hint="@string/label_start_date" android:inputType="date"/>
+                            android:layout_height="match_parent" android:layout_weight="1">
+                        <TextView
+                                android:text="@string/label_update_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" android:id="@+id/textDialogUpdateTime"/>
+                        <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="time"
+                                android:ems="10"
+                                android:id="@+id/editDialogUpdateTime" android:hint="@string/label_update_time"/>
+                    </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content" android:layout_weight="1">
                     <TextView
                             android:text="@string/label_update_period"
                             android:layout_width="match_parent"
@@ -127,8 +147,8 @@
                     android:layout_height="match_parent" android:layout_weight="1">
                 <LinearLayout
                         android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_weight="1">
                     <TextView
                             android:text="@string/label_anime_episode_count"
                             android:layout_width="match_parent"
@@ -143,7 +163,7 @@
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content" android:layout_weight="1">
                     <TextView
                             android:text="@string/label_anime_absense_count"
                             android:layout_width="match_parent"
@@ -209,7 +229,7 @@
                 <CheckBox
                         android:text="@string/label_abandoned"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/checkAbandoned"
+                        android:layout_height="match_parent" android:id="@+id/checkAbandoned"
                         android:layout_weight="1"/>
             </LinearLayout>
         </LinearLayout>

@@ -485,6 +485,23 @@ public class AnimeJson {
         return jsonExtra.lastUpdateDate.get(index);
     }
 
+    public int GetUpdateTime(int index){
+        try {
+            return json.getJSONArray("anime").getJSONObject(index).getInt("update_time_int");
+        }catch (JSONException e){
+            return 0;//如果没有这个属性就返回默认值0:00
+        }
+    }
+
+    public boolean SetUpdateTime(int index, int time){
+        try {
+            json.getJSONArray("anime").getJSONObject(index).put("update_time_int", time);
+        }catch (JSONException e){
+            return false;
+        }
+        return true;
+    }
+
     public int AddNewItem(){
         int ni=-1;
         try {
@@ -500,6 +517,7 @@ public class AnimeJson {
             SetActors(ni,"");
             SetStaff(ni,"");
             SetStartDate(ni,YMDDate.GetTodayDate().ToYMDString());
+            SetUpdateTime(ni,0);
             SetUpdatePeriod(ni,7);
             SetUpdatePeriodUnit(ni,unitDay);
             SetEpisodeCount(ni,-1);

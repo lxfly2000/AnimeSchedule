@@ -133,4 +133,5 @@
     <string name="message_bilibili_download_region_restricted_warning">Region-restricted Anime, confirm if downloadable</string>
     <string name="label_using_3rdparty">Using third-party components</string>
     <string name="label_using_3rdparty_filepicker" translatable="false"><a href="https://github.com/hedzr/android-file-chooser">hedzr/android-file-chooser</a></string>
+    <string name="label_update_time">Update Time</string>
 </resources>

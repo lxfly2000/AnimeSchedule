@@ -1,11 +1,11 @@
 package com.lxfly2000.animeschedule;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.*;
 import android.graphics.BitmapFactory;
-import android.media.RingtoneManager;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
@@ -98,7 +98,7 @@ public class AnimeUpdateNotify extends Service {
                 //https://blog.csdn.net/yuzhiboyi/article/details/8484771
                 .setContentIntent(pi)
                 .setFullScreenIntent(pi,false)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setDefaults(Notification.DEFAULT_LIGHTS|Notification.DEFAULT_SOUND)
                 .setAutoCancel(true);
         if(FileUtility.IsFileExists(coverPath))
             nb.setLargeIcon(BitmapFactory.decodeFile(coverPath));

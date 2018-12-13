@@ -108,7 +108,7 @@ public class AnimeUpdateNotify extends Service {
             @Override
             public void run() {
                 nb.setFullScreenIntent(null,false)
-                        .setSound(null);
+                        .setDefaults(Notification.DEFAULT_LIGHTS);
                 nm.notify(index,nb.build());//Bug 非预期的动作：即使点了通知框还是会在状态栏中再显示一次
             }
         },5000);
@@ -125,7 +125,7 @@ public class AnimeUpdateNotify extends Service {
             public void run() {
                 NotifyUpdateInfo();
             }
-        },0,1800000);//每隔30分钟运行一次
+        },0,300000);//每隔5分钟运行一次
         return this;
     }
 

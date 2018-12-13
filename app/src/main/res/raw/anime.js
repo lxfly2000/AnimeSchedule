@@ -1370,7 +1370,7 @@ setJsonData({
 		"actors":"樱木雏子：M・A・O\n柊真雪：小倉唯\n黑柳琉璃子：吉田有里\n中岛由爱：高野麻里佳\n夏川久依奈：富田美憂\n荻野千秋：東城日沙子",
 		"update_time_int":1290
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0099eed28f8389f979dc6c66a49a0d83c7e76e42.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/856",
 		"title":"GOSICK",
@@ -1386,8 +1386,8 @@ setJsonData({
 		"category":["日常","奇幻","萌系","催泪","轻改","推理","萝莉"],
 		"staff":"原作：桜庭一樹\n监督：難波日登志\n脚本：猪爪慎一、岡田麿里、根元歳三\n分镜：松尾衡、難波日登志、後藤圭二、森邦宏\n演出：政木伸一、京田知己、博史池畠、和田純一\n系列构成：岡田麿里\n人物原案：武田日向\n人物设定：川元利浩、富岡隆司\n总作画监督：田中誠輝、谷口淳一郎\n作画监督：富岡隆司、三輪和宏\n音乐：中川幸太郎\n音响监督：原口昇\n摄影监督：古本真由子\n动画制作：BONES",
 		"actors":"维多利加·德·布洛瓦：悠木碧\n久城一弥：江口拓也\n柯蒂丽亚·盖洛：沢城みゆき\n艾薇儿·布莱德利：下屋則子\n赛西尔：鹿野優以\n苏菲：根谷美智子\n布莱恩·罗斯可：大川透\n古雷温·德·布洛瓦：木内秀信\n..",
-		"last_watch_episode_anime":14,
-		"last_watch_date_anime":"2018-12-12",
+		"last_watch_episode_anime":15,
+		"last_watch_date_anime":"2018-12-13",
 		"update_time_int":0
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
@@ -2592,7 +2592,7 @@ setJsonData({
 		"actors":"索菲·暮光：富田美忧\n天野灯：篠原侑\n夏木日向：Lynn\n艾莉：和气杏未\n仓井朔夜：日高里菜\n青木夕：内田彩",
 		"update_time_int":1260
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/1cc333ff578e5ea9fded7e454953a4e2291440c2.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25733",
 		"title":"青春猪头少年不会梦到兔女郎学姐",
@@ -2602,12 +2602,12 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":-1,
 		"absense_count":0,
-		"abandoned":false,
+		"abandoned":true,
 		"rank":3,
 		"color":"silver",
 		"category":["奇幻","校园","恋爱","轻改"],
-		"last_watch_date_anime":"2018-12-9",
-		"last_watch_episode_anime":10,
+		"last_watch_date_anime":"2018-12-13",
+		"last_watch_episode_anime":11,
 		"staff":"原作：鸭志田一（电撃文库刊《青春猪头少年系列》）\n原作插画：沟口凯吉\n监督：增井壮一\n总编剧：横谷昌宏\n角色设计：田村里美\n总作画监督：田村里美、高田晃\n助监督：いわたかずや\n道具设计：高田晃\n美术设定：藤井一志\n美术监督：涉谷幸弘\n色彩设计：横田明日香\n3D监督：野间裕介、唐泽佑人\n摄影监督：关谷能弘\n2D工作、特殊效果：内海纱耶\n编辑：三嶋章纪\n音响监督：岩浪美和\n音乐：fox capture plan\n动画制作：CloverWorks",
 		"actors":"梓川咲太：石川界人\n樱岛麻衣：濑户麻沙美\n梓川枫：久保由利香\n古贺朋绘：东山奈央\n双叶理央：种崎敦美\n丰滨和花：内田真礼\n牧之原翔子：水濑祈",
 		"update_time_int":170
@@ -2779,7 +2779,7 @@ setJsonData({
 		"actors":"利姆鲁·特恩佩斯特：冈咲美保\n大贤者：丰口惠美\n维鲁德拉·特恩佩斯特：前野智昭\n井沢静江：花守由美里\n岚牙：小林亲弘\n红丸：古川慎\n朱菜：千本木彩花\n紫苑：M・A・O\n苍影：江口拓也\n白老：大塚芳忠\n三上悟：寺岛拓笃\n希兹：花守由美里\n利古鲁德：山本兼平\n利古鲁：石谷春贵\n哥布塔：泊明日菜\n凯金：斧敦\n托蕾妮：田中理惠\n艾莲：熊田茜音\n卡巴尔：高梨谦吾\n米莉姆：日高里菜",
 		"update_time_int":30
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/468ebdb93491b6fa263cf5eb829a0ec65ed266ab.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25697",
 		"title":"只要贝尔哲布布大小姐喜欢就好",
@@ -2793,8 +2793,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日常","奇幻","搞笑","萌系","恋爱","漫画改","神魔"],
-		"last_watch_date_anime":"2018-12-7",
-		"last_watch_episode_anime":9,
+		"last_watch_date_anime":"2018-12-13",
+		"last_watch_episode_anime":10,
 		"staff":"原作：Matoba\n监督：和卜凑\n系列构成 \/ 脚本：富田赖子\n角色设计：住本悦子\n音乐：分岛花音 \/ 千叶“naotyu-”直树\n音响监督：本山哲\n动画制作：LIDENFILMS",
 		"actors":"贝尔哲布布：大西沙织\n穆林：安田陆矢\n贝尔芬格尔：久野美咲\n阿撒塞尔：日野聪\n莎尔葛塔纳斯：加隈亚衣\n亚斯塔洛特：松冈祯丞\n欧莉诺姆：赤崎千夏\n但他林：悠木碧\n摩洛：兴津和幸\n旁白：井上喜久子",
 		"update_time_int":170

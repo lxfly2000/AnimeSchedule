@@ -57,7 +57,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/editTextDescription" android:hint="@string/label_anime_description"/>
+                    android:id="@+id/editTextDescription" android:hint="@string/label_anime_description"
+                    android:inputType="text"/>
             <TextView
                     android:text="@string/label_anime_actors"
                     android:layout_width="match_parent"
@@ -66,7 +67,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/editTextActors" android:hint="@string/label_anime_actors"/>
+                    android:id="@+id/editTextActors" android:hint="@string/label_anime_actors"
+                    android:inputType="text"/>
             <TextView
                     android:text="@string/label_anime_staff"
                     android:layout_width="match_parent"
@@ -75,7 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/editTextStaff" android:hint="@string/label_anime_staff"/>
+                    android:id="@+id/editTextStaff" android:hint="@string/label_anime_staff" android:inputType="text"/>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -91,7 +93,8 @@
                         <TextView
                                 android:text="@string/label_start_date"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" android:id="@+id/textDialogStartDate"/>
+                                android:layout_height="wrap_content" android:id="@+id/textDialogStartDate"
+                                android:singleLine="true"/>
                         <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

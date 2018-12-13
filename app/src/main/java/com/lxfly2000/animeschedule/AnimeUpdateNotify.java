@@ -1,24 +1,17 @@
 package com.lxfly2000.animeschedule;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
-import com.lxfly2000.utilities.BadgeUtility;
-import com.lxfly2000.utilities.FileUtility;
-import com.lxfly2000.utilities.MinuteStamp;
-import com.lxfly2000.utilities.YMDDate;
+import android.util.SparseArray;
+import com.lxfly2000.utilities.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -63,22 +56,7 @@ public class AnimeUpdateNotify extends Service {
             animeDate=jsonForNotify.GetLastUpdateYMDDate(i);
             animeMinute=jsonForNotify.GetUpdateTime(i);
             if (CompareDateTime(lastDate,lastMinute,animeDate,animeMinute)==1&&CompareDateTime(animeDate,animeMinute,todayDate,nowMinute)!=-1) {
-                StringBuilder strSchedule=new StringBuilder();
-                strSchedule.append(jsonForNotify.GetLastUpdateYMDDate(i).ToLocalizedFormatString());
-                if(strSchedule.toString().contains(" ")||Character.isDigit(strSchedule.charAt(strSchedule.length()-1)))
-                    strSchedule.append(" ");
-                strSchedule.append(new MinuteStamp(jsonForNotify.GetUpdateTime(i)).ToString());
-                strSchedule.append(getString(R.string.label_schedule_update_episode,jsonForNotify.GetLastUpdateEpisode(i)));
-                //获取cover路径
-                String coverUrl=jsonForNotify.GetCoverUrl(i);
-                String[]tempSplit=coverUrl.split("/");
-                String coverExt="";
-                if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
-                    coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
-                }
-                String coverPath=Values.GetCoverPathOnLocal()+"/"+
-                        jsonForNotify.GetTitle(i).replaceAll("[/\":|<>?*]","_")+coverExt;
-                PublishUpdateNotification(updateCount,jsonForNotify.GetTitle(i),strSchedule.toString(),coverPath,jsonForNotify.GetWatchUrl(i));
+                PublishUpdateNotification(i);
                 updateCount++;
             }
         }
@@ -88,40 +66,61 @@ public class AnimeUpdateNotify extends Service {
         updatePrefWrite.apply();
         BadgeUtility.setBadgeCount(this,updateCount,R.mipmap.ic_launcher);
     }
+
+    private static final String ACTION_WATCH_ANIME=BuildConfig.APPLICATION_ID+".WatchAnime";
+    private SparseArray<Timer> timersHideNotifyHead =new SparseArray<>();
     
-    private void PublishUpdateNotification(int id,String title,String description,String imgPath,String actionUri){
-        NotificationManager nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        PendingIntent pi=PendingIntent.getActivity(this,0,new Intent(Intent.ACTION_VIEW).setData(Uri.parse(actionUri)),0);
+    private void PublishUpdateNotification(final int index){
+        StringBuilder strSchedule=new StringBuilder();
+        strSchedule.append(jsonForNotify.GetLastUpdateYMDDate(index).ToLocalizedFormatString());
+        if(strSchedule.toString().contains(" ")||Character.isDigit(strSchedule.charAt(strSchedule.length()-1)))
+            strSchedule.append(" ");
+        strSchedule.append(new MinuteStamp(jsonForNotify.GetUpdateTime(index)).ToString());
+        strSchedule.append(getString(R.string.label_schedule_update_episode,jsonForNotify.GetLastUpdateEpisode(index)));
+        //获取cover路径
+        String coverUrl=jsonForNotify.GetCoverUrl(index);
+        String[]tempSplit=coverUrl.split("/");
+        String coverExt="";
+        if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
+            coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
+        }
+        String coverPath=Values.GetCoverPathOnLocal()+"/"+
+                jsonForNotify.GetTitle(index).replaceAll("[/\":|<>?*]","_")+coverExt;
+        final NotificationManager nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        //putExtra的参数在获取时为空的问题：https://blog.csdn.net/wangbole/article/details/7465385
+        //注意requestCode在不同的通知里也要是不同的，否则会被覆盖
+        PendingIntent pi=PendingIntent.getBroadcast(this,index,new Intent(ACTION_WATCH_ANIME).putExtra("index",index),PendingIntent.FLAG_UPDATE_CURRENT);
         //Builder方法过时解决：https://blog.csdn.net/zwk_sys/article/details/79661045
-        NotificationCompat.Builder nb=new NotificationCompat.Builder(this)
+        final NotificationCompat.Builder nb=new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(description)
+                .setContentTitle(jsonForNotify.GetTitle(index))
+                .setContentText(strSchedule.toString())
                 //https://blog.csdn.net/yuzhiboyi/article/details/8484771
                 .setContentIntent(pi)
-                //.setFullScreenIntent(pi,false)
+                .setFullScreenIntent(pi,false)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setAutoCancel(true);
-        if(FileUtility.IsFileExists(imgPath))
-            nb.setLargeIcon(BitmapFactory.decodeFile(imgPath));
-        nm.notify(id,nb.build());
-        /*new Timer().schedule(new TimerTask() {
+        if(FileUtility.IsFileExists(coverPath))
+            nb.setLargeIcon(BitmapFactory.decodeFile(coverPath));
+        nm.notify(index,nb.build());
+        timersHideNotifyHead.put(index,new Timer());
+        timersHideNotifyHead.get(index).schedule(new TimerTask() {
             @Override
             public void run() {
                 nb.setFullScreenIntent(null,false)
                         .setSound(null);
-                nm.notify(id,nb.build());//Bug 非预期的动作：即使点了通知框还是会在状态栏中再显示一次
+                nm.notify(index,nb.build());//Bug 非预期的动作：即使点了通知框还是会在状态栏中再显示一次
             }
-        },5000);*/
+        },5000);
     }
 
-    Timer timer=null;
+    Timer timerCheckAnimeUpdate =null;
 
     public AnimeUpdateNotify RestartTimer(){
-        if(timer!=null)
-            timer.cancel();
-        timer=new Timer();
-        timer.schedule(new TimerTask() {
+        if(timerCheckAnimeUpdate !=null)
+            timerCheckAnimeUpdate.cancel();
+        timerCheckAnimeUpdate =new Timer();
+        timerCheckAnimeUpdate.schedule(new TimerTask() {
             @Override
             public void run() {
                 NotifyUpdateInfo();
@@ -130,10 +129,30 @@ public class AnimeUpdateNotify extends Service {
         return this;
     }
 
+    BroadcastReceiver notifyBroadcastReceiver;
+
     @Override
     public void onDestroy(){
-        timer.cancel();
+        timerCheckAnimeUpdate.cancel();
+        unregisterReceiver(notifyBroadcastReceiver);
         super.onDestroy();
+    }
+
+    @Override
+    public void onCreate(){
+        super.onCreate();
+        //因为要用到json，所以为了简单起见用动态创建广播的方式响应通知动作
+        notifyBroadcastReceiver=new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if(ACTION_WATCH_ANIME.equals(intent.getAction())) {
+                    int index=intent.getIntExtra("index",0);
+                    timersHideNotifyHead.get(index).cancel();
+                    AndroidUtility.OpenUri(context, jsonForNotify.GetWatchUrl(index));
+                }
+            }
+        };
+        registerReceiver(notifyBroadcastReceiver,new IntentFilter(ACTION_WATCH_ANIME));
     }
 
     public class GetServiceBinder extends Binder{

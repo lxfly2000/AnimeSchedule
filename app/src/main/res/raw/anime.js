@@ -3238,5 +3238,26 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2018-11-30",
 		"update_time_int":0
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/02e4662de401957e331329d5835176fb63797615.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss525",
+		"title":"蔷薇少女(2013)",
+		"description":"提示：新作动画的内容与前两部旧动画无关，为漫画原作剧情。\n\n樱田纯，一名不愿上学而长期不出家门的中学生，热衷于上网购物，喜欢在购买物品后的退货限期内退回物品。有一天收到一封来信，上面只有一个「上发条还是不上发条」的选项，纯在好奇心驱使下选择了「上发条」，之后房间就出现了一个没有署名的神秘皮箱，里面装着一个非常美丽而且质感近似真人的少女人偶（ドール），使用木箱内的发条转动背部的开关后，人偶像有生命般的活动起来，向纯说：「我是真红，蔷薇少女第五人偶。」突然小丑布偶（漫画中则为小熊布偶，水银灯派出的）来袭，纯在万般无奈下在不明白怎么回事的情况下糊里糊涂地成为了真红的媒介，结下了主仆关系。之后，一个结下类似契约的人类和人偶出现在纯和真红面前，称为Rozen Maiden（蔷薇少女） 的人偶们的战斗就此展开了……\n动画制作：Studio DEEN",
+		"actors":"金丝雀：志村由美\n雪华绮晶：千葉千恵巳\n樱田纯：逢坂良太\n樱田纯：真田麻美\n水银灯：田中理恵\n真红：泽城美雪\n苍星石：森永理科\n翠星石：桑谷夏子\n雏莓：野川樱\n",
+		"staff":"脚本：望月智充\n导演：畠山守\n絵コンテ：畠山守、登坂晋、宮尾佳和、竹下健一、わたなべひろし、名村英敏\n作画監督：築山翔太、松尾亜希子、服部憲知、堀越久美子、ChangBumChul、森本浩文、ウエタミノル\n原作：PEACH-PIT\n演出：浅利藤彰、畠山守、登坂晋、村田尚樹、赤城博昭、久保太郎、美甘義人、小柴純弥、竹下健一\n分镜：畠山守、登坂晋、宮尾佳和、竹下健一、わたなべひろし、名村英敏\n原画： 一居一平\n背景美术： 丸山由紀子\n剪辑： 松原理恵\n主题歌演出： ALI PROJECT、Annabel\n音响监督： 望月智充\n音乐制作： ランティス\n动画制作： Studio DEEN",
+		"start_date":"2013-07-04",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":5,
+		"color":"silver",
+		"category":["萌系","奇幻","致郁"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0,
+		"create_date":"2018-12-13"
 	}]
 });

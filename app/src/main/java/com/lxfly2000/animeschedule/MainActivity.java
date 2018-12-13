@@ -123,12 +123,14 @@ public class MainActivity extends AppCompatActivity {
 
         googleDriveOperator=new GoogleDriveOperator(this);
         BadgeUtility.resetBadgeCount(this,R.mipmap.ic_launcher);
+        //这样启动的服务表示服务与Activity是独立的，即使Activity被关闭服务也不会停止
+        startService(new Intent(this,AnimeUpdateNotify.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
+    private ServiceConnection updateNotifyConnection=null;
+
     private void BindNotifyService(){
-        //这个不能在启动时就调用，因为回调函数有延迟
-        //启动，获取服务，https://github.com/lxfly2000/lxplayer/blob/master/app/src/main/java/com/lxfly2000/lxplayer/MainActivity.java
-        bindService(new Intent(this, AnimeUpdateNotify.class), new ServiceConnection() {
+        updateNotifyConnection=new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 notifyService=((AnimeUpdateNotify.GetServiceBinder)iBinder).GetService();
@@ -139,7 +141,18 @@ public class MainActivity extends AppCompatActivity {
             public void onServiceDisconnected(ComponentName componentName) {
                 notifyService=null;
             }
-        }, BIND_AUTO_CREATE);//这个参数表示服务如果未启动就自动创建
+        };
+        //这个不能在启动时就调用，因为回调函数有延迟
+        //注意要在退出时解除绑定
+        //启动，获取服务，https://github.com/lxfly2000/lxplayer/blob/master/app/src/main/java/com/lxfly2000/lxplayer/MainActivity.java
+        bindService(new Intent(this, AnimeUpdateNotify.class), updateNotifyConnection, 0);
+    }
+
+    @Override
+    protected void onDestroy(){
+        if(updateNotifyConnection!=null)
+            unbindService(updateNotifyConnection);
+        super.onDestroy();
     }
 
     private void ServiceConnectedActions(){
@@ -785,6 +798,12 @@ public class MainActivity extends AppCompatActivity {
                         animeJson.SetRank(index,Math.min(ParseStringToInt(editDialogRanking.getText().toString(),0),5));
                         Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();
                         SaveAndReloadJsonFile(true);
+                        for(int i_list=0;i_list<jsonSortTable.size();i_list++){
+                            if(jsonSortTable.get(i_list)==index){
+                                listAnime.setSelection(i_list);
+                                break;
+                            }
+                        }
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

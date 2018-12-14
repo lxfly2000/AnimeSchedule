@@ -1372,11 +1372,11 @@ setJsonData({
 		"actors":"樱木雏子：M・A・O\n柊真雪：小倉唯\n黑柳琉璃子：吉田有里\n中岛由爱：高野麻里佳\n夏川久依奈：富田美憂\n荻野千秋：東城日沙子",
 		"update_time_int":1290
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,false,false,false,false,false],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0099eed28f8389f979dc6c66a49a0d83c7e76e42.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/856",
 		"title":"GOSICK",
-		"description":"就读于拥有悠久庄严历史的圣玛格丽特学园的东方少年——久城一弥，某天在学园的温室内与一位身著华丽服装、犹如洋娃娃般美丽的少女——维多利加相遇了。维多利加拥有侦探般聪明的头脑和敏锐的洞察力，只要她所到之处，再怎么离奇的谜团都会被解开。之后维多利加与久城一弥遭遇了种种怪异离奇的事件，并揭开了维多利加的身世之谜。\n动画制作：BONES\n========\n这个看得我好懵啊。",
+		"description":"就读于拥有悠久庄严历史的圣玛格丽特学园的东方少年——久城一弥，某天在学园的温室内与一位身著华丽服装、犹如洋娃娃般美丽的少女——维多利加相遇了。维多利加拥有侦探般聪明的头脑和敏锐的洞察力，只要她所到之处，再怎么离奇的谜团都会被解开。之后维多利加与久城一弥遭遇了种种怪异离奇的事件，并揭开了维多利加的身世之谜。\n动画制作：BONES\n========\n这个看得我好懵啊。（指22话以前）\n维包子抱走，这个剧情炮弹还给冈妈。",
 		"start_date":"2011-01-07",
 		"update_period":7,
 		"update_period_unit":"day",
@@ -1388,7 +1388,7 @@ setJsonData({
 		"category":["日常","奇幻","萌系","催泪","轻改","推理","萝莉"],
 		"staff":"原作：桜庭一樹\n监督：難波日登志\n脚本：猪爪慎一、岡田麿里、根元歳三\n分镜：松尾衡、難波日登志、後藤圭二、森邦宏\n演出：政木伸一、京田知己、博史池畠、和田純一\n系列构成：岡田麿里\n人物原案：武田日向\n人物设定：川元利浩、富岡隆司\n总作画监督：田中誠輝、谷口淳一郎\n作画监督：富岡隆司、三輪和宏\n音乐：中川幸太郎\n音响监督：原口昇\n摄影监督：古本真由子\n动画制作：BONES",
 		"actors":"维多利加·德·布洛瓦：悠木碧\n久城一弥：江口拓也\n柯蒂丽亚·盖洛：沢城みゆき\n艾薇儿·布莱德利：下屋則子\n赛西尔：鹿野優以\n苏菲：根谷美智子\n布莱恩·罗斯可：大川透\n古雷温·德·布洛瓦：木内秀信\n..",
-		"last_watch_episode_anime":18,
+		"last_watch_episode_anime":24,
 		"last_watch_date_anime":"2018-12-14",
 		"update_time_int":0
 	},{

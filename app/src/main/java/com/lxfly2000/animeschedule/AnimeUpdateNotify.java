@@ -53,6 +53,8 @@ public class AnimeUpdateNotify extends Service {
         int nowMinute=MinuteStamp.GetNowTime().GetStamp(),lastMinute=updatePreference.getInt("time",0),animeMinute;
         int updateCount=0;
         for (int i=0;i<jsonForNotify.GetAnimeCount();i++) {
+            if(jsonForNotify.GetAbandoned(i))
+                continue;
             animeDate=jsonForNotify.GetLastUpdateYMDDate(i);
             animeMinute=jsonForNotify.GetUpdateTime(i);
             if (CompareDateTime(lastDate,lastMinute,animeDate,animeMinute)==1&&CompareDateTime(animeDate,animeMinute,todayDate,nowMinute)!=-1) {

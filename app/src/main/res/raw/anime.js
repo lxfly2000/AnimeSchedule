@@ -238,7 +238,7 @@ setJsonData({
 	},{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ad4dc7bf7bef59255536e54fe818985b0e270d14.jpg",
 		"title":"约会大作战",
-		"description":"Bili:【本片翻译由澄空学园字幕组提供】故事是讲述一名普通的高中二年级生五河士道，突然在某一天遇上了一场大爆炸，而在这场大爆炸之中竟然出现一名身穿盔甲手持大剑的神秘美少女。原来这名少女的真正身份是“精灵”，是会给世界带来毁灭性灾难的存在，她的再次出现，将会给地球带来毁灭性的未来！然而主人公士道却有方法阻止世界毁灭，这个唯一能够阻止世界毁灭的方法就是——要与她约会！\n动画制作：AIC PLUS+\n2018-7-20:下架。",
+		"description":"Bili:【本片翻译由澄空学园字幕组提供】故事是讲述一名普通的高中二年级生五河士道，突然在某一天遇上了一场大爆炸，而在这场大爆炸之中竟然出现一名身穿盔甲手持大剑的神秘美少女。原来这名少女的真正身份是“精灵”，是会给世界带来毁灭性灾难的存在，她的再次出现，将会给地球带来毁灭性的未来！然而主人公士道却有方法阻止世界毁灭，这个唯一能够阻止世界毁灭的方法就是——要与她约会！\n动画制作：AIC PLUS+\n2018-7-20:下架。\n2018-12-14：已恢复。",
 		"start_date":"2013-4-5",
 		"update_period":7,
 		"update_period_unit":"day",
@@ -250,7 +250,9 @@ setJsonData({
 		"rank":3,
 		"color":"rgb(101,187,114)",
 		"category":["后宫","战斗"],
-		"update_time_int":0
+		"update_time_int":0,
+		"actors":"(NOT SET)",
+		"staff":"(NOT SET)"
 	},{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e4bcaeae56eee78a72319a2e28f119665c12e590.jpg",
 		"title":"约会大作战第二季",
@@ -797,7 +799,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0efa2407bf0cd299782b9a00502526793faaa69c.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/6076",
 		"title":"小林家的龙女仆SP",
-		"description":"在单身的辛苦OL小林身边突然出现的女仆装束的美少女托尔。\n长着角和尾巴的她的身姿正是所谓的龙娘。\n在醉酒的小林邀请下说要到家里去的托尔，鬼使神差地开始以小林家女仆的身份工作……！？\n“女仆”+“龙”=“女仆龙”有着笨手笨脚的可爱之处！\n龙娘与人类之间基本上很温暖、偶尔有些黑暗的异种族间交流喜剧！！\n动画制作：京都动画",
+		"description":"在单身的辛苦OL小林身边突然出现的女仆装束的美少女托尔。\n长着角和尾巴的她的身姿正是所谓的龙娘。\n在醉酒的小林邀请下说要到家里去的托尔，鬼使神差地开始以小林家女仆的身份工作……！？\n“女仆”+“龙”=“女仆龙”有着笨手笨脚的可爱之处！\n龙娘与人类之间基本上很温暖、偶尔有些黑暗的异种族间交流喜剧！！\n动画制作：京都动画\n2018-12-14：未知原因下架。",
 		"start_date":"2017-03-15",
 		"update_period":1,
 		"update_period_unit":"month",
@@ -1086,7 +1088,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8178d273c28293ebdcc3f2ea38489b48ddc17edd.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/5495",
 		"title":"为美好的世界献上祝福！OVA",
-		"description":"单行本第9卷限定版同捆DVD。\n动画制作：Studio DEEN",
+		"description":"单行本第9卷限定版同捆DVD。\n动画制作：Studio DEEN\n2018-12-14：未知原因下架。",
 		"start_date":"2016-06-24",
 		"update_period":7,
 		"update_period_unit":"day",
@@ -1370,24 +1372,24 @@ setJsonData({
 		"actors":"樱木雏子：M・A・O\n柊真雪：小倉唯\n黑柳琉璃子：吉田有里\n中岛由爱：高野麻里佳\n夏川久依奈：富田美憂\n荻野千秋：東城日沙子",
 		"update_time_int":1290
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,false,false,false,false,false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0099eed28f8389f979dc6c66a49a0d83c7e76e42.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/856",
 		"title":"GOSICK",
-		"description":"就读于拥有悠久庄严历史的圣玛格丽特学园的东方少年——久城一弥，某天在学园的温室内与一位身著华丽服装、犹如洋娃娃般美丽的少女——维多利加相遇了。维多利加拥有侦探般聪明的头脑和敏锐的洞察力，只要她所到之处，再怎么离奇的谜团都会被解开。之后维多利加与久城一弥遭遇了种种怪异离奇的事件，并揭开了维多利加的身世之谜。\n动画制作：BONES",
+		"description":"就读于拥有悠久庄严历史的圣玛格丽特学园的东方少年——久城一弥，某天在学园的温室内与一位身著华丽服装、犹如洋娃娃般美丽的少女——维多利加相遇了。维多利加拥有侦探般聪明的头脑和敏锐的洞察力，只要她所到之处，再怎么离奇的谜团都会被解开。之后维多利加与久城一弥遭遇了种种怪异离奇的事件，并揭开了维多利加的身世之谜。\n动画制作：BONES\n========\n这个看得我好懵啊。",
 		"start_date":"2011-01-07",
 		"update_period":7,
 		"update_period_unit":"day",
 		"episode_count":24,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":5,
+		"rank":4,
 		"color":"silver",
 		"category":["日常","奇幻","萌系","催泪","轻改","推理","萝莉"],
 		"staff":"原作：桜庭一樹\n监督：難波日登志\n脚本：猪爪慎一、岡田麿里、根元歳三\n分镜：松尾衡、難波日登志、後藤圭二、森邦宏\n演出：政木伸一、京田知己、博史池畠、和田純一\n系列构成：岡田麿里\n人物原案：武田日向\n人物设定：川元利浩、富岡隆司\n总作画监督：田中誠輝、谷口淳一郎\n作画监督：富岡隆司、三輪和宏\n音乐：中川幸太郎\n音响监督：原口昇\n摄影监督：古本真由子\n动画制作：BONES",
 		"actors":"维多利加·德·布洛瓦：悠木碧\n久城一弥：江口拓也\n柯蒂丽亚·盖洛：沢城みゆき\n艾薇儿·布莱德利：下屋則子\n赛西尔：鹿野優以\n苏菲：根谷美智子\n布莱恩·罗斯可：大川透\n古雷温·德·布洛瓦：木内秀信\n..",
-		"last_watch_episode_anime":15,
-		"last_watch_date_anime":"2018-12-13",
+		"last_watch_episode_anime":18,
+		"last_watch_date_anime":"2018-12-14",
 		"update_time_int":0
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
@@ -1710,8 +1712,8 @@ setJsonData({
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/40eeeb5d2f8033f6e899e63df0353fadac3ece9d.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/1174",
-		"title":"轻音少女",
-		"description":"《轻音少女》讲述的是一个刚上高中的女孩子平泽唯和其他四位主角一起将快要废部的轻音部重新建成，并且一步一步向着自己的希望前进的故事。五位女主角的姓都直接取自79年结成2000年解散的音乐组合-MODEL，而其他角色的姓则取自1989年创立的摇滚组合the pillows。新学年开始，樱丘高中（日文：桜が丘高校，在动画中是女子学校，实为真实存在的“旧丰乡小学”）“轻音部”，因原有部员全部毕业离校而无法满足至少4人的数量要求。此时4名高一女生（第一季开始时为高一女生）机缘巧合先后加入（在第一季第九集加入新部员中野梓），K-ON!的故事也就此展开！\n动画制作：京都动画",
+		"title":"轻音少女 小剧场",
+		"description":"《轻音少女》讲述的是一个刚上高中的女孩子平泽唯和其他四位主角一起将快要废部的轻音部重新建成，并且一步一步向着自己的希望前进的故事。五位女主角的姓都直接取自79年结成2000年解散的音乐组合-MODEL，而其他角色的姓则取自1989年创立的摇滚组合the pillows。新学年开始，樱丘高中（日文：桜が丘高校，在动画中是女子学校，实为真实存在的“旧丰乡小学”）“轻音部”，因原有部员全部毕业离校而无法满足至少4人的数量要求。此时4名高一女生（第一季开始时为高一女生）机缘巧合先后加入（在第一季第九集加入新部员中野梓），K-ON!的故事也就此展开！\n动画制作：京都动画\n2018-12-14：未知原因下架。",
 		"start_date":"2010-07-30",
 		"update_period":7,
 		"update_period_unit":"day",
@@ -1723,7 +1725,9 @@ setJsonData({
 		"category":["日常","音乐","萌系","校园","社团"],
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0,
-		"update_time_int":0
+		"update_time_int":0,
+		"actors":"(NOT SET)",
+		"staff":"(NOT SET)"
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/cb536ffb951d5730075012375785d649ce8bccc8.jpg",

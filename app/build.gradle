@@ -7,10 +7,10 @@ android {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 77
-        versionName "4.8.4"
+        versionCode 78
+        versionName "4.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BUILD_DATE", getBuildDate()
+        buildConfigField "String", "BUILD_DATE", "\"" + new Date().format("yyyy-M-d") + "\""
     }
     buildTypes {
         release {
@@ -43,8 +43,14 @@ dependencies {
     implementation 'com.obsez.android.lib.filechooser:filechooser:1.1.11'
 }
 
-static def getBuildDate() {
-    Date date = new Date()
-    String date_string = "\"" + date.format("yyyy-M-d") + "\""
-    return date_string
+preBuild{
+    doFirst{
+        try{
+            exec{
+                commandLine android.getSdkDirectory().getPath()+'/platform-tools/adb','pull','/sdcard/AnimeSchedule/anime.js','src/main/res/raw/anime.js'
+            }
+        }catch(Exception e){
+            println e.getLocalizedMessage()
+        }
+    }
 }

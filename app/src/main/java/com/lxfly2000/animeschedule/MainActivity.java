@@ -176,6 +176,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             Toast.makeText(this,String.format(getString(R.string.message_anime_not_found),queryWord),Toast.LENGTH_LONG).show();
+        }else if(Intent.ACTION_SEND.equals(intent.getAction())){
+            //分享功能
+            OnAddAnime();
+            String fullText=intent.getStringExtra(Intent.EXTRA_TEXT);
+            editDialogDescription.setText(fullText);
+            Matcher matcher=Pattern.compile("[a-zA-Z0-9\\-_]+:[^ \\n]+\\.[^ \\n]+").matcher(fullText);//接收的链接必须带有协议名称
+            //                               ~~~~~~~~~~~注意：此处用\w在安卓中是错的！！安卓的正则表达式是强制开启UNICODE匹配的，参考链接：https://developer.android.com/reference/java/util/regex/Pattern#UNICODE_CHARACTER_CLASS
+            if(matcher.find())
+                editDialogWatchUrl.setText(fullText.substring(matcher.start(),matcher.end()));
+            buttonDialogAutofill.performClick();
         }
     }
 
@@ -759,6 +769,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editDialogCategory;
     private CheckBox checkDialogAbandoned;
     private EditText editDialogRanking;
+    private Button buttonDialogAutofill;
     private void EditAnime(final int index, final boolean fromAddAction){
         //此处的index已经是对应到JSON的序号了，不用再从排序表里找
         AlertDialog editDialog=new AlertDialog.Builder(this)
@@ -851,6 +862,7 @@ public class MainActivity extends AppCompatActivity {
         editDialogCategory=(EditText)editDialog.findViewById(R.id.editDialogCategory);
         checkDialogAbandoned=(CheckBox)editDialog.findViewById(R.id.checkAbandoned);
         editDialogRanking=(EditText)editDialog.findViewById(R.id.editDialogRank);
+        buttonDialogAutofill=(Button)editDialog.findViewById(R.id.buttonDialogAutofill);
 
         editDialogDescription.setText(animeJson.GetDescription(index));
         editDialogActors.setText(animeJson.GetActors(index));

@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
             String fullText=intent.getStringExtra(Intent.EXTRA_TEXT);
             editDialogDescription.setText(fullText);
             Matcher matcher=Pattern.compile("[a-zA-Z0-9\\-_]+:[^ \\n]+\\.[^ \\n]+").matcher(fullText);//接收的链接必须带有协议名称
-            //                               ~~~~~~~~~~~注意：此处用\w在安卓中是错的！！安卓的正则表达式是强制开启UNICODE匹配的，参考链接：https://developer.android.com/reference/java/util/regex/Pattern#UNICODE_CHARACTER_CLASS
+            //                                ~~~~~~~~~注意：此处用\w在安卓中是错的！！安卓的正则表达式是强制开启UNICODE匹配的，参考链接：https://developer.android.com/reference/java/util/regex/Pattern#UNICODE_CHARACTER_CLASS
             if(matcher.find())
                 editDialogWatchUrl.setText(fullText.substring(matcher.start(),matcher.end()));
             buttonDialogAutofill.performClick();
@@ -560,19 +560,19 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        googleDriveOperator.SetOnGoogleDriveDownloadSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
+                            @Override
+                            public void OnOperationSuccess(Object extra) {
+                                Toast.makeText(getBaseContext(),R.string.message_google_drive_download_success,Toast.LENGTH_LONG).show();
+                                SaveAndReloadJsonFile(false);
+                            }
+                        });
                         if(googleDriveOperator.IsAccountSignIn())
                             googleDriveOperator.DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
                         else {
                             googleDriveOperator.SetOnSignInSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
                                 @Override
                                 public void OnOperationSuccess(Object extra) {
-                                    ((GoogleDriveOperator)extra).SetOnGoogleDriveDownloadSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
-                                        @Override
-                                        public void OnOperationSuccess(Object extra) {
-                                            Toast.makeText(getBaseContext(),R.string.message_google_drive_download_success,Toast.LENGTH_LONG).show();
-                                            SaveAndReloadJsonFile(false);
-                                        }
-                                    });
                                     ((GoogleDriveOperator)extra).DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
                                 }
                             }.SetExtra(googleDriveOperator));
@@ -1004,7 +1004,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     String jsonString=URLUtility.GetBilibiliJsonContainingSSID(StreamUtility.GetStringFromStream(stream),idString);
                     if(jsonString==null){
-                        Toast.makeText(getBaseContext(),R.string.message_bilibili_ssid_code_not_found,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(),getString(R.string.message_bilibili_ssid_code_not_found,idString),Toast.LENGTH_LONG).show();
                         return;
                     }
                     JSONObject htmlJson=new JSONObject(jsonString);

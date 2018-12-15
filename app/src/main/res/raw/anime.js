@@ -2105,7 +2105,9 @@ setJsonData({
 		"category":[],
 		"last_watch_date_anime":"2018-9-2",
 		"last_watch_episode_anime":16,
-		"update_time_int":0
+		"update_time_int":0,
+		"actors":"(NOT SET)",
+		"staff":"(NOT SET)"
 	},{
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/748ecaf2582d3d8388dd49e70a5d9d85a4aa1465.jpg",
@@ -3263,5 +3265,26 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0,
 		"create_date":"2018-12-13"
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/074056b8543ed2ceb53dc13a79da1eafa3fa921a.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss3398",
+		"title":"冰菓",
+		"description":"在众多将要展开「玫瑰色」生活的高中生之中，本作的男主角折木奉太郎却是一个「灰色」的节能主义者。凡是没必要的事就不做，因为不想后悔，被人说是疏离、厌世也无所谓，因为这就是他的作风。这样的折木奉太郎，却因为姐姐的命令而进入了濒临废社的「古籍研究社」。\n研究社虽然好不容易招到了四名新社员，但却又卷入了四十五年前社长突然肄业的谜团之中。社长当年留下的名为「冰菓」的社刊，内里究竟隐藏了什么神秘的讯息呢……",
+		"actors":"折木奉太郎：中村悠一\n千反田爱瑠：佐藤聪美\n福部里志：阪口大助\n伊原摩耶花：茅野爱衣\n折木供惠：雪野五月\n远垣内将司：置鲇龙太郎\n入须冬实：由加奈\n糸鱼川养子：小山茉美\n十文字嘉保：早见沙织",
+		"staff":"原作：米泽穗信\n监督：武本康弘\n脚本：西岡麻衣子、賀東招二、村元克彦\n分镜：山田尚子、木上益治、石立太一、内海紘子、武本康弘、北之原孝將、太田里香、河浪栄作\n演出：山田尚子、木上益治、石立太一、内海紘子、武本康弘、北之原孝將、太田里香、河浪栄作\n系列构成：贺东招二\n角色设计：西屋太志\n色彩设计：石田奈央美\n美术监督：奥出修平\n总作画监督：西屋太志\n音乐：田中公平\n音乐监制：鹤冈阳太（乐音舍）\n摄影监督：中上龙太\n动画制作：京都アニメーション（京都动画）",
+		"start_date":"2012-04-22",
+		"update_time_int":0,
+		"update_period":1,
+		"update_period_unit":"month",
+		"episode_count":22,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["恋爱","推理","校园","日常","社团"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0,
+		"create_date":"2018-12-15"
 	}]
 });

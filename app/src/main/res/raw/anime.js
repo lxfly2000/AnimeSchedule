@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":76,
+	"last_watch_index":145,
 	"anime":[{
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -13,7 +13,7 @@ setJsonData({
 		"absense_count":1,
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,false,false],
 		"abandoned":false,
-		"rank":3,
+		"rank":4,
 		"color":"Crimson",
 		"category":["恋爱","奇幻","魔法","漫改"],
 		"staff":"原作：ヤマザキコレ（Mag Garden刊）\n系列构成、监督：长沼范裕\n剧本：高羽彩\n角色设计：加藤宽崇\n色彩设计：小针裕子\n美术监督：竹田悠介\n摄影监督：铃木麻予\nCGI监督：须贝真也\n2D工作：西谷知惠\n特效监修：谷口久美子\n特殊效果：荒畑步美\n编辑：今井大介\n音乐：松本淳一\n音乐制作：FlyingDog\n音乐制作协力：BASiLiCA\n音响监督：秦昌二\n动画制作：WIT STUDIO\n制作：魔法使的新娘制作委员会",
@@ -1376,7 +1376,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0099eed28f8389f979dc6c66a49a0d83c7e76e42.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/856",
 		"title":"GOSICK",
-		"description":"就读于拥有悠久庄严历史的圣玛格丽特学园的东方少年——久城一弥，某天在学园的温室内与一位身著华丽服装、犹如洋娃娃般美丽的少女——维多利加相遇了。维多利加拥有侦探般聪明的头脑和敏锐的洞察力，只要她所到之处，再怎么离奇的谜团都会被解开。之后维多利加与久城一弥遭遇了种种怪异离奇的事件，并揭开了维多利加的身世之谜。\n动画制作：BONES\n========\n这个看得我好懵啊。（指22话以前）\n维包子抱走，这个剧情炮弹还给冈妈。",
+		"description":"就读于拥有悠久庄严历史的圣玛格丽特学园的东方少年——久城一弥，某天在学园的温室内与一位身著华丽服装、犹如洋娃娃般美丽的少女——维多利加相遇了。维多利加拥有侦探般聪明的头脑和敏锐的洞察力，只要她所到之处，再怎么离奇的谜团都会被解开。之后维多利加与久城一弥遭遇了种种怪异离奇的事件，并揭开了维多利加的身世之谜。\n动画制作：BONES\n========\n这个看得我好懵啊。（指22话以前）\n维包子抱走，op和ed1收藏了，这个剧情炮弹还给冈妈。\n2018-12-15：哦，原来结局是真实的吗……我还以为是虚写的，看来冈妈在最后两集下的功夫还是不行啊，銜街得太不连贯太突然了，脚本实力不够啊。（建议二刷）",
 		"start_date":"2011-01-07",
 		"update_period":7,
 		"update_period_unit":"day",
@@ -1396,7 +1396,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/f05fe966a3924ad46d6d3416483a8a3eec9a2d5d.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/809",
 		"title":"妖狐×仆SS",
-		"description":"本作故事讲述了女主角——白鬼院大财阀的大小姐白鬼院凛々蝶因为总是无意义虚张声势而使事情变得越来越糟糕，十分懊恼的她决定一个人生活，之后搬进了被称作鬼屋的豪华SS公寓。这栋公寓俗称「妖馆」，拥有最高的安全性，而SS指的是保镖，也就是公寓中关键的存在了。在那里凛々蝶遇到了身为其保镖的御狐神双炽，生活上无微不至，后来还遇到了几位看上去性格各异的保镖。某晚凛々蝶遭到强盗袭击，也因为这个契机，也了解了这里的安全措施并不是针对普通人而言，一些祖先与妖怪交合而使得产生返祖现象的人所组成。同时这件事也使得凛々蝶更加去接受御狐神双炽，使其在自己身边。就这样，在这栋公寓的生活拉开了帷幕……作品中不失笑点等成分，形形色色的角色也让整部作品增添了不少看点。\n\n《妖狐×仆SS》是少女漫画家藤原可可亚的漫画作品。于史克威尔艾尼克斯的漫画杂志《月刊GANGAN JOKER》2009年5月号（创刊号）起连载中。截至2011年7月，单行本发行量累计100万册。《月刊GANGAN JOKER》2011年8月号公布电视动画化的消息。2012年1月开始播放。\n动画制作：David Production",
+		"description":"本作故事讲述了女主角——白鬼院大财阀的大小姐白鬼院凛々蝶因为总是无意义虚张声势而使事情变得越来越糟糕，十分懊恼的她决定一个人生活，之后搬进了被称作鬼屋的豪华SS公寓。这栋公寓俗称「妖馆」，拥有最高的安全性，而SS指的是保镖，也就是公寓中关键的存在了。在那里凛々蝶遇到了身为其保镖的御狐神双炽，生活上无微不至，后来还遇到了几位看上去性格各异的保镖。某晚凛々蝶遭到强盗袭击，也因为这个契机，也了解了这里的安全措施并不是针对普通人而言，一些祖先与妖怪交合而使得产生返祖现象的人所组成。同时这件事也使得凛々蝶更加去接受御狐神双炽，使其在自己身边。就这样，在这栋公寓的生活拉开了帷幕……作品中不失笑点等成分，形形色色的角色也让整部作品增添了不少看点。\n\n《妖狐×仆SS》是少女漫画家藤原可可亚的漫画作品。于史克威尔艾尼克斯的漫画杂志《月刊GANGAN JOKER》2009年5月号（创刊号）起连载中。截至2011年7月，单行本发行量累计100万册。《月刊GANGAN JOKER》2011年8月号公布电视动画化的消息。2012年1月开始播放。\n动画制作：David Production\n========\n2018-12-15：看完GOSICK后的感想：这个番的制作绝对比GOSICK好多了，同样有根元岁三做脚本，为什么这个的剧情全程完美而GOSICK让我一脸懵（虽说不至于到烧脑的程度）且最后两集结局让我产生严重误解（误以为是BE，误以为之后的HE是虚写暗难受了一晚上），是不是还是冈妈剧情功底不行啊。",
 		"start_date":"2012-01-12",
 		"update_period":7,
 		"update_period_unit":"day",
@@ -2287,7 +2287,7 @@ setJsonData({
 		"actors":"夏娜：釘宮理恵\n威尔艾米娜·卡梅尔：伊藤静\n玛琼琳·朵：生天目仁美\n吉田一美：川澄綾子\n坂井悠二：日野聡\n修德南：三宅健太\n平井缘：浅野真澄\n坂井贯太郎：藤原啓治\n中村公子：藤村歩",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a92892921f3209f7784a954c37467c9869a1d4c1.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25617",
 		"title":"魔法禁书目录 第三季",
@@ -2301,8 +2301,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["热血","奇幻","科幻","校园","战斗","轻改","魔法"],
-		"last_watch_date_anime":"2018-12-9",
-		"last_watch_episode_anime":10,
+		"last_watch_date_anime":"2018-12-15",
+		"last_watch_episode_anime":11,
 		"staff":"原作：镰池和马\n角色原案：灰村清孝\n监督：锦织博\n系列构成：吉野弘幸\n角色设计：田中雄一\n美术监督：黑田友范\n色彩设计：中村真衣、安藤知美\n摄影监督：福世晋吾\n编辑：西山茂（REAL-T）\n音响监督：山口贵之\n音乐：井内舞子\n动画制作：J.C.STAFF",
 		"actors":"上条当麻：阿部敦\n茵蒂克丝：井口裕香\n御坂美琴：佐藤利奈\n一方通行：冈本信彦\n滨面仕上：日野聪",
 		"update_time_int":1350
@@ -2556,7 +2556,7 @@ setJsonData({
 		"actors":"爱城华恋：小山百代\n神乐光：三森铃子\n天堂真矢：富田麻帆\n星见纯那：佐藤日向\n露崎真昼：岩田阳葵\n大场奈奈：小泉萌香\n西条克洛迪娜：相羽爱奈\n石动双叶：生田辉\n花柳香子：伊藤彩沙",
 		"update_time_int":870
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/60bcf90d945ae88d5a1b50e069672aea0869167f.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25613",
 		"title":"我家的女仆太烦人了！",
@@ -2570,13 +2570,13 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日常","搞笑","萌系","漫画改"],
-		"last_watch_date_anime":"2018-12-9",
-		"last_watch_episode_anime":10,
+		"last_watch_date_anime":"2018-12-15",
+		"last_watch_episode_anime":11,
 		"staff":"原作：中村カンコ（双叶社《月刊Action》连载中）\n监督：太田雅彦\n副监督：大隈孝晴\n系列构成 \/ 音响监督：あおしまたかし\n角色设计：山崎淳\n道具设计：松本恵\n美术设定：中島美佳\n美术监督：安田ゆかり\n背景：オリーブ\n色彩设计：真壁源太\n摄影监督：桑野貴文\n编集：小野寺絵美\n音乐：三澤康広\n音乐制作：KADOKAWA\n动画制作：动画工房",
 		"actors":"高梨米夏：白石晴香\n鸭居燕：沼仓爱美\n鹈饲绿：M·A·O\n鹫崎美美香：原田彩枫\n森川唯：井泽诗织\n高梨康弘：加藤将之",
 		"update_time_int":1410
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fa89d4ce62d87c6ff641c617c6bf62c8f19ceafd.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25619",
 		"title":"邻家索菲",
@@ -2590,8 +2590,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["萌系","漫改"],
-		"last_watch_date_anime":"2018-12-9",
-		"last_watch_episode_anime":10,
+		"last_watch_date_anime":"2018-12-15",
+		"last_watch_episode_anime":11,
 		"staff":"原作：甘党「月刊コミックキューン」(KADOKAWA)\n监督：秋田谷典昭\n副监督：福島利規\n系列构成：髙橋龍也\n角色设计 \/ 总作画监督：酒井孝裕\n概念设计：杉村苑美\n道具设计：コレサワシゲユキ(デジタルノイズ)、灯夢(デジタルノイズ)\n美术监督：松本浩樹(アトリエPlatz)\n色彩设计：鈴木ようこ\n摄影监督：廣岡岳\n编集：坪根健太郎\n音乐监督：明田川仁\n音乐：藤澤慶昌\n音乐制作：日本コロムビア\n动画制作：Studio五组、AXsiZ",
 		"actors":"索菲·暮光：富田美忧\n天野灯：篠原侑\n夏木日向：Lynn\n艾莉：和气杏未\n仓井朔夜：日高里菜\n青木夕：内田彩",
 		"update_time_int":1260
@@ -2689,7 +2689,7 @@ setJsonData({
 		"last_watch_date_anime":"2018-11-22",
 		"last_watch_episode_anime":4
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e4644b38b29a34520b3affac71064faeb8a081fa.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25699",
 		"title":"梅露可物语 -无气力少年与瓶中少女-",
@@ -2703,8 +2703,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["萌系","游戏改"],
-		"last_watch_date_anime":"2018-12-7",
-		"last_watch_episode_anime":9,
+		"last_watch_date_anime":"2018-12-15",
+		"last_watch_episode_anime":10,
 		"staff":"原作、剧本监修：乐元素\n监督：追崎史敏\n系列构成：追崎史敏、内田裕基、雨宫瞳\n角色设计：秋山由树子\n总作画监督：秋山由树子、涩谷秀、新井博慧\n怪物设计：福岛秀机、陆田青享\n道具设计：新谷真昼\n色彩设计：辻田邦夫\n色彩设计辅助：大场将生\n美术监督：空闲由美子（Studio Jack）\n2D Works：蓬田佑季\n摄影监督：松本乃吾（稻穗）\n编辑：斋藤朱里（Graphinica）\n音乐制作人：Mili\n动画制作：Encourage Films",
 		"actors":"优：田村睦心\n梅露可：水濑祈\n图图：花守由美里\n加墨：长岛雄一",
 		"update_time_int":1350
@@ -2803,7 +2803,7 @@ setJsonData({
 		"actors":"贝尔哲布布：大西沙织\n穆林：安田陆矢\n贝尔芬格尔：久野美咲\n阿撒塞尔：日野聪\n莎尔葛塔纳斯：加隈亚衣\n亚斯塔洛特：松冈祯丞\n欧莉诺姆：赤崎千夏\n但他林：悠木碧\n摩洛：兴津和幸\n旁白：井上喜久子",
 		"update_time_int":170
 	},{
-		"watched_episode":[true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ac72dc1c91cec71ce1633083435320173e2d8c68.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25720",
 		"title":"叛逆性百万亚瑟王",
@@ -2814,11 +2814,11 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":3,
+		"rank":4,
 		"color":"silver",
 		"category":["奇幻","战斗","游戏改"],
-		"last_watch_date_anime":"2018-12-7",
-		"last_watch_episode_anime":7,
+		"last_watch_date_anime":"2018-12-15",
+		"last_watch_episode_anime":8,
 		"staff":"原作：SQUARE ENIX\n监督：铃木洋平\n总编剧：玉井☆豪\n角色设计：斋藤良成\n次要角色设计：小野田将人\n美术监督：内藤健\n色彩设计：沟江诗帆\n编辑：近藤勇二\n音响监督：岩浪美和\n音响制作：Magic Capsule\n音乐：椎名豪\n音乐制作：Lantis\n监制：GENCO\n动画制作：J.C.STAFF",
 		"actors":"团长亚瑟：雨宮天\n铁拳亚瑟：柿原彻也\n山猫亚瑟：竹达彩奈\n阁下亚瑟：花江夏树\n炼金亚瑟：水濑祈\n流浪亚瑟：中村悠一\n纳克拉维：茜屋日海夏\n碧姬：芹泽优\n泰坦尼亚：高桥李依\n丘比特：东山奈央\n伯达克：三森铃子\n贝托尔：日高里菜",
 		"update_time_int":1260

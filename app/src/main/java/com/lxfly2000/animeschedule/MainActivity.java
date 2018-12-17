@@ -180,6 +180,8 @@ public class MainActivity extends AppCompatActivity {
             //分享功能
             OnAddAnime();
             String fullText=intent.getStringExtra(Intent.EXTRA_TEXT);
+            if(fullText==null)
+                fullText="";
             editDialogDescription.setText(fullText);
             Matcher matcher=Pattern.compile("[a-zA-Z0-9\\-_]+:[^ \\n]+\\.[^ \\n]+").matcher(fullText);//接收的链接必须带有协议名称
             //                                ~~~~~~~~~注意：此处用\w在安卓中是错的！！安卓的正则表达式是强制开启UNICODE匹配的，参考链接：https://developer.android.com/reference/java/util/regex/Pattern#UNICODE_CHARACTER_CLASS

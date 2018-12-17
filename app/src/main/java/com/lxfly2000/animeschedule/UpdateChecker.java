@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.view.WindowManager;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.AndroidUtility;
 import com.lxfly2000.utilities.StreamUtility;
@@ -79,7 +80,9 @@ public class UpdateChecker {
         }else {
             msgBox.setMessage(R.string.message_no_update);
         }
-        msgBox.show();
+        AlertDialog msgBoxShow=msgBox.create();
+        msgBoxShow.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+        msgBoxShow.show();
     }
 
     private int GetUpdateVersionCode(){

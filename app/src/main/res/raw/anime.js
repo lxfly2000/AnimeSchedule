@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":127,
+	"last_watch_index":168,
 	"anime":[{
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -2386,7 +2386,7 @@ setJsonData({
 		"staff":"(NOT SET)",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/pic4.iqiyipic.com\/image\/20180119\/51\/fc\/a_100109243_m_601_m3.jpg",
 		"watch_url":"http:\/\/www.iqiyi.com\/a_19rrh1olh1.html",
 		"title":"摇曳露营△",
@@ -2400,8 +2400,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["日漫","TV版","青春","7-13","14-17","18以上","日语","番剧","漫改","搞笑","百合","日常","美少女","跟播新番"],
-		"last_watch_date_anime":"2018-12-16",
-		"last_watch_episode_anime":10,
+		"last_watch_date_anime":"2018-12-17",
+		"last_watch_episode_anime":12,
 		"update_time_int":1410,
 		"actors":"(NOT SET)",
 		"staff":"(NOT SET)"
@@ -3195,7 +3195,7 @@ setJsonData({
 		"create_date":"2018-11-28",
 		"update_time_int":0
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true],
 		"cover":"http:\/\/pic1.iqiyipic.com\/image\/20181117\/55\/d5\/a_100176493_m_601_m4.jpg",
 		"watch_url":"https:\/\/www.iqiyi.com\/a_19rrh5ky7t.html",
 		"title":"寄宿学校的朱丽叶",
@@ -3208,11 +3208,11 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["日漫","TV版","14-17","18以上","日语","番剧","漫改","搞笑","恋爱","校园","美少女"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_date_anime":"2018-12-17",
+		"last_watch_episode_anime":1,
 		"create_date":"2018-11-28",
 		"update_time_int":150
 	},{

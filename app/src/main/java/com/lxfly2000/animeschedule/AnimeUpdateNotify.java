@@ -66,7 +66,7 @@ public class AnimeUpdateNotify extends Service {
         updatePrefWrite.putString("date",todayDate.ToYMDString());
         updatePrefWrite.putInt("time",nowMinute);
         updatePrefWrite.apply();
-        BadgeUtility.setBadgeCount(this,updateCount,R.mipmap.ic_launcher);
+        BadgeUtility.setBadgeCount(this,updateCount,R.drawable.ic_animeschedule);
     }
 
     private static final String ACTION_WATCH_ANIME=BuildConfig.APPLICATION_ID+".WatchAnime";
@@ -94,7 +94,7 @@ public class AnimeUpdateNotify extends Service {
         PendingIntent pi=PendingIntent.getBroadcast(this,index,new Intent(ACTION_WATCH_ANIME).putExtra("index",index),PendingIntent.FLAG_UPDATE_CURRENT);
         //Builder方法过时解决：https://blog.csdn.net/zwk_sys/article/details/79661045
         final NotificationCompat.Builder nb=new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_animeschedule)
                 .setContentTitle(jsonForNotify.GetTitle(index))
                 .setContentText(strSchedule.toString())
                 //https://blog.csdn.net/yuzhiboyi/article/details/8484771

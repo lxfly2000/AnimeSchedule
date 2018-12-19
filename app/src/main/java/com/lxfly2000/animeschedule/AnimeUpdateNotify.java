@@ -93,7 +93,7 @@ public class AnimeUpdateNotify extends Service {
         //注意requestCode在不同的通知里也要是不同的，否则会被覆盖
         PendingIntent pi=PendingIntent.getBroadcast(this,index,new Intent(ACTION_WATCH_ANIME).putExtra("index",index),PendingIntent.FLAG_UPDATE_CURRENT);
         //Builder方法过时解决：https://blog.csdn.net/zwk_sys/article/details/79661045
-        final NotificationCompat.Builder nb=new NotificationCompat.Builder(this)
+        final NotificationCompat.Builder nb=new NotificationCompat.Builder(this,"anime_update")
                 .setSmallIcon(R.drawable.ic_animeschedule)
                 .setContentTitle(jsonForNotify.GetTitle(index))
                 .setContentText(strSchedule.toString())

@@ -1244,18 +1244,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        Intent intent=new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
+        Intent intent=new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.fromFile(new File(Values.GetRepositoryPathOnLocal()+"/"+Values.webFiles[0])));
-        intent.setClassName("com.android.chrome","com.google.android.apps.chrome.Main");
+        intent.setPackage("com.android.chrome");
         try {
             startActivity(intent);
         }catch (ActivityNotFoundException e){
             Toast.makeText(this,R.string.message_cannot_launch_chrome,Toast.LENGTH_LONG).show();
-            Intent intentFallback=new Intent();
-            intentFallback.setAction(intent.getAction());
-            intentFallback.setDataAndType(intent.getData(),"*/*");
-            startActivity(intentFallback);
+            intent.setType("*/*");
+            startActivity(intent);
+        }catch (Exception e){
+            startActivity(new Intent(this,AnimeWeb.class));
         }
     }
 

@@ -62,7 +62,9 @@
     <string name="button_dont_show_again_today">Don\'t show again today</string>
     <string name="message_novalid_bilibili_url">No valid Bilibili URL.</string>
     <string name="message_unexpected_status">Unexpected status.</string>
-    <string name="message_not_supported_bilibili_url">Not supported Bilibili URL, it is recommended that you use the international version of Bilibili client for better support.</string>
+    <string name="message_not_supported_bilibili_url">Not supported Bilibili URL, it is recommended that you use the
+        international version of Bilibili client for better support.
+    </string>
     <string name="message_not_supported_url">Not supported URL.</string>
     <string name="message_unable_to_fetch_episode_id">Unable to fetch episode id.</string>
     <string name="message_json_exception">JSON exception:\n%s</string>
@@ -90,7 +92,9 @@
     <string name="menu_anime_show_detail">Show Detail</string>
     <string name="message_fetching_bilibili_ssid">Fetching SSID...</string>
     <string name="message_bilibili_ssid_not_found">Property of SSID not found.</string>
-    <string name="message_bilibili_ssid_not_found_advise">Try to modify the beginning \"http\" in URL to \"https\" and try again.</string>
+    <string name="message_bilibili_ssid_not_found_advise">Try to modify the beginning \"http\" in URL to \"https\" and
+        try again.
+    </string>
     <string name="message_bilibili_ssid_code_not_found">Not found valid codes containing property ssid of %s.</string>
     <string name="action_google_drive_upload">Backup to Drive</string>
     <string name="action_google_drive_download">Restore from Drive</string>
@@ -101,8 +105,11 @@
     <string name="message_google_drive_no_login">You have not logged in to Google Drive.</string>
     <string name="message_error_download_google_drive">Error downloading from Google Drive.</string>
     <string name="message_google_drive_download_success">Downloaded from Google Drive.</string>
-    <string name="message_overwrite_google_drive_warning">This will overwrite your existing data on Google Drive, continue?</string>
-    <string name="message_overwrite_local_warning">This will overwrite your existing data on your storage, continue?</string>
+    <string name="message_overwrite_google_drive_warning">This will overwrite your existing data on Google Drive,
+        continue?
+    </string>
+    <string name="message_overwrite_local_warning">This will overwrite your existing data on your storage, continue?
+    </string>
     <string name="action_about">About</string>
     <string name="label_app_intro">This app can help you scheduling time for anime, useful for anime fans.</string>
     <string name="label_report_bug">Report Bugs</string>
@@ -113,7 +120,9 @@
     <string name="label_app_name_email">Email</string>
     <string name="label_app_name_twitter" translatable="false">Twitter</string>
     <string name="label_donate">Donate</string>
-    <string name="label_donate_explanation">If you feel this app helpful, please consider donate me with the following methods.</string>
+    <string name="label_donate_explanation">If you feel this app helpful, please consider donate me with the following
+        methods.
+    </string>
     <string name="label_app_name_alipay">Alipay</string>
     <string name="label_app_name_wechat">WeChat</string>
     <string name="label_app_name_paypal" translatable="false">PayPal</string>
@@ -123,15 +132,27 @@
     <string name="label_bilibili_download_app_version">Client version</string>
     <string name="label_bilibili_video_quality">Video quality</string>
     <string name="menu_download">Download</string>
-    <string name="label_bilibili_download_notice">Choose the episodes you want to download.\nAttention:\n1. VIP account is required to download 1080p or higher quality.\n2. VIP account or account that purchased the Anime is required to download paid Anime.\n3. Some Animes don\'t have all video qualities.\n4. Region-Restricted Anime is not supported.\n5. You need to manually start downloading in the application.</string>
+    <string name="label_bilibili_download_notice">Choose the episodes you want to download.\nAttention:\n1. VIP account
+        is required to download 1080p or higher quality.\n2. VIP account or account that purchased the Anime is required
+        to download paid Anime.\n3. Some Animes don\'t have all video qualities.\n4. Region-Restricted Anime is not
+        supported.\n5. You need to manually start downloading in the application.
+    </string>
     <string name="label_download_open_bilibili_app">Open Bilibili after this operation</string>
     <string name="message_app_not_found">\"%s\" not found, you might not install this application.</string>
     <string name="menu_download_not_available">Download (Only available for Bilibili link)</string>
     <string name="label_thanks">Special Thanks</string>
-    <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>: helped with the download function.</string>
-    <string name="message_bilibili_download_task_created">Download tasks are created, please go to Bilibili client and manually start them.</string>
-    <string name="message_bilibili_download_region_restricted_warning">Region-restricted Anime, confirm if downloadable</string>
+    <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>: helped with the
+        download function.
+    </string>
+    <string name="message_bilibili_download_task_created">Download tasks are created, please go to Bilibili client and
+        manually start them.
+    </string>
+    <string name="message_bilibili_download_region_restricted_warning">Region-restricted Anime, confirm if
+        downloadable
+    </string>
     <string name="label_using_3rdparty">Using third-party components</string>
-    <string name="label_using_3rdparty_filepicker" translatable="false"><a href="https://github.com/hedzr/android-file-chooser">hedzr/android-file-chooser</a></string>
+    <string name="label_using_3rdparty_filepicker" translatable="false">
+        <a href="https://github.com/hedzr/android-file-chooser">hedzr/android-file-chooser</a>
+    </string>
     <string name="label_update_time">Update Time</string>
 </resources>

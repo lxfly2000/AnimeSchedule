@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":168,
+	"last_watch_index":132,
 	"anime":[{
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -2486,7 +2486,7 @@ setJsonData({
 		"actors":"长门有希：茅原実里\n阿虚：杉田智和\n凉宫春日：平野綾\n古泉一树：小野大輔\n朝比奈实玖瑠：後藤邑子\n朝仓凉子：桑谷夏子\n鶴屋学姐：松岡由貴\n国木田：松元恵\n谷口：白石稔\n",
 		"update_time_int":0
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/055fcccf87dd9b2ff6d86adc43711fce5df78e44.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/5776",
 		"title":"URARA迷路帖",
@@ -2497,11 +2497,11 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["日常","漫改"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_date_anime":"2018-12-19",
+		"last_watch_episode_anime":1,
 		"staff":"原作：はりかも（芳文社《Manga Time Kirara Miracle!》《Manga Time Kirara》）\n导演：鈴木洋平\n人物设定：大塚舞\n系列构成：三重野瞳\n动画制作：J.C.STAFF\n製作：TBS、芳文社\n",
 		"actors":"千矢：原田彩枫\n巽绀：本渡枫\n雪见小梅：久保由利香\n枣乃乃：佳村遥\n枣妮娜：茅野爱衣",
 		"update_time_int":720
@@ -2819,7 +2819,7 @@ setJsonData({
 		"staff":"(NOT SET)",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25739",
 		"title":"关于我转生变成史莱姆这档事",
@@ -2833,8 +2833,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["后宫","奇幻","装逼","战斗","小说改","魔法"],
-		"last_watch_date_anime":"2018-12-11",
-		"last_watch_episode_anime":11,
+		"last_watch_date_anime":"2018-12-18",
+		"last_watch_episode_anime":12,
 		"staff":"原作：川上泰树、伏濑、みっつばー《关于我转生变成史莱姆这档事》（讲谈社《月刊少年天狼星》连载）\n监督：菊地康仁\n副监督：中山敦史\n系列构成：笔安一幸\n角色设计：江畑谅真\n怪物设计：岸田隆宏\n美术监督：佐藤步\n美术设定：藤濑智康、佐藤正浩\n色彩设计：齐藤麻记\n摄影监督：佐藤洋\n图形设计：生原雄次\n编辑：神宫司由美\n音响监督：明田川仁\n音乐：Elements Garden\n动画制作：8bit（8-bit）",
 		"actors":"利姆鲁·特恩佩斯特：冈咲美保\n大贤者：丰口惠美\n维鲁德拉·特恩佩斯特：前野智昭\n井沢静江：花守由美里\n岚牙：小林亲弘\n红丸：古川慎\n朱菜：千本木彩花\n紫苑：M・A・O\n苍影：江口拓也\n白老：大塚芳忠\n三上悟：寺岛拓笃\n希兹：花守由美里\n利古鲁德：山本兼平\n利古鲁：石谷春贵\n哥布塔：泊明日菜\n凯金：斧敦\n托蕾妮：田中理惠\n艾莲：熊田茜音\n卡巴尔：高梨谦吾\n米莉姆：日高里菜",
 		"update_time_int":30
@@ -3195,7 +3195,7 @@ setJsonData({
 		"create_date":"2018-11-28",
 		"update_time_int":0
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/pic1.iqiyipic.com\/image\/20181117\/55\/d5\/a_100176493_m_601_m4.jpg",
 		"watch_url":"https:\/\/www.iqiyi.com\/a_19rrh5ky7t.html",
 		"title":"寄宿学校的朱丽叶",
@@ -3211,8 +3211,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日漫","TV版","14-17","18以上","日语","番剧","漫改","搞笑","恋爱","校园","美少女"],
-		"last_watch_date_anime":"2018-12-17",
-		"last_watch_episode_anime":1,
+		"last_watch_date_anime":"2018-12-18",
+		"last_watch_episode_anime":11,
 		"create_date":"2018-11-28",
 		"update_time_int":150
 	},{

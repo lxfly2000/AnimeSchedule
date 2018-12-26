@@ -524,7 +524,7 @@ public class MainActivity extends AppCompatActivity {
     private void UpdateSuggestionAdapter(String queryStr){
         final MatrixCursor c=new MatrixCursor(new String[]{BaseColumns._ID,"title"});
         for(int i=0;i<animeJson.GetAnimeCount();i++){
-            if(animeJson.GetTitle(i).toLowerCase().startsWith(queryStr.toLowerCase()))
+            if(animeJson.GetTitle(i).toLowerCase().contains(queryStr.toLowerCase()))
                 c.addRow(new Object[]{i,animeJson.GetTitle(i)});
         }
         suggestionsAdapter.changeCursor(c);

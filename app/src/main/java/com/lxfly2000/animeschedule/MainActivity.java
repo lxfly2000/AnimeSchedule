@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 suggestionsIds,CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
         googleDriveOperator=new GoogleDriveOperator(this);
-        BadgeUtility.resetBadgeCount(this,R.mipmap.ic_launcher);
+        BadgeUtility.resetBadgeCount(this,R.drawable.ic_animeschedule);
         //这样启动的服务表示服务与Activity是独立的，即使Activity被关闭服务也不会停止
         startService(new Intent(this,AnimeUpdateNotify.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
@@ -752,6 +752,14 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)detailDialog.findViewById(R.id.textAnimeDescription)).setText(animeJson.GetDescription(index));
         ((TextView)detailDialog.findViewById(R.id.textAnimeActors)).setText(animeJson.GetActors(index));
         ((TextView)detailDialog.findViewById(R.id.textAnimeStaff)).setText(animeJson.GetStaff(index));
+        StringBuilder strCat=new StringBuilder();
+        for (String cat : animeJson.GetCategory(index)) {
+            if (strCat.length() > 0)
+                strCat.append(", ");
+            strCat.append(cat);
+        }
+        ((TextView)detailDialog.findViewById(R.id.textAnimeCategory)).setText(strCat.toString());
+        ((TextView)detailDialog.findViewById(R.id.textAnimeCreateDate)).setText(getString(R.string.label_anime_create_date,new YMDDate(animeJson.GetCreationDateStringForAnime(index)).ToLocalizedFormatString()));
     }
 
     private EditText editDialogDescription;
@@ -810,10 +818,16 @@ public class MainActivity extends AppCompatActivity {
                         animeJson.SetAbandoned(index,checkDialogAbandoned.isChecked());
                         animeJson.SetRank(index,Math.min(ParseStringToInt(editDialogRanking.getText().toString(),0),5));
                         Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();
+                        int i_list,i_prev_list;
+                        for(i_prev_list=0;i_prev_list<jsonSortTable.size();i_prev_list++){
+                            if(jsonSortTable.get(i_prev_list)==index)
+                                break;
+                        }
                         SaveAndReloadJsonFile(true);
-                        for(int i_list=0;i_list<jsonSortTable.size();i_list++){
+                        for(i_list=0;i_list<jsonSortTable.size();i_list++){
                             if(jsonSortTable.get(i_list)==index){
-                                listAnime.setSelection(i_list);
+                                if(i_list!=i_prev_list)
+                                    listAnime.setSelection(i_list);
                                 break;
                             }
                         }

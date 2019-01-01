@@ -155,4 +155,5 @@
         <a href="https://github.com/hedzr/android-file-chooser">hedzr/android-file-chooser</a>
     </string>
     <string name="label_update_time">Update Time</string>
+    <string name="label_anime_create_date">Created at %s.</string>
 </resources>

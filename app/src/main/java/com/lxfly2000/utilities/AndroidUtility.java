@@ -43,7 +43,7 @@ public class AndroidUtility {
     }
 
     public static void OpenUri(Context ctx,String uriString)throws ActivityNotFoundException {
-        ctx.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(uriString)));
+        ctx.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(uriString)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public static void KillProcess(Context ctx,String packageName){

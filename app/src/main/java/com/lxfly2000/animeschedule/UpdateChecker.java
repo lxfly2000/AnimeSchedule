@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.WindowManager;
+import android.widget.Toast;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.AndroidUtility;
 import com.lxfly2000.utilities.StreamUtility;
@@ -61,8 +62,9 @@ public class UpdateChecker {
         AlertDialog.Builder msgBox=new AlertDialog.Builder(ctx);//这里不能用getApplicationContext.
         msgBox.setPositiveButton(android.R.string.ok,null);
         msgBox.setTitle(R.string.menu_check_update);
+        String msg;
         if (foundNewVersion) {
-            String msg = String.format(ctx.getString(R.string.message_new_version), BuildConfig.VERSION_NAME, GetUpdateVersionName());
+            msg = String.format(ctx.getString(R.string.message_new_version), BuildConfig.VERSION_NAME, GetUpdateVersionName());
             msgBox.setMessage(msg);
             msgBox.setIcon(android.R.drawable.ic_dialog_info);
             msgBox.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -75,14 +77,22 @@ public class UpdateChecker {
         }else if (updateOnlyReportNewVersion){
             return;
         }else if (IsError()){
-            msgBox.setMessage(R.string.error_check_update);
+            msg=ctx.getString(R.string.error_check_update);
+            msgBox.setMessage(msg);
             msgBox.setIcon(android.R.drawable.ic_dialog_alert);
         }else {
-            msgBox.setMessage(R.string.message_no_update);
+            msg=ctx.getString(R.string.message_no_update);
+            msgBox.setMessage(msg);
         }
         AlertDialog msgBoxShow=msgBox.create();
         msgBoxShow.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
-        msgBoxShow.show();
+        try {
+            msgBoxShow.show();
+        }catch (WindowManager.BadTokenException e){
+            Toast.makeText(ctx,msg,Toast.LENGTH_LONG).show();
+            if (foundNewVersion)
+                AndroidUtility.OpenUri(ctx,Values.urlAuthor);
+        }
     }
 
     private int GetUpdateVersionCode(){

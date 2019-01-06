@@ -43,7 +43,7 @@ public class BadgeUtility {
                 case "smartisan":/*???*/return;//锤子
             }
         }
-        Toast.makeText(context, "Not found supported launcher.", Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "Not found supported launcher.", Toast.LENGTH_LONG).show();
     }
 
     /**

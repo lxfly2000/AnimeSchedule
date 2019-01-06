@@ -43,6 +43,10 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
             inStream=new ByteArrayInputStream(outputStream.toByteArray());
             ins.close();
         }catch (IOException e){
+            //安卓P中默认设置不允许明文HTTP传输，否则会报错
+            //解决办法1：将http改为https协议，2：在清单文件中添加android:usesCleartextTraffic="true"
+            if(url.toLowerCase().startsWith("http:"))//这里在子线程中调用Toast会报告应用程序事件顺序不对，因此无法使用Toast。
+                return DownloadFileToStream(url.replaceFirst("http:","https:"));
             return false;
         }
         return true;

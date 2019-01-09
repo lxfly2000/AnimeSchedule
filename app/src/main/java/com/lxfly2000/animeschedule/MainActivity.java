@@ -19,6 +19,7 @@ import android.widget.*;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
 import com.lxfly2000.utilities.*;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -1063,6 +1064,85 @@ public class MainActivity extends AppCompatActivity {
         task.execute(requestUrl);
     }
 
+    private void GetIQiyiAnimeDescriptionFromTaiwanURL(String url, String htmlString){
+        if(htmlString==null){
+            AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+                @Override
+                public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                    if(!success){
+                        Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    try {
+                        GetIQiyiAnimeDescriptionFromTaiwanURL((String)extra, StreamUtility.GetStringFromStream(stream));
+                    }catch (IOException e){
+                        Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+                    }
+                }
+            };
+            task.SetExtra(url);
+            task.execute(url);
+            return;
+        }
+        Matcher m=Pattern.compile("more-desc *= *\"?[^\"]+\"?").matcher(htmlString);
+        if(m.find()){
+            String descString=htmlString.substring(m.start(),m.end());
+            editDialogDescription.setText(descString.substring(descString.indexOf('\"')+1,descString.lastIndexOf('\"')));
+            return;
+        }
+        if(url.toLowerCase().contains("/v_")&&url.substring(0,url.lastIndexOf('/')).toLowerCase().contains("tw")) {
+            Matcher mLink = Pattern.compile(url.substring(url.indexOf(':') + 1, url.lastIndexOf('/')).concat("/a_[a-zA-Z0-9]+\\.html")).matcher(htmlString);
+            GetIQiyiAnimeDescriptionFromTaiwanURL(url.substring(0,url.indexOf(':')+1).concat(htmlString.substring(mLink.start(), mLink.end())), null);
+        }
+    }
+
+    private void GetIQiyiAnimeActorsInfo(String url,String htmlString){
+        if(htmlString==null){
+            AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+                @Override
+                public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                    if(!success){
+                        Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    try {
+                        GetIQiyiAnimeActorsInfo((String)extra, StreamUtility.GetStringFromStream(stream));
+                    }catch (IOException e){
+                        Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+                    }
+                }
+            };
+            task.SetExtra(url);
+            task.execute(url);
+            return;
+        }
+        String strJson=URLUtility.GetIQiyiJsonContainingActorsInfo(htmlString);
+        if(strJson!=null){
+            try{
+                JSONArray jsonCast=new JSONObject(strJson).getJSONArray("dubbers");
+                StringBuilder strCast=new StringBuilder();
+                for(int j=0;j<jsonCast.length();j++){
+                    if(j>0)
+                        strCast.append("\n");
+                    JSONArray jsonRoles=jsonCast.getJSONObject(j).getJSONArray("roles");
+                    for(int i=0;i<jsonRoles.length();i++){
+                        if(i>0)
+                            strCast.append("，");
+                        strCast.append(jsonRoles.getString(i));
+                    }
+                    strCast.append("：").append(jsonCast.getJSONObject(j).getString("name"));
+                }
+                editDialogActors.setText(strCast.toString());
+            }catch (JSONException e){
+                Toast.makeText(this,getString(R.string.message_json_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+            }
+        }
+        if(url.toLowerCase().contains("/a_")) {
+            Matcher mLink = Pattern.compile(url.substring(url.indexOf(':') + 1, url.lastIndexOf('/')).concat("/v_[a-zA-Z0-9]+\\.html")).matcher(htmlString);
+            GetIQiyiAnimeActorsInfo(url.substring(0,url.indexOf(':')+1).concat(htmlString.substring(mLink.start(), mLink.end())), null);
+        }
+    }
+
     private void GetIQiyiAnimeIDFromURL(String url){
         //根据目前（2018-10-1）观察到的情况，爱奇艺的链接无论是a链接还是v链接都有含有“albumId: #########,”代码的脚本，通过此就能查询到番剧的数字ID
         editDialogTitle.setText(url);
@@ -1103,6 +1183,8 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(getBaseContext(),R.string.message_unable_get_id_number_line,Toast.LENGTH_LONG).show();
                     }
+                    GetIQiyiAnimeActorsInfo((String)extra,htmlString);
+                    GetIQiyiAnimeDescriptionFromTaiwanURL((String)extra,htmlString);
                 }catch (IOException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }
@@ -1170,7 +1252,9 @@ public class MainActivity extends AppCompatActivity {
                     String jsonString=StreamUtility.GetStringFromStream(stream);
                     jsonString=jsonString.substring(jsonString.indexOf('{'),jsonString.lastIndexOf('}')+1);
                     JSONObject jsonObject=new JSONObject(jsonString);
-                    editDialogDescription.setText(jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("desc"));
+                    String descString=jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("desc");
+                    if(descString.length()>0)
+                        editDialogDescription.setText(descString);
                     String qiyiPlayStrategy=jsonObject.getJSONObject("data").getString("ps");
                     if(qiyiPlayStrategy.contains("每周")){
                         editDialogUpdatePeriod.setText("7");

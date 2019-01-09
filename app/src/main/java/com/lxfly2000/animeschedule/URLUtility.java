@@ -56,4 +56,26 @@ public class URLUtility {
             return null;
         return htmlString.substring(0,posJSONEnd);
     }
+
+    public static String GetIQiyiJsonContainingActorsInfo(String htmlString){
+        Matcher m=Pattern.compile("\"?[Cc]ast\"? *[:=] *\\{").matcher(htmlString);
+        if(!m.find())
+            return null;
+        htmlString=htmlString.substring(m.start());
+        htmlString=htmlString.substring(htmlString.indexOf('{'));
+        int brackets=1,posJSONEnd;
+        for(posJSONEnd=1;posJSONEnd<htmlString.length();posJSONEnd++){
+            if(htmlString.charAt(posJSONEnd)=='{')
+                brackets++;
+            else if(htmlString.charAt(posJSONEnd)=='}')
+                brackets--;
+            if(brackets==0){
+                posJSONEnd++;
+                break;
+            }
+        }
+        if(brackets!=0)
+            return null;
+        return htmlString.substring(0,posJSONEnd);
+    }
 }

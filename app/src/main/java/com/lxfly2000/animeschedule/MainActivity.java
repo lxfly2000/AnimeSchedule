@@ -1081,7 +1081,7 @@ public class MainActivity extends AppCompatActivity {
                     if(m.find())
                         mfind=true;
                     else{
-                        p=Pattern.compile("aid *= *\"[0-9]+\"");
+                        p=Pattern.compile("a(lbum-)?id *= *\"[0-9]+\"");
                         m=p.matcher(htmlString);
                         if(m.find())
                             mfind=true;

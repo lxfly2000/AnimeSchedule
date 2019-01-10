@@ -5,9 +5,10 @@
         <item>Month</item>
     </string-array>
     <string-array name="list_sort_methods">
-        <item>Rank</item>
+        <item>Original Data</item>
         <item>Update Date</item>
         <item>Watch Date</item>
+        <item>Rank</item>
     </string-array>
     <string-array name="list_sort_order">
         <item>Null</item>

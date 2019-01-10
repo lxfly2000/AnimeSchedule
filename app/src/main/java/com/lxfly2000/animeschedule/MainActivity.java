@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle(getString(R.string.app_name)+getString(R.string.title_total_count,animeJson.GetAnimeCount()));
     }
 
-    //排序，method:0=评分，1=更新日期，2=观看日期，order:0=不排序，1=升序，2=降序，sep_ab:是否分开弃番
+    //排序，method:0=不排序，3=评分，1=更新日期，2=观看日期，order:0=不排序，1=升序，2=降序，sep_ab:是否分开弃番
     private void RebuildSortTable(final int method,final int order,final boolean sep_ab){
         lastTopItemIndex=lastBottomItemIndex=-1;
         sortOrder=order;
@@ -367,6 +367,8 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         switch (method){
                             case 0:
+                                return Integer.compare(a,b);
+                            case 3:
                                 return Integer.compare(animeJson.GetRank(a), animeJson.GetRank(b));
                             case 2:
                                 last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));
@@ -388,6 +390,8 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         switch (method){
                             case 0:
+                                return Integer.compare(b,a);
+                            case 3:
                                 return Integer.compare(animeJson.GetRank(b), animeJson.GetRank(a));
                             case 2:
                                 last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));

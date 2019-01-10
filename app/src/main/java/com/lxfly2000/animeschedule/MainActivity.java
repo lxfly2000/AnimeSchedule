@@ -1092,7 +1092,8 @@ public class MainActivity extends AppCompatActivity {
         }
         if(url.toLowerCase().contains("/v_")&&url.substring(0,url.lastIndexOf('/')).toLowerCase().contains("tw")) {
             Matcher mLink = Pattern.compile(url.substring(url.indexOf(':') + 1, url.lastIndexOf('/')).concat("/a_[a-zA-Z0-9]+\\.html")).matcher(htmlString);
-            GetIQiyiAnimeDescriptionFromTaiwanURL(url.substring(0,url.indexOf(':')+1).concat(htmlString.substring(mLink.start(), mLink.end())), null);
+            if(mLink.find())
+                GetIQiyiAnimeDescriptionFromTaiwanURL(url.substring(0,url.indexOf(':')+1).concat(htmlString.substring(mLink.start(), mLink.end())), null);
         }
     }
 
@@ -1113,6 +1114,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
             task.SetExtra(url);
+            task.SetUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1");
             task.execute(url);
             return;
         }
@@ -1136,11 +1138,15 @@ public class MainActivity extends AppCompatActivity {
             }catch (JSONException e){
                 Toast.makeText(this,getString(R.string.message_json_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
             }
+            return;
         }
         if(url.toLowerCase().contains("/a_")) {
             Matcher mLink = Pattern.compile(url.substring(url.indexOf(':') + 1, url.lastIndexOf('/')).concat("/v_[a-zA-Z0-9]+\\.html")).matcher(htmlString);
-            GetIQiyiAnimeActorsInfo(url.substring(0,url.indexOf(':')+1).concat(htmlString.substring(mLink.start(), mLink.end())), null);
+            if(mLink.find())
+                GetIQiyiAnimeActorsInfo(url.substring(0,url.indexOf(':')+1).concat(htmlString.substring(mLink.start(), mLink.end())), null);
         }
+        if(url.startsWith("http:"))
+            GetIQiyiAnimeActorsInfo(url.replaceFirst("http","https"),null);
     }
 
     private void GetIQiyiAnimeIDFromURL(String url){
@@ -1166,12 +1172,14 @@ public class MainActivity extends AppCompatActivity {
                         if(m.find())
                             mfind=true;
                         else{
-                            if(((String)extra).toLowerCase().startsWith("http:")) {
+                            if(((String)extra).startsWith("http:")) {
                                 GetIQiyiAnimeIDFromURL(((String) extra).replaceFirst("http", "https"));
                                 return;
                             }
                         }
                     }
+                    GetIQiyiAnimeActorsInfo((String)extra,htmlString);
+                    GetIQiyiAnimeDescriptionFromTaiwanURL((String)extra,htmlString);
                     if(mfind) {
                         htmlString = htmlString.substring(m.start(), m.end());//数字ID所在代码的内容
                         Pattern pSub=Pattern.compile("[0-9]+");
@@ -1183,8 +1191,6 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(getBaseContext(),R.string.message_unable_get_id_number_line,Toast.LENGTH_LONG).show();
                     }
-                    GetIQiyiAnimeActorsInfo((String)extra,htmlString);
-                    GetIQiyiAnimeDescriptionFromTaiwanURL((String)extra,htmlString);
                 }catch (IOException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }

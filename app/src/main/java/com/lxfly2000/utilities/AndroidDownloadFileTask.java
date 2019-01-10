@@ -13,6 +13,7 @@ import java.net.URLConnection;
 public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,Boolean> {
     private ByteArrayInputStream inStream;
     private Object extraObject;
+    private String userAgent=null;
 
     @Override
     protected Boolean doInBackground(String... params) {
@@ -31,6 +32,8 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
         InputStream ins;
         try{
             connection=jUrl.openConnection();
+            if(userAgent!=null)
+                connection.setRequestProperty("User-Agent",userAgent);
             ins=connection.getInputStream();
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
@@ -58,6 +61,10 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
 
     public void SetExtra(Object extra){
         extraObject=extra;
+    }
+
+    public void SetUserAgent(String ua){
+        userAgent=ua;
     }
 
     public abstract void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra);

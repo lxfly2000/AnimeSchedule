@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":196,
+	"last_watch_index":200,
 	"anime":[{
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -3658,7 +3658,7 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":-1,
 		"absense_count":0,
-		"abandoned":true,
+		"abandoned":false,
 		"rank":3,
 		"color":"silver",
 		"category":["日常","治愈","漫画改","萌系"],
@@ -3721,7 +3721,7 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":-1,
 		"absense_count":0,
-		"abandoned":true,
+		"abandoned":false,
 		"rank":2,
 		"color":"silver",
 		"category":["科幻","音乐","战斗","原创"],
@@ -3874,6 +3874,27 @@ setJsonData({
 		"category":["萌系","日常","治愈"],
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0,
+		"create_date":"2019-1-9"
+	},{
+		"watched_episode":[true],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/675674fcfa4dd5e207acb497a7b4603f3406ba21.png",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26285",
+		"title":"烟草",
+		"description":"被红雾包围，四周都是荒废的建筑物，在毫无人烟的舞台上——三姐妹努力生存的故事。\n故事的中心人物是把头发扎起来为特征的凛、有着猫耳，总是成熟稳重的姐姐律以及身着女仆般服装，天真烂漫的气氛制造者丽奈。\n\n在扑朔迷离的世界里，姐妹们的目标究竟是…",
+		"actors":"凛：小松未可子\n律：清都亚理沙\n丽奈：鹫见友美（Jiena）",
+		"staff":"原作 \/ 剧本 \/ 监督：たつき\n作画监督：伊佐佳久\n美术监督：白水优子\n动画制作人：福原庆匡\n动画制作：YAOYOROZU",
+		"start_date":"2019-01-09",
+		"update_time_int":1290,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":-1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":3,
+		"color":"silver",
+		"category":["原创","战斗"],
+		"last_watch_date_anime":"2019-1-10",
+		"last_watch_episode_anime":1,
 		"create_date":"2019-1-9"
 	}]
 });

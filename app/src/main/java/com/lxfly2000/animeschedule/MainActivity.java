@@ -1357,11 +1357,9 @@ public class MainActivity extends AppCompatActivity {
         intent.setPackage("com.android.chrome");
         try {
             startActivity(intent);
-        }catch (ActivityNotFoundException e){
-            Toast.makeText(this,R.string.message_cannot_launch_chrome,Toast.LENGTH_LONG).show();
-            intent.setType("*/*");
-            startActivity(intent);
         }catch (Exception e){
+            if(e instanceof ActivityNotFoundException)
+                Toast.makeText(this,R.string.message_cannot_launch_chrome,Toast.LENGTH_LONG).show();
             startActivity(new Intent(this,AnimeWeb.class));
         }
     }

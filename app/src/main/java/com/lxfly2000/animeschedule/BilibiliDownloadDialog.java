@@ -70,13 +70,13 @@ public class BilibiliDownloadDialog {
                                 continue;
                             try {
                                 JSONObject jsonEntry = new JSONObject(Values.jsonRawBilibiliEntry);
-                                JSONObject checkedEp=htmlJson.getJSONArray("epList").getJSONObject(i_check);
-                                jsonEntry.put("title",htmlJson.getJSONObject("mediaInfo").getString("title"));
-                                jsonEntry.put("cover",htmlJson.getJSONObject("mediaInfo").getString("cover"));
+                                JSONObject checkedEp=htmlJson.getJSONArray("episodes").getJSONObject(i_check);
+                                jsonEntry.put("title",htmlJson.getString("title"));
+                                jsonEntry.put("cover",htmlJson.getString("cover"));
                                 jsonEntry.put("prefered_video_quality",Values.typeBilibiliPreferredVideoQualities[spinnerVideoQuality.getSelectedItemPosition()]);
                                 jsonEntry.put("time_create_stamp",System.currentTimeMillis());
                                 jsonEntry.put("time_update_stamp",System.currentTimeMillis());
-                                jsonEntry.put("season_id",String.valueOf(htmlJson.getInt("ssId")));
+                                jsonEntry.put("season_id",String.valueOf(htmlJson.getInt("season_id")));
                                 jsonEntry.getJSONObject("ep").put("av_id",checkedEp.getInt("aid"));
                                 jsonEntry.getJSONObject("ep").put("page",checkedEp.getInt("page"));
                                 jsonEntry.getJSONObject("ep").put("danmaku",checkedEp.getInt("cid"));
@@ -85,7 +85,7 @@ public class BilibiliDownloadDialog {
                                 jsonEntry.getJSONObject("ep").put("index",checkedEp.getString("index"));
                                 jsonEntry.getJSONObject("ep").put("index_title",checkedEp.getString("index_title"));
                                 jsonEntry.getJSONObject("ep").put("from",checkedEp.getString("from"));
-                                jsonEntry.getJSONObject("ep").put("season_type",htmlJson.getJSONObject("mediaInfo").getInt("season_type"));
+                                jsonEntry.getJSONObject("ep").put("season_type",htmlJson.getInt("season_type"));
                                 FileUtility.WriteFile(GetBilibiliDownloadEntryPath(jsonEntry.getString("season_id"),
                                         String.valueOf(jsonEntry.getJSONObject("ep").getInt("episode_id"))),jsonEntry.toString());
                             }catch (JSONException e){
@@ -122,17 +122,17 @@ public class BilibiliDownloadDialog {
                     return;
                 }
                 try {
-                    String jsonString = URLUtility.GetBilibiliJsonContainingSSID(StreamUtility.GetStringFromStream(stream), ssid);
+                    String jsonString = StreamUtility.GetStringFromStream(stream);
                     if (jsonString == null) {
                         Toast.makeText(ctx, R.string.message_bilibili_ssid_code_not_found, Toast.LENGTH_LONG).show();
                         return;
                     }
-                    htmlJson = new JSONObject(jsonString);
-                    String animeTitle=htmlJson.getJSONObject("mediaInfo").getString("title");
+                    htmlJson = new JSONObject(jsonString).getJSONObject("result");
+                    String animeTitle=htmlJson.getString("title");
                     dialog.setTitle(animeTitle);
                     if(animeTitle.contains("僅"))
                         buttonOk.setText(R.string.message_bilibili_download_region_restricted_warning);
-                    JSONArray epArray=htmlJson.getJSONArray("epList");
+                    JSONArray epArray=htmlJson.getJSONArray("episodes");
                     for(int i=0;i<epArray.length();i++){
                         CheckBox checkBox=new CheckBox(dialog.getContext());
                         JSONObject epObject=epArray.getJSONObject(i);
@@ -148,6 +148,6 @@ public class BilibiliDownloadDialog {
                 }
             }
         };
-        task.execute("https://www.bilibili.com/bangumi/play/ss"+ssid);
+        task.execute("https://bangumi.bilibili.com/view/web_api/season?season_id="+ssid);
     }
 }

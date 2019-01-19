@@ -1014,7 +1014,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ReadBilibiliSSID_OnCallback(final String idString){
         editDialogTitle.setText("SSID:"+idString);
-        final String requestUrl="https://www.bilibili.com/bangumi/play/ss"+idString;
+        final String requestUrl="https://bangumi.bilibili.com/view/web_api/season?season_id="+idString;
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
@@ -1023,41 +1023,43 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 try {
-                    String jsonString=URLUtility.GetBilibiliJsonContainingSSID(StreamUtility.GetStringFromStream(stream),idString);
+                    //2019-1-19：B站网页更新，原有查询方法失效。
+                    //参考：https://github.com/xiaoyaocz/BiliAnimeDownload/blob/master/BiliAnimeDownload/BiliAnimeDownload/Helpers/Api.cs
+                    String jsonString=StreamUtility.GetStringFromStream(stream);
                     if(jsonString==null){
                         Toast.makeText(getBaseContext(),getString(R.string.message_bilibili_ssid_code_not_found,idString),Toast.LENGTH_LONG).show();
                         return;
                     }
-                    JSONObject htmlJson=new JSONObject(jsonString);
-                    editDialogCover.setText(htmlJson.getJSONObject("mediaInfo").getString("cover"));
-                    editDialogTitle.setText(htmlJson.getJSONObject("mediaInfo").getString("series_title"));
-                    editDialogDescription.setText(htmlJson.getJSONObject("mediaInfo").getString("evaluate"));
-                    editDialogActors.setText(htmlJson.getJSONObject("mediaInfo").getString("actors"));
-                    editDialogStaff.setText(htmlJson.getJSONObject("mediaInfo").getString("staff"));
-                    String[]pubTimeParts=htmlJson.getJSONObject("pubInfo").getString("pub_time").split(" ");
+                    JSONObject htmlJson=new JSONObject(jsonString).getJSONObject("result");
+                    editDialogCover.setText(htmlJson.getString("cover"));
+                    editDialogTitle.setText(htmlJson.getString("series_title"));
+                    editDialogDescription.setText(htmlJson.getString("evaluate"));
+                    editDialogActors.setText(htmlJson.getString("actors"));
+                    editDialogStaff.setText(htmlJson.getString("staff"));
+                    String[]pubTimeParts=htmlJson.getJSONObject("publish").getString("pub_time").split(" ");
                     editDialogStartDate.setText(pubTimeParts[0]);
                     editDialogUpdateTime.setText(pubTimeParts[1]);
-                    if(htmlJson.getJSONObject("pubInfo").getString("weekday").contentEquals("-1")){
+                    if(htmlJson.getJSONObject("publish").getString("weekday").contentEquals("-1")){
                         editDialogUpdatePeriod.setText("1");
                         comboDialogUpdatePeriodUnit.setSelection(1,true);
-                    }else if("0123456".contains(htmlJson.getJSONObject("pubInfo").getString("weekday"))){
+                    }else if("0123456".contains(htmlJson.getJSONObject("publish").getString("weekday"))){
                         editDialogUpdatePeriod.setText("7");
                         comboDialogUpdatePeriodUnit.setSelection(0,true);
                     }
-                    String countString=htmlJson.getJSONObject("mediaInfo").getString("total_ep");
+                    String countString=htmlJson.getString("total_ep");
                     if(countString.contentEquals("0"))
                         editDialogEpisodeCount.setText("-1");
                     else
                         editDialogEpisodeCount.setText(countString);
                     StringBuilder tagString=new StringBuilder();
-                    for(int i=0;i<htmlJson.getJSONObject("mediaInfo").getJSONArray("style").length();i++){
+                    for(int i=0;i<htmlJson.getJSONArray("style").length();i++){
                         if(i!=0)
                             tagString.append(",");
-                        tagString.append(htmlJson.getJSONObject("mediaInfo").getJSONArray("style").getString(i));
+                        tagString.append(htmlJson.getJSONArray("style").getString(i));
                     }
                     editDialogCategory.setText(tagString.toString());
-                    editDialogWatchUrl.setText(requestUrl);//为避免输入的URL无法被客户端打开把URL统一改成SSID形式
-                    editDialogRanking.setText(String.valueOf(Math.round(htmlJson.getJSONObject("mediaRating").getDouble("score")/2)));
+                    editDialogWatchUrl.setText("https://www.bilibili.com/bangumi/play/ss"+idString);//为避免输入的URL无法被客户端打开把URL统一改成SSID形式
+                    editDialogRanking.setText(String.valueOf(Math.round(htmlJson.getJSONObject("rating").getDouble("score")/2)));
                 }catch (JSONException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                 }catch (IOException e){

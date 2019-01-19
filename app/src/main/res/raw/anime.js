@@ -2806,7 +2806,7 @@ setJsonData({
 		"staff":"(NOT SET)",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25739",
 		"title":"关于我转生变成史莱姆这档事",
@@ -2820,8 +2820,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["后宫","奇幻","装逼","战斗","小说改","魔法"],
-		"last_watch_date_anime":"2019-1-8",
-		"last_watch_episode_anime":14,
+		"last_watch_date_anime":"2019-1-18",
+		"last_watch_episode_anime":15,
 		"staff":"原作：川上泰树、伏濑、みっつばー《关于我转生变成史莱姆这档事》（讲谈社《月刊少年天狼星》连载）\n监督：菊地康仁\n副监督：中山敦史\n系列构成：笔安一幸\n角色设计：江畑谅真\n怪物设计：岸田隆宏\n美术监督：佐藤步\n美术设定：藤濑智康、佐藤正浩\n色彩设计：齐藤麻记\n摄影监督：佐藤洋\n图形设计：生原雄次\n编辑：神宫司由美\n音响监督：明田川仁\n音乐：Elements Garden\n动画制作：8bit（8-bit）",
 		"actors":"利姆鲁·特恩佩斯特：冈咲美保\n大贤者：丰口惠美\n维鲁德拉·特恩佩斯特：前野智昭\n井沢静江：花守由美里\n岚牙：小林亲弘\n红丸：古川慎\n朱菜：千本木彩花\n紫苑：M・A・O\n苍影：江口拓也\n白老：大塚芳忠\n三上悟：寺岛拓笃\n希兹：花守由美里\n利古鲁德：山本兼平\n利古鲁：石谷春贵\n哥布塔：泊明日菜\n凯金：斧敦\n托蕾妮：田中理惠\n艾莲：熊田茜音\n卡巴尔：高梨谦吾\n米莉姆：日高里菜",
 		"update_time_int":30
@@ -3519,7 +3519,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2018-12-23"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/d7cfaea0d21d6c989e58d05941edd362e5dc9c22.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss3491",
 		"title":"HELLO!! 黄金拼图",
@@ -3528,19 +3528,19 @@ setJsonData({
 		"staff":"原作：原悠衣（《Manga Time Kirara MAX》）\n监督：天冲\n副监督：名和宗则\n系列构成：绫奈由仁子\n角色设计：植田和幸\n总作画监督：植田和幸、野中正幸、横松雄马、片冈英之\n色彩设计：歌川律子\n美术监督：柴田千佳子\n摄影监督：宋贤大\n编辑：武宫睦美\n音响监督：明田川仁\n音乐：川田瑠夏\n音乐制作：FlyingDog\n英语监修协力：COCO塾\n制片：GENCO\n动画制作：Studio五组",
 		"start_date":"2015-04-05",
 		"update_time_int":0,
-		"update_period":1,
-		"update_period_unit":"month",
+		"update_period":7,
+		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":5,
 		"color":"silver",
 		"category":["校园","日常","治愈"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_date_anime":"2019-1-17",
+		"last_watch_episode_anime":12,
 		"create_date":"2018-12-23"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/3d28a53c16557718b6277e803bd9ee4e876f5ece.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss6205",
 		"title":"黄金拼图 Pretty Days",
@@ -3554,11 +3554,11 @@ setJsonData({
 		"episode_count":1,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["萌系","日常","治愈"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_date_anime":"2019-1-17",
+		"last_watch_episode_anime":1,
 		"create_date":"2018-12-23"
 	},{
 		"watched_episode":[false],
@@ -3624,7 +3624,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2018-12-27"
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/406a17e27a7e8891196010e99400c85eb30626a9.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26298",
 		"title":"笨拙之极的上野",
@@ -3641,11 +3641,11 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["恋爱","校园","漫画改","搞笑"],
-		"last_watch_date_anime":"2019-1-8",
-		"last_watch_episode_anime":1,
+		"last_watch_date_anime":"2019-1-14",
+		"last_watch_episode_anime":2,
 		"create_date":"2018-12-28"
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e1015a803ad97406f9eddfbc6ad608cc965f8b05.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26291",
 		"title":"天使降临到了我的身边！",
@@ -3658,15 +3658,15 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":-1,
 		"absense_count":0,
-		"abandoned":true,
+		"abandoned":false,
 		"rank":3,
 		"color":"silver",
 		"category":["日常","治愈","漫画改","萌系"],
-		"last_watch_date_anime":"2019-1-8",
-		"last_watch_episode_anime":1,
+		"last_watch_date_anime":"2019-1-18",
+		"last_watch_episode_anime":2,
 		"create_date":"2018-12-29"
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fd61c0a8680678960446a849f2079e0de09d4290.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26308",
 		"title":"约会大作战第三季",
@@ -3683,8 +3683,8 @@ setJsonData({
 		"rank":2,
 		"color":"silver",
 		"category":["小说改","萌系","奇幻","战斗","魔法"],
-		"last_watch_date_anime":"2019-1-11",
-		"last_watch_episode_anime":1,
+		"last_watch_date_anime":"2019-1-19",
+		"last_watch_episode_anime":2,
 		"create_date":"2019-1-1"
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
@@ -3771,7 +3771,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-1-3"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true],
 		"cover":"https:\/\/lain.bgm.tv\/pic\/cover\/l\/02\/9d\/254895_La0Ze.jpg",
 		"watch_url":"https:\/\/bgm.tv\/subject\/254895",
 		"title":"Endro～！",
@@ -3785,11 +3785,11 @@ setJsonData({
 		"episode_count":-1,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":[],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_date_anime":"2019-1-13",
+		"last_watch_episode_anime":1,
 		"create_date":"2019-1-8"
 	},{
 		"watched_episode":[true],
@@ -3939,7 +3939,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-1-10"
 	},{
-		"watched_episode":[true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e7d9c0c849ea1d0b4756cb569181b4b2387e3515.jpg",
 		"watch_url":"http:\/\/www.bilibili.com\/video\/av2857934",
 		"title":"蔷薇少女 梦之终结",
@@ -3953,14 +3953,14 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":5,
+		"rank":4,
 		"color":"silver",
 		"category":["萌系","奇幻","致郁"],
-		"last_watch_date_anime":"2019-1-11",
-		"last_watch_episode_anime":3,
+		"last_watch_date_anime":"2019-1-13",
+		"last_watch_episode_anime":12,
 		"create_date":"2019-1-11"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/d3f6db826f0c8508693dc326549e9d68cd7fb85a.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss524",
 		"title":"蔷薇少女 序曲",
@@ -3974,11 +3974,11 @@ setJsonData({
 		"episode_count":2,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":5,
 		"color":"silver",
 		"category":["萌系","奇幻","致郁"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_date_anime":"2019-1-13",
+		"last_watch_episode_anime":2,
 		"create_date":"2019-1-11"
 	},{
 		"watched_episode":[true],
@@ -3994,15 +3994,15 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":-1,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":4,
+		"abandoned":true,
+		"rank":3,
 		"color":"silver",
 		"category":["热血","智斗","猎奇","致郁","励志","漫画改"],
 		"last_watch_date_anime":"2019-1-11",
 		"last_watch_episode_anime":1,
 		"create_date":"2019-1-11"
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/557d34915075b0fcdaeef9c4f6d1212dca95c379.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26280",
 		"title":"格林笔记",
@@ -4019,8 +4019,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["游戏改"],
-		"last_watch_date_anime":"2019-1-11",
-		"last_watch_episode_anime":1,
+		"last_watch_date_anime":"2019-1-18",
+		"last_watch_episode_anime":2,
 		"create_date":"2019-1-11"
 	},{
 		"watched_episode":[false],
@@ -4043,5 +4043,26 @@ setJsonData({
 		"last_watch_date_anime":"1900-1-1",
 		"last_watch_episode_anime":0,
 		"create_date":"2019-1-12"
+	},{
+		"watched_episode":[false],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8e8852adfc91eef6557061e09e388b80e89fd6f6.png",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26271",
+		"title":"玛娜莉亚魔法学院",
+		"description":"这里是“人”“神”“魔”各个种族混杂在一起的神秘世界密斯塔尔希亚。快活的玛娜莉亚王国公主“安”，内向的龙族公主“古蕾雅”。自两人的相遇之后，玛娜莉亚魔法学院的生活开始了。\n动画制作：CygamePictures",
+		"actors":"安：日笠阳子\n古蕾雅：福原绫香\n汉娜：水树奈奈\n欧文：羽多野涉\n米兰达：井上喜久子\n露：古山贵实子\n海茵莱茵：沢城千春\n威廉：内田雄马",
+		"staff":"原作：Cygames\n监督 \/ 系列构成：关根聪子\n角色设计·总作画监督：吉田南\n美术监督：仓田宪一\n音乐：渡边崇\n动画制作：CygamesPictures",
+		"start_date":"2019-01-21",
+		"update_time_int":45,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":-1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["校园","魔法","游戏改","战斗"],
+		"last_watch_date_anime":"1900-1-1",
+		"last_watch_episode_anime":0,
+		"create_date":"2019-1-19"
 	}]
 });

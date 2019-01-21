@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":190,
+	"last_watch_index":208,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -3624,7 +3624,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2018-12-27"
 	},{
-		"watched_episode":[true,true],
+		"watched_episode":[true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/406a17e27a7e8891196010e99400c85eb30626a9.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26298",
 		"title":"笨拙之极的上野",
@@ -3641,8 +3641,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["恋爱","校园","漫画改","搞笑"],
-		"last_watch_date_anime":"2019-1-14",
-		"last_watch_episode_anime":2,
+		"last_watch_date_anime":"2019-1-21",
+		"last_watch_episode_anime":3,
 		"create_date":"2018-12-28"
 	},{
 		"watched_episode":[true,true],
@@ -3771,7 +3771,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-1-3"
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true],
 		"cover":"https:\/\/lain.bgm.tv\/pic\/cover\/l\/02\/9d\/254895_La0Ze.jpg",
 		"watch_url":"https:\/\/bgm.tv\/subject\/254895",
 		"title":"Endro～！",
@@ -3782,21 +3782,21 @@ setJsonData({
 		"update_time_int":0,
 		"update_period":7,
 		"update_period_unit":"day",
-		"episode_count":-1,
+		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
 		"rank":4,
 		"color":"silver",
 		"category":[],
-		"last_watch_date_anime":"2019-1-13",
-		"last_watch_episode_anime":1,
+		"last_watch_date_anime":"2019-1-21",
+		"last_watch_episode_anime":2,
 		"create_date":"2019-1-8"
 	},{
-		"watched_episode":[true],
+		"watched_episode":[true,true],
 		"cover":"http:\/\/lain.bgm.tv\/pic\/cover\/l\/77\/8a\/238640_c6z6A.jpg",
 		"watch_url":"https:\/\/tw.iqiyi.com\/a_19rrhv10p9.html",
 		"title":"粉彩回忆",
-		"description":"本作是一款以秋葉原為舞台的遊戲，時代設定在距今不久的未來20XX 年。雖然秋葉原曾經被稱作禦宅聖地，但是在20XX年時、當地的宅文化卻整個沒落。玩家將扮演殘存在秋葉原中的少數宅店店長，與店裡身負各種宅能力的女孩們同心協力，奪回人們心中被奪走的回憶而與神秘敵人展開戰鬥。\n动画制作：Project No.9",
+		"description":"本作是一款以秋葉原為舞台的遊戲，時代設定在距今不久的未來20XX 年。雖然秋葉原曾經被稱作禦宅聖地，但是在20XX年時、當地的宅文化卻整個沒落。玩家將扮演殘存在秋葉原中的少數宅店店長，與店裡身負各種宅能力的女孩們同心協力，奪回人們心中被奪走的回憶而與神秘敵人展開戰鬥。\n动画制作：Project No.9\n第二话让我眼瞎，点兔被黑到我怀疑人生。",
 		"actors":"",
 		"staff":"",
 		"start_date":"2019-1-7",
@@ -3805,12 +3805,12 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":3,
+		"abandoned":true,
+		"rank":1,
 		"color":"silver",
 		"category":["日漫","未来","冒险","魔幻","剧情","TV版","青春","7-13","14-17","18以上","日语","番剧","原创","搞笑","战斗","奇幻","日常","萌系","青春","冒险","合家欢","跟播新番","剧情"],
-		"last_watch_date_anime":"2019-1-9",
-		"last_watch_episode_anime":1,
+		"last_watch_date_anime":"2019-1-20",
+		"last_watch_episode_anime":2,
 		"create_date":"2019-1-8"
 	},{
 		"watched_episode":[false],
@@ -4044,11 +4044,11 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-1-12"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8e8852adfc91eef6557061e09e388b80e89fd6f6.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26271",
 		"title":"玛娜莉亚魔法学院",
-		"description":"这里是“人”“神”“魔”各个种族混杂在一起的神秘世界密斯塔尔希亚。快活的玛娜莉亚王国公主“安”，内向的龙族公主“古蕾雅”。自两人的相遇之后，玛娜莉亚魔法学院的生活开始了。\n动画制作：CygamePictures",
+		"description":"这里是“人”“神”“魔”各个种族混杂在一起的神秘世界密斯塔尔希亚。快活的玛娜莉亚王国公主“安”，内向的龙族公主“古蕾雅”。自两人的相遇之后，玛娜莉亚魔法学院的生活开始了。\n动画制作：CygamesPictures",
 		"actors":"安：日笠阳子\n古蕾雅：福原绫香\n汉娜：水树奈奈\n欧文：羽多野涉\n米兰达：井上喜久子\n露：古山贵实子\n海茵莱茵：沢城千春\n威廉：内田雄马",
 		"staff":"原作：Cygames\n监督 \/ 系列构成：关根聪子\n角色设计·总作画监督：吉田南\n美术监督：仓田宪一\n音乐：渡边崇\n动画制作：CygamesPictures",
 		"start_date":"2019-01-21",
@@ -4057,12 +4057,12 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":-1,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":0,
+		"abandoned":true,
+		"rank":4,
 		"color":"silver",
 		"category":["校园","魔法","游戏改","战斗"],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_date_anime":"2019-1-21",
+		"last_watch_episode_anime":1,
 		"create_date":"2019-1-19"
 	}]
 });

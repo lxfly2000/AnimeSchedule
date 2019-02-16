@@ -132,4 +132,5 @@
     <string name="label_using_3rdparty">引用的第三方项目</string>
     <string name="label_update_time">更新时间</string>
     <string name="label_anime_create_date">创建于%s。</string>
+    <string name="action_close_anime_box">关闭番剧更新提示框</string>
 </resources>

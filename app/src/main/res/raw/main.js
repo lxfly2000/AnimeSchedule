@@ -157,7 +157,7 @@ function writeList(jsonData,sortOrder){
 		listObject.getElementsByClassName("ItemAnimeTitle")[0].appendChild(linkedTitleObject);
 		var rankString="";
 		for (var j=0;j<5;j++){
-			rankString+=j<animeObject["rank"]?"★":"☆";
+			rankString+=j<animeObject["rank"]?"●":"○";
 		}
 		listObject.getElementsByClassName("ItemAnimeRank")[0].innerHTML=rankString;
 		listObject.getElementsByClassName("ItemAnimeDescription")[0].innerText=animeObject["description"];

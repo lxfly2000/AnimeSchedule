@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
             listItem.put("description",animeJson.GetDescription(jsonSortTable.get(i)));
             StringBuilder rankingString=new StringBuilder();
             for(int j=0;j<5;j++){
-                rankingString.append(j<animeJson.GetRank(jsonSortTable.get(i))?"★":"☆");
+                rankingString.append(j<animeJson.GetRank(jsonSortTable.get(i))?"●":"○");
             }
             listItem.put("ranking",rankingString.toString());
             StringBuilder strSchedule=new StringBuilder();

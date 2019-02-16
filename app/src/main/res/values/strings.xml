@@ -157,4 +157,5 @@
     <string name="label_update_time">Update Time</string>
     <string name="label_anime_create_date">Created at %s.</string>
     <string name="action_close_anime_box">Close Anime info box</string>
+    <string name="label_choose_star_mark">Choose star marks</string>
 </resources>

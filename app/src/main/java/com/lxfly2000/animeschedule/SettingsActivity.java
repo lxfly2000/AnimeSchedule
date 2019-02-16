@@ -20,6 +20,10 @@ import android.widget.*;
 import com.obsez.android.lib.filechooser.ChooserDialog;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity {
     private SharedPreferences preferences;
@@ -27,6 +31,8 @@ public class SettingsActivity extends AppCompatActivity {
     private Spinner spinnerSortMethods,spinnerSortOrder,spinnerBilibiliVersions;
     private TextView textBilibiliSavePath;
     private CheckBox checkSeperateAbandoned;
+    private RadioGroup radiosStarMark;
+    private final List<Integer> radiosId=Arrays.asList(R.id.radioStarMarkStar,R.id.radioStarMarkBall);
     static final String keyNeedReload="need_reload";
 
     @Override
@@ -42,11 +48,20 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerBilibiliVersions=(Spinner)findViewById(R.id.spinnerBilibiliVersions);
         checkSeperateAbandoned=(CheckBox)findViewById(R.id.checkBoxSeperateAbandoned);
         textBilibiliSavePath=(TextView) findViewById(R.id.textBilibiliSavePath);
+        radiosStarMark=(RadioGroup)findViewById(R.id.radiosStarMark);
+        for(int i=0;i<radiosId.size();i++)
+            ((RadioButton)findViewById(radiosId.get(i))).setText(Values.starMarks[i]);
 
         spinnerSortMethods.setOnItemSelectedListener(spinnerSelectListener);
         spinnerSortOrder.setOnItemSelectedListener(spinnerSelectListener);
         spinnerBilibiliVersions.setOnItemSelectedListener(spinnerSelectListener);
         checkSeperateAbandoned.setOnClickListener(buttonCallbacks);
+        radiosStarMark.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                modified=true;
+            }
+        });
         LoadSettings();
     }
 
@@ -130,6 +145,7 @@ public class SettingsActivity extends AppCompatActivity {
         checkSeperateAbandoned.setChecked(preferences.getBoolean(Values.keySortSeperateAbandoned,Values.vDefaultSortSeperateAbandoned));
         spinnerBilibiliVersions.setSelection(preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex));
         SetBilibiliSavePathText(preferences.getString(Values.keyBilibiliSavePath,Values.GetvDefaultBilibiliSavePath(this)));
+        radiosStarMark.check(radiosId.get(preferences.getInt(Values.keyStarMark,Values.vDefaultStarMark)));
         modified=false;
     }
 
@@ -140,6 +156,7 @@ public class SettingsActivity extends AppCompatActivity {
         wPreference.putBoolean(Values.keySortSeperateAbandoned,checkSeperateAbandoned.isChecked());
         wPreference.putInt(Values.keyBilibiliVersionIndex,spinnerBilibiliVersions.getSelectedItemPosition());
         wPreference.putString(Values.keyBilibiliSavePath,textBilibiliSavePath.getText().toString());
+        wPreference.putInt(Values.keyStarMark, radiosId.indexOf(radiosStarMark.getCheckedRadioButtonId()));
         wPreference.apply();
         modified=false;
         Toast.makeText(this,R.string.message_settings_saved,Toast.LENGTH_LONG).show();

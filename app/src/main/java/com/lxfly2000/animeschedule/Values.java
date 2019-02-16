@@ -23,6 +23,9 @@ public class Values {
     public static final String keyBilibiliVersionIndex="bilibili_version_index";
     public static final int vDefaultBilibiliVersionIndex =0;
     public static final String dateStringDefault="1900-1-1";
+    public static final String keyStarMark="star_mark";
+    public static final int vDefaultStarMark=0;
+    public static final String[] starMarks={"★☆","●○"};
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
     }

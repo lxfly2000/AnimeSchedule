@@ -308,13 +308,15 @@ public class MainActivity extends AppCompatActivity {
         String[]keyStrings={"title","description","ranking","schedule","cover"};
         int[]viewIds={R.id.textAnimeTitle,R.id.textAnimeDescription,R.id.textRanking,R.id.textSchedule,R.id.imageCover};
         SimpleAdapter customAdapter=new SimpleAdapter(this,listItems,R.layout.item_anime,keyStrings,viewIds);
+        String starMarks=Values.starMarks[preferences.getInt(Values.keyStarMark,Values.vDefaultStarMark)];
+        String starMarkFull=starMarks.substring(0,1),starMarkEmpty=starMarks.substring(1,2);
         for(int i=0;i<animeJson.GetAnimeCount();i++){
             HashMap<String,Object>listItem=new HashMap<>();
             listItem.put("title",animeJson.GetTitle(jsonSortTable.get(i)));
             listItem.put("description",animeJson.GetDescription(jsonSortTable.get(i)));
             StringBuilder rankingString=new StringBuilder();
             for(int j=0;j<5;j++){
-                rankingString.append(j<animeJson.GetRank(jsonSortTable.get(i))?"●":"○");
+                rankingString.append(j<animeJson.GetRank(jsonSortTable.get(i))?starMarkFull:starMarkEmpty);
             }
             listItem.put("ranking",rankingString.toString());
             StringBuilder strSchedule=new StringBuilder();

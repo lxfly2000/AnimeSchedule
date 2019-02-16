@@ -68,6 +68,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/spinnerBilibiliVersions"
                     android:entries="@array/list_bilibili_client_versions"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView24"/>
+            <TextView
+                    android:text="@string/label_choose_star_mark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView25"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:textSize="18sp"/>
+            <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:orientation="horizontal"
+                    android:id="@+id/radiosStarMark">
+                <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/radioStarMarkStar"
+                        android:layout_weight="1"/>
+                <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/radioStarMarkBall"
+                        android:layout_weight="1"/>
+            </RadioGroup>
         </LinearLayout>
     </ScrollView>
     <Button

@@ -1,5 +1,6 @@
 package com.lxfly2000.animeschedule;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,7 +17,10 @@ public class AnimeWeb extends AppCompatActivity {
         setContentView(R.layout.activity_anime_web);
         webAnime=(WebView)findViewById(R.id.webviewAnime);
         webAnime.getSettings().setJavaScriptEnabled(true);
-        webAnime.loadUrl("file://"+Values.GetRepositoryPathOnLocal()+"/"+Values.webFiles[0]);
+        SharedPreferences preferences=Values.GetPreference(this);
+        String starMarks=Values.starMarks[preferences.getInt(Values.keyStarMark,Values.vDefaultStarMark)];
+        String starMarkFull=starMarks.substring(0,1),starMarkEmpty=starMarks.substring(1,2);
+        webAnime.loadUrl("file://"+Values.GetRepositoryPathOnLocal()+"/"+Values.webFiles[0]+"?mark_full="+starMarkFull+"&mark_empty="+starMarkEmpty);
     }
 
     @Override

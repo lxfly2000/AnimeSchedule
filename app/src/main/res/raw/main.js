@@ -16,7 +16,7 @@ function getQueryString(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 	var r = location.search.substr(1).match(reg);
 	if (r != null)
-		return unescape(r[2]);
+		return decodeURI(r[2]);
 	return null;
 }
 
@@ -140,6 +140,7 @@ function writeList(jsonData,sortOrder){
 	sortOrder=sortOrder?sortOrder:"";
 	var listObjectsList=[];
 	var tagAnimeList=document.getElementsByClassName("AnimeList")[0];
+	var star_marks={"full":getQueryString("mark_full")||"★","empty":getQueryString("mark_empty")||"☆"};
 	for (var i = 0; i < jsonData["anime"].length; i++) {
 		var listObject=listTemplate.cloneNode(true);
 		var animeObject=jsonData["anime"][i];
@@ -157,7 +158,7 @@ function writeList(jsonData,sortOrder){
 		listObject.getElementsByClassName("ItemAnimeTitle")[0].appendChild(linkedTitleObject);
 		var rankString="";
 		for (var j=0;j<5;j++){
-			rankString+=j<animeObject["rank"]?"●":"○";
+			rankString+=j<animeObject["rank"]?star_marks.full:star_marks.empty;
 		}
 		listObject.getElementsByClassName("ItemAnimeRank")[0].innerHTML=rankString;
 		listObject.getElementsByClassName("ItemAnimeDescription")[0].innerText=animeObject["description"];

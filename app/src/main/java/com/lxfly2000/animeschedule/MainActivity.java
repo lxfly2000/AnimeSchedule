@@ -1034,7 +1034,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                     JSONObject htmlJson=new JSONObject(jsonString).getJSONObject("result");
                     editDialogCover.setText(htmlJson.getString("cover"));
-                    editDialogTitle.setText(htmlJson.getString("series_title"));
+                    try {
+                        editDialogTitle.setText(htmlJson.getString("series_title"));
+                    }catch (JSONException es){
+                        //2019-2-16：经检查发现番剧《天使降临到我身边》（SSID：26291）不存在“series_title”属性
+                        editDialogTitle.setText(htmlJson.getString("title"));
+                    }
                     editDialogDescription.setText(htmlJson.getString("evaluate"));
                     editDialogActors.setText(htmlJson.getString("actors"));
                     editDialogStaff.setText(htmlJson.getString("staff"));

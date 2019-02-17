@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":190,
+	"last_watch_index":222,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -4340,7 +4340,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-1-28"
 	},{
-		"watched_episode":[true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/451037aabcdce0379752e087720673609894161a.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26274",
 		"title":"辉夜姬想让人告白",
@@ -4357,8 +4357,8 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["恋爱","校园","智斗","日常","漫画改","搞笑"],
-		"last_watch_date_anime":"2019-2-10",
-		"last_watch_episode_anime":5,
+		"last_watch_date_anime":"2019-2-17",
+		"last_watch_episode_anime":6,
 		"create_date":"2019-1-29"
 	},{
 		"watched_episode":[true,true,true,true,true],

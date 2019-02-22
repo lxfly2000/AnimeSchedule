@@ -511,7 +511,7 @@ public class AnimeJson {
             o.put("watched_episode",new JSONArray());
             a.put(ni,o);
             SetCoverUrl(ni,"");
-            SetWatchUrl(ni,"http://bangumi.bilibili.com/anime/");
+            SetWatchUrl(ni,Values.urlAnimeWatchUrlDefault);
             SetTitle(ni,"");
             SetDescription(ni,"Bili:");
             SetActors(ni,"");

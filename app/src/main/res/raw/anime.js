@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":222,
+	"last_watch_index":237,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -2808,7 +2808,7 @@ setJsonData({
 		"staff":"(NOT SET)",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/25739",
 		"title":"关于我转生变成史莱姆这档事",
@@ -2822,8 +2822,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["后宫","奇幻","装逼","战斗","小说改","魔法"],
-		"last_watch_date_anime":"2019-2-12",
-		"last_watch_episode_anime":19,
+		"last_watch_date_anime":"2019-2-19",
+		"last_watch_episode_anime":20,
 		"staff":"原作：川上泰树、伏濑、みっつばー《关于我转生变成史莱姆这档事》（讲谈社《月刊少年天狼星》连载）\n监督：菊地康仁\n副监督：中山敦史\n系列构成：笔安一幸\n角色设计：江畑谅真\n怪物设计：岸田隆宏\n美术监督：佐藤步\n美术设定：藤濑智康、佐藤正浩\n色彩设计：齐藤麻记\n摄影监督：佐藤洋\n图形设计：生原雄次\n编辑：神宫司由美\n音响监督：明田川仁\n音乐：Elements Garden\n动画制作：8bit（8-bit）",
 		"actors":"利姆鲁·特恩佩斯特：冈咲美保\n大贤者：丰口惠美\n维鲁德拉·特恩佩斯特：前野智昭\n井沢静江：花守由美里\n岚牙：小林亲弘\n红丸：古川慎\n朱菜：千本木彩花\n紫苑：M・A・O\n苍影：江口拓也\n白老：大塚芳忠\n三上悟：寺岛拓笃\n希兹：花守由美里\n利古鲁德：山本兼平\n利古鲁：石谷春贵\n哥布塔：泊明日菜\n凯金：斧敦\n托蕾妮：田中理惠\n艾莲：熊田茜音\n卡巴尔：高梨谦吾\n米莉姆：日高里菜",
 		"update_time_int":30
@@ -3626,7 +3626,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2018-12-27"
 	},{
-		"watched_episode":[true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/406a17e27a7e8891196010e99400c85eb30626a9.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26298",
 		"title":"笨拙之极的上野",
@@ -3643,11 +3643,11 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["恋爱","校园","漫画改","搞笑"],
-		"last_watch_date_anime":"2019-2-11",
-		"last_watch_episode_anime":6,
+		"last_watch_date_anime":"2019-2-18",
+		"last_watch_episode_anime":7,
 		"create_date":"2018-12-28"
 	},{
-		"watched_episode":[true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e1015a803ad97406f9eddfbc6ad608cc965f8b05.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26291",
 		"title":"天使降临到了我的身边！",
@@ -3664,8 +3664,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日常","治愈","漫画改","萌系"],
-		"last_watch_date_anime":"2019-2-13",
-		"last_watch_episode_anime":6,
+		"last_watch_date_anime":"2019-2-20",
+		"last_watch_episode_anime":7,
 		"create_date":"2018-12-29"
 	},{
 		"watched_episode":[true,true,true,true,true,true],
@@ -4046,7 +4046,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-1-12"
 	},{
-		"watched_episode":[true,true,true,true],
+		"watched_episode":[true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8e8852adfc91eef6557061e09e388b80e89fd6f6.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26271",
 		"title":"玛娜莉亚魔法学院",
@@ -4063,8 +4063,8 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["校园","魔法","游戏改","战斗"],
-		"last_watch_date_anime":"2019-2-11",
-		"last_watch_episode_anime":4,
+		"last_watch_date_anime":"2019-2-18",
+		"last_watch_episode_anime":5,
 		"create_date":"2019-1-19"
 	},{
 		"watched_episode":[false],
@@ -4361,7 +4361,7 @@ setJsonData({
 		"last_watch_episode_anime":6,
 		"create_date":"2019-1-29"
 	},{
-		"watched_episode":[true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/de944b7c9306932d8dd3dcaeaf2eeec8670deec5.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26284",
 		"title":"盾之勇者成名录",
@@ -4375,11 +4375,11 @@ setJsonData({
 		"episode_count":25,
 		"absense_count":1,
 		"abandoned":true,
-		"rank":2,
+		"rank":3,
 		"color":"silver",
 		"category":["小说改","奇幻","魔法"],
-		"last_watch_date_anime":"2019-2-8",
-		"last_watch_episode_anime":5,
+		"last_watch_date_anime":"2019-2-18",
+		"last_watch_episode_anime":6,
 		"create_date":"2019-1-29"
 	},{
 		"watched_episode":[false],
@@ -4654,5 +4654,26 @@ setJsonData({
 		"last_watch_date_anime":"2019-2-13",
 		"last_watch_episode_anime":3,
 		"create_date":"2019-2-13"
+	},{
+		"watched_episode":[true,true,true,true,true,true,true],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/42277064bb22748612b0fd432189e5eac6e01c5f.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss7",
+		"title":"漫研部",
+		"description":"由ちょぼらうにょぽみ在WEB漫画杂志《まんがライフWIN》上连载的四格漫画改编，讲述漫研社四名女学生的日常故事。\n动画制作：セブン",
+		"actors":"蛯原爱：大坪由佳\n美依：内田真礼\n麻衣：内田彩\n步乃香学姐：茅野愛衣\n柴犬子：佐々木未来\n旁白：向清太朗\n",
+		"staff":"原作：ちょぼらうにょぽみ\n监督：いまざきいつき\n脚本：いまざきいつき\n演出：いまざきいつき\n人物设定：いまざきいつき\n美术监督：片平真二\n色彩设计：藤木由香里\n音乐：羽鳥風画\n音响监督：川添憲五\n摄影监督：堀川和人\n动画制作：セブン",
+		"start_date":"2013-01-03",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":3,
+		"color":"silver",
+		"category":["搞笑","泡面","日常","校园"],
+		"last_watch_date_anime":"2019-2-21",
+		"last_watch_episode_anime":7,
+		"create_date":"2019-2-20"
 	}]
 });

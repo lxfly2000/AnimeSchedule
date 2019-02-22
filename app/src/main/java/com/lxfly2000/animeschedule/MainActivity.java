@@ -14,6 +14,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.*;
 import android.widget.*;
 import com.google.android.flexbox.FlexboxLayout;
@@ -904,6 +906,23 @@ public class MainActivity extends AppCompatActivity {
         editDialogAbsenseCount.setText(String.valueOf(animeJson.GetAbsenseCount(index)));
         editDialogWatchUrl.setText(String.valueOf(animeJson.GetWatchUrl(index)));
         editDialogWatchUrl.requestFocus();
+        editDialogWatchUrl.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //Nothing.
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //https://developer.android.google.cn/reference/android/widget/TextView.html#setError(java.lang.CharSequence)
+                editDialogWatchUrl.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                //Nothing.
+            }
+        });
         //显示观看的集数
         StringBuilder stringBuilder=new StringBuilder();
         ToggleButton toggleEpisode;
@@ -948,10 +967,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if(i_regex==Values.parsableLinksRegex.length){
-                    if(urlString.contains("bilibili"))
-                        Toast.makeText(getBaseContext(),R.string.message_not_supported_bilibili_url,Toast.LENGTH_LONG).show();
-                    else
-                        Toast.makeText(getBaseContext(),R.string.message_not_supported_url,Toast.LENGTH_LONG).show();
+                    if(urlString.contains("bilibili")) {
+                        if(urlString.equals(Values.urlAnimeWatchUrlDefault)){
+                            editDialogWatchUrl.setError(getString(R.string.message_bilibili_url_not_given_ssid));
+                        }else {
+                            editDialogWatchUrl.setError(getString(R.string.message_not_supported_bilibili_url));
+                        }
+                    }else {
+                        editDialogWatchUrl.setError(getString(R.string.message_not_supported_url));
+                    }
                 }
             }
         });

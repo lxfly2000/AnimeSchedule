@@ -74,6 +74,7 @@ public class Values {
     public static final String urlDonateAlipayBase64="aHR0cHM6Ly9xci5hbGlwYXkuY29tL2ZreDA5ODkwNHZ1ODZtOTF0NnJ6dGEx";
     public static final String urlDonateWechatBase64="d3hwOi8vZjJmMHI2RlNlR3ZzNEIyTUhzTUZLdWdudEZMZDhhOG5KWnB3";
     public static final String urlDonatePaypalBase64="aHR0cHM6Ly93d3cucGF5cGFsLm1lL2x4Zmx5MjAwMA==";
+    public static final String urlAnimeWatchUrlDefault="http://bangumi.bilibili.com/anime/";
     public static String GetCheckUpdateURL(){
         return urlAuthor+"/raw/master/app/build.gradle";
     }

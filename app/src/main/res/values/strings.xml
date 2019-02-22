@@ -158,4 +158,5 @@
     <string name="label_anime_create_date">Created at %s.</string>
     <string name="action_close_anime_box">Close Anime info box</string>
     <string name="label_choose_star_mark">Choose star marks</string>
+    <string name="message_bilibili_url_not_given_ssid">Not given a season ID.</string>
 </resources>

@@ -37,6 +37,16 @@ public class YMDDate {
         }
     }
 
+    public int To8DigitsInt(){
+        return GetYear()*10000+GetMonth()*100+GetDate();
+    }
+
+    public void From8DigitsInt(int iDate){
+        SetYear(iDate/10000);
+        SetMonth((iDate/100)%100);
+        SetDate(iDate%100);
+    }
+
     public boolean IsLaterThanDate(YMDDate otherDate){
         int idate1=GetYear()*10000+GetMonth()*100+GetDate();
         int idate2=otherDate.GetYear()*10000+otherDate.GetMonth()*100+otherDate.GetDate();

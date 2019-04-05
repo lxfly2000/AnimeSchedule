@@ -92,11 +92,17 @@ public class AnimeJson {
     }
 
     public String GetLastWatchDateStringForAnime(int index){
-        try{
-            return json.getJSONArray("anime").getJSONObject(index).getString("last_watch_date_anime");
-        }catch (JSONException e){
-            return Values.dateStringDefault;
+        YMDDate date=new YMDDate();
+        int iDate=GetEpisodeWatchedIntDate(index,GetLastWatchEpisodeForAnime(index));
+        if(iDate==0){
+            try {
+                return json.getJSONArray("anime").getJSONObject(index).getString("last_watch_date_anime");
+            } catch (JSONException e) {
+                return Values.dateStringDefault;
+            }
         }
+        date.From8DigitsInt(iDate);
+        return date.ToYMDString();
     }
 
     public boolean SetLastWatchDateForAnime(int index,String date){
@@ -165,7 +171,7 @@ public class AnimeJson {
         try{
             json.put("last_watch_index",index);
             SetLastWatchEpisodeForAnime(index,episode);
-            SetLastWatchDateForAnime(index,date);
+            //SetLastWatchDateForAnime(index,date);
         }catch (JSONException e){
             return false;
         }
@@ -373,27 +379,30 @@ public class AnimeJson {
 
     //【注意】集数是从1数起的
     public boolean SetEpisodeWatched(int index,int episode,boolean watched){
+        return SetEpisodeWatchedIntDate(index,episode,watched?YMDDate.GetTodayDate().To8DigitsInt():0);
+    }
+
+    public boolean SetEpisodeWatchedIntDate(int index,int episode,int iDate){
         episode--;
-        try {
-            JSONArray a=json.getJSONArray("anime").getJSONObject(index).getJSONArray("watched_episode");
-            for(int i=a.length();i<episode-1;i++)
-                a.put(i,false);
-            a.put(episode,watched);
+        try{
+            json.getJSONArray("anime").getJSONObject(index).getJSONArray("watched_episode").put(episode,iDate);
         }catch (JSONException e){
             return false;
         }
-        if(watched)
-            SetLastWatch(index,episode+1,YMDDate.GetTodayDate().ToYMDString());
         return true;
     }
 
     //【注意】集数是从1数起的
     public boolean GetEpisodeWatched(int index,int episode){
+        return GetEpisodeWatchedIntDate(index,episode)!=0;
+    }
+
+    public int GetEpisodeWatchedIntDate(int index,int episode){
         episode--;
         try {
-            return json.getJSONArray("anime").getJSONObject(index).getJSONArray("watched_episode").getBoolean(episode);
+            return json.getJSONArray("anime").getJSONObject(index).getJSONArray("watched_episode").getInt(episode);
         }catch (JSONException e){
-            return false;
+            return 0;
         }
     }
 
@@ -527,7 +536,7 @@ public class AnimeJson {
             SetRank(ni,0);
             SetColor(ni,"silver");
             SetCategory(ni,new String[]{});
-            SetLastWatchDateForAnime(ni,Values.dateStringDefault);
+            //SetLastWatchDateForAnime(ni,Values.dateStringDefault);
             SetLastWatchEpisodeForAnime(ni,0);
             SetCreationDateStringForAnime(ni,YMDDate.GetTodayDate().ToYMDString());
             CalculateExtraInfomation();

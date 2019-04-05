@@ -107,6 +107,20 @@ function dateToString(dateObject){
 	return dateObject.getFullYear().toString()+"-"+(dateObject.getMonth()+1)+"-"+dateObject.getDate();
 }
 
+function getLastWatchDateAnime(animeObject){
+    if(animeObject["last_watch_date_anime"]!=undefined){
+        return animeObject["last_watch_date_anime"];
+    }
+    if(animeObject["last_watch_episode_anime"]==undefined||animeObject["last_watch_episode_anime"]==0){
+        return "无效日期";
+    }
+    var va=animeObject["watched_episode"][animeObject["last_watch_episode_anime"]];
+    if(va==false||va==null||va==undefined||va==0){
+        return "无效日期";
+    }
+    return (va/10000)+"-"+((va/100)%100)+"-"+(va%100);
+}
+
 function setCoverCallback(responseData,responseStatus,extra){
 	var resIsLocal=true;
 	switch(extra.next_url[0].split(":")[0]){
@@ -218,7 +232,7 @@ function writeList(jsonData,sortOrder){
 					textContent+="，共"+animeObject["episode_count"]+"话。";
 			}
 			if(animeObject["last_watch_episode_anime"]!=undefined&&animeObject["last_watch_episode_anime"]!=0)
-				textContent+="最后观看于"+animeObject["last_watch_date_anime"]+"。";
+				textContent+="最后观看于"+getLastWatchDateAnime(animeObject)+"。";
 		}
 		for (var j=0;j<maxEpisodes;j++){
 			var tagEpisodeObject=document.createElement("div");
@@ -282,7 +296,7 @@ function writeList(jsonData,sortOrder){
 		paragObject.textContent="无数据。";
 	else{
 		var lastWatchAnime=jsonData["anime"][jsonData["last_watch_index"]];
-		paragObject.textContent="上次观看："+lastWatchAnime["last_watch_date_anime"]+" "+lastWatchAnime["title"]+" 第"+lastWatchAnime["last_watch_episode_anime"]+"话";
+		paragObject.textContent="上次观看："+getLastWatchDateAnime(lastWatchAnime)+" "+lastWatchAnime["title"]+" 第"+lastWatchAnime["last_watch_episode_anime"]+"话";
 	}
 	floatingBoxObject.appendChild(paragObject);
 	paragObject=document.createElement("p");

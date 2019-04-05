@@ -389,12 +389,22 @@ public class AnimeJson {
         }catch (JSONException e){
             return false;
         }
+        if(iDate!=0)
+            SetLastWatch(index,episode+1,YMDDate.GetTodayDate().ToYMDString());
         return true;
     }
 
     //【注意】集数是从1数起的
     public boolean GetEpisodeWatched(int index,int episode){
-        return GetEpisodeWatchedIntDate(index,episode)!=0;
+        if(GetEpisodeWatchedIntDate(index,episode)==0){
+            episode--;
+            try{
+                return json.getJSONArray("anime").getJSONObject(index).getJSONArray("watched_episode").getBoolean(episode);
+            }catch (JSONException e){
+                return false;
+            }
+        }
+        return true;
     }
 
     public int GetEpisodeWatchedIntDate(int index,int episode){

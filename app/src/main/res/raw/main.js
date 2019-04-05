@@ -108,17 +108,17 @@ function dateToString(dateObject){
 }
 
 function getLastWatchDateAnime(animeObject){
+    if(animeObject["last_watch_episode_anime"]!=undefined&&animeObject["last_watch_episode_anime"]!=0){
+        var va=animeObject["watched_episode"][animeObject["last_watch_episode_anime"]-1];
+        if(va!=false&&va!=true&&va!=null&&va!=undefined&&va!=0){
+            var vas=va.toString();
+            return vas.substring(0,4)+"-"+vas.substring(4,6)+"-"+vas.substring(6,8);
+        }
+    }
     if(animeObject["last_watch_date_anime"]!=undefined){
         return animeObject["last_watch_date_anime"];
     }
-    if(animeObject["last_watch_episode_anime"]==undefined||animeObject["last_watch_episode_anime"]==0){
-        return "无效日期";
-    }
-    var va=animeObject["watched_episode"][animeObject["last_watch_episode_anime"]];
-    if(va==false||va==null||va==undefined||va==0){
-        return "无效日期";
-    }
-    return (va/10000)+"-"+((va/100)%100)+"-"+(va%100);
+    return "无效日期";
 }
 
 function setCoverCallback(responseData,responseStatus,extra){
@@ -237,7 +237,7 @@ function writeList(jsonData,sortOrder){
 		for (var j=0;j<maxEpisodes;j++){
 			var tagEpisodeObject=document.createElement("div");
 			tagEpisodeObject.textContent=(j+1).toString();
-			if(animeObject["watched_episode"][j]==true){
+			if(animeObject["watched_episode"][j]==true||animeObject["watched_episode"][j]>0){
 				if(animeObject["last_watch_episode_anime"]==j+1)
 					tagEpisodeObject.className="ItemAnimeEpisodeTagLastWatched";
 				else

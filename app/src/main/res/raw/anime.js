@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":252,
+	"last_watch_index":122,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -2306,7 +2306,7 @@ setJsonData({
 		"actors":"裘可拉：佐土原かおり\n游王子讴歌：辻あゆみ\n甘草奏：豊永利行、葉山いくみ\n雪平富良野：近藤唯\n梦岛乌：岩崎征実\n箱庭摇木：大空直美\n丽华堂绚女：松嵜麗\n黑白院清罗：五十嵐裕美",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,20190405,20190406],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/227177ddcbcddc326e1c751b89db24195c20e0d2.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/1600",
 		"title":"灼眼的夏娜",
@@ -2321,7 +2321,7 @@ setJsonData({
 		"color":"silver",
 		"category":["热血","奇幻","校园","战斗","轻改","神魔","萝莉"],
 		"last_watch_date_anime":"2019-4-1",
-		"last_watch_episode_anime":9,
+		"last_watch_episode_anime":11,
 		"staff":"原作：高桥弥七郎、伊东杂音、高橋弥七郎、畑博之\n监督：渡部高志\n脚本：小林靖子\n分镜：米たにヨシトモ、渡部高志、福田道生\n演出：秋田谷典昭、高島大輔\n人物原案：いとうのいぢ\n人物设定：大塚舞\n系列构成：小林靖子\n色彩设计：伊藤由紀子\n作画监督：大冢舞、藤井昌宏、住本悦子、冷水由紀絵、武本大介、岡野幸男\n音乐：大谷幸\n音响监督：明田川仁\n摄影监督：福世晋吾\n动画制作：J.C.STAFF\n官方网站：http：\/\/www.shakugan.com\/",
 		"actors":"夏娜：釘宮理恵\n威尔艾米娜·卡梅尔：伊藤静\n玛琼琳·朵：生天目仁美\n吉田一美：川澄綾子\n坂井悠二：日野聡\n修德南：三宅健太\n平井缘：浅野真澄\n坂井贯太郎：藤原啓治\n中村公子：藤村歩",
 		"update_time_int":0
@@ -2466,7 +2466,7 @@ setJsonData({
 		"staff":"(NOT SET)",
 		"update_time_int":0
 	},{
-		"watched_episode":[false],
+		"watched_episode":[20190405],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/1d3755821ba15a595dea9235d12131c75d10bf58.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/2809",
 		"title":"凉宫春日的消失",
@@ -2477,11 +2477,11 @@ setJsonData({
 		"episode_count":1,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":5,
 		"color":"silver",
 		"category":["日常","奇幻","搞笑","时泪","校园","轻改","社团"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"staff":"原作： 谷川流\n导演： 武本康弘\n脚本： 志茂文彦、谷川流(协力)\n分镜： 石原立也、高雄統子、武本康弘\n演出： 高雄統子、内海紘子、坂本一也、山田尚子、北之原孝將、米田光良\n音乐： 石濱翔、神前暁、高田龍一、帆足圭吾\n人物原案： いとうのいぢ\n人物设定： 池田晶子\n美术监督： 田村せいき\n色彩设计： 石田奈央美\n总作画监督： 西屋太志、池田晶子\n作画监督： 高橋真梨子、高橋博行、堀口悠紀子、池田和美、秋竹斉一、植野千世子、門脇未来\n摄影监督： 中上竜太\n原画： 木上益治、山田尚子、石立太一、池田晶子、高雄統子\n音响监督： 鶴岡陽太\n制片人： 伊藤敦\n音乐制作： ランティス\n动画制作： 京都アニメーション",
 		"actors":"长门有希：茅原実里\n阿虚：杉田智和\n凉宫春日：平野綾\n古泉一树：小野大輔\n朝比奈实玖瑠：後藤邑子\n朝仓凉子：桑谷夏子\n鶴屋学姐：松岡由貴\n国木田：松元恵\n谷口：白石稔\n",
 		"update_time_int":0

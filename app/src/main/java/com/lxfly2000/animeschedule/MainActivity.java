@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
     int lastTopItemIndex,lastBottomItemIndex;
 
     private void DisplayImagesVisible(int top,int bottom){
-        SimpleAdapter adapter=(SimpleAdapter)listAnime.getAdapter();
+        final SimpleAdapter adapter=(SimpleAdapter)listAnime.getAdapter();
         for(int i=lastTopItemIndex;i<=lastBottomItemIndex;i++){
             if(i>=0&&i<top||i>bottom&&i<listAnime.getCount()){
                 HashMap<String,Object>item=(HashMap)adapter.getItem(i);
@@ -250,55 +250,55 @@ public class MainActivity extends AppCompatActivity {
         lastTopItemIndex=top;
         lastBottomItemIndex=bottom;
         for(int i=top;i<=bottom;i++){
-            AsyncTask<Object,Integer,Boolean>setImageTask=new AsyncTask<Object, Integer, Boolean>() {
-                SimpleAdapter listAdapter;
-                @Override
-                protected Boolean doInBackground(Object... params) {
-                    int imgIndex=(Integer)params[0];
-                    listAdapter=(SimpleAdapter)params[1];
-                    HashMap<String,Object>item=(HashMap)listAdapter.getItem(imgIndex);
-                    if(item.get("cover")==null){
-                        String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(imgIndex));
-                        String[]tempSplit=coverUrl.split("/");
-                        String coverExt="";
-                        if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
-                            coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
-                        }
-                        String coverPath=Values.GetCoverPathOnLocal()+"/"+
-                                animeJson.GetTitle(jsonSortTable.get(imgIndex)).replaceAll("[/\":|<>?*]","_")+coverExt;
-                        if(FileUtility.IsFileExists(coverPath)){
-                            item.put("cover", BitmapFactory.decodeFile(coverPath));
-                            return true;
-                        }else{
-                            AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-                                @Override
-                                public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
-                                    ParametersSetImage param = (ParametersSetImage) extra;
-                                    if(success) {
-                                        FileUtility.WriteStreamToFile(param.imagePath,stream);
-                                        ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
-                                    }else {
-                                        ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).put("cover",BitmapFactory.decodeResource(getResources(),R.raw.dn_error));
-                                        Toast.makeText(getBaseContext(),getString(R.string.message_cannot_download_cover,animeJson.GetCoverUrl(jsonSortTable.get(param.listIndex)),
-                                                (String)((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).get("title")),Toast.LENGTH_LONG).show();
-                                    }
-                                    param.listAdapter.notifyDataSetChanged();
-                                }
-                            };
-                            task.SetExtra(new ParametersSetImage(listAdapter,coverPath,imgIndex));
-                            task.executeOnExecutor(THREAD_POOL_EXECUTOR,coverUrl,coverPath);
-                            item.put("cover",task);
-                        }
-                    }
-                    return false;
+            final HashMap<String,Object>item=(HashMap)adapter.getItem(i);
+            if(item.get("cover")==null){
+                String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(i));
+                String[]tempSplit=coverUrl.split("/");
+                String coverExt="";
+                if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
+                    coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
                 }
-                @Override
-                protected void onPostExecute(Boolean result){
-                    if(result)
-                        listAdapter.notifyDataSetChanged();
+                final String coverPath=Values.GetCoverPathOnLocal()+"/"+
+                        animeJson.GetTitle(jsonSortTable.get(i)).replaceAll("[/\":|<>?*]","_")+coverExt;
+                if(FileUtility.IsFileExists(coverPath)){
+                    AsyncTask<Object,Integer,Boolean>task=new AsyncTask<Object, Integer, Boolean>() {
+                        @Override
+                        protected Boolean doInBackground(Object... objects) {
+                            item.put("cover",BitmapFactory.decodeFile(coverPath));
+                            return (int)objects[0]>=lastTopItemIndex&&(int)objects[0]<=lastBottomItemIndex;
+                        }
+                        @Override
+                        protected void onPostExecute(Boolean result){
+                            if(result) {
+                                adapter.notifyDataSetChanged();
+                            }else if(item.get("cover")instanceof Bitmap){
+                                ((Bitmap)item.get("cover")).recycle();
+                                item.remove("cover");
+                            }
+                        }
+                    };
+                    task.execute(i);
+                }else{
+                    AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+                        @Override
+                        public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                            ParametersSetImage param = (ParametersSetImage) extra;
+                            if(success) {
+                                FileUtility.WriteStreamToFile(param.imagePath,stream);
+                                ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
+                            }else {
+                                ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).put("cover",BitmapFactory.decodeResource(getResources(),R.raw.dn_error));
+                                Toast.makeText(getBaseContext(),getString(R.string.message_cannot_download_cover,animeJson.GetCoverUrl(jsonSortTable.get(param.listIndex)),
+                                        (String)((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).get("title")),Toast.LENGTH_LONG).show();
+                            }
+                            param.listAdapter.notifyDataSetChanged();
+                        }
+                    };
+                    task.SetExtra(new ParametersSetImage(adapter,coverPath,i));
+                    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,coverUrl,coverPath);
+                    item.put("cover",task);
                 }
-            };
-            setImageTask.execute(i,adapter);
+            }
         }
     }
 

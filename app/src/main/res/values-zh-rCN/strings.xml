@@ -105,7 +105,7 @@
     <string name="message_overwrite_google_drive_warning">这会覆盖你Google网盘上的内容（如果有的话），是否继续？</string>
     <string name="message_overwrite_local_warning">这会覆盖你设备中当前已存储的内容，是否继续？</string>
     <string name="action_about">关于</string>
-    <string name="label_app_intro">这是一个可以帮助你规划追番的时间提醒类APP，目前支持B站和爱奇艺的番剧信息读取。适合追番党使用。</string>
+    <string name="label_app_intro">本应用可以帮助你收藏番剧，管理追番进度，适合追番党使用。\n\n使用方法：\n*B站和爱奇艺番剧：\n(a)找到番剧页面，复制链接，在添加番剧对话框中粘贴地址链接，点击自动获取，检查信息无误后按确定。\n(b)在浏览器或B站/爱奇艺APP中的番剧页面选择分享链接至本APP可自动完成信息填写。\n*其他网站：\n请参照(a)手动添加信息。</string>
     <string name="label_report_bug">报告 Bug</string>
     <string name="label_author">制作：lxfly2000</string>
     <string name="label_view_github_repo">前往本APP的GitHub</string>

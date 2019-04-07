@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+#在Windows下添加Linux执行权限：
+#git update-index --chmod=+x gradlew
+
 ##############################################################################
 ##
 ##  Gradle start up script for UN*X

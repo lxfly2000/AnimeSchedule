@@ -2306,7 +2306,7 @@ setJsonData({
 		"actors":"裘可拉：佐土原かおり\n游王子讴歌：辻あゆみ\n甘草奏：豊永利行、葉山いくみ\n雪平富良野：近藤唯\n梦岛乌：岩崎征実\n箱庭摇木：大空直美\n丽华堂绚女：松嵜麗\n黑白院清罗：五十嵐裕美",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,20190405,20190406],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,20190405,20190406,20190407],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/227177ddcbcddc326e1c751b89db24195c20e0d2.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/1600",
 		"title":"灼眼的夏娜",
@@ -2321,7 +2321,7 @@ setJsonData({
 		"color":"silver",
 		"category":["热血","奇幻","校园","战斗","轻改","神魔","萝莉"],
 		"last_watch_date_anime":"2019-4-1",
-		"last_watch_episode_anime":11,
+		"last_watch_episode_anime":12,
 		"staff":"原作：高桥弥七郎、伊东杂音、高橋弥七郎、畑博之\n监督：渡部高志\n脚本：小林靖子\n分镜：米たにヨシトモ、渡部高志、福田道生\n演出：秋田谷典昭、高島大輔\n人物原案：いとうのいぢ\n人物设定：大塚舞\n系列构成：小林靖子\n色彩设计：伊藤由紀子\n作画监督：大冢舞、藤井昌宏、住本悦子、冷水由紀絵、武本大介、岡野幸男\n音乐：大谷幸\n音响监督：明田川仁\n摄影监督：福世晋吾\n动画制作：J.C.STAFF\n官方网站：http：\/\/www.shakugan.com\/",
 		"actors":"夏娜：釘宮理恵\n威尔艾米娜·卡梅尔：伊藤静\n玛琼琳·朵：生天目仁美\n吉田一美：川澄綾子\n坂井悠二：日野聡\n修德南：三宅健太\n平井缘：浅野真澄\n坂井贯太郎：藤原啓治\n中村公子：藤村歩",
 		"update_time_int":0
@@ -5129,7 +5129,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-2"
 	},{
-		"watched_episode":[20190406],
+		"watched_episode":[20190406,20190407],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0185e95dab20828dcfa79a32a6797e1f4d17722d.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1558",
 		"title":"小长门有希的消失",
@@ -5147,7 +5147,7 @@ setJsonData({
 		"color":"silver",
 		"category":["日常","少女","治愈"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":1,
+		"last_watch_episode_anime":2,
 		"create_date":"2019-4-5"
 	},{
 		"watched_episode":[false],
@@ -5357,7 +5357,7 @@ setJsonData({
 		"title":"贤惠幼妻仙狐小姐",
 		"description":"每天重复着自家和公司两边生活的社畜中野身边，突然出现了仙狐小姐（800岁 ，幼女）。她每天尽力地负责饮食、家务、特别服务（？）来“照顾”被这个社会压垮的中野。仙狐与中野的共同生活突然开始。这是一部带给在现代社会中辛苦奔波的所有人的照顾系撒娇喜剧！\n动画制作：动画工房",
 		"actors":"仙狐：和氣あず未\n中野：諏訪部順一\nシロ：内田真礼\n高円寺安子：佐倉綾音\n夜空：喜多村英梨",
-		"staff":"原作: リムコロ\n导演: 越田知明\n脚本: 中村能子\n音乐: 藤澤慶昌\n人物设定: 大島美和\n系列构成: 中村能子\n美术监督: 三宅昌和\n色彩设计: 竹内优太\n总作画监督: 曾我篤史、大島美和、熊谷勝弘\n摄影监督: 吴健宏剪辑: 今井大介\n音响监督: 土屋雅紀\n动画制作: 動画工房\n美术设计: 佐南友理",
+		"staff":"原作: リムコロ\n导演: 越田知明\n脚本: 中村能子\n音乐: 藤澤慶昌\n人物设定: 大島美和\n系列构成: 中村能子\n美术监督: 三宅昌和\n色彩设计: 竹内优太\n总作画监督: 曾我篤史、大島美和、熊谷勝弘\n摄影监督: 吴健宏\n剪辑: 今井大介\n音响监督: 土屋雅紀\n动画制作: 動画工房\n美术设计: 佐南友理",
 		"start_date":"2019-4-10",
 		"update_time_int":1380,
 		"update_period":7,
@@ -5388,6 +5388,26 @@ setJsonData({
 		"rank":0,
 		"color":"silver",
 		"category":["爱情","动画"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-4-7"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/img8.dm530.net\/pic\/uploadimg\/2015-4\/4212.jpg",
+		"watch_url":"http:\/\/dm.dm530.net\/show\/4212.html",
+		"title":"最近妹妹的样子有点怪",
+		"description":"没有血缘关系的神前美月和神前夕哉因为父母的再婚而成为义理上的兄妹，开始了同居的生活。非常喜欢夕哉，但因为一起交通事故而没来得及转达就死亡的少女寿日和变成幽灵并附身妹妹美月，使美月穿上了贞操带一样的“过激内衣”，并且会常常忍不住要和哥哥LOVELOVE的荒诞爱情故事。\n动画制作：Project No.9",
+		"actors":"神前美月：桥本千波\n神前夕哉：间岛淳司\n寿日和：小仓唯\n桐谷雪那：金元寿子",
+		"staff":"",
+		"start_date":"2014-01-05",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["日漫","搞笑","TV版","青春","18以上","日语"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-7"
 	}]

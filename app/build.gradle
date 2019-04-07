@@ -7,8 +7,8 @@ android {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 109
-        versionName "5.1.4"
+        versionCode 110
+        versionName "5.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BUILD_DATE", "\"" + new Date().format("yyyy-M-d") + "\""
     }
@@ -29,6 +29,7 @@ android {
 }
 
 dependencies {
+    //查看依赖关系：gradlew -q app:dependenciesd
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -38,8 +39,12 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.android:flexbox:1.0.0'
-    implementation 'com.google.android.gms:play-services-drive:16.1.0'
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    api("com.google.android.gms:play-services-drive:16.1.0"){
+        exclude group:'com.android.support'
+    }
+    api("com.google.android.gms:play-services-auth:16.0.1"){
+        exclude group:'com.android.support'
+    }
     implementation 'com.obsez.android.lib.filechooser:filechooser:1.1.11'
 }
 

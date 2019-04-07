@@ -1,12 +1,15 @@
 package com.lxfly2000.animeschedule;
 
+import android.Manifest;
 import android.app.SearchManager;
 import android.content.*;
+import android.content.pm.PackageManager;
 import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.BaseColumns;
@@ -57,9 +60,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(!AndroidUtility.CheckPermissionWithFinishOnDenied(this,
-                "android.permission.READ_EXTERNAL_STORAGE",getString(R.string.error_permission_reading_sdcard)))
+        AppInit(true);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        AppInit(false);
+    }
+
+    private static final int requestCodeReadStorage=0;
+    private void AppInit(boolean needRequestPermissions){
+        //检查权限设置
+        if(checkCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            if(needRequestPermissions&& Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},requestCodeReadStorage);
+            }else {
+                AlertDialog.Builder about = new AlertDialog.Builder(this);
+                about.setTitle(R.string.app_name);
+                about.setMessage(R.string.error_permission_reading_sdcard);
+                about.setPositiveButton(android.R.string.ok, null);
+                about.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        MainActivity.this.finish();
+                    }
+                });
+                about.show();
+            }
             return;
+        }
         preferences=Values.GetPreference(this);
         if(preferences.getString(Values.keyAnimeInfoDate,Values.vDefaultString).contentEquals(Values.vDefaultString)){
             Toast.makeText(this,R.string.message_build_default_settings,Toast.LENGTH_LONG).show();

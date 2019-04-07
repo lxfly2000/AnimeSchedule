@@ -5370,5 +5370,25 @@ setJsonData({
 		"category":["漫画改","治愈"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-6"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fd5891a000ecdf6e76fdfea1fc204776f728c9ba.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26826",
+		"title":"我想吃掉你的胰脏",
+		"description":"对他人毫无兴趣，总是独自一人读书的高中生“我”，有一天偶然捡到一册写着《共病文库》的文库本，那是同班同学山内樱良的日记，里面记载着她身患胰脏的疾病，已经时日无多……性格相反的两个人，生命开始出现交集。\n动画制作：Studio VOLN",
+		"actors":"高杉真宙\nLynn\n藤井雪代\n内田雄马\n福岛润\n田中敦子\n三木真一郎",
+		"staff":"导演：牛岛新一郎\n编剧：牛岛新一郎",
+		"start_date":"2019-04-07",
+		"update_time_int":0,
+		"update_period":1,
+		"update_period_unit":"month",
+		"episode_count":1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["爱情","动画"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-4-7"
 	}]
 });

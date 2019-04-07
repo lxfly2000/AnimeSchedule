@@ -1,4 +1,6 @@
-# AnimeSchedule [![Build Status](https://travis-ci.com/lxfly2000/AnimeSchedule.svg?branch=master)](https://travis-ci.com/lxfly2000/AnimeSchedule)
+# AnimeSchedule
+[![Build Status](https://travis-ci.com/lxfly2000/AnimeSchedule.svg?branch=master)](https://travis-ci.com/lxfly2000/AnimeSchedule)
+
 This is an app helping you manage your time for watching Animes, useful for Anime fans.
 
 ## Download

@@ -163,4 +163,5 @@
     <string name="label_question_input_anime_count">Enter the count of Animes in the list to continue:</string>
     <string name="menu_edit_watched_episodes">Edit watched episodes</string>
     <string name="button_change_layout">Change layout</string>
+    <string name="message_last_watch_date">Last watch:\u0020</string>
 </resources>

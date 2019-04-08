@@ -139,4 +139,5 @@
     <string name="label_question_input_anime_count">请输入列表中的番剧总数以继续：</string>
     <string name="menu_edit_watched_episodes">编辑已观看集数</string>
     <string name="button_change_layout">切换布局</string>
+    <string name="message_last_watch_date">上次观看：</string>
 </resources>

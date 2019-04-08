@@ -27,7 +27,7 @@ public class YMDDate {
         return new YMDDate();
     }
 
-    public void FromString(String strDate){
+    public YMDDate FromString(String strDate){
         Pattern p=Pattern.compile("^\\d+-\\d+-\\d+$");
         if(p.matcher(strDate).find()) {
             String[] parts = strDate.split("-");
@@ -35,16 +35,18 @@ public class YMDDate {
             SetMonth(Integer.parseInt(parts[1]));
             SetDate(Integer.parseInt(parts[2]));
         }
+        return this;
     }
 
     public int To8DigitsInt(){
         return GetYear()*10000+GetMonth()*100+GetDate();
     }
 
-    public void From8DigitsInt(int iDate){
+    public YMDDate From8DigitsInt(int iDate){
         SetYear(iDate/10000);
         SetMonth((iDate/100)%100);
         SetDate(iDate%100);
+        return this;
     }
 
     public boolean IsLaterThanDate(YMDDate otherDate){

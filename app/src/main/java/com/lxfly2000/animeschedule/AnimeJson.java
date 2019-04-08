@@ -407,6 +407,7 @@ public class AnimeJson {
         return true;
     }
 
+    //【注意】集数是从1数起的
     public int GetEpisodeWatchedIntDate(int index,int episode){
         episode--;
         try {

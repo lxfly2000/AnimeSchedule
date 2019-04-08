@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int requestCodeReadStorage=0;
     private void AppInit(boolean needRequestPermissions){
         //检查权限设置
-        if(checkCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+        if(checkCallingOrSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
             if(needRequestPermissions&& Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},requestCodeReadStorage);
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},requestCodeReadStorage);
             }else {
                 AlertDialog.Builder about = new AlertDialog.Builder(this);
                 about.setTitle(R.string.app_name);

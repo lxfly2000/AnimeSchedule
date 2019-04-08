@@ -571,7 +571,7 @@ public class AnimeJson {
         return true;
     }
 
-    public boolean ClearAllAnime(){
+    public boolean ClearAllAnime_DeprecatedOn20190408(){
         try {
             JSONArray a=json.getJSONArray("anime");
             while(a.length()>0) {
@@ -581,6 +581,11 @@ public class AnimeJson {
         }catch (JSONException e){
             return false;
         }
+        return true;
+    }
+
+    public boolean ClearAllAnime(){
+        BuildDefaultData();
         return true;
     }
 }

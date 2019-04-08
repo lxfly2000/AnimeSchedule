@@ -887,18 +887,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .show();
-        //https://www.jianshu.com/p/132398300738
-        ScrollView scrollView=(ScrollView)editDialog.findViewById(R.id.scrollViewEditAnime);
-        scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
-        scrollView.setFocusable(true);
-        scrollView.setFocusableInTouchMode(true);
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                view.requestFocusFromTouch();
-                return false;
-            }
-        });
         //http://blog.csdn.net/nihaoqiulinhe/article/details/49026263
         editDialogDescription=(EditText)editDialog.findViewById(R.id.editTextDescription);
         editDialogActors=(EditText)editDialog.findViewById(R.id.editTextActors);
@@ -1099,7 +1087,9 @@ public class MainActivity extends AppCompatActivity {
                     editDialogStaff.setText(htmlJson.getString("staff"));
                     String[]pubTimeParts=htmlJson.getJSONObject("publish").getString("pub_time").split(" ");
                     editDialogStartDate.setText(pubTimeParts[0]);
-                    editDialogUpdateTime.setText(pubTimeParts[1]);
+                    //Bug:SSID:22574 pub_time字段不存在时间（2019-4-8）
+                    if(pubTimeParts.length>1)
+                        editDialogUpdateTime.setText(pubTimeParts[1]);
                     if(htmlJson.getJSONObject("publish").getString("weekday").contentEquals("-1")){
                         editDialogUpdatePeriod.setText("1");
                         comboDialogUpdatePeriodUnit.setSelection(1,true);
@@ -1383,8 +1373,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void RemoveAllAnime(){
-        animeJson.ClearAllAnime();
-        SaveAndReloadJsonFile(true);
+        ConfirmRemoveAllDialog dlg=new ConfirmRemoveAllDialog(this);
+        dlg.SetAnswer(String.valueOf(animeJson.GetAnimeCount()));
+        dlg.SetOnOkListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                animeJson.ClearAllAnime();
+                SaveAndReloadJsonFile(true);
+            }
+        });
+        dlg.Show();
     }
 
     private void SaveAndReloadJsonFile(boolean save){

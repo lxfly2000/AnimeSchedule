@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":259,
+	"last_watch_index":122,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -2306,7 +2306,7 @@ setJsonData({
 		"actors":"裘可拉：佐土原かおり\n游王子讴歌：辻あゆみ\n甘草奏：豊永利行、葉山いくみ\n雪平富良野：近藤唯\n梦岛乌：岩崎征実\n箱庭摇木：大空直美\n丽华堂绚女：松嵜麗\n黑白院清罗：五十嵐裕美",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,20190405,20190406,20190407],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,20190405,20190406,20190407,20190408],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/227177ddcbcddc326e1c751b89db24195c20e0d2.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/1600",
 		"title":"灼眼的夏娜",
@@ -2321,7 +2321,7 @@ setJsonData({
 		"color":"silver",
 		"category":["热血","奇幻","校园","战斗","轻改","神魔","萝莉"],
 		"last_watch_date_anime":"2019-4-1",
-		"last_watch_episode_anime":12,
+		"last_watch_episode_anime":13,
 		"staff":"原作：高桥弥七郎、伊东杂音、高橋弥七郎、畑博之\n监督：渡部高志\n脚本：小林靖子\n分镜：米たにヨシトモ、渡部高志、福田道生\n演出：秋田谷典昭、高島大輔\n人物原案：いとうのいぢ\n人物设定：大塚舞\n系列构成：小林靖子\n色彩设计：伊藤由紀子\n作画监督：大冢舞、藤井昌宏、住本悦子、冷水由紀絵、武本大介、岡野幸男\n音乐：大谷幸\n音响监督：明田川仁\n摄影监督：福世晋吾\n动画制作：J.C.STAFF\n官方网站：http：\/\/www.shakugan.com\/",
 		"actors":"夏娜：釘宮理恵\n威尔艾米娜·卡梅尔：伊藤静\n玛琼琳·朵：生天目仁美\n吉田一美：川澄綾子\n坂井悠二：日野聡\n修德南：三宅健太\n平井缘：浅野真澄\n坂井贯太郎：藤原啓治\n中村公子：藤村歩",
 		"update_time_int":0

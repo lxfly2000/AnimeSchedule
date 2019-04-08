@@ -499,9 +499,9 @@ public class MainActivity extends AppCompatActivity {
         if(behindCount==0){
             msg.append(getString(R.string.message_followed_all_anime));
         }
-        new AlertDialog.Builder(this)
+        AlertDialog dlg=new AlertDialog.Builder(this)
                 .setTitle(R.string.action_show_anime_update)
-                .setMessage(msg.toString())
+                .setView(R.layout.dialog_anime_update_info)
                 .setPositiveButton(android.R.string.ok,null)
                 .setNeutralButton(R.string.button_dont_show_again_today, new DialogInterface.OnClickListener() {
                     @Override
@@ -510,6 +510,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+        ((TextView)dlg.findViewById(R.id.textAnimeUpdateInfo)).setText(msg.toString());
     }
 
     @Override

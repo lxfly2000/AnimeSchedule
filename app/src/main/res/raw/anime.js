@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":122,
+	"last_watch_index":259,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -5129,7 +5129,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-2"
 	},{
-		"watched_episode":[20190406,20190407],
+		"watched_episode":[20190406,20190407,20190408],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0185e95dab20828dcfa79a32a6797e1f4d17722d.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1558",
 		"title":"小长门有希的消失",
@@ -5147,7 +5147,7 @@ setJsonData({
 		"color":"silver",
 		"category":["日常","少女","治愈"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":2,
+		"last_watch_episode_anime":3,
 		"create_date":"2019-4-5"
 	},{
 		"watched_episode":[false],

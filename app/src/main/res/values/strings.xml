@@ -161,4 +161,6 @@
     <string name="message_bilibili_url_not_given_ssid">Not given a season ID.</string>
     <string name="message_confirm_your_operation">Confirm your operation</string>
     <string name="label_question_input_anime_count">Enter the count of Animes in the list to continue:</string>
+    <string name="menu_edit_watched_episodes">Edit watched episodes</string>
+    <string name="button_change_layout">Change layout</string>
 </resources>

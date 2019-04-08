@@ -137,4 +137,6 @@
     <string name="message_bilibili_url_not_given_ssid">缺少SSID字段，请输入一个有效的SSID。</string>
     <string name="message_confirm_your_operation">确认你的操作</string>
     <string name="label_question_input_anime_count">请输入列表中的番剧总数以继续：</string>
+    <string name="menu_edit_watched_episodes">编辑已观看集数</string>
+    <string name="button_change_layout">切换布局</string>
 </resources>

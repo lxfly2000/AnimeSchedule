@@ -663,11 +663,37 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.action_show_detail:ShowAnimeDetail(jsonSortTable.get(longPressedListItem));break;
+            case R.id.action_edit_watched_episodes:EditWatchedEpisodes(jsonSortTable.get(longPressedListItem));break;
             case R.id.action_edit_item:EditAnime(jsonSortTable.get(longPressedListItem),false);break;
             case R.id.action_remove_item:RemoveItem(jsonSortTable.get(longPressedListItem));break;
             case R.id.action_download:OpenDownloadDialog(jsonSortTable.get(longPressedListItem));break;
         }
         return false;
+    }
+
+    private void EditWatchedEpisodes(final int index){
+        EditWatchedEpisodeDialog dlg=new EditWatchedEpisodeDialog(this);
+        dlg.SetJson(animeJson);
+        dlg.SetOnOkListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();
+                int i_list,i_prev_list;
+                for(i_prev_list=0;i_prev_list<jsonSortTable.size();i_prev_list++){
+                    if(jsonSortTable.get(i_prev_list)==index)
+                        break;
+                }
+                SaveAndReloadJsonFile(true);
+                for(i_list=0;i_list<jsonSortTable.size();i_list++){
+                    if(jsonSortTable.get(i_list)==index){
+                        if(i_list!=i_prev_list)
+                            listAnime.setSelection(i_list);
+                        break;
+                    }
+                }
+            }
+        });
+        dlg.Show(index);
     }
 
     private void OpenDownloadDialog(int index){//这个index已经是json中的索引了，无需再通过排序表查找
@@ -813,7 +839,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText editDialogEpisodeCount;
     private EditText editDialogAbsenseCount;
     private EditText editDialogWatchUrl;
-    private FlexboxLayout flexboxDialogWatchedEpisode;
     private EditText editDialogColor;
     private EditText editDialogCategory;
     private CheckBox checkDialogAbandoned;
@@ -843,12 +868,6 @@ public class MainActivity extends AppCompatActivity {
                         animeJson.SetEpisodeCount(index,ParseStringToInt(editDialogEpisodeCount.getText().toString(),-1));
                         animeJson.SetAbsenseCount(index,ParseStringToInt(editDialogAbsenseCount.getText().toString(),0));
                         animeJson.SetWatchUrl(index,editDialogWatchUrl.getText().toString());
-                        //读取已观看的集数
-                        for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(index);i_epi++) {
-                            boolean i_epi_watched=((ToggleButton)flexboxDialogWatchedEpisode.getChildAt(i_epi-1)).isChecked();
-                            if(animeJson.GetEpisodeWatched(index,i_epi)!=i_epi_watched)
-                                animeJson.SetEpisodeWatched(index, i_epi, i_epi_watched);
-                        }
                         animeJson.SetColor(index,editDialogColor.getText().toString());
                         String[]categoryArray=null;
                         if(editDialogCategory.getText().length()>0)
@@ -900,7 +919,6 @@ public class MainActivity extends AppCompatActivity {
         editDialogEpisodeCount=(EditText)editDialog.findViewById(R.id.editDialogEpisodeCount);
         editDialogAbsenseCount=(EditText)editDialog.findViewById(R.id.editDialogAbsenseCount);
         editDialogWatchUrl=(EditText)editDialog.findViewById(R.id.editDialogWatchUrl);
-        flexboxDialogWatchedEpisode=(FlexboxLayout)editDialog.findViewById(R.id.flexboxDialogWatchedEpisodes);
         editDialogColor=(EditText)editDialog.findViewById(R.id.editDialogColor);
         editDialogCategory=(EditText)editDialog.findViewById(R.id.editDialogCategory);
         checkDialogAbandoned=(CheckBox)editDialog.findViewById(R.id.checkAbandoned);
@@ -941,23 +959,9 @@ public class MainActivity extends AppCompatActivity {
                 //Nothing.
             }
         });
-        //显示观看的集数
-        StringBuilder stringBuilder=new StringBuilder();
-        ToggleButton toggleEpisode;
-        FlexboxLayout.LayoutParams layoutToggleEpisode=new FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT,FlexboxLayout.LayoutParams.WRAP_CONTENT);
-        for(int i=1;i<=animeJson.GetLastUpdateEpisode(index);i++){
-            toggleEpisode=new ToggleButton(this);
-            toggleEpisode.setLayoutParams(layoutToggleEpisode);
-            toggleEpisode.setMinWidth(0);
-            toggleEpisode.setMinimumWidth(0);
-            toggleEpisode.setTextOn(String.valueOf(i));
-            toggleEpisode.setTextOff(String.valueOf(i));
-            toggleEpisode.setChecked(animeJson.GetEpisodeWatched(index,i));
-            flexboxDialogWatchedEpisode.addView(toggleEpisode);
-        }
         editDialogColor.setText(String.valueOf(animeJson.GetColor(index)));
         String[]strCategoryArray=animeJson.GetCategory(index);
-        stringBuilder=new StringBuilder();
+        StringBuilder stringBuilder=new StringBuilder();
         for(int i=0;i<strCategoryArray.length;i++){
             if(i!=0)
                 stringBuilder.append(",");

@@ -7,8 +7,8 @@ android {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 110
-        versionName "5.3"
+        versionCode 111
+        versionName "5.4 dev1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BUILD_DATE", "\"" + new Date().format("yyyy-M-d") + "\""
     }
@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    //查看依赖关系：gradlew -q app:dependenciesd
+    //查看依赖关系：gradlew -q app:dependencies
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

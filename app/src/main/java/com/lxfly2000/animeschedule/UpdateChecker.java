@@ -2,6 +2,7 @@ package com.lxfly2000.animeschedule;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -47,13 +48,22 @@ public class UpdateChecker {
         return errorOccurred;
     }
 
+    private int remoteVersionCode;
+    private SharedPreferences preferences;
+
     private void OnReceiveData(String data){
         fileContentString=data;
         if(fileContentString==null){
             errorOccurred=true;
-        }else if(GetUpdateVersionCode()>BuildConfig.VERSION_CODE){
-            OnReceive(true);
-            return;
+        }else{
+            remoteVersionCode=GetUpdateVersionCode();
+            preferences=Values.GetPreference(ctx);
+            if(updateOnlyReportNewVersion&&remoteVersionCode<=preferences.getInt(Values.keySkippedVersionCode,Values.vDefaultSkippedVersionCode))
+                remoteVersionCode=0;
+            if(remoteVersionCode>BuildConfig.VERSION_CODE){
+                OnReceive(true);
+                return;
+            }
         }
         OnReceive(false);
     }
@@ -74,6 +84,12 @@ public class UpdateChecker {
                 }
             });
             msgBox.setNegativeButton(android.R.string.cancel,null);
+            msgBox.setNeutralButton(R.string.button_skip_new_version, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    preferences.edit().putInt(Values.keySkippedVersionCode,remoteVersionCode).apply();
+                }
+            });
         }else if (updateOnlyReportNewVersion){
             return;
         }else if (IsError()){

@@ -2306,7 +2306,7 @@ setJsonData({
 		"actors":"裘可拉：佐土原かおり\n游王子讴歌：辻あゆみ\n甘草奏：豊永利行、葉山いくみ\n雪平富良野：近藤唯\n梦岛乌：岩崎征実\n箱庭摇木：大空直美\n丽华堂绚女：松嵜麗\n黑白院清罗：五十嵐裕美",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,20190405,20190406,20190407,20190408],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,20190405,20190406,20190407,20190408,20190409,20190409,20190409],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/227177ddcbcddc326e1c751b89db24195c20e0d2.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/1600",
 		"title":"灼眼的夏娜",
@@ -2317,11 +2317,11 @@ setJsonData({
 		"episode_count":24,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":5,
+		"rank":4,
 		"color":"silver",
 		"category":["热血","奇幻","校园","战斗","轻改","神魔","萝莉"],
 		"last_watch_date_anime":"2019-4-1",
-		"last_watch_episode_anime":13,
+		"last_watch_episode_anime":16,
 		"staff":"原作：高桥弥七郎、伊东杂音、高橋弥七郎、畑博之\n监督：渡部高志\n脚本：小林靖子\n分镜：米たにヨシトモ、渡部高志、福田道生\n演出：秋田谷典昭、高島大輔\n人物原案：いとうのいぢ\n人物设定：大塚舞\n系列构成：小林靖子\n色彩设计：伊藤由紀子\n作画监督：大冢舞、藤井昌宏、住本悦子、冷水由紀絵、武本大介、岡野幸男\n音乐：大谷幸\n音响监督：明田川仁\n摄影监督：福世晋吾\n动画制作：J.C.STAFF\n官方网站：http：\/\/www.shakugan.com\/",
 		"actors":"夏娜：釘宮理恵\n威尔艾米娜·卡梅尔：伊藤静\n玛琼琳·朵：生天目仁美\n吉田一美：川澄綾子\n坂井悠二：日野聡\n修德南：三宅健太\n平井缘：浅野真澄\n坂井贯太郎：藤原啓治\n中村公子：藤村歩",
 		"update_time_int":0
@@ -5129,7 +5129,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-2"
 	},{
-		"watched_episode":[20190406,20190407,20190408],
+		"watched_episode":[20190406,20190407,20190408,20190409,20190409,20190409],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0185e95dab20828dcfa79a32a6797e1f4d17722d.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1558",
 		"title":"小长门有希的消失",
@@ -5147,7 +5147,7 @@ setJsonData({
 		"color":"silver",
 		"category":["日常","少女","治愈"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":3,
+		"last_watch_episode_anime":6,
 		"create_date":"2019-4-5"
 	},{
 		"watched_episode":[false],
@@ -5410,5 +5410,65 @@ setJsonData({
 		"category":["日漫","搞笑","TV版","青春","18以上","日语"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-7"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/f32f0f1390015c98aae1839e75fb1860065d8994.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss6470",
+		"title":"告白实行委员会",
+		"description":"TV动画以《无论何时我们的恋情都是10厘米。》为题，于2017年11月25日开始播出，全6话。主角是芹泽春辉和合田美樱。",
+		"actors":"芹泽春辉：铃村健一\n合田美樱：丰崎爱生\n濑户口优：神谷浩史\n榎本夏树：户松遥\n望月苍太：梶裕贵\n早坂灯里：阿澄佳奈\n明智咲：绿川光",
+		"staff":"原作、音乐：HoneyWorks\n总监督：难波日登志\n监督：冢田拓郎\n系列构成：成田良美\n角色设计：藤井牧、常盘健太郎\n动画制作：Lay-duce\n制作：《无论何时我们的恋情都是10厘米。》制作委员会",
+		"start_date":"2017-11-25",
+		"update_time_int":30,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":6,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["恋爱","音乐","原创","校园","声控"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-4-9"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/2f069ed454cdb0dc68aecfd00c6baecf059a14e4.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss594",
+		"title":"穿透幻影的太阳",
+		"description":"开朗、充满活力的元气少女太阳灯里年幼时失去了母亲，暂居在表亲的家中、在占卜屋做兼职。而在某一年母亲的忌日那天，可怕的影魔袭来，灯里觉醒为精灵牌使。\n而这仅仅只是开始.....\n\n这部原创动画源自Studio Anima在去年发表的原创企划「幻影的Messiah BLOOD of FORTUNE」，当时还曾在C80展会上公布了四位主角的名字是太阳灯里、星河圣罗、月咏留奈、白金银火。作品是讲述使用能够读取命运之力的神秘道具“塔罗牌”来解决这个世界上发生的各种不可思议事件的少女们的故事。而在动画PV中，同样多次提到了“命运”一词，可见这部作品的关键词应该是“塔罗牌” 与 “命运”。",
+		"actors":"月咏露娜：徳井青空\n太阳明里：門脇舞以\n白金银华：巽悠衣子\n星河星罗：喜多村英梨\n路人：大地葉、小林直人\n",
+		"staff":"脚本：伊藤美智子\n导演：草川啓造\n人物设定：友岡新平\n系列构成：伊藤美智子\n人物原案：あかつきごもく\n演出：駒屋健一郎、安藤貴史\n分镜：田所修\n音乐：加藤達也\n",
+		"start_date":"2013-07-06",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":14,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["奇幻","致郁"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-4-9"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/2e124556e7d76eba49018f911cd32e766e0bba1b.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1560",
+		"title":"灵感！",
+		"description":"故事叙述一名对人和灵都和蔼可亲、拥有超强灵感的天然呆少女天海响，她不仅时常会遭遇灵异现象，甚至还能跟灵泡茶闲聊，所发生的日常。",
+		"actors":"天海响：木户衣吹\n井上成美：伊藤美来\n上原佳菜：饭田里穗\n江角京子：M·A·O\n小川真琴：山崎惠理\n山田健太：山谷祥生\n天海朝阳：羽多野渉\n代返侍：川原庆久\n花子：井泽美香子\n好色猫：くじら\n梅莉..",
+		"staff":"原作：濑田阳奈子（芳文社《Manga Time Jumbo》《Manga Time》）\n监督：工藤昌史\n演出：境桥渡\n系列构成：あおしまたかし\n角色设计：山本碧\n总作画监督：石桥有希子、山本碧、樱井正明\n作画监督：朱炫祐、徐正德\n美术监督：松本浩树\n音乐：神津裕之\n音响监督：川添宪五\n动画制作：Pierrot Plus",
+		"start_date":"2015-04-02",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["奇幻","少女"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-4-9"
 	}]
 });

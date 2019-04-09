@@ -27,6 +27,8 @@ public class Values {
     public static final int vDefaultStarMark=0;
     public static final String keyEditWatchedEpisodeDialogType="edit_watched_epi_dlg_type";
     public static final int vDefaultEditWatchedEpisodeDialogType=0;
+    public static final String keySkippedVersionCode="skip_ver_code";
+    public static final int vDefaultSkippedVersionCode=0;
     public static final String[] starMarks={"★☆","●○"};
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;

@@ -17,6 +17,8 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven { url 'https://jitpack.io' }//for Android-DirectoryChooser
+        maven { url 'https://guardian.github.io/maven/repo-releases/' }//for com.gu.option
     }
 }
 

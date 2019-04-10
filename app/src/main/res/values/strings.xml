@@ -152,7 +152,7 @@
     </string>
     <string name="label_using_3rdparty">Using third-party components</string>
     <string name="label_using_3rdparty_filepicker" translatable="false">
-        <a href="https://github.com/hedzr/android-file-chooser">hedzr/android-file-chooser</a>
+        <a href="https://github.com/BiglySoftware/Android-DirectoryChooser">BiglySoftware/Android-DirectoryChooser</a>
     </string>
     <string name="label_update_time">Update Time</string>
     <string name="label_anime_create_date">Created at %s.</string>

@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,9 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
-import com.obsez.android.lib.filechooser.ChooserDialog;
+import net.rdrei.android.dirchooser.DirectoryChooserConfig;
+import net.rdrei.android.dirchooser.DirectoryChooserFragment;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -95,17 +96,25 @@ public class SettingsActivity extends AppCompatActivity {
     };
 
     private void OpenBrowseDialog(){
-        new ChooserDialog(this)
-                .withFilter(true,false)
-                .withStartFile(textBilibiliSavePath.getText().toString())
-                .withResources(R.string.label_bilibili_download_path,android.R.string.ok,android.R.string.cancel)
-                .withChosenListener(new ChooserDialog.Result() {
-                    @Override
-                    public void onChoosePath(String s, File file) {
-                        SetBilibiliSavePathText(s);
-                        modified=true;
-                    }
-                }).build().show();
+        DirectoryChooserConfig config=DirectoryChooserConfig.builder()
+                .newDirectoryName("")
+                .initialDirectory(textBilibiliSavePath.getText().toString())
+                .allowNewDirectoryNameModification(true).build();
+        final DirectoryChooserFragment fragment=DirectoryChooserFragment.newInstance(config);
+        fragment.setDirectoryChooserListener(new DirectoryChooserFragment.OnFragmentInteractionListener() {
+            @Override
+            public void onSelectDirectory(@NonNull String path) {
+                SetBilibiliSavePathText(path);
+                modified=true;
+                fragment.dismiss();
+            }
+
+            @Override
+            public void onCancelChooser() {
+                fragment.dismiss();
+            }
+        });
+        fragment.show(getFragmentManager(),null);
     }
 
     private int originalMethod=-1,originalOrder=-1,originalBilibiliVersion=-1;

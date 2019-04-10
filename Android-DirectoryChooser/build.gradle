@@ -1,0 +1,65 @@
+apply plugin: 'com.android.library'
+apply plugin: 'checkstyle'
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
+    }
+}
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "com.android.support:support-annotations:28.0.0"
+    implementation 'com.github.guardian:Option:e933c3a31d'
+    implementation 'com.github.frankiesardo:auto-parcel:0.3.1'
+    implementation             "com.google.auto.value:auto-value-annotations:1.6.2"
+    annotationProcessor "com.google.auto.value:auto-value:1.6.2"
+    annotationProcessor 'com.github.frankiesardo:auto-parcel-processor:0.3.1'
+
+//    testCompile 'junit:junit:4.12'
+//    testCompile 'org.mockito:mockito-all:1.9.5'
+//    testCompile 'com.squareup.assertj:assertj-android:1.1.1'
+//    testCompile 'org.apache.maven:maven-ant-tasks:2.1.3' // fixes issue on linux/mac
+//    testCompile 'org.robolectric:robolectric:3.3'
+//    testCompile 'org.robolectric:shadows-support-v4:3.3'
+}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+    minSdkVersion 21
+    targetSdkVersion 28
+  }
+
+  lintOptions {
+    abortOnError false
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+}
+
+checkstyle {
+  configFile project.file('../config/checkstyle/checkstyle.xml')
+  showViolations true
+}
+
+//apply from: 'https://raw.githubusercontent.com/robbypond/gradle-mvn-push/8f35c0555e9c71154c08dfde9397340099f8dc9f/gradle-mvn-push.gradle'
+
+//gradle.taskGraph.whenReady { taskGraph ->
+//  if (taskGraph.allTasks.any { it instanceof Sign } &&
+//      ':library:uploadArchives' in gradle.startParameter.taskNames) {
+//    // Use Java 6's console to read from the console (no good for a CI environment)
+//    Console console = System.console()
+//    console.printf "\n\nWe have to sign some things in this build.\n\nPlease enter your signing details.\n\n"
+//    allprojects { ext."signing.password" = console.readPassword("PGP Private Key Password: ") }
+//  }
+//}

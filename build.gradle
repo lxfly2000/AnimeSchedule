@@ -4,6 +4,8 @@ buildscript {
     repositories {
         jcenter()
         google()
+        mavenCentral()//for Android-DirectoryChooser
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }//for Android-DirectoryChooser
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.0'
@@ -13,12 +15,20 @@ buildscript {
     }
 }
 
+subprojects {//for Android-DirectoryChooser
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://jitpack.io/'
+        }
+        google()
+    }
+}
+
 allprojects {
     repositories {
         jcenter()
         google()
-        maven { url 'https://jitpack.io' }//for Android-DirectoryChooser
-        maven { url 'https://guardian.github.io/maven/repo-releases/' }//for com.gu.option
     }
 }
 

@@ -7,17 +7,10 @@ android {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 117
-        versionName "5.6"
+        versionCode 118
+        versionName "5.6.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BUILD_DATE", "\"" + new Date().format("yyyy-M-d") + "\""
-        javaCompileOptions {
-            //https://blog.csdn.net/u012400885/article/details/78579946
-            // 显式声明支持注解
-            annotationProcessorOptions {
-                includeCompileClasspath true
-            }
-        }
     }
     buildTypes {
         release {
@@ -52,7 +45,7 @@ dependencies {
     api("com.google.android.gms:play-services-auth:16.0.1"){
         exclude group:'com.android.support'
     }
-    implementation 'com.github.BiglySoftware:Android-DirectoryChooser:v3.2'
+    implementation project(":Android-DirectoryChooser")
 }
 
 preBuild {

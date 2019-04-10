@@ -1,10 +1,10 @@
 package com.lxfly2000.animeschedule;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -19,7 +19,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class EditWatchedEpisodeDialog {
     private Context ctx;

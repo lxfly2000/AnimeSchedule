@@ -2,16 +2,13 @@ package com.lxfly2000.utilities;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Process;
-
-import java.util.List;
+import android.support.v7.app.AlertDialog;
 
 public class AndroidUtility {
     //检查权限，有返回true，无返回false并显示提示信息并关闭当前Activity

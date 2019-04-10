@@ -55,7 +55,7 @@
                 android:exported="true">
         </service>
 
-        <activity android:name=".AnimeWeb" android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".AnimeWeb">
         </activity>
     </application>
 

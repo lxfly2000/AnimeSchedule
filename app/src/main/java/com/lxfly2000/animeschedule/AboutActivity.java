@@ -24,23 +24,20 @@ public class AboutActivity extends AppCompatActivity {
         return new String(Base64.decode(encodedString,Base64.DEFAULT));
     }
 
-    View.OnClickListener buttonClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            try {
-                switch (view.getId()) {
-                    case R.id.buttonDonateAlipay:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonateAlipayBase64));break;
-                    case R.id.buttonDonateQQ:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonateQQBase64));break;
-                    case R.id.buttonDonateWechat:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonateWechatBase64));break;
-                    case R.id.buttonDonatePaypal:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonatePaypalBase64));break;
-                    case R.id.buttonContactQQ:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlContactQQBase64));break;
-                    case R.id.buttonContactTwitter:AndroidUtility.OpenUri(getBaseContext(), Values.urlContactTwitter);break;
-                    case R.id.buttonContactEmail:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlAuthorEmailBase64));break;
-                }
-            }catch (ActivityNotFoundException e){
-                Toast.makeText(getBaseContext(),getString(R.string.message_exception_no_activity_available)+
-                        "\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+    private View.OnClickListener buttonClickListener= view -> {
+        try {
+            switch (view.getId()) {
+                case R.id.buttonDonateAlipay:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonateAlipayBase64));break;
+                case R.id.buttonDonateQQ:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonateQQBase64));break;
+                case R.id.buttonDonateWechat:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonateWechatBase64));break;
+                case R.id.buttonDonatePaypal:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonatePaypalBase64));break;
+                case R.id.buttonContactQQ:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlContactQQBase64));break;
+                case R.id.buttonContactTwitter:AndroidUtility.OpenUri(getBaseContext(), Values.urlContactTwitter);break;
+                case R.id.buttonContactEmail:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlAuthorEmailBase64));break;
             }
+        }catch (ActivityNotFoundException e){
+            Toast.makeText(getBaseContext(),getString(R.string.message_exception_no_activity_available)+
+                    "\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
         }
     };
 
@@ -51,11 +48,11 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ((TextView)findViewById(R.id.textVersionInfo)).setText(getString(R.string.label_version_info,BuildConfig.VERSION_NAME,BuildConfig.BUILD_DATE));
-        SetTextViewWithURL((TextView)findViewById(R.id.textViewReportBug),Values.urlReportIssue);
-        SetTextViewWithURL((TextView)findViewById(R.id.textViewGotoGithub),Values.urlAuthor);
-        SetTextViewWithURL((TextView)findViewById(R.id.textViewMadeBy),Values.urlAuthorGithubHome);
-        SetTextViewWithURL((TextView)findViewById(R.id.textViewThanksXiaoyaocz),null);
-        SetTextViewWithURL((TextView)findViewById(R.id.textViewUsingFilepicker),null);
+        SetTextViewWithURL(findViewById(R.id.textViewReportBug),Values.urlReportIssue);
+        SetTextViewWithURL(findViewById(R.id.textViewGotoGithub),Values.urlAuthor);
+        SetTextViewWithURL(findViewById(R.id.textViewMadeBy),Values.urlAuthorGithubHome);
+        SetTextViewWithURL(findViewById(R.id.textViewThanksXiaoyaocz),null);
+        SetTextViewWithURL(findViewById(R.id.textViewUsingFilepicker),null);
         findViewById(R.id.buttonDonateQQ).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonDonateAlipay).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonDonateWechat).setOnClickListener(buttonClickListener);

@@ -16,7 +16,6 @@ import android.provider.BaseColumns;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.*;
@@ -32,7 +31,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,13 +49,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
-        findViewById(R.id.fabShowAnimeUpdate).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OnShowAnimeUpdate();
-            }
-        });
+        setSupportActionBar(findViewById(R.id.toolbar));
+        findViewById(R.id.fabShowAnimeUpdate).setOnClickListener(view -> OnShowAnimeUpdate());
 
         AppInit(true);
     }
@@ -79,12 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 about.setTitle(R.string.app_name);
                 about.setMessage(R.string.error_permission_reading_sdcard);
                 about.setPositiveButton(android.R.string.ok, null);
-                about.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        MainActivity.this.finish();
-                    }
-                });
+                about.setOnDismissListener(dialogInterface -> MainActivity.this.finish());
                 about.show();
             }
             return;
@@ -94,15 +82,12 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,R.string.message_build_default_settings,Toast.LENGTH_LONG).show();
             Values.BuildDefaultSettings(this);
         }
-        listAnime=(ListView)findViewById(R.id.listAnime);
+        listAnime= findViewById(R.id.listAnime);
         registerForContextMenu(listAnime);
         listAnime.setOnItemClickListener(listAnimeCallback);
-        listAnime.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                longPressedListItem=i;
-                return false;
-            }
+        listAnime.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            longPressedListItem=i;
+            return false;
         });
         listAnime.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -128,17 +113,14 @@ public class MainActivity extends AppCompatActivity {
             GetAnimeUpdateInfo(true);
         }else{
             Snackbar.make(listAnime,R.string.message_no_anime_json,Snackbar.LENGTH_LONG)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            try{
-                                if(FileUtility.WriteFile(Values.GetJsonDataFullPath(),StreamUtility.GetStringFromStream(getResources().openRawResource(R.raw.anime))))
-                                    SaveAndReloadJsonFile(false);
-                                else
-                                    Toast.makeText(getBaseContext(), getString(R.string.message_cannot_write_to_file,Values.GetJsonDataFullPath()), Toast.LENGTH_LONG).show();
-                            }catch (IOException e){
-                                //Nothing to do.
-                            }
+                    .setAction(android.R.string.ok, view -> {
+                        try{
+                            if(FileUtility.WriteFile(Values.GetJsonDataFullPath(),StreamUtility.GetStringFromStream(getResources().openRawResource(R.raw.anime))))
+                                SaveAndReloadJsonFile(false);
+                            else
+                                Toast.makeText(getBaseContext(), getString(R.string.message_cannot_write_to_file,Values.GetJsonDataFullPath()), Toast.LENGTH_LONG).show();
+                        }catch (IOException e){
+                            //Nothing to do.
                         }
                     }).show();
         }
@@ -318,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
                             }else {
                                 ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).put("cover",BitmapFactory.decodeResource(getResources(),R.raw.dn_error));
                                 Toast.makeText(getBaseContext(),getString(R.string.message_cannot_download_cover,animeJson.GetCoverUrl(jsonSortTable.get(param.listIndex)),
-                                        (String)((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).get("title")),Toast.LENGTH_LONG).show();
+                                        ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).get("title")),Toast.LENGTH_LONG).show();
                             }
                             param.listAdapter.notifyDataSetChanged();
                         }
@@ -363,21 +345,18 @@ public class MainActivity extends AppCompatActivity {
                     if(haveNotWatched==0)
                         strSchedule.append(getString(R.string.label_schedule_to_watch));
                     haveNotWatched++;
-                    strSchedule.append(String.valueOf(j));
+                    strSchedule.append(j);
                 }
             }
             listItem.put("schedule",strSchedule.toString());
             listItems.add(listItem);
         }
-        customAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-            @Override
-            public boolean setViewValue(View view, Object o, String s) {
-                if(view instanceof ImageView&& o instanceof Bitmap){
-                    ((ImageView)view).setImageBitmap((Bitmap)o);
-                    return true;
-                }
-                return false;
+        customAdapter.setViewBinder((view, o, s) -> {
+            if(view instanceof ImageView&& o instanceof Bitmap){
+                ((ImageView)view).setImageBitmap((Bitmap)o);
+                return true;
             }
+            return false;
         });
         listAnime.setAdapter(customAdapter);
         listAnime.setSelectionFromTop(posListAnimeScroll,posListAnimeTop);
@@ -393,59 +372,56 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<listCount;i++)
             jsonSortTable.add(i);
         final YMDDate last_watch_date_a=new YMDDate(),last_watch_date_b=new YMDDate();//这样真的OK？
-        Collections.sort(jsonSortTable,new Comparator<Integer>() {
-            @Override
-            public int compare(Integer a, Integer b) {
-                switch (order){
-                    case 1:
-                        switch (method){
-                            case 0:
-                                return Integer.compare(a,b);
-                            case 3:
-                                return Integer.compare(animeJson.GetRank(a), animeJson.GetRank(b));
-                            case 2:
-                                last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));
-                                last_watch_date_b.FromString(animeJson.GetLastWatchDateStringForAnime(b));
-                                if(last_watch_date_a.IsEarlierThanDate(last_watch_date_b))
-                                    return -1;
-                                else if(last_watch_date_a.IsSameToDate(last_watch_date_b))
-                                    return 0;
-                                else
-                                    return 1;
-                            case 1:default:
-                                if(animeJson.GetLastUpdateYMDDate(a).IsEarlierThanDate(animeJson.GetLastUpdateYMDDate(b)))
-                                    return -1;
-                                else if(animeJson.GetLastUpdateYMDDate(a).IsSameToDate(animeJson.GetLastUpdateYMDDate(b)))
-                                    return Integer.compare(animeJson.GetUpdateTime(a),animeJson.GetUpdateTime(b));
-                                else
-                                    return 1;
-                        }
-                    case 2:
-                        switch (method){
-                            case 0:
-                                return Integer.compare(b,a);
-                            case 3:
-                                return Integer.compare(animeJson.GetRank(b), animeJson.GetRank(a));
-                            case 2:
-                                last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));
-                                last_watch_date_b.FromString(animeJson.GetLastWatchDateStringForAnime(b));
-                                if(last_watch_date_a.IsLaterThanDate(last_watch_date_b))
-                                    return -1;
-                                else if(last_watch_date_a.IsSameToDate(last_watch_date_b))
-                                    return 0;
-                                else
-                                    return 1;
-                            case 1:default:
-                                if(animeJson.GetLastUpdateYMDDate(a).IsLaterThanDate(animeJson.GetLastUpdateYMDDate(b)))
-                                    return -1;
-                                else if(animeJson.GetLastUpdateYMDDate(a).IsSameToDate(animeJson.GetLastUpdateYMDDate(b)))
-                                    return Integer.compare(animeJson.GetUpdateTime(b),animeJson.GetUpdateTime(a));
-                                else
-                                    return 1;
-                        }
-                }
-                return 0;
+        Collections.sort(jsonSortTable, (a, b) -> {
+            switch (order){
+                case 1:
+                    switch (method){
+                        case 0:
+                            return Integer.compare(a,b);
+                        case 3:
+                            return Integer.compare(animeJson.GetRank(a), animeJson.GetRank(b));
+                        case 2:
+                            last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));
+                            last_watch_date_b.FromString(animeJson.GetLastWatchDateStringForAnime(b));
+                            if(last_watch_date_a.IsEarlierThanDate(last_watch_date_b))
+                                return -1;
+                            else if(last_watch_date_a.IsSameToDate(last_watch_date_b))
+                                return 0;
+                            else
+                                return 1;
+                        case 1:default:
+                            if(animeJson.GetLastUpdateYMDDate(a).IsEarlierThanDate(animeJson.GetLastUpdateYMDDate(b)))
+                                return -1;
+                            else if(animeJson.GetLastUpdateYMDDate(a).IsSameToDate(animeJson.GetLastUpdateYMDDate(b)))
+                                return Integer.compare(animeJson.GetUpdateTime(a),animeJson.GetUpdateTime(b));
+                            else
+                                return 1;
+                    }
+                case 2:
+                    switch (method){
+                        case 0:
+                            return Integer.compare(b,a);
+                        case 3:
+                            return Integer.compare(animeJson.GetRank(b), animeJson.GetRank(a));
+                        case 2:
+                            last_watch_date_a.FromString(animeJson.GetLastWatchDateStringForAnime(a));
+                            last_watch_date_b.FromString(animeJson.GetLastWatchDateStringForAnime(b));
+                            if(last_watch_date_a.IsLaterThanDate(last_watch_date_b))
+                                return -1;
+                            else if(last_watch_date_a.IsSameToDate(last_watch_date_b))
+                                return 0;
+                            else
+                                return 1;
+                        case 1:default:
+                            if(animeJson.GetLastUpdateYMDDate(a).IsLaterThanDate(animeJson.GetLastUpdateYMDDate(b)))
+                                return -1;
+                            else if(animeJson.GetLastUpdateYMDDate(a).IsSameToDate(animeJson.GetLastUpdateYMDDate(b)))
+                                return Integer.compare(animeJson.GetUpdateTime(b),animeJson.GetUpdateTime(a));
+                            else
+                                return 1;
+                    }
             }
+            return 0;
         });
         if(sep_ab) {
             int processingTotal = listCount;
@@ -502,12 +478,7 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle(R.string.action_show_anime_update)
                 .setView(R.layout.dialog_anime_update_info)
                 .setPositiveButton(android.R.string.ok,null)
-                .setNeutralButton(R.string.button_dont_show_again_today, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        preferences.edit().putString(Values.keyAnimeInfoDate,YMDDate.GetTodayDate().ToYMDString()).apply();
-                    }
-                })
+                .setNeutralButton(R.string.button_dont_show_again_today, (dialogInterface, i) -> preferences.edit().putString(Values.keyAnimeInfoDate,YMDDate.GetTodayDate().ToYMDString()).apply())
                 .show();
         ((TextView)dlg.findViewById(R.id.textAnimeUpdateInfo)).setText(msg.toString());
     }
@@ -598,27 +569,24 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(R.string.action_google_drive_download)
                 .setMessage(R.string.message_overwrite_local_warning)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        googleDriveOperator.SetOnGoogleDriveDownloadSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
+                    googleDriveOperator.SetOnGoogleDriveDownloadSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
+                        @Override
+                        public void OnOperationSuccess(Object extra) {
+                            Toast.makeText(getBaseContext(),R.string.message_google_drive_download_success,Toast.LENGTH_LONG).show();
+                            SaveAndReloadJsonFile(false);
+                        }
+                    });
+                    if(googleDriveOperator.IsAccountSignIn())
+                        googleDriveOperator.DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
+                    else {
+                        googleDriveOperator.SetOnSignInSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
                             @Override
                             public void OnOperationSuccess(Object extra) {
-                                Toast.makeText(getBaseContext(),R.string.message_google_drive_download_success,Toast.LENGTH_LONG).show();
-                                SaveAndReloadJsonFile(false);
+                                ((GoogleDriveOperator)extra).DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
                             }
-                        });
-                        if(googleDriveOperator.IsAccountSignIn())
-                            googleDriveOperator.DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
-                        else {
-                            googleDriveOperator.SetOnSignInSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
-                                @Override
-                                public void OnOperationSuccess(Object extra) {
-                                    ((GoogleDriveOperator)extra).DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
-                                }
-                            }.SetExtra(googleDriveOperator));
-                            googleDriveOperator.SignInClient();
-                        }
+                        }.SetExtra(googleDriveOperator));
+                        googleDriveOperator.SignInClient();
                     }
                 })
                 .setNegativeButton(android.R.string.no,null)
@@ -632,20 +600,17 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(R.string.action_google_drive_upload)
                 .setMessage(R.string.message_overwrite_google_drive_warning)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if(googleDriveOperator.IsAccountSignIn())
-                            googleDriveOperator.UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
-                        else {
-                            googleDriveOperator.SetOnSignInSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
-                                @Override
-                                public void OnOperationSuccess(Object extra) {
-                                    ((GoogleDriveOperator)extra).UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
-                                }
-                            }.SetExtra(googleDriveOperator));
-                            googleDriveOperator.SignInClient();
-                        }
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
+                    if(googleDriveOperator.IsAccountSignIn())
+                        googleDriveOperator.UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
+                    else {
+                        googleDriveOperator.SetOnSignInSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
+                            @Override
+                            public void OnOperationSuccess(Object extra) {
+                                ((GoogleDriveOperator)extra).UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
+                            }
+                        }.SetExtra(googleDriveOperator));
+                        googleDriveOperator.SignInClient();
                     }
                 })
                 .setNegativeButton(android.R.string.no,null)
@@ -674,22 +639,19 @@ public class MainActivity extends AppCompatActivity {
     private void EditWatchedEpisodes(final int index){
         EditWatchedEpisodeDialog dlg=new EditWatchedEpisodeDialog(this);
         dlg.SetJson(animeJson);
-        dlg.SetOnOkListener(new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();
-                int i_list,i_prev_list;
-                for(i_prev_list=0;i_prev_list<jsonSortTable.size();i_prev_list++){
-                    if(jsonSortTable.get(i_prev_list)==index)
-                        break;
-                }
-                SaveAndReloadJsonFile(true);
-                for(i_list=0;i_list<jsonSortTable.size();i_list++){
-                    if(jsonSortTable.get(i_list)==index){
-                        if(i_list!=i_prev_list)
-                            listAnime.setSelection(i_list);
-                        break;
-                    }
+        dlg.SetOnOkListener((dialogInterface, i) -> {
+            Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();
+            int i_list,i_prev_list;
+            for(i_prev_list=0;i_prev_list<jsonSortTable.size();i_prev_list++){
+                if(jsonSortTable.get(i_prev_list)==index)
+                    break;
+            }
+            SaveAndReloadJsonFile(true);
+            for(i_list=0;i_list<jsonSortTable.size();i_list++){
+                if(jsonSortTable.get(i_list)==index){
+                    if(i_list!=i_prev_list)
+                        listAnime.setSelection(i_list);
+                    break;
                 }
             }
         });
@@ -764,12 +726,9 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setMessage(R.string.message_remove_warning)
                 .setTitle(animeJson.GetTitle(index))
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        animeJson.RemoveItem(index);
-                        SaveAndReloadJsonFile(true);
-                    }
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    animeJson.RemoveItem(index);
+                    SaveAndReloadJsonFile(true);
                 })
                 .setNegativeButton(android.R.string.cancel,null)
                 .show();
@@ -792,12 +751,7 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(R.string.message_notice_title)
                 .setMessage(R.string.message_remove_all_warning)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        RemoveAllAnime();
-                    }
-                })
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> RemoveAllAnime())
                 .setNegativeButton(android.R.string.no,null)
                 .show();
     }
@@ -849,81 +803,72 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog editDialog=new AlertDialog.Builder(this)
                 .setTitle(R.string.action_edit_item)
                 .setView(R.layout.dialog_edit_anime)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        animeJson.SetDescription(index,editDialogDescription.getText().toString());
-                        animeJson.SetActors(index,editDialogActors.getText().toString());
-                        animeJson.SetStaff(index,editDialogStaff.getText().toString());
-                        animeJson.SetCoverUrl(index,editDialogCover.getText().toString());
-                        animeJson.SetTitle(index,editDialogTitle.getText().toString());
-                        animeJson.SetStartDate(index,editDialogStartDate.getText().toString());
-                        animeJson.SetUpdateTime(index,new MinuteStamp(editDialogUpdateTime.getText().toString()).GetStamp());
-                        animeJson.SetUpdatePeriod(index,ParseStringToInt(editDialogUpdatePeriod.getText().toString(),7));
-                        switch (comboDialogUpdatePeriodUnit.getSelectedItemPosition()){
-                            case 0:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitDay);break;
-                            case 1:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitMonth);break;
-                            case 2:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitYear);break;
-                        }
-                        animeJson.SetEpisodeCount(index,ParseStringToInt(editDialogEpisodeCount.getText().toString(),-1));
-                        animeJson.SetAbsenseCount(index,ParseStringToInt(editDialogAbsenseCount.getText().toString(),0));
-                        animeJson.SetWatchUrl(index,editDialogWatchUrl.getText().toString());
-                        animeJson.SetColor(index,editDialogColor.getText().toString());
-                        String[]categoryArray=null;
-                        if(editDialogCategory.getText().length()>0)
-                            categoryArray=editDialogCategory.getText().toString().split(",");
-                        animeJson.SetCategory(index,categoryArray);
-                        animeJson.SetAbandoned(index,checkDialogAbandoned.isChecked());
-                        animeJson.SetRank(index,Math.min(ParseStringToInt(editDialogRanking.getText().toString(),0),5));
-                        Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();
-                        int i_list,i_prev_list;
-                        for(i_prev_list=0;i_prev_list<jsonSortTable.size();i_prev_list++){
-                            if(jsonSortTable.get(i_prev_list)==index)
-                                break;
-                        }
-                        SaveAndReloadJsonFile(true);
-                        for(i_list=0;i_list<jsonSortTable.size();i_list++){
-                            if(jsonSortTable.get(i_list)==index){
-                                if(i_list!=i_prev_list)
-                                    listAnime.setSelection(i_list);
-                                break;
-                            }
+                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                    animeJson.SetDescription(index,editDialogDescription.getText().toString());
+                    animeJson.SetActors(index,editDialogActors.getText().toString());
+                    animeJson.SetStaff(index,editDialogStaff.getText().toString());
+                    animeJson.SetCoverUrl(index,editDialogCover.getText().toString());
+                    animeJson.SetTitle(index,editDialogTitle.getText().toString());
+                    animeJson.SetStartDate(index,editDialogStartDate.getText().toString());
+                    animeJson.SetUpdateTime(index,new MinuteStamp(editDialogUpdateTime.getText().toString()).GetStamp());
+                    animeJson.SetUpdatePeriod(index,ParseStringToInt(editDialogUpdatePeriod.getText().toString(),7));
+                    switch (comboDialogUpdatePeriodUnit.getSelectedItemPosition()){
+                        case 0:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitDay);break;
+                        case 1:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitMonth);break;
+                        case 2:animeJson.SetUpdatePeriodUnit(index,AnimeJson.unitYear);break;
+                    }
+                    animeJson.SetEpisodeCount(index,ParseStringToInt(editDialogEpisodeCount.getText().toString(),-1));
+                    animeJson.SetAbsenseCount(index,ParseStringToInt(editDialogAbsenseCount.getText().toString(),0));
+                    animeJson.SetWatchUrl(index,editDialogWatchUrl.getText().toString());
+                    animeJson.SetColor(index,editDialogColor.getText().toString());
+                    String[]categoryArray=null;
+                    if(editDialogCategory.getText().length()>0)
+                        categoryArray=editDialogCategory.getText().toString().split(",");
+                    animeJson.SetCategory(index,categoryArray);
+                    animeJson.SetAbandoned(index,checkDialogAbandoned.isChecked());
+                    animeJson.SetRank(index,Math.min(ParseStringToInt(editDialogRanking.getText().toString(),0),5));
+                    Toast.makeText(getBaseContext(),R.string.message_saving_item,Toast.LENGTH_LONG).show();
+                    int i_list,i_prev_list;
+                    for(i_prev_list=0;i_prev_list<jsonSortTable.size();i_prev_list++){
+                        if(jsonSortTable.get(i_prev_list)==index)
+                            break;
+                    }
+                    SaveAndReloadJsonFile(true);
+                    for(i_list=0;i_list<jsonSortTable.size();i_list++){
+                        if(jsonSortTable.get(i_list)==index){
+                            if(i_list!=i_prev_list)
+                                listAnime.setSelection(i_list);
+                            break;
                         }
                     }
                 })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if(fromAddAction)
-                            OnAddAnimeCallback_Revert();
-                    }
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {
+                    if(fromAddAction)
+                        OnAddAnimeCallback_Revert();
                 })
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialogInterface) {
-                        if(fromAddAction)
-                            OnAddAnimeCallback_Revert();
-                    }
+                .setOnCancelListener(dialogInterface -> {
+                    if(fromAddAction)
+                        OnAddAnimeCallback_Revert();
                 })
                 .show();
         //http://blog.csdn.net/nihaoqiulinhe/article/details/49026263
-        editDialogDescription=(EditText)editDialog.findViewById(R.id.editTextDescription);
-        editDialogActors=(EditText)editDialog.findViewById(R.id.editTextActors);
-        editDialogStaff=(EditText)editDialog.findViewById(R.id.editTextStaff);
-        editDialogCover=(EditText)editDialog.findViewById(R.id.editDialogCover);
-        editDialogTitle=(EditText)editDialog.findViewById(R.id.editDialogTitle);
-        editDialogStartDate=(EditText)editDialog.findViewById(R.id.editDialogStartDate);
-        editDialogUpdateTime=(EditText)editDialog.findViewById(R.id.editDialogUpdateTime);
-        editDialogUpdatePeriod=(EditText)editDialog.findViewById(R.id.editDialogUpdatePeriod);
-        comboDialogUpdatePeriodUnit=(Spinner)editDialog.findViewById(R.id.comboDialogUpdatePeriodUnit);
-        editDialogEpisodeCount=(EditText)editDialog.findViewById(R.id.editDialogEpisodeCount);
-        editDialogAbsenseCount=(EditText)editDialog.findViewById(R.id.editDialogAbsenseCount);
-        editDialogWatchUrl=(EditText)editDialog.findViewById(R.id.editDialogWatchUrl);
-        editDialogColor=(EditText)editDialog.findViewById(R.id.editDialogColor);
-        editDialogCategory=(EditText)editDialog.findViewById(R.id.editDialogCategory);
-        checkDialogAbandoned=(CheckBox)editDialog.findViewById(R.id.checkAbandoned);
-        editDialogRanking=(EditText)editDialog.findViewById(R.id.editDialogRank);
-        buttonDialogAutofill=(Button)editDialog.findViewById(R.id.buttonDialogAutofill);
+        editDialogDescription= editDialog.findViewById(R.id.editTextDescription);
+        editDialogActors= editDialog.findViewById(R.id.editTextActors);
+        editDialogStaff= editDialog.findViewById(R.id.editTextStaff);
+        editDialogCover= editDialog.findViewById(R.id.editDialogCover);
+        editDialogTitle= editDialog.findViewById(R.id.editDialogTitle);
+        editDialogStartDate= editDialog.findViewById(R.id.editDialogStartDate);
+        editDialogUpdateTime= editDialog.findViewById(R.id.editDialogUpdateTime);
+        editDialogUpdatePeriod= editDialog.findViewById(R.id.editDialogUpdatePeriod);
+        comboDialogUpdatePeriodUnit= editDialog.findViewById(R.id.comboDialogUpdatePeriodUnit);
+        editDialogEpisodeCount= editDialog.findViewById(R.id.editDialogEpisodeCount);
+        editDialogAbsenseCount= editDialog.findViewById(R.id.editDialogAbsenseCount);
+        editDialogWatchUrl= editDialog.findViewById(R.id.editDialogWatchUrl);
+        editDialogColor= editDialog.findViewById(R.id.editDialogColor);
+        editDialogCategory= editDialog.findViewById(R.id.editDialogCategory);
+        checkDialogAbandoned= editDialog.findViewById(R.id.checkAbandoned);
+        editDialogRanking= editDialog.findViewById(R.id.editDialogRank);
+        buttonDialogAutofill= editDialog.findViewById(R.id.buttonDialogAutofill);
 
         editDialogDescription.setText(animeJson.GetDescription(index));
         editDialogActors.setText(animeJson.GetActors(index));
@@ -970,34 +915,31 @@ public class MainActivity extends AppCompatActivity {
         editDialogCategory.setText(stringBuilder.toString());
         checkDialogAbandoned.setChecked(animeJson.GetAbandoned(index));
         editDialogRanking.setText(String.valueOf(animeJson.GetRank(index)));
-        editDialog.findViewById(R.id.buttonDialogAutofill).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String urlString=editDialogWatchUrl.getText().toString();
-                int i_regex=0;
-                for(;i_regex<Values.parsableLinksRegex.length;i_regex++){
-                    Pattern p=Pattern.compile(Values.parsableLinksRegex[i_regex]);
-                    Matcher m=p.matcher(urlString);
-                    if(m.find()){
-                        if(URLUtility.IsBilibiliLink(urlString.toLowerCase())){
-                            ReadBilibiliURL_OnCallback(urlString);
-                            break;
-                        }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())){
-                            GetIQiyiAnimeIDFromURL(urlString);
-                            break;
-                        }
+        editDialog.findViewById(R.id.buttonDialogAutofill).setOnClickListener(view -> {
+            String urlString=editDialogWatchUrl.getText().toString();
+            int i_regex=0;
+            for(;i_regex<Values.parsableLinksRegex.length;i_regex++){
+                Pattern p=Pattern.compile(Values.parsableLinksRegex[i_regex]);
+                Matcher m=p.matcher(urlString);
+                if(m.find()){
+                    if(URLUtility.IsBilibiliLink(urlString.toLowerCase())){
+                        ReadBilibiliURL_OnCallback(urlString);
+                        break;
+                    }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())){
+                        GetIQiyiAnimeIDFromURL(urlString);
+                        break;
                     }
                 }
-                if(i_regex==Values.parsableLinksRegex.length){
-                    if(urlString.contains("bilibili")) {
-                        if(urlString.equals(Values.urlAnimeWatchUrlDefault)){
-                            editDialogWatchUrl.setError(getString(R.string.message_bilibili_url_not_given_ssid));
-                        }else {
-                            editDialogWatchUrl.setError(getString(R.string.message_not_supported_bilibili_url));
-                        }
+            }
+            if(i_regex==Values.parsableLinksRegex.length){
+                if(urlString.contains("bilibili")) {
+                    if(urlString.equals(Values.urlAnimeWatchUrlDefault)){
+                        editDialogWatchUrl.setError(getString(R.string.message_bilibili_url_not_given_ssid));
                     }else {
-                        editDialogWatchUrl.setError(getString(R.string.message_not_supported_url));
+                        editDialogWatchUrl.setError(getString(R.string.message_not_supported_bilibili_url));
                     }
+                }else {
+                    editDialogWatchUrl.setError(getString(R.string.message_not_supported_url));
                 }
             }
         });
@@ -1379,12 +1321,9 @@ public class MainActivity extends AppCompatActivity {
     private void RemoveAllAnime(){
         ConfirmRemoveAllDialog dlg=new ConfirmRemoveAllDialog(this);
         dlg.SetAnswer(String.valueOf(animeJson.GetAnimeCount()));
-        dlg.SetOnOkListener(new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                animeJson.ClearAllAnime();
-                SaveAndReloadJsonFile(true);
-            }
+        dlg.SetOnOkListener((dialogInterface, i) -> {
+            animeJson.ClearAllAnime();
+            SaveAndReloadJsonFile(true);
         });
         dlg.Show();
     }

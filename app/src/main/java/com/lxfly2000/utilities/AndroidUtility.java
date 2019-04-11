@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -17,12 +16,7 @@ public class AndroidUtility {
             new AlertDialog.Builder(activity)
                     .setMessage(deniedMessage)
                     .setPositiveButton(android.R.string.ok,null)
-                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialogInterface) {
-                            activity.finish();
-                        }
-                    }).show();
+                    .setOnDismissListener(dialogInterface -> activity.finish()).show();
             return false;
         }
         return true;

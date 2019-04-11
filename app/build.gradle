@@ -7,8 +7,8 @@ android {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 118
-        versionName "5.6.1"
+        versionCode 119
+        versionName "5.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BUILD_DATE", "\"" + new Date().format("yyyy-M-d") + "\""
     }
@@ -26,6 +26,10 @@ android {
             keyPassword ''
         }
     }*/
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -45,7 +49,7 @@ dependencies {
     api("com.google.android.gms:play-services-auth:16.0.1"){
         exclude group:'com.android.support'
     }
-    implementation project(":Android-DirectoryChooser")
+    implementation 'com.obsez.android.lib.filechooser:filechooser:1.1.16'
 }
 
 preBuild {

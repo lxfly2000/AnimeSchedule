@@ -2,7 +2,6 @@ package com.lxfly2000.animeschedule;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.*;
 import com.google.android.gms.common.api.ApiException;
@@ -34,21 +33,18 @@ public class GoogleDriveOperator {
             if(GetDriveClient(signInTask.getResult()))
                 OnSignInSuccess(androidContext);
         }else {
-            signInTask.addOnCompleteListener(new OnCompleteListener<GoogleSignInAccount>() {
-                @Override
-                public void onComplete(@NonNull Task<GoogleSignInAccount> task) {
-                    try {
-                        if(GetDriveClient(task.getResult(ApiException.class)))
-                            OnSignInSuccess(androidContext);
-                    }catch (ApiException e){
-                        if(e.getStatusCode()== GoogleSignInStatusCodes.SIGN_IN_REQUIRED) {
-                            if(!GetDriveClient(GoogleSignIn.getLastSignedInAccount(androidContext)))
-                                ((MainActivity) androidContext).startActivityForResult(client.getSignInIntent(),
-                                        GoogleSignInStatusCodes.SIGN_IN_REQUIRED&0xFFFF);
-                        }
-                        else
-                            OnSignInException(androidContext,e);
+            signInTask.addOnCompleteListener(task -> {
+                try {
+                    if(GetDriveClient(task.getResult(ApiException.class)))
+                        OnSignInSuccess(androidContext);
+                }catch (ApiException e){
+                    if(e.getStatusCode()== GoogleSignInStatusCodes.SIGN_IN_REQUIRED) {
+                        if(!GetDriveClient(GoogleSignIn.getLastSignedInAccount(androidContext)))
+                            ((MainActivity) androidContext).startActivityForResult(client.getSignInIntent(),
+                                    GoogleSignInStatusCodes.SIGN_IN_REQUIRED&0xFFFF);
                     }
+                    else
+                        OnSignInException(androidContext,e);
                 }
             });
         }
@@ -105,12 +101,9 @@ public class GoogleDriveOperator {
             AccountSignOut();
             OnSignOutSuccess(androidContext);
         }else {
-            signOutTask.addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    AccountSignOut();
-                    OnSignOutSuccess(androidContext);
-                }
+            signOutTask.addOnCompleteListener(task -> {
+                AccountSignOut();
+                OnSignOutSuccess(androidContext);
             });
         }
     }
@@ -132,119 +125,80 @@ public class GoogleDriveOperator {
             Toast.makeText(androidContext,R.string.message_google_drive_no_login,Toast.LENGTH_LONG).show();
             return;
         }
-        driveResourceClient.getRootFolder().continueWithTask(new Continuation<DriveFolder, Task<DriveFile>>() {
-            @Override
-            public Task<DriveFile> then(@NonNull final Task<DriveFolder> task) throws Exception {
-                //判断是否存在所需文件夹
-                Query query=new Query.Builder().addFilter(Filters.eq(SearchableField.TITLE,appName)).build();
-                final DriveFolder rootFolder=task.getResult();
-                return driveResourceClient.queryChildren(rootFolder,query)
-                        .continueWithTask(new Continuation<MetadataBuffer, Task<DriveFile>>() {
-                            @Override
-                            public Task<DriveFile> then(@NonNull Task<MetadataBuffer> task) throws Exception {
-                                if(!task.getResult().iterator().hasNext()){//不存在则创建
-                                    MetadataChangeSet changeSet=new MetadataChangeSet.Builder().setTitle(appName).build();
-                                    driveResourceClient.createFolder(rootFolder,changeSet);
-                                }
-                                Query queryFile=new Query.Builder().addFilter(Filters.eq(SearchableField.TITLE,driveFileName)).build();
-                                final DriveFolder appFolder=task.getResult().get(0).getDriveId().asDriveFolder();
-                                return driveResourceClient.queryChildren(appFolder,queryFile)
-                                        .continueWithTask(new Continuation<MetadataBuffer, Task<DriveFile>>() {
-                                            @Override
-                                            public Task<DriveFile> then(@NonNull Task<MetadataBuffer> task) throws Exception {
-                                                if(task.getResult().iterator().hasNext()){//把已有文件删除
-                                                    driveResourceClient.delete(task.getResult().get(0).getDriveId().asDriveFile());
-                                                }
-                                                return driveResourceClient.createContents().continueWithTask(new Continuation<DriveContents, Task<DriveFile>>() {
-                                                    @Override
-                                                    public Task<DriveFile> then(@NonNull Task<DriveContents> task) throws Exception {
-                                                        MetadataChangeSet changeSet=new MetadataChangeSet.Builder()
-                                                                .setTitle(driveFileName)
-                                                                .setMimeType("application/x-javascript")
-                                                                .build();
-                                                        DriveContents contents=task.getResult();
-                                                        OutputStreamWriter writer=new OutputStreamWriter(contents.getOutputStream());
-                                                        writer.write(FileUtility.ReadFile(localPath));
-                                                        writer.flush();
-                                                        return driveResourceClient.createFile(appFolder,changeSet,contents)
-                                                                .addOnSuccessListener(new OnSuccessListener<DriveFile>() {
-                                                                    @Override
-                                                                    public void onSuccess(DriveFile driveFile) {
-                                                                        Toast.makeText(androidContext,R.string.message_uploading_to_google_drive,Toast.LENGTH_LONG).show();
-                                                                    }
-                                                                });
-                                                    }
-                                                });
-                                            }
-                                        });
-                            }
-                        });
-            }
+        driveResourceClient.getRootFolder().continueWithTask(taskGetRootFolder -> {
+            //判断是否存在所需文件夹
+            Query query=new Query.Builder().addFilter(Filters.eq(SearchableField.TITLE,appName)).build();
+            final DriveFolder rootFolder=taskGetRootFolder.getResult();
+            return driveResourceClient.queryChildren(rootFolder,query)
+                    .continueWithTask(taskQuerySubFolder -> {
+                        if(!taskQuerySubFolder.getResult().iterator().hasNext()){//不存在则创建
+                            MetadataChangeSet changeSet=new MetadataChangeSet.Builder().setTitle(appName).build();
+                            driveResourceClient.createFolder(rootFolder,changeSet);
+                        }
+                        Query queryFile=new Query.Builder().addFilter(Filters.eq(SearchableField.TITLE,driveFileName)).build();
+                        final DriveFolder appFolder=taskQuerySubFolder.getResult().get(0).getDriveId().asDriveFolder();
+                        return driveResourceClient.queryChildren(appFolder,queryFile)
+                                .continueWithTask(taskQuerySubFile -> {
+                                    if(taskQuerySubFile.getResult().iterator().hasNext()){//把已有文件删除
+                                        driveResourceClient.delete(taskQuerySubFile.getResult().get(0).getDriveId().asDriveFile());
+                                    }
+                                    return driveResourceClient.createContents().continueWithTask(taskCreateFile -> {
+                                        MetadataChangeSet changeSet=new MetadataChangeSet.Builder()
+                                                .setTitle(driveFileName)
+                                                .setMimeType("application/x-javascript")
+                                                .build();
+                                        DriveContents contents=taskCreateFile.getResult();
+                                        OutputStreamWriter writer=new OutputStreamWriter(contents.getOutputStream());
+                                        writer.write(FileUtility.ReadFile(localPath));
+                                        writer.flush();
+                                        return driveResourceClient.createFile(appFolder,changeSet,contents)
+                                                .addOnSuccessListener(driveFile -> Toast.makeText(androidContext,R.string.message_uploading_to_google_drive,Toast.LENGTH_LONG).show());
+                                    });
+                                });
+                    });
         })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(androidContext,androidContext.getString(R.string.message_error_upload_google_drive)+
-                        "\n"+e.getClass()+"\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
+        .addOnFailureListener(e -> Toast.makeText(androidContext,androidContext.getString(R.string.message_error_upload_google_drive)+
+                "\n"+e.getClass()+"\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show());
     }
     public void DownloadFromDrive(final String appName, final String driveFileName, final String localPath){
         if(!IsAccountSignIn()) {
             Toast.makeText(androidContext,R.string.message_google_drive_no_login,Toast.LENGTH_LONG).show();
             return;
         }
-        driveResourceClient.getRootFolder().continueWithTask(new Continuation<DriveFolder, Task<DriveContents>>() {
-            @Override
-            public Task<DriveContents> then(@NonNull Task<DriveFolder> task) throws Exception {
-                Query query=new Query.Builder().addFilter(Filters.eq(SearchableField.TITLE,appName)).build();
-                DriveFolder rootFolder=task.getResult();
-                return driveResourceClient.queryChildren(rootFolder,query)
-                        .continueWithTask(new Continuation<MetadataBuffer, Task<DriveContents>>() {
-                            @Override
-                            public Task<DriveContents> then(@NonNull Task<MetadataBuffer> task) throws Exception {
-                                if(!task.getResult().iterator().hasNext()){//不存在则直接返回
-                                    Toast.makeText(androidContext,R.string.message_error_download_google_drive,Toast.LENGTH_LONG).show();
-                                    return null;
-                                }
-                                Query queryFile=new Query.Builder().addFilter(Filters.eq(SearchableField.TITLE,driveFileName)).build();
-                                DriveFolder appFolder=task.getResult().get(0).getDriveId().asDriveFolder();
-                                return driveResourceClient.queryChildren(appFolder,queryFile)
-                                        .continueWithTask(new Continuation<MetadataBuffer, Task<DriveContents>>() {
-                                            @Override
-                                            public Task<DriveContents> then(@NonNull Task<MetadataBuffer> task) throws Exception {
-                                                if(!task.getResult().iterator().hasNext()){//不存在则直接返回
-                                                    Toast.makeText(androidContext,R.string.message_error_download_google_drive,Toast.LENGTH_LONG).show();
-                                                    return null;
+        driveResourceClient.getRootFolder().continueWithTask(taskGetRootFolder -> {
+            Query query=new Query.Builder().addFilter(Filters.eq(SearchableField.TITLE,appName)).build();
+            DriveFolder rootFolder=taskGetRootFolder.getResult();
+            return driveResourceClient.queryChildren(rootFolder,query)
+                    .continueWithTask(taskQuerySubFolder -> {
+                        if(!taskQuerySubFolder.getResult().iterator().hasNext()){//不存在则直接返回
+                            Toast.makeText(androidContext,R.string.message_error_download_google_drive,Toast.LENGTH_LONG).show();
+                            return null;
+                        }
+                        Query queryFile=new Query.Builder().addFilter(Filters.eq(SearchableField.TITLE,driveFileName)).build();
+                        DriveFolder appFolder=taskQuerySubFolder.getResult().get(0).getDriveId().asDriveFolder();
+                        return driveResourceClient.queryChildren(appFolder,queryFile)
+                                .continueWithTask(taskQuerySubFile -> {
+                                    if(!taskQuerySubFile.getResult().iterator().hasNext()){//不存在则直接返回
+                                        Toast.makeText(androidContext,R.string.message_error_download_google_drive,Toast.LENGTH_LONG).show();
+                                        return null;
+                                    }
+                                    return driveResourceClient.openFile(taskQuerySubFile.getResult().get(0).getDriveId().asDriveFile(),DriveFile.MODE_READ_ONLY)
+                                            .continueWithTask(taskDownloadFile -> {
+                                                String fileStr= StreamUtility.GetStringFromStream(taskDownloadFile.getResult().getInputStream(),false);
+                                                if(fileStr.length()>0){
+                                                    if(FileUtility.WriteFile(localPath,fileStr)) {
+                                                        if (onGoogleDriveDownloadSuccessActions != null) {
+                                                            onGoogleDriveDownloadSuccessActions.OnOperationSuccess(onGoogleDriveDownloadSuccessActions.extra);
+                                                            onGoogleDriveDownloadSuccessActions = null;
+                                                        }
+                                                    }
                                                 }
-                                                return driveResourceClient.openFile(task.getResult().get(0).getDriveId().asDriveFile(),DriveFile.MODE_READ_ONLY)
-                                                        .continueWithTask(new Continuation<DriveContents, Task<DriveContents>>() {
-                                                            @Override
-                                                            public Task<DriveContents> then(@NonNull Task<DriveContents> task) throws Exception {
-                                                                String fileStr= StreamUtility.GetStringFromStream(task.getResult().getInputStream(),false);
-                                                                if(fileStr.length()>0){
-                                                                    if(FileUtility.WriteFile(localPath,fileStr)) {
-                                                                        if (onGoogleDriveDownloadSuccessActions != null) {
-                                                                            onGoogleDriveDownloadSuccessActions.OnOperationSuccess(onGoogleDriveDownloadSuccessActions.extra);
-                                                                            onGoogleDriveDownloadSuccessActions = null;
-                                                                        }
-                                                                    }
-                                                                }
-                                                                return task;
-                                                            }
-                                                        });
-                                            }
-                                        });
-                            }
-                        });
-            }
+                                                return taskDownloadFile;
+                                            });
+                                });
+                    });
         })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(androidContext,androidContext.getString(R.string.message_error_download_google_drive)+
-                        "\n"+e.getClass()+"\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
+        .addOnFailureListener(e -> Toast.makeText(androidContext,androidContext.getString(R.string.message_error_download_google_drive)+
+                "\n"+e.getClass()+"\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show());
     }
 }

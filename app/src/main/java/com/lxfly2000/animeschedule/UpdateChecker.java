@@ -1,7 +1,6 @@
 package com.lxfly2000.animeschedule;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -77,19 +76,9 @@ public class UpdateChecker {
             msg = String.format(ctx.getString(R.string.message_new_version), BuildConfig.VERSION_NAME, GetUpdateVersionName());
             msgBox.setMessage(msg);
             msgBox.setIcon(android.R.drawable.ic_dialog_info);
-            msgBox.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    AndroidUtility.OpenUri(ctx,Values.urlAuthor);
-                }
-            });
+            msgBox.setPositiveButton(android.R.string.ok, (dialogInterface, i) -> AndroidUtility.OpenUri(ctx,Values.urlAuthor));
             msgBox.setNegativeButton(android.R.string.cancel,null);
-            msgBox.setNeutralButton(R.string.button_skip_new_version, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    preferences.edit().putInt(Values.keySkippedVersionCode,remoteVersionCode).apply();
-                }
-            });
+            msgBox.setNeutralButton(R.string.button_skip_new_version, (dialogInterface, i) -> preferences.edit().putInt(Values.keySkippedVersionCode,remoteVersionCode).apply());
         }else if (updateOnlyReportNewVersion){
             return;
         }else if (IsError()){

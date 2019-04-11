@@ -1,7 +1,6 @@
 package com.lxfly2000.animeschedule;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -61,56 +60,53 @@ public class BilibiliDownloadDialog {
         }
         final AlertDialog dialog=new AlertDialog.Builder(ctx)
                 .setTitle(json.GetTitle(index))
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        String pkgName=Values.pkgNameBilibiliVersions[preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex)];
-                        for(int i_check=0;i_check<checkEpisodes.size();i_check++){
-                            if(!checkEpisodes.get(i_check).isChecked())
-                                continue;
-                            try {
-                                JSONObject jsonEntry = new JSONObject(Values.jsonRawBilibiliEntry);
-                                JSONObject checkedEp=htmlJson.getJSONArray("episodes").getJSONObject(i_check);
-                                jsonEntry.put("title",htmlJson.getString("title"));
-                                jsonEntry.put("cover",htmlJson.getString("cover"));
-                                jsonEntry.put("prefered_video_quality",Values.typeBilibiliPreferredVideoQualities[spinnerVideoQuality.getSelectedItemPosition()]);
-                                jsonEntry.put("time_create_stamp",System.currentTimeMillis());
-                                jsonEntry.put("time_update_stamp",System.currentTimeMillis());
-                                jsonEntry.put("season_id",String.valueOf(htmlJson.getInt("season_id")));
-                                jsonEntry.getJSONObject("ep").put("av_id",checkedEp.getInt("aid"));
-                                jsonEntry.getJSONObject("ep").put("page",checkedEp.getInt("page"));
-                                jsonEntry.getJSONObject("ep").put("danmaku",checkedEp.getInt("cid"));
-                                jsonEntry.getJSONObject("ep").put("cover",checkedEp.getString("cover"));
-                                jsonEntry.getJSONObject("ep").put("episode_id",checkedEp.getInt("ep_id"));
-                                jsonEntry.getJSONObject("ep").put("index",checkedEp.getString("index"));
-                                jsonEntry.getJSONObject("ep").put("index_title",checkedEp.getString("index_title"));
-                                jsonEntry.getJSONObject("ep").put("from",checkedEp.getString("from"));
-                                jsonEntry.getJSONObject("ep").put("season_type",htmlJson.getInt("season_type"));
-                                FileUtility.WriteFile(GetBilibiliDownloadEntryPath(jsonEntry.getString("season_id"),
-                                        String.valueOf(jsonEntry.getJSONObject("ep").getInt("episode_id"))),jsonEntry.toString());
-                            }catch (JSONException e){
-                                Toast.makeText(ctx,ctx.getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                                return;
-                            }
+                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                    String pkgName=Values.pkgNameBilibiliVersions[preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex)];
+                    for(int i_check=0;i_check<checkEpisodes.size();i_check++){
+                        if(!checkEpisodes.get(i_check).isChecked())
+                            continue;
+                        try {
+                            JSONObject jsonEntry = new JSONObject(Values.jsonRawBilibiliEntry);
+                            JSONObject checkedEp=htmlJson.getJSONArray("episodes").getJSONObject(i_check);
+                            jsonEntry.put("title",htmlJson.getString("title"));
+                            jsonEntry.put("cover",htmlJson.getString("cover"));
+                            jsonEntry.put("prefered_video_quality",Values.typeBilibiliPreferredVideoQualities[spinnerVideoQuality.getSelectedItemPosition()]);
+                            jsonEntry.put("time_create_stamp",System.currentTimeMillis());
+                            jsonEntry.put("time_update_stamp",System.currentTimeMillis());
+                            jsonEntry.put("season_id",String.valueOf(htmlJson.getInt("season_id")));
+                            jsonEntry.getJSONObject("ep").put("av_id",checkedEp.getInt("aid"));
+                            jsonEntry.getJSONObject("ep").put("page",checkedEp.getInt("page"));
+                            jsonEntry.getJSONObject("ep").put("danmaku",checkedEp.getInt("cid"));
+                            jsonEntry.getJSONObject("ep").put("cover",checkedEp.getString("cover"));
+                            jsonEntry.getJSONObject("ep").put("episode_id",checkedEp.getInt("ep_id"));
+                            jsonEntry.getJSONObject("ep").put("index",checkedEp.getString("index"));
+                            jsonEntry.getJSONObject("ep").put("index_title",checkedEp.getString("index_title"));
+                            jsonEntry.getJSONObject("ep").put("from",checkedEp.getString("from"));
+                            jsonEntry.getJSONObject("ep").put("season_type",htmlJson.getInt("season_type"));
+                            FileUtility.WriteFile(GetBilibiliDownloadEntryPath(jsonEntry.getString("season_id"),
+                                    String.valueOf(jsonEntry.getJSONObject("ep").getInt("episode_id"))),jsonEntry.toString());
+                        }catch (JSONException e){
+                            Toast.makeText(ctx,ctx.getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+                            return;
                         }
-                        Toast.makeText(ctx,R.string.message_bilibili_download_task_created,Toast.LENGTH_LONG).show();
-                        AndroidUtility.KillProcess(ctx,pkgName);
-                        if(checkOpenBilibili.isChecked()) {
-                            try {
-                                AndroidUtility.StartApplication(ctx, pkgName);
-                            }catch (NullPointerException e){
-                                Toast.makeText(ctx,ctx.getString(R.string.message_app_not_found,pkgName),Toast.LENGTH_LONG).show();
-                            }
+                    }
+                    Toast.makeText(ctx,R.string.message_bilibili_download_task_created,Toast.LENGTH_LONG).show();
+                    AndroidUtility.KillProcess(ctx,pkgName);
+                    if(checkOpenBilibili.isChecked()) {
+                        try {
+                            AndroidUtility.StartApplication(ctx, pkgName);
+                        }catch (NullPointerException e){
+                            Toast.makeText(ctx,ctx.getString(R.string.message_app_not_found,pkgName),Toast.LENGTH_LONG).show();
                         }
                     }
                 })
                 .setNegativeButton(android.R.string.cancel,null)
                 .setView(R.layout.dialog_bilibili_download)
                 .show();
-        checkOpenBilibili=(CheckBox)dialog.findViewById(R.id.checkOpenBilibili);
-        spinnerVideoQuality=(Spinner)dialog.findViewById(R.id.spinnerVideoQuality);
-        linearLayout=(LinearLayout)dialog.findViewById(R.id.linearLayoutEpisodes);
-        buttonOk=(Button)dialog.findViewById(android.R.id.button1);
+        checkOpenBilibili= dialog.findViewById(R.id.checkOpenBilibili);
+        spinnerVideoQuality= dialog.findViewById(R.id.spinnerVideoQuality);
+        linearLayout= dialog.findViewById(R.id.linearLayoutEpisodes);
+        buttonOk= dialog.findViewById(android.R.id.button1);
         buttonOk.setEnabled(false);
         spinnerVideoQuality.setSelection(3);
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {

@@ -75,17 +75,14 @@ public class EditWatchedEpisodeDialog {
                     .setView(R.layout.dialog_edit_watched_episodes_flexbox)
                     .setNegativeButton(android.R.string.cancel,null)
                     .setNeutralButton(R.string.button_change_layout,clickChangeLayoutListener)
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            //读取已观看的集数
-                            for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(paramIndex);i_epi++) {
-                                boolean i_epi_watched=((ToggleButton)flexboxDialogWatchedEpisode.getChildAt(i_epi-1)).isChecked();
-                                if(animeJson.GetEpisodeWatched(paramIndex,i_epi)!=i_epi_watched)
-                                    animeJson.SetEpisodeWatched(paramIndex, i_epi, i_epi_watched);
-                            }
-                            okListener.onClick(dialogInterface,i);
+                    .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                        //读取已观看的集数
+                        for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(paramIndex);i_epi++) {
+                            boolean i_epi_watched=((ToggleButton)flexboxDialogWatchedEpisode.getChildAt(i_epi-1)).isChecked();
+                            if(animeJson.GetEpisodeWatched(paramIndex,i_epi)!=i_epi_watched)
+                                animeJson.SetEpisodeWatched(paramIndex, i_epi, i_epi_watched);
                         }
+                        okListener.onClick(dialogInterface,i);
                     }).show();
             flexboxDialogWatchedEpisode=dlg.findViewById(R.id.flexboxDialogWatchedEpisodes);
             //显示观看的集数
@@ -112,16 +109,13 @@ public class EditWatchedEpisodeDialog {
                     .setView(R.layout.dialog_edit_watched_episodes_checklist)
                     .setNegativeButton(android.R.string.cancel,null)
                     .setNeutralButton(R.string.button_change_layout,clickChangeLayoutListener)
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(paramIndex);i_epi++) {
-                                boolean i_epi_watched=((CheckBox)linearLayout.getChildAt(i_epi-1)).isChecked();
-                                if(animeJson.GetEpisodeWatched(paramIndex,i_epi)!=i_epi_watched)
-                                    animeJson.SetEpisodeWatched(paramIndex, i_epi, i_epi_watched);
-                            }
-                            okListener.onClick(dialogInterface,i);
+                    .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                        for(int i_epi=1;i_epi<=animeJson.GetLastUpdateEpisode(paramIndex);i_epi++) {
+                            boolean i_epi_watched=((CheckBox)linearLayout.getChildAt(i_epi-1)).isChecked();
+                            if(animeJson.GetEpisodeWatched(paramIndex,i_epi)!=i_epi_watched)
+                                animeJson.SetEpisodeWatched(paramIndex, i_epi, i_epi_watched);
                         }
+                        okListener.onClick(dialogInterface,i);
                     }).show();
             linearLayout=dlg.findViewById(R.id.linearLayoutEpisodes);
             for(int i=1;i<=animeJson.GetLastUpdateEpisode(paramIndex);i++){

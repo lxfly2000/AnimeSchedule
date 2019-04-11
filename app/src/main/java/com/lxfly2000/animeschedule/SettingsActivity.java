@@ -1,13 +1,11 @@
 package com.lxfly2000.animeschedule;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -18,8 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
-import net.rdrei.android.dirchooser.DirectoryChooserConfig;
-import net.rdrei.android.dirchooser.DirectoryChooserFragment;
+import com.obsez.android.lib.filechooser.ChooserDialog;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,12 +39,12 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         findViewById(R.id.buttonSaveSettings).setOnClickListener(buttonCallbacks);
         preferences=Values.GetPreference(this);
-        spinnerSortMethods=(Spinner)findViewById(R.id.spinnerSortMethod);
-        spinnerSortOrder=(Spinner)findViewById(R.id.spinnerSortOrder);
-        spinnerBilibiliVersions=(Spinner)findViewById(R.id.spinnerBilibiliVersions);
-        checkSeperateAbandoned=(CheckBox)findViewById(R.id.checkBoxSeperateAbandoned);
-        textBilibiliSavePath=(TextView) findViewById(R.id.textBilibiliSavePath);
-        radiosStarMark=(RadioGroup)findViewById(R.id.radiosStarMark);
+        spinnerSortMethods= findViewById(R.id.spinnerSortMethod);
+        spinnerSortOrder= findViewById(R.id.spinnerSortOrder);
+        spinnerBilibiliVersions= findViewById(R.id.spinnerBilibiliVersions);
+        checkSeperateAbandoned= findViewById(R.id.checkBoxSeperateAbandoned);
+        textBilibiliSavePath= findViewById(R.id.textBilibiliSavePath);
+        radiosStarMark= findViewById(R.id.radiosStarMark);
         for(int i=0;i<radiosId.size();i++)
             ((RadioButton)findViewById(radiosId.get(i))).setText(Values.starMarks[i]);
 
@@ -96,32 +93,23 @@ public class SettingsActivity extends AppCompatActivity {
     };
 
     private void OpenBrowseDialog(){
-        DirectoryChooserConfig config=DirectoryChooserConfig.builder()
-                .newDirectoryName("")
-                .initialDirectory(textBilibiliSavePath.getText().toString())
-                .allowNewDirectoryNameModification(true).build();
-        final DirectoryChooserFragment fragment=DirectoryChooserFragment.newInstance(config);
-        fragment.setDirectoryChooserListener(new DirectoryChooserFragment.OnFragmentInteractionListener() {
-            @Override
-            public void onSelectDirectory(@NonNull String path) {
-                SetBilibiliSavePathText(path);
-                modified=true;
-                fragment.dismiss();
-            }
-
-            @Override
-            public void onCancelChooser() {
-                fragment.dismiss();
-            }
-        });
-        fragment.show(getFragmentManager(),null);
+        //https://github.com/hedzr/android-file-chooser#choose-a-folder
+        new ChooserDialog(this)
+                .displayPath(true)
+                .withFilter(true,false)
+                .withStartFile(textBilibiliSavePath.getText().toString())
+                .withResources(R.string.label_bilibili_download_path,android.R.string.ok,android.R.string.cancel)
+                .withChosenListener((s, file) -> {
+                    SetBilibiliSavePathText(s);
+                    modified=true;
+                }).build().show();
     }
 
     private int originalMethod=-1,originalOrder=-1,originalBilibiliVersion=-1;
     private AdapterView.OnItemSelectedListener spinnerSelectListener=new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            switch (((Spinner)parent).getId()){
+            switch (parent.getId()){
                 case R.id.spinnerSortMethod:
                     if(originalMethod!=-1&&originalMethod!=position)
                         modified=true;
@@ -190,14 +178,11 @@ public class SettingsActivity extends AppCompatActivity {
                 .setTitle(R.string.message_notice_title)
                 .setMessage(R.string.message_overwrite_settings)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        originalMethod=originalOrder=-1;
-                        ClearSettings();
-                        LoadSettings();
-                        OnSaveSettings(false);
-                    }
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
+                    originalMethod=originalOrder=-1;
+                    ClearSettings();
+                    LoadSettings();
+                    OnSaveSettings(false);
                 })
                 .setNegativeButton(android.R.string.no,null)
                 .show();
@@ -221,12 +206,9 @@ public class SettingsActivity extends AppCompatActivity {
                     .setTitle(R.string.message_notice_title)
                     .setMessage(R.string.message_lose_changes)
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            modified=false;
-                            finish();
-                        }
+                    .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
+                        modified=false;
+                        finish();
                     })
                     .setNegativeButton(android.R.string.no,null)
                     .show();

@@ -597,7 +597,7 @@ setJsonData({
 		"absense_count":49,
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
 		"abandoned":true,
-		"rank":2,
+		"rank":1,
 		"color":"rgb(225,192,175)",
 		"category":["搞笑","漫画改"],
 		"staff":"原作：大川bkub\n企划、监制：须藤孝太郎\n系列导演：青木纯、梅木葵\n剧本统筹：青木纯\n概念设定：梅木葵\n音效指导：钟江彻\n音响效果：小山恭正\n音响制作：Glovision\n音乐：吟\n动画制作：神风动画\n制作、音乐制作：King Records",
@@ -2306,7 +2306,7 @@ setJsonData({
 		"actors":"裘可拉：佐土原かおり\n游王子讴歌：辻あゆみ\n甘草奏：豊永利行、葉山いくみ\n雪平富良野：近藤唯\n梦岛乌：岩崎征実\n箱庭摇木：大空直美\n丽华堂绚女：松嵜麗\n黑白院清罗：五十嵐裕美",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,20190405,20190406,20190407,20190408,20190409,20190409,20190409,20190410,20190410],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,20190405,20190406,20190407,20190408,20190409,20190409,20190409,20190410,20190410,20190411,20190411,20190411,20190412,20190412,20190413],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/227177ddcbcddc326e1c751b89db24195c20e0d2.jpg",
 		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/1600",
 		"title":"灼眼的夏娜",
@@ -2321,7 +2321,7 @@ setJsonData({
 		"color":"silver",
 		"category":["热血","奇幻","校园","战斗","轻改","神魔","萝莉"],
 		"last_watch_date_anime":"2019-4-1",
-		"last_watch_episode_anime":18,
+		"last_watch_episode_anime":24,
 		"staff":"原作：高桥弥七郎、伊东杂音、高橋弥七郎、畑博之\n监督：渡部高志\n脚本：小林靖子\n分镜：米たにヨシトモ、渡部高志、福田道生\n演出：秋田谷典昭、高島大輔\n人物原案：いとうのいぢ\n人物设定：大塚舞\n系列构成：小林靖子\n色彩设计：伊藤由紀子\n作画监督：大冢舞、藤井昌宏、住本悦子、冷水由紀絵、武本大介、岡野幸男\n音乐：大谷幸\n音响监督：明田川仁\n摄影监督：福世晋吾\n动画制作：J.C.STAFF\n官方网站：http：\/\/www.shakugan.com\/",
 		"actors":"夏娜：釘宮理恵\n威尔艾米娜·卡梅尔：伊藤静\n玛琼琳·朵：生天目仁美\n吉田一美：川澄綾子\n坂井悠二：日野聡\n修德南：三宅健太\n平井缘：浅野真澄\n坂井贯太郎：藤原啓治\n中村公子：藤村歩",
 		"update_time_int":0
@@ -4037,7 +4037,7 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"create_date":"2019-1-11"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[20190413],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/52385016afa0a7fd0e47ae169d9933dde893f7ee.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss2993",
 		"title":"绯弹的亚里亚",
@@ -4051,11 +4051,11 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["后宫","热血","奇幻","校园","装逼","战斗"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-1-12"
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true],
@@ -5129,7 +5129,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-2"
 	},{
-		"watched_episode":[20190406,20190407,20190408,20190409,20190409,20190409,20190411],
+		"watched_episode":[20190406,20190407,20190408,20190409,20190409,20190409,20190411,20190413,20190413,20190413,20190413,20190413,20190413,20190413,20190414],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0185e95dab20828dcfa79a32a6797e1f4d17722d.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1558",
 		"title":"小长门有希的消失",
@@ -5147,7 +5147,7 @@ setJsonData({
 		"color":"silver",
 		"category":["日常","少女","治愈"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":7,
+		"last_watch_episode_anime":15,
 		"create_date":"2019-4-5"
 	},{
 		"watched_episode":[false],
@@ -5351,7 +5351,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190412],
 		"cover":"http:\/\/puui.qpic.cn\/vcover_vt_pic\/0\/5rs71cp7oy0429e1553758309\/0.jpeg",
 		"watch_url":"https:\/\/v.qq.com\/x\/cover\/5rs71cp7oy0429e.html",
 		"title":"贤惠幼妻仙狐小姐",
@@ -5365,10 +5365,10 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["漫画改","治愈"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[0],
@@ -5470,5 +5470,85 @@ setJsonData({
 		"category":["奇幻","少女"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-9"
+	},{
+		"watched_episode":[20190412,20190412],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fcdb9db0cc3f5c0c3aaa4ca1a9ddea6c121db471.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss4452",
+		"title":"刀剑神域",
+		"description":"2022年，人类实现了现实世界和假想空间的融合，电子制造商开发了名为《刀剑神域（Sword Art Online）》的在线电子游戏。SAO甫一面世便大受好评，限量一万份的名额在发售当天的短时间内便被抢购一空。通过联网，玩家可以身临其境进入充满想象力和异域风情的游戏世界——浮游城市艾恩葛朗特。玩家在这里可以生活、练武、升级、经商、探险，与真实世界别无二致，却拥有无上的乐趣。曾是少数封测玩家的桐人也是这一万名幸运者中的一员。最初的兴奋过后，玩家们却发现根本无法顺利登出游戏，更为恐怖的是，一旦玩家的HP归零，现实世界中他们的肉体也将死亡。他们被SAO的开发者茅场晶彦困在游戏中，顺利逃脱的方法似乎只有一个，那就是完成困难重重的攻略任务…… \n动画制作：A1 Pictures\n画风又有种偶像大师的感觉。",
+		"actors":"桐人／桐谷和人：松冈祯丞\n亚丝娜／结城明日奈：戸松遥\n结衣：伊藤加奈惠\n莉法／桐谷直叶：竹达彩奈\n克莱因／壶井辽太郎：平田広明\n艾基尔／安德鲁·基尔博德·密鲁兹：安元洋贵\n幸：早见沙织\n",
+		"staff":"原作：川原砾（电击文库\/ASCII MEDIA WORKS刊）\n角色原案：abec\n监督：伊藤智彦\n角色设计：足立慎吾\n副角色设计：川上哲也\n总作画监督：足立慎吾、川上哲也\n动作作画监督：柳隆太、鹿间贵裕\n色彩设计：中岛和子\n美术监督：竹田悠介(Bamboo)、长岛孝幸(Bamboo)\n摄影监督：广冈岳·臼田睦\nCG监督：白藤隆太\n编集：西山茂\n美术设定：谷内优穂(KUSANAGI)\n主原画师：斉藤敦史\n怪兽设计：柳隆太\n项目统括：GENCO\n道具设计：土屋祐太、鹿间贵裕、千叶茂\n音响监督：岩浪美和\n効果：今野康之\n音响制作：DAX Production\n音乐：梶浦由记\n音乐制作：Aniplex\n动画制作：A-1 Pictures",
+		"start_date":"2012-07-07",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":25,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":4,
+		"color":"silver",
+		"category":["小说改","热血","奇幻","战斗","励志","科幻"],
+		"last_watch_episode_anime":2,
+		"create_date":"2019-4-12"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a337b8dbb45a43b78d0c0f485695b4b6336dccbc.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss451",
+		"title":"恋爱研究所",
+		"description":" 在世间有着“大小姐们贵族学校”之称的私立藤崎女子中学的学生会执行部，在学生会会长的决意下建立了名为“恋爱研究所”的社团，故事描述的是在这个“恋爱研究所”中进行着“少女们的恋爱研究”的成员们的日常生活。\n\n 《恋爱研究所》以著名的名门女子学校藤崎女子中学校(藤女)为舞台，描写爱上了“恋爱”的学生会成员们的恋爱研究及其实践。故事中集中了运动娘、眼镜娘、腐女、傲娇大小姐等个性迥异的角色。",
+		"actors":"水嶋沙依理：大地葉\n榎本结子：佐倉綾音\n棚桥铃音：水濑祈\n真木夏绪：赤﨑千夏\n仓桥莉子：沼倉愛美\n棚桥裕也：内山昂輝\n山崎佑：村瀬歩\n市川奈奈：日高里菜\n南桃香：秋奈",
+		"staff":"原作： 宮原るり（芳文社《まんがタイム》）\n导演： 太田雅彦\n脚本： あおしまたかし、子安秀明、杉原研二\n分镜： 太田雅彦、畑博之\n演出： 越田知明、福本潔、守田芸成、矢野孝典\n音乐： 三澤康広\n人物设定： 中島千明\n系列构成： あおしまたかし\n美术监督： 鈴木俊輔\n总作画监督： 中島千明、高野綾\n作画监督： 中島千明、高野綾\n道具设计： 高野綾\n原画： 西井涼輔、野中正幸、松尾祐輔",
+		"start_date":"2013-07-04",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["萌系","日常"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-4-12"
+	},{
+		"watched_episode":[20190413,20190414,20190414,20190414],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/33522e5eef0a2c167a31061a5366920e5044cba1.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1602",
+		"title":"灼眼的夏娜II",
+		"description":"《灼眼的夏娜》TV第二季的故事将从小说第八卷开始，以红世之徒·“戏睡乡”梅亚入侵御崎市作为开篇。据监督渡部高志所说，故事会对第一季的一些伏笔作出解释。第二季STAFF和声优会由原班人马担任，“钉宫之誓”依旧强势走高。\n夏天结束后，新学期开始了\n许多事物没有任何变化，但是同时也有不少事情逐渐发展着…\n池和吉田，绪方和田中之间产生了些许微妙的关系\n还有在我身旁，飘逸着长发的夏娜…\n但是，这一切似乎有着一丝奇怪的违和感\n在我们所不知道的地方，红世之徒再次展开了行动…\n动画制作：日创",
+		"actors":"坂井悠二：日野聡\n夏娜：釘宮理恵\nイーストエッジ：乃村健次\nフェコルー：間宮康弘\nフリアグネ：諏訪部順一\n藤田晴美：升望\nカシャ：松原大典\n卡姆辛·奈夫哈维：皆川純子\n拉米：清川元夢",
+		"staff":"原作：高橋弥七郎\n监督：渡部高志\n脚本：水上清資、小林靖子\n分镜：米たにヨシトモ、渡部高志、福田道生、岸川寛良\n演出：長井龍雪、高島大輔、橋本敏一、岸川寛良\n人物原案：いとうのいぢ\n人物设定：大塚舞\n系列构成： 小林靖子\n色彩设计：伊藤由紀子\n作画监督：冷水由紀絵、岡野幸男、加藤万由子\n音乐：大谷幸\n音响监督：明田川仁\n摄影监督：福世晋吾\n动画制作：J.C.STAFF",
+		"start_date":"2007-10-04",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":24,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":4,
+		"color":"silver",
+		"category":["校园","战斗","热血","小说改","奇幻","萝莉","神魔"],
+		"last_watch_episode_anime":4,
+		"create_date":"2019-4-13"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/649c562820255ec4fd7d166ae164c86b99b49947.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss4735",
+		"title":"小凉宫春日的忧郁",
+		"description":"　　凉宫春日酱的忧郁是由作家ぷよ根据谷川流的原作改编的漫画二次创作。版权和凉宫春日一样归于角川书店所有。漫画以四格为主要表现形式，里面的主人公基本保留了原有的个性，但同时又新增不少搞笑有趣的新设定，因此一经推出就大受欢迎。目前凉宫春日酱的忧郁已经决定由京都制作成网络动画在YouTube上播放，同时搭载的还有动画《猫嘴鹤屋》",
+		"actors":"让世界变得更热闹的凉宫春日的团：阿虚：杉田智和\n朝比奈实玖瑠：後藤邑子\n凉宫春日：平野綾\n长门有希：茅原実里\n国木田：松元恵\n鶴屋学姐：松岡由貴\n朝仓凉子：桑谷夏子\n新川：大塚明夫\n",
+		"staff":"导演：武本康弘\n人物设定：西屋太志\n摄影监督：中上竜太\n原作：谷川流、いとうのいぢ\n人物原案：ぷよ\n色彩设计：石田奈央美\n美术监督：篠原睦雄\n音乐：神前暁\n",
+		"start_date":"2009-02-14",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":25,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["萌系"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-4-13"
 	}]
 });

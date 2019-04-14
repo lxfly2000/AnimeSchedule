@@ -1,7 +1,7 @@
 package com.lxfly2000.animeschedule;
 
 import android.content.ActivityNotFoundException;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;

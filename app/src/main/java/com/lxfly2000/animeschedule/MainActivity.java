@@ -676,7 +676,7 @@ public class MainActivity extends AppCompatActivity {
                     notwatched_ab++;
                 else
                     notwatched_sub++;
-            }else if(epi_watched<animeJson.GetEpisodeCount(i)||epi_watched<animeJson.GetLastUpdateEpisode(i)){
+            }else if(epi_watched<animeJson.GetLastUpdateEpisode(i)){
                 if(animeJson.GetAbandoned(i))
                     following_ab++;
                 else

@@ -1021,40 +1021,58 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
                     JSONObject htmlJson=new JSONObject(jsonString).getJSONObject("result");
-                    editDialogCover.setText(htmlJson.getString("cover"));
+                    try {
+                        editDialogCover.setText(htmlJson.getString("cover"));
+                    }catch (JSONException e){/*Ignore*/}
                     try {
                         editDialogTitle.setText(htmlJson.getString("series_title"));
-                    }catch (JSONException es){
+                    }catch (JSONException e){
                         //2019-2-16：经检查发现番剧《天使降临到我身边》（SSID：26291）不存在“series_title”属性
-                        editDialogTitle.setText(htmlJson.getString("title"));
+                        try {
+                            editDialogTitle.setText(htmlJson.getString("title"));
+                        }catch (JSONException ee){/*Ignore*/}
                     }
-                    editDialogDescription.setText(htmlJson.getString("evaluate"));
-                    editDialogActors.setText(htmlJson.getString("actors"));
-                    editDialogStaff.setText(htmlJson.getString("staff"));
-                    String[]pubTimeParts=htmlJson.getJSONObject("publish").getString("pub_time").split(" ");
-                    editDialogStartDate.setText(pubTimeParts[0]);
-                    //Bug:SSID:22574 pub_time字段不存在时间（2019-4-8）
-                    if(pubTimeParts.length>1)
-                        editDialogUpdateTime.setText(pubTimeParts[1]);
-                    if(htmlJson.getJSONObject("publish").getString("weekday").contentEquals("-1")){
-                        editDialogUpdatePeriod.setText("1");
-                        comboDialogUpdatePeriodUnit.setSelection(1,true);
-                    }else if("0123456".contains(htmlJson.getJSONObject("publish").getString("weekday"))){
-                        editDialogUpdatePeriod.setText("7");
-                        comboDialogUpdatePeriodUnit.setSelection(0,true);
-                    }
-                    String countString=htmlJson.getString("total_ep");
-                    if(countString.contentEquals("0"))
-                        editDialogEpisodeCount.setText("-1");
-                    else
-                        editDialogEpisodeCount.setText(countString);
-                    StringBuilder tagString=new StringBuilder();
-                    for(int i=0;i<htmlJson.getJSONArray("style").length();i++){
-                        if(i!=0)
-                            tagString.append(",");
-                        tagString.append(htmlJson.getJSONArray("style").getString(i));
-                    }
-                    editDialogCategory.setText(tagString.toString());
+                    try {
+                        editDialogDescription.setText(htmlJson.getString("evaluate"));
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        editDialogActors.setText(htmlJson.getString("actors"));
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        editDialogStaff.setText(htmlJson.getString("staff"));
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        String[] pubTimeParts = htmlJson.getJSONObject("publish").getString("pub_time").split(" ");
+                        editDialogStartDate.setText(pubTimeParts[0]);
+                        //Bug:SSID:22574 pub_time字段不存在时间（2019-4-8）
+                        if (pubTimeParts.length > 1)
+                            editDialogUpdateTime.setText(pubTimeParts[1]);
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        if (htmlJson.getJSONObject("publish").getString("weekday").contentEquals("-1")) {
+                            editDialogUpdatePeriod.setText("1");
+                            comboDialogUpdatePeriodUnit.setSelection(1, true);
+                        } else if ("0123456".contains(htmlJson.getJSONObject("publish").getString("weekday"))) {
+                            editDialogUpdatePeriod.setText("7");
+                            comboDialogUpdatePeriodUnit.setSelection(0, true);
+                        }
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        String countString = htmlJson.getString("total_ep");
+                        if (countString.contentEquals("0"))
+                            editDialogEpisodeCount.setText("-1");
+                        else
+                            editDialogEpisodeCount.setText(countString);
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        StringBuilder tagString = new StringBuilder();
+                        for (int i = 0; i < htmlJson.getJSONArray("style").length(); i++) {
+                            if (i != 0)
+                                tagString.append(",");
+                            tagString.append(htmlJson.getJSONArray("style").getString(i));
+                        }
+                        editDialogCategory.setText(tagString.toString());
+                    }catch (JSONException e){/*Ignore*/}
                     editDialogWatchUrl.setText("https://www.bilibili.com/bangumi/play/ss"+idString);//为避免输入的URL无法被客户端打开把URL统一改成SSID形式
                     editDialogRanking.setText(String.valueOf(Math.round(htmlJson.getJSONObject("rating").getDouble("score")/2)));
                 }catch (JSONException e){
@@ -1261,17 +1279,21 @@ public class MainActivity extends AppCompatActivity {
                     String jsonString=StreamUtility.GetStringFromStream(stream);
                     jsonString=jsonString.substring(jsonString.indexOf('{'),jsonString.lastIndexOf('}')+1);
                     JSONObject jsonObject=new JSONObject(jsonString);
-                    String descString=jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("desc");
-                    if(descString.length()>0)
-                        editDialogDescription.setText(descString);
-                    String qiyiPlayStrategy=jsonObject.getJSONObject("data").getString("ps");
-                    if(qiyiPlayStrategy.contains("每周")){
-                        editDialogUpdatePeriod.setText("7");
-                        comboDialogUpdatePeriodUnit.setSelection(0,true);
-                    }
-                    Matcher mTime=Pattern.compile("[0-9]+:[0-9]+").matcher(qiyiPlayStrategy);
-                    if(mTime.find())
-                        editDialogUpdateTime.setText(qiyiPlayStrategy.substring(mTime.start(),mTime.end()));
+                    try {
+                        String descString = jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("desc");
+                        if (descString.length() > 0)
+                            editDialogDescription.setText(descString);
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        String qiyiPlayStrategy = jsonObject.getJSONObject("data").getString("ps");
+                        if (qiyiPlayStrategy.contains("每周")) {
+                            editDialogUpdatePeriod.setText("7");
+                            comboDialogUpdatePeriodUnit.setSelection(0, true);
+                        }
+                        Matcher mTime = Pattern.compile("[0-9]+:[0-9]+").matcher(qiyiPlayStrategy);
+                        if (mTime.find())
+                            editDialogUpdateTime.setText(qiyiPlayStrategy.substring(mTime.start(), mTime.end()));
+                    }catch (JSONException e){/*Ignore*/}
                     ReadIQiyiJsonpAnimeCategory_OnCallback(String.valueOf(jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getInt("id")),
                             jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("vid"));
                 }catch (JSONException e){
@@ -1299,14 +1321,22 @@ public class MainActivity extends AppCompatActivity {
                     String jsonString=StreamUtility.GetStringFromStream(stream);
                     jsonString=jsonString.substring(jsonString.indexOf('{'),jsonString.lastIndexOf('}')+1);
                     JSONObject jsonObject=new JSONObject(jsonString);
-                    editDialogCategory.setText(jsonObject.getString("tg").replaceAll(" ",","));
-                    editDialogTitle.setText(jsonObject.getString("an"));
-                    String startTimeString=jsonObject.getString("stm");
-                    if(startTimeString.length()>=8)
-                        editDialogStartDate.setText(startTimeString.substring(0,4)+"-"+startTimeString.substring(4,6)+"-"+startTimeString.substring(6));
-                    else
-                        Toast.makeText(getBaseContext(),getString(R.string.message_date_string_too_short,startTimeString.length()),Toast.LENGTH_LONG).show();
-                    editDialogEpisodeCount.setText(String.valueOf(jsonObject.getInt("es")));//其他地方也有疑似总集数的属性
+                    try {
+                        editDialogCategory.setText(jsonObject.getString("tg").replaceAll(" ", ","));
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        editDialogTitle.setText(jsonObject.getString("an"));
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        String startTimeString = jsonObject.getString("stm");
+                        if (startTimeString.length() >= 8)
+                            editDialogStartDate.setText(startTimeString.substring(0, 4) + "-" + startTimeString.substring(4, 6) + "-" + startTimeString.substring(6));
+                        else
+                            Toast.makeText(getBaseContext(), getString(R.string.message_date_string_too_short, startTimeString.length()), Toast.LENGTH_LONG).show();
+                    }catch (JSONException e){/*Ignore*/}
+                    try {
+                        editDialogEpisodeCount.setText(String.valueOf(jsonObject.getInt("es")));//其他地方也有疑似总集数的属性
+                    }catch (JSONException e){/*Ignore*/}
                     editDialogCover.setText(jsonObject.getString("apic"));
                 }catch (JSONException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();

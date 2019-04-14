@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":259,
+	"last_watch_index":280,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -5129,7 +5129,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-2"
 	},{
-		"watched_episode":[20190406,20190407,20190408,20190409,20190409,20190409,20190411,20190413,20190413,20190413,20190413,20190413,20190413,20190413,20190414],
+		"watched_episode":[20190406,20190407,20190408,20190409,20190409,20190409,20190411,20190413,20190413,20190413,20190413,20190413,20190413,20190413,20190414,20190414],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0185e95dab20828dcfa79a32a6797e1f4d17722d.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1558",
 		"title":"小长门有希的消失",
@@ -5147,7 +5147,7 @@ setJsonData({
 		"color":"silver",
 		"category":["日常","少女","治愈"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":15,
+		"last_watch_episode_anime":16,
 		"create_date":"2019-4-5"
 	},{
 		"watched_episode":[false],
@@ -5550,5 +5550,25 @@ setJsonData({
 		"category":["萌系"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-13"
+	},{
+		"watched_episode":[20190414],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/14061f9aafc0e369e2d487fe1121fc71bf395174.jpg",
+		"watch_url":"http:\/\/m.bilibili.com\/bangumi\/play\/ss6407",
+		"title":"小长门有希的消失 OAD",
+		"description":"“第一次，我坠入了情网。”\n北高文艺部所属的普通女高中生·长门有希，是个偷偷喜欢同社文艺社员·阿虚的内向女孩。她在借由好友朝仓凉子的帮助之下，为了能在社团教室举办圣诞派对而奋斗着，但是……？\n\n《小长门有希的消失》是谷川流人气轻小说《凉宫春日系列》的官方外传漫画，由PUYO负责作画，连载于《YOUNG ACE》杂志。以原作小说第4卷《凉宫春日的消失》为基础，描写变成了“文静害羞少女”的长门有希，与男主角阿虚的平行世界恋爱故事。动画化消息13年12月18号放出，播出形式、时间未定。\n动画制作：Satelight",
+		"actors":"阿虚：杉田智和\n长门有希：茅原実里\n朝仓凉子：桑谷夏子\n朝比奈实玖瑠：後藤邑子\n古泉一树：小野大輔\n鶴屋学姐：松岡由貴\n谷口：白石稔\n国木田：松元恵\n森園生：小見川千明\n",
+		"staff":"脚本：待田堂子、寺澤雄三、和場朋子、和場明子、根元歳三\n导演：和田純一\n作画監督：清水貴子、舘崎大、古澤貴文、山田桃子、荒木裕、西尾公伯、本田創一、福世孝明、金田栄二、陣内美保、いとうまりこ、しまだひであき、青木美穂、斎藤圭太、柳田幸平、木野下澄江、北沢典子、丸山修二、陣内美帆、松本文男、飯飼一幸、井上英紀、野口孝行、川島尚、椛島洋介、服部憲知、吉井弘幸、今西亨、香川久、田中知江、長坂寛治、岩岡優子、松本弘、大橋幸子、伊藤郁子\n原作：谷川流\nコンテ：石平信司、水本葉月、和田純一、安田賢司、羽多野浩平、島津裕行、竹下良平\n演出：安藤健、古賀一臣、水本葉月、近藤一英、和田純一、羽多野浩平、飛田剛、大脊戸聡、竹下良平、ヤマトナオミチ\n分镜：水本葉月、和田純一、羽多野浩平、島津裕行\n主题歌演出： 茅原実里、平野綾、後藤邑子、松岡由貴、桑谷夏子\n企画： 安田猛\n音响监督： 鶴岡陽太\n执行制片人： 安田猛\n总制片： 伊藤敦\n动画制作： サテライト",
+		"start_date":"2015-10-26",
+		"update_time_int":0,
+		"update_period":1,
+		"update_period_unit":"month",
+		"episode_count":1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":5,
+		"color":"silver",
+		"category":[],
+		"last_watch_episode_anime":1,
+		"create_date":"2019-4-14"
 	}]
 });

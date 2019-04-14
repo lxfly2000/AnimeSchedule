@@ -124,15 +124,21 @@ public class BilibiliDownloadDialog {
                         return;
                     }
                     htmlJson = new JSONObject(jsonString).getJSONObject("result");
-                    String animeTitle=htmlJson.getString("title");
-                    dialog.setTitle(animeTitle);
-                    if(animeTitle.contains("僅"))
-                        buttonOk.setText(R.string.message_bilibili_download_region_restricted_warning);
+                    try {
+                        String animeTitle = htmlJson.getString("title");
+                        dialog.setTitle(animeTitle);
+                        if (animeTitle.contains("僅"))
+                            buttonOk.setText(R.string.message_bilibili_download_region_restricted_warning);
+                    }catch (JSONException e){/*Ignore*/}
                     JSONArray epArray=htmlJson.getJSONArray("episodes");
                     for(int i=0;i<epArray.length();i++){
                         CheckBox checkBox=new CheckBox(dialog.getContext());
-                        JSONObject epObject=epArray.getJSONObject(i);
-                        checkBox.setText("["+epObject.getString("index")+"] "+epObject.getString("index_title"));
+                        try {
+                            JSONObject epObject = epArray.getJSONObject(i);
+                            checkBox.setText("[" + epObject.getString("index") + "] " + epObject.getString("index_title"));
+                        }catch (JSONException e){
+                            checkBox.setText("["+(i+1)+"] ("+e.getLocalizedMessage()+")");
+                        }
                         checkBox.setOnCheckedChangeListener(checkChangeListener);
                         checkEpisodes.add(checkBox);
                         linearLayout.addView(checkBox);

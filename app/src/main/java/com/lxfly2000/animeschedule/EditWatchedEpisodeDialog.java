@@ -159,17 +159,20 @@ public class EditWatchedEpisodeDialog {
                                 return;
                             }
                             JSONObject htmlJson = new JSONObject(jsonString).getJSONObject("result");
-                            String animeTitle=htmlJson.getString("title");
-                            dlg.setTitle(animeTitle);
+                            try {
+                                dlg.setTitle(htmlJson.getString("title"));
+                            }catch (JSONException e){/*Ignore*/}
                             JSONArray epArray=htmlJson.getJSONArray("episodes");
                             for(int i=0;i<epArray.length()&&i<linearLayout.getChildCount();i++){
                                 CheckBox checkBox=(CheckBox)linearLayout.getChildAt(i);
-                                JSONObject epObject=epArray.getJSONObject(i);
-                                String titleText="["+epObject.getString("index")+"] "+epObject.getString("index_title");
-                                String originalString=checkBox.getText().toString();
-                                if(originalString.indexOf("]")+1<originalString.length())
-                                    titleText+="\n";
-                                checkBox.setText(originalString.replaceFirst("\\[\\d*\\] *",titleText));
+                                try {
+                                    JSONObject epObject = epArray.getJSONObject(i);
+                                    String titleText = "[" + epObject.getString("index") + "] " + epObject.getString("index_title");
+                                    String originalString = checkBox.getText().toString();
+                                    if (originalString.indexOf("]") + 1 < originalString.length())
+                                        titleText += "\n";
+                                    checkBox.setText(originalString.replaceFirst("\\[\\d*\\] *", titleText));
+                                }catch (JSONException e){/*Ignore*/}
                             }
                         }catch (JSONException e){
                             Toast.makeText(ctx,ctx.getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();

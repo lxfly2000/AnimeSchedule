@@ -139,7 +139,7 @@
     </string>
     <string name="label_download_open_bilibili_app">Open Bilibili after this operation</string>
     <string name="message_app_not_found">\"%s\" not found, you might not install this application.</string>
-    <string name="menu_download_not_available">Download (Only available for Bilibili link)</string>
+    <string name="menu_download_not_available">Download (Only available for Bilibili Bangumi link)</string>
     <string name="label_thanks">Special Thanks</string>
     <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>: helped with the
         download function.

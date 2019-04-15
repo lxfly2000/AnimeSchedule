@@ -35,9 +35,7 @@ android {
 dependencies {
     //查看依赖关系：gradlew -q app:dependencies
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     //https://developer.android.google.cn/jetpack/androidx/releases/appcompat
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

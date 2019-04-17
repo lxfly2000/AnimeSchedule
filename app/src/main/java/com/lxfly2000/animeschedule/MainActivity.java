@@ -566,7 +566,7 @@ public class MainActivity extends AppCompatActivity {
         if(googleDriveOperator==null)
             return;
         new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(R.drawable.ic_warning_black_24dp)
                 .setTitle(R.string.action_google_drive_download)
                 .setMessage(R.string.message_overwrite_local_warning)
                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
@@ -597,7 +597,7 @@ public class MainActivity extends AppCompatActivity {
         if(googleDriveOperator==null)
             return;
         new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(R.drawable.ic_warning_black_24dp)
                 .setTitle(R.string.action_google_drive_upload)
                 .setMessage(R.string.message_overwrite_google_drive_warning)
                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
@@ -748,7 +748,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void OnRemoveAllAnime(){
         new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(R.drawable.ic_warning_black_24dp)
                 .setTitle(R.string.message_notice_title)
                 .setMessage(R.string.message_remove_all_warning)
                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> RemoveAllAnime())

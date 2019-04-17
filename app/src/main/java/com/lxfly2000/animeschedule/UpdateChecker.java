@@ -75,7 +75,7 @@ public class UpdateChecker {
         if (foundNewVersion) {
             msg = String.format(ctx.getString(R.string.message_new_version), BuildConfig.VERSION_NAME, GetUpdateVersionName());
             msgBox.setMessage(msg);
-            msgBox.setIcon(android.R.drawable.ic_dialog_info);
+            msgBox.setIcon(R.drawable.ic_info_black_24dp);
             msgBox.setPositiveButton(android.R.string.ok, (dialogInterface, i) -> AndroidUtility.OpenUri(ctx,Values.urlAuthor));
             msgBox.setNegativeButton(android.R.string.cancel,null);
             msgBox.setNeutralButton(R.string.button_skip_new_version, (dialogInterface, i) -> preferences.edit().putInt(Values.keySkippedVersionCode,remoteVersionCode).apply());
@@ -84,7 +84,7 @@ public class UpdateChecker {
         }else if (IsError()){
             msg=ctx.getString(R.string.error_check_update);
             msgBox.setMessage(msg);
-            msgBox.setIcon(android.R.drawable.ic_dialog_alert);
+            msgBox.setIcon(R.drawable.ic_warning_black_24dp);
         }else {
             msg=ctx.getString(R.string.message_no_update);
             msgBox.setMessage(msg);

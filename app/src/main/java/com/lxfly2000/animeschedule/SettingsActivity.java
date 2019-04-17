@@ -177,7 +177,7 @@ public class SettingsActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.message_notice_title)
                 .setMessage(R.string.message_overwrite_settings)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(R.drawable.ic_warning_black_24dp)
                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                     originalMethod=originalOrder=-1;
                     ClearSettings();
@@ -205,7 +205,7 @@ public class SettingsActivity extends AppCompatActivity {
             new AlertDialog.Builder(this)
                     .setTitle(R.string.message_notice_title)
                     .setMessage(R.string.message_lose_changes)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIcon(R.drawable.ic_warning_black_24dp)
                     .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                         modified=false;
                         finish();

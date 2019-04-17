@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":280,
+	"last_watch_index":211,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -4121,7 +4121,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-1-23"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[20190417],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/b0e49708533244ea59635b42282edf25bc499eab.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss24605",
 		"title":"向山进发 第三季",
@@ -4135,11 +4135,11 @@ setJsonData({
 		"episode_count":13,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["萌系","社团","日常","漫画改"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-1-23"
 	},{
 		"watched_episode":[false],
@@ -5291,7 +5291,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190414],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/b3abd85c69439a263af5e515a1f5ef9d23ebab4f.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26802",
 		"title":"皿三昧",
@@ -5304,11 +5304,11 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":11,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":0,
+		"abandoned":true,
+		"rank":2,
 		"color":"silver",
 		"category":["原创","奇幻","声控"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[0],
@@ -5331,7 +5331,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190414,20190417],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/2ccb146177301e4a383880ff2fb747ece4d4b9e0.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26768",
 		"title":"异世界四重奏",
@@ -5344,11 +5344,11 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":0,
+		"abandoned":true,
+		"rank":2,
 		"color":"silver",
 		"category":["原创","搞笑","日常"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":2,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190412],

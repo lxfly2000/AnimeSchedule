@@ -3,12 +3,9 @@ package com.lxfly2000.animeschedule;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 import com.google.android.flexbox.FlexboxLayout;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.StreamUtility;
@@ -67,8 +64,13 @@ public class EditWatchedEpisodeDialog {
         void Show();
     }
 
+    private RatingBar.OnRatingBarChangeListener rbListener=(ratingBar, v, b) ->
+            ((TextView)ratingBar.getRootView().findViewById(R.id.textDialogRank))
+                    .setText(ctx.getString(R.string.label_anime_ranking)+" ("+(int)ratingBar.getRating()+")");
+
     private class TypeFlexbox implements DialogType{
         private FlexboxLayout flexboxDialogWatchedEpisode;
+        private RatingBar ratingBarRank;
         public void Show(){
             AlertDialog dlg=new AlertDialog.Builder(ctx)
                     .setTitle(animeJson.GetTitle(paramIndex))
@@ -82,9 +84,14 @@ public class EditWatchedEpisodeDialog {
                             if(animeJson.GetEpisodeWatched(paramIndex,i_epi)!=i_epi_watched)
                                 animeJson.SetEpisodeWatched(paramIndex, i_epi, i_epi_watched);
                         }
+                        animeJson.SetRank(paramIndex,(int)ratingBarRank.getRating());
                         okListener.onClick(dialogInterface,i);
                     }).show();
             flexboxDialogWatchedEpisode=dlg.findViewById(R.id.flexboxDialogWatchedEpisodes);
+            ratingBarRank=dlg.findViewById(R.id.ratingDialogRank);
+            ratingBarRank.setOnRatingBarChangeListener(rbListener);
+            ratingBarRank.setRating(animeJson.GetRank(paramIndex));
+            rbListener.onRatingChanged(ratingBarRank,ratingBarRank.getRating(),false);
             //显示观看的集数
             ToggleButton toggleEpisode;
             FlexboxLayout.LayoutParams layoutToggleEpisode=new FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT,FlexboxLayout.LayoutParams.WRAP_CONTENT);
@@ -103,6 +110,7 @@ public class EditWatchedEpisodeDialog {
 
     private class TypeCheckList implements DialogType{
         private LinearLayout linearLayout;
+        private RatingBar ratingBarRank;
         public void Show(){
             final AlertDialog dlg=new AlertDialog.Builder(ctx)
                     .setTitle(animeJson.GetTitle(paramIndex))
@@ -115,9 +123,14 @@ public class EditWatchedEpisodeDialog {
                             if(animeJson.GetEpisodeWatched(paramIndex,i_epi)!=i_epi_watched)
                                 animeJson.SetEpisodeWatched(paramIndex, i_epi, i_epi_watched);
                         }
+                        animeJson.SetRank(paramIndex,(int)ratingBarRank.getRating());
                         okListener.onClick(dialogInterface,i);
                     }).show();
             linearLayout=dlg.findViewById(R.id.linearLayoutEpisodes);
+            ratingBarRank=dlg.findViewById(R.id.ratingDialogRank);
+            ratingBarRank.setOnRatingBarChangeListener(rbListener);
+            ratingBarRank.setRating(animeJson.GetRank(paramIndex));
+            rbListener.onRatingChanged(ratingBarRank,ratingBarRank.getRating(),false);
             for(int i=1;i<=animeJson.GetLastUpdateEpisode(paramIndex);i++){
                 CheckBox checkBox=new CheckBox(dlg.getContext());
                 StringBuilder sb=new StringBuilder();

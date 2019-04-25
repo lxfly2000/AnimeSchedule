@@ -61,6 +61,8 @@ public class AnimeUpdateNotify extends Service {
                 PublishUpdateNotification(i);
                 updateCount++;
             }
+            if(BuildConfig.DEBUG&&updateCount>=5)
+                break;
         }
         SharedPreferences.Editor updatePrefWrite=updatePreference.edit();
         updatePrefWrite.putString("date",todayDate.ToYMDString());

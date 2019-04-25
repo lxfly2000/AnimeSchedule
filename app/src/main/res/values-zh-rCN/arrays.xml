@@ -21,13 +21,17 @@
         <item>哔哩哔哩概念 (com.bilibili.app.blue)</item>
     </string-array>
     <string-array name="list_bilibili_video_quality">
-        <item>流畅</item>
-        <item>清晰</item>
-        <item>高清</item>
-        <item>超清</item>
-        <item>1080P</item>
+        <item>流畅(旧版)</item>
+        <item>清晰(旧版)</item>
+        <item>高清(旧版)</item>
+        <item>超清(旧版)</item>
+        <item>1080P(旧版)</item>
+        <item>流畅360P</item>
+        <item>清晰480P</item>
+        <item>高清720P</item>
+        <item>高清1080P</item>
         <item>1080P+</item>
-        <item>720P 60</item>
-        <item>1080P 60</item>
+        <item>720P60</item>
+        <item>1080P60</item>
     </string-array>
 </resources>

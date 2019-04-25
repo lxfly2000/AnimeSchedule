@@ -86,7 +86,36 @@ public class Values {
     public static String GetAppDataPathExternal(Context ctx){
         return ctx.getExternalCacheDir().getParentFile().getParent();
     }
-    public static final int typeBilibiliPreferredVideoQualities[]={100,150,200,400,800,112,74,116};
+    public static final int typeBilibiliPreferredVideoQualities[]={
+            100,//流畅(旧版)
+            150,//清晰(旧版)
+            200,//高清(旧版)
+            400,//超清(旧版)
+            800,//1080P(旧版)
+            16,//流畅 360P
+            32,//清晰 480P
+            64,//高清 720P
+            80,//高清 1080P
+            112,//高清 1080P+
+            74,//高清 720P60
+            116//高清 1080P60
+    };
+    public static final String typeBilibiliTypeTag[]={
+            //旧版
+            "lua.mp4.bb2api.16",
+            "lua.flv480.bb2api.32",
+            "lua.flv720.bb2api.64",
+            "lua.flv.bb2api.80",
+            "lua.hdflv2.bb2api.bd",//注意这个清晰度新旧版是不同的！
+            //新版
+            "lua.mp4.bb2api.16",
+            "lua.flv480.bb2api.32",
+            "lua.flv720.bb2api.64",
+            "lua.flv.bb2api.80",
+            "lua.hdflv2.bb2api.112",
+            "lua.flv720_p60.bili2api.74",
+            "lua.flv_p60.bili2api.116"
+    };
 
     public static final String jsonRawBilibiliEntry="{" +
             "    \"is_completed\":false,\n" +

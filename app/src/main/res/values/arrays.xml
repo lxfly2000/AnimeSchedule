@@ -21,13 +21,17 @@
         <item>Bilibili Blue (com.bilibili.app.blue)</item>
     </string-array>
     <string-array name="list_bilibili_video_quality">
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
-        <item>High+</item>
-        <item>1080p</item>
-        <item>1080p+</item>
-        <item>720p60</item>
-        <item>1080p60</item>
+        <item>Low(Legacy)</item>
+        <item>Mid(Legacy)</item>
+        <item>High(Legacy)</item>
+        <item>H+(Legacy)</item>
+        <item>1080P(Legacy)</item>
+        <item>360P</item>
+        <item>480P</item>
+        <item>720P</item>
+        <item>1080P</item>
+        <item>1080P+</item>
+        <item>720P60</item>
+        <item>1080P60</item>
     </string-array>
 </resources>

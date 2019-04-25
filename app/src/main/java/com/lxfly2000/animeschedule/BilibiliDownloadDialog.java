@@ -101,6 +101,9 @@ public class BilibiliDownloadDialog {
                     }
                 })
                 .setNegativeButton(android.R.string.cancel,null)
+                .setNeutralButton(R.string.button_bilibili_download_sysdown,(dialogInterface, i) -> {
+                    Toast.makeText(ctx,"TODO: 该功能正在制作中。",Toast.LENGTH_LONG).show();
+                })
                 .setView(R.layout.dialog_bilibili_download)
                 .show();
         checkOpenBilibili= dialog.findViewById(R.id.checkOpenBilibili);

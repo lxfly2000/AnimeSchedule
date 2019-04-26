@@ -48,10 +48,14 @@ public class BilibiliDownloadDialog {
         }
     };
 
-    private String GetBilibiliDownloadEntryPath(String ssid,String epid){
+    private String GetBilibiliDownloadPath(){
         return preferences.getString(Values.keyBilibiliSavePath,Values.GetAppDataPathExternal(ctx))
                 .concat("/").concat(Values.pkgNameBilibiliVersions[preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex)])
-                .concat("/download/s_").concat(ssid).concat("/").concat(epid).concat("/entry.json");
+                .concat("/download");
+    }
+
+    private String GetBilibiliDownloadEntryPath(String ssid,String epid){
+        return GetBilibiliDownloadPath().concat("/s_").concat(ssid).concat("/").concat(epid).concat("/entry.json");
     }
 
     void OpenDownloadDialog(AnimeJson json,int index){
@@ -60,10 +64,10 @@ public class BilibiliDownloadDialog {
             Toast.makeText(ctx,R.string.message_bilibili_ssid_not_found,Toast.LENGTH_LONG).show();
             return;
         }
+        String pkgName=Values.pkgNameBilibiliVersions[preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex)];
         final AlertDialog dialog=new AlertDialog.Builder(ctx)
                 .setTitle(json.GetTitle(index))
                 .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
-                    String pkgName=Values.pkgNameBilibiliVersions[preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex)];
                     for(int i_check=0;i_check<checkEpisodes.size();i_check++){
                         if(!checkEpisodes.get(i_check).isChecked())
                             continue;
@@ -104,7 +108,21 @@ public class BilibiliDownloadDialog {
                 })
                 .setNegativeButton(android.R.string.cancel,null)
                 .setNeutralButton(R.string.button_bilibili_download_sysdown,(dialogInterface, i) -> {
-                    Toast.makeText(ctx,"TODO: 该功能正在制作中。",Toast.LENGTH_LONG).show();
+                    BilibiliAnimeEpisodeDownloader downloader=new BilibiliAnimeEpisodeDownloader(ctx);
+                    for(int i_check=0;i_check<checkEpisodes.size();i_check++) {
+                        if (!checkEpisodes.get(i_check).isChecked())
+                            continue;
+                        try {
+                            JSONObject checkedEp = htmlJson.getJSONArray("episodes").getJSONObject(i_check);
+                            downloader.DownloadEpisode(GetBilibiliDownloadPath(), htmlJson.getInt("season_id"),
+                                    checkedEp.getInt("ep_id"),Values.typeBilibiliPreferredVideoQualities[spinnerVideoQuality.getSelectedItemPosition()],
+                                    checkedEp.getInt("aid"),"["+checkedEp.getString("index")+"] "+checkedEp.getString("index_title"));
+                        }catch (JSONException e){
+                            Toast.makeText(ctx,ctx.getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    }
+                    AndroidUtility.KillProcess(ctx,pkgName);
                 })
                 .setView(R.layout.dialog_bilibili_download)
                 .show();

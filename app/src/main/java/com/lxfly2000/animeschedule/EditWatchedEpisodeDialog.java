@@ -152,7 +152,7 @@ public class EditWatchedEpisodeDialog {
                 checkBox.setText(sb.toString());
                 linearLayout.addView(checkBox);
             }
-            if(URLUtility.IsBilibiliSeasonLink(animeJson.GetWatchUrl(paramIndex))){
+            if(URLUtility.IsBilibiliSeasonBangumiLink(animeJson.GetWatchUrl(paramIndex))){
                 final String ssid=URLUtility.GetBilibiliSeasonIdString(animeJson.GetWatchUrl(paramIndex));
                 if(ssid==null){
                     Toast.makeText(ctx,R.string.message_bilibili_ssid_not_found,Toast.LENGTH_LONG).show();

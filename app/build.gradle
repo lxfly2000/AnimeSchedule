@@ -7,8 +7,8 @@ android {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 125
-        versionName "5.7.6"
+        versionCode 126
+        versionName "5.7.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BUILD_DATE", "\"" + new Date().format("yyyy-M-d") + "\""
     }

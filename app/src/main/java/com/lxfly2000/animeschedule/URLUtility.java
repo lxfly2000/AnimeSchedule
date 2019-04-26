@@ -5,20 +5,21 @@ import java.util.regex.Pattern;
 
 public class URLUtility {
     private static final String regexBilibiliSSID="(/[0-9]+)|(/ss[0-9]+)";
-    public static boolean IsBilibiliLink(String url){
+    private static final String regexBilibiliAVID="/av[0-9]+";
+    public static boolean IsBilibiliBangumiLink(String url){
         Matcher matcher= Pattern.compile(Values.parsableLinksRegex[0]).matcher(url);
         return matcher.find();
     }
 
-    public static boolean IsBilibiliSeasonLink(String url){
-        if(!IsBilibiliLink(url))
+    public static boolean IsBilibiliSeasonBangumiLink(String url){
+        if(!IsBilibiliBangumiLink(url))
             return false;
         Matcher matcher=Pattern.compile(regexBilibiliSSID).matcher(url);
         return matcher.find();
     }
 
     public static String GetBilibiliSeasonIdString(String url){
-        if(!IsBilibiliSeasonLink(url))
+        if(!IsBilibiliSeasonBangumiLink(url))
             return null;
         Matcher matcher=Pattern.compile(regexBilibiliSSID).matcher(url);
         if(!matcher.find())
@@ -28,6 +29,34 @@ public class URLUtility {
         if(!matcher.find())
             return null;
         return url.substring(matcher.start(),matcher.end());
+    }
+
+    public static boolean IsBilibiliVideoLink(String url){
+        if(!Pattern.compile(".*(bilibili.(com|tv)/video)|(acg.tv)/av[0-9]+").matcher(url).find())
+            return false;
+        Matcher matcher=Pattern.compile(regexBilibiliAVID).matcher(url);
+        return matcher.find();
+    }
+
+    public static String GetBilibiliVideoIdString(String url){
+        if(!IsBilibiliVideoLink(url))
+            return null;
+        Matcher matcher=Pattern.compile(regexBilibiliAVID).matcher(url);
+        if(!matcher.find())
+            return null;
+        url=url.substring(matcher.start(),matcher.end());
+        matcher=Pattern.compile("[0-9]+").matcher(url);
+        if(!matcher.find())
+            return null;
+        return url.substring(matcher.start(),matcher.end());
+    }
+
+    public static String MakeBilibiliSeasonUriString(String ssidString){
+        return "bilibili://bangumi/season/"+ssidString;
+    }
+
+    public static String MakeBilibiliVideoUriString(String avidString){
+        return "bilibili://video/"+avidString;
     }
 
     public static boolean IsIQiyiLink(String url){

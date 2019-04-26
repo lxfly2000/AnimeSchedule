@@ -208,7 +208,22 @@ public class MainActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener listAnimeCallback=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            AndroidUtility.OpenUri(getBaseContext(),animeJson.GetWatchUrl(jsonSortTable.get(i)));
+            String watchUrl=animeJson.GetWatchUrl(jsonSortTable.get(i));
+            String url=watchUrl;
+            if(URLUtility.IsBilibiliVideoLink(url))
+                url=URLUtility.MakeBilibiliVideoUriString(URLUtility.GetBilibiliVideoIdString(url));
+            if(URLUtility.IsBilibiliSeasonBangumiLink(url))
+                url=URLUtility.MakeBilibiliSeasonUriString(URLUtility.GetBilibiliSeasonIdString(url));
+            try {
+                AndroidUtility.OpenUri(getBaseContext(), url);
+            }catch (ActivityNotFoundException e){
+                try {
+                    AndroidUtility.OpenUri(getBaseContext(), watchUrl);
+                }catch (ActivityNotFoundException ee){
+                    Toast.makeText(getBaseContext(),getString(R.string.message_exception_no_activity_available)+
+                            "\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
         }
     };
 
@@ -620,7 +635,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu,View v,ContextMenu.ContextMenuInfo menuInfo){
         getMenuInflater().inflate(R.menu.menu_anime_list,menu);
-        if(!URLUtility.IsBilibiliSeasonLink(animeJson.GetWatchUrl(jsonSortTable.get(longPressedListItem))))
+        if(!URLUtility.IsBilibiliSeasonBangumiLink(animeJson.GetWatchUrl(jsonSortTable.get(longPressedListItem))))
             menu.findItem(R.id.action_download).setEnabled(false).setTitle(R.string.menu_download_not_available);
     }
 
@@ -922,7 +937,7 @@ public class MainActivity extends AppCompatActivity {
                 Pattern p=Pattern.compile(Values.parsableLinksRegex[i_regex]);
                 Matcher m=p.matcher(urlString);
                 if(m.find()){
-                    if(URLUtility.IsBilibiliLink(urlString.toLowerCase())){
+                    if(URLUtility.IsBilibiliBangumiLink(urlString.toLowerCase())){
                         ReadBilibiliURL_OnCallback(urlString);
                         break;
                     }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())){
@@ -951,7 +966,7 @@ public class MainActivity extends AppCompatActivity {
         * 在返回的HTML文本（转换成小写）里找ss#####, season_id:#####, "season_id":#####, ssid:#####, "ssid":#####
         * 得到的数值均为 Season ID, 然后就可以从ss##### URL里获取信息了。
         * */
-        if(URLUtility.IsBilibiliSeasonLink(urlString)){
+        if(URLUtility.IsBilibiliSeasonBangumiLink(urlString)){
             ReadBilibiliSSID_OnCallback(URLUtility.GetBilibiliSeasonIdString(urlString));
             return;
         }

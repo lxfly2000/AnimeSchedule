@@ -1,6 +1,7 @@
 package com.lxfly2000.animeschedule;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -29,7 +30,7 @@ public class BilibiliDownloadDialog {
     CheckBox checkOpenBilibili;
     ArrayList<CheckBox> checkEpisodes;
     Spinner spinnerVideoQuality;
-    Button buttonOk;
+    Button buttonOk,buttonNeutral;
     LinearLayout linearLayout;
 
     JSONObject htmlJson;
@@ -43,6 +44,7 @@ public class BilibiliDownloadDialog {
                     checkedCount++;
             }
             buttonOk.setEnabled(checkedCount>0);
+            buttonNeutral.setEnabled(buttonOk.isEnabled());
         }
     };
 
@@ -109,8 +111,10 @@ public class BilibiliDownloadDialog {
         checkOpenBilibili= dialog.findViewById(R.id.checkOpenBilibili);
         spinnerVideoQuality= dialog.findViewById(R.id.spinnerVideoQuality);
         linearLayout= dialog.findViewById(R.id.linearLayoutEpisodes);
-        buttonOk= dialog.findViewById(android.R.id.button1);
+        buttonOk= dialog.getButton(DialogInterface.BUTTON_POSITIVE);
         buttonOk.setEnabled(false);
+        buttonNeutral=dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+        buttonNeutral.setEnabled(false);
         spinnerVideoQuality.setSelection(3);
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override

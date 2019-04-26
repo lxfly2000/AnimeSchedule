@@ -52,6 +52,10 @@ public class FileUtility {
         return file;
     }
 
+    public static boolean DeleteFile(String path){
+        return new File(path).delete();
+    }
+
     public static boolean WriteStreamToFile(String path,ByteArrayInputStream stream){
         try {
             FileOutputStream outputStream = new FileOutputStream(CreateFile(path));

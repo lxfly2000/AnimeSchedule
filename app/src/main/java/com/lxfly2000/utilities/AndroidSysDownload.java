@@ -17,11 +17,25 @@ public class AndroidSysDownload {
         dm=(DownloadManager)ctx.getSystemService(Context.DOWNLOAD_SERVICE);
     }
 
-    //https://blog.csdn.net/lu1024188315/article/details/51785161
     public long StartDownloadFile(String urlString,String localPath){
+        return StartDownloadFile(urlString,localPath,null);
+    }
+
+    public long StartDownloadFile(String urlString,String localPath,String notifyTitle){
+        return StartDownloadFile(urlString,localPath,notifyTitle,null);
+    }
+
+    //https://blog.csdn.net/lu1024188315/article/details/51785161
+    public long StartDownloadFile(String urlString,String localPath,String notifyTitle,String notifyDesc){
         DownloadManager.Request request=new DownloadManager.Request(Uri.parse(urlString));
+        if(localPath.startsWith("/"))
+            localPath="file://"+localPath;
         request.setDestinationUri(Uri.parse(localPath));
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        if(notifyTitle!=null)
+            request.setTitle(notifyTitle);
+        if(notifyDesc!=null)
+            request.setDescription(notifyDesc);
         return dm.enqueue(request);
     }
 
@@ -50,7 +64,7 @@ public class AndroidSysDownload {
         ctx.registerReceiver(receiver,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
     }
 
-    static abstract class OnDownloadCompleteFunction{
-        abstract void OnDownloadComplete(long downloadId);
+    public static abstract class OnDownloadCompleteFunction{
+        public abstract void OnDownloadComplete(long downloadId);
     }
 }

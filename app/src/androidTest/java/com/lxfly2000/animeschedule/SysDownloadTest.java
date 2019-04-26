@@ -39,7 +39,7 @@ public class SysDownloadTest {
             public void OnDownloadComplete(long downloadId) {
                 if(downloadId==did){
                     Log.d("SysDownloadTest","下载完毕");
-                    assertEquals(FileUtility.ReadFile(path).replaceAll("\\r\\n","\n"),localAnimeJS);
+                    assertEquals(localAnimeJS.replaceAll("\\r\\n","\n"),FileUtility.ReadFile(path));
                     lock.countDown();
                 }
             }

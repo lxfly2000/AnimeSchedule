@@ -14,7 +14,7 @@ public class BilibiliQueryInfo {
         public int videoQuality;
 
         public int parts;
-        public String[]urls;
+        public String[][]urls;
         public int[]downloadBytes;
 
         public int queryResult;
@@ -30,13 +30,12 @@ public class BilibiliQueryInfo {
 
     private EpisodeInfo episodeInfo;
 
-    public BilibiliQueryInfo SetParam(String ssidString, String epidString, String avidString, String cidString, int videoQuality){
+    public void SetParam(String ssidString, String epidString, String avidString, String cidString, int videoQuality){
         episodeInfo.ssidString=ssidString;
         episodeInfo.epidString=epidString;
         episodeInfo.avidString=avidString;
         episodeInfo.cidString=cidString;
         episodeInfo.videoQuality=videoQuality;
-        return this;
     }
 
     public static abstract class OnReturnEpisodeInfoFunction{
@@ -44,13 +43,11 @@ public class BilibiliQueryInfo {
     }
     private OnReturnEpisodeInfoFunction returnEpisodeInfoFunction;
 
-    public BilibiliQueryInfo SetOnReturnEpisodeInfoFunction(OnReturnEpisodeInfoFunction f){
+    public void SetOnReturnEpisodeInfoFunction(OnReturnEpisodeInfoFunction f){
         returnEpisodeInfoFunction=f;
-        return this;
     }
 
-    public BilibiliQueryInfo Query(){
+    public void Query(){
         //TODO:获取URL
-        return this;
     }
 }

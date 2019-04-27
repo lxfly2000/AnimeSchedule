@@ -17,8 +17,10 @@ import java.util.regex.Pattern;
 
 public class BilibiliAnimeEpisodeDownloader {
     private Context ctx;
+    AndroidSysDownload sysDownload;
     public BilibiliAnimeEpisodeDownloader(@NonNull Context context){
         ctx=context;
+        sysDownload=new AndroidSysDownload(ctx);
     }
 
     private JSONObject jsonEntry,checkedEp;
@@ -104,7 +106,7 @@ public class BilibiliAnimeEpisodeDownloader {
             @Override
             public void OnReturnEpisodeInfo(BilibiliQueryInfo.EpisodeInfo info) {
                 try {
-                    jsonEntry.put("total_bytes", info.downloadBytes);
+                    jsonEntry.put("total_bytes", info.GetDownloadBytesSum());
                 } catch (JSONException e) {/*Ignore*/}
                 FileUtility.WriteFile(BilibiliUtility.GetBilibiliDownloadEntryPath(ctx, ssidString, epidString), jsonEntry.toString());
                 DownloadEpisode_Video(info);
@@ -123,12 +125,19 @@ public class BilibiliAnimeEpisodeDownloader {
             jsonIndex.put("type_tag", BilibiliUtility.GetVideoQuality(videoQuality).tag);
             jsonIndex.put("description", BilibiliUtility.GetVideoQuality(videoQuality).desc);
             //https://github.com/xiaoyaocz/BiliAnimeDownload/blob/852eb5b4fb3fdbd9801be2c6e98f69e3ed4d427a/BiliAnimeDownload/BiliAnimeDownload/MainPage.xaml.cs#L342
+            jsonIndex.put("parse_timestamp_milli", System.currentTimeMillis());//当前时间戳（毫秒）
+            JSONObject jsonSegment=jsonIndex.getJSONArray("segment_list").getJSONObject(0);
             for(int i=0;i<info.parts;i++) {
-                jsonIndex.put("parse_timestamp_milli", System.currentTimeMillis());//当前时间戳（毫秒）
-                jsonIndex.getJSONArray("segment_list").getJSONObject(i).put("url", info.urls[i]);//视频URL
-                jsonIndex.getJSONArray("segment_list").getJSONObject(i).put("bytes", info.downloadBytes[i]);//分段的视频大小（字节数）
-                jsonIndex.getJSONArray("segment_list").getJSONObject(i).remove("backup_urls");//如果没有其他URL则删除备用URL
-                FileUtility.WriteFile(BilibiliUtility.GetBilibiliDownloadEpisodeIndexPath(ctx, ssidString, epidString, videoQuality), jsonIndex.toString());
+                jsonSegment.put("url", info.urls[i][0]);//视频URL
+                jsonSegment.put("bytes", info.downloadBytes[i]);//分段的视频大小（字节数）
+                if(info.urls[i].length>1){
+                    for(int i_backup_url=1;i_backup_url<info.urls[i].length;i_backup_url++){
+                        jsonSegment.getJSONArray("backup_urls").put(i_backup_url-1,info.urls[i][i_backup_url]);
+                    }
+                }else {
+                    jsonSegment.remove("backup_urls");//如果没有其他URL则删除备用URL
+                }
+                jsonIndex.getJSONArray("segment_list").put(i,jsonSegment);
 
                 //写入sum文件
                 JSONObject sumFile = new JSONObject();
@@ -136,12 +145,34 @@ public class BilibiliAnimeEpisodeDownloader {
                 FileUtility.WriteFile(episodeVideoQualityPath + "/"+i+".blv.4m.sum", sumFile.toString());
 
                 //执行系统下载
-                AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
-                sysDownload.StartDownloadFile(info.urls[i], episodeVideoQualityPath + "/"+i+".blv", "[" + checkedEp.getString("index") + "] " +
+                DownloadMultilinks(info.urls[i],0,info.downloadBytes[i], episodeVideoQualityPath + "/"+i+".blv", "[" + checkedEp.getString("index") + "] " +
                         checkedEp.getString("index_title")+" - "+i);
             }
+            FileUtility.WriteFile(BilibiliUtility.GetBilibiliDownloadEpisodeIndexPath(ctx, ssidString, epidString, videoQuality), jsonIndex.toString());
         }catch (JSONException e){
             Toast.makeText(ctx, ctx.getString(R.string.message_json_exception, e.getLocalizedMessage()), Toast.LENGTH_LONG).show();
+            return;
         }
+        if(info.queryResult!=0){
+            Toast.makeText(ctx,info.resultMessage,Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void DownloadMultilinks(String[]links,int ilink,int expectSize,String localPath,String notifyTitle){
+        if(ilink>=links.length)
+            return;
+        sysDownload.StartDownloadFile(links[ilink],localPath,notifyTitle);
+        sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
+            @Override
+            public void OnDownloadComplete(long downloadId) {
+                if(FileUtility.GetFileSize(localPath)<expectSize){
+                    //说明下载过程中出错或下载失败
+                    DownloadMultilinks(links,ilink+1,expectSize,localPath,notifyTitle);
+                }else{
+                    //下载完成后的动作
+                    //暂时先什么都不用做
+                }
+            }
+        });
     }
 }

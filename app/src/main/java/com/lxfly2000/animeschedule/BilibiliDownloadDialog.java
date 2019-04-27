@@ -115,7 +115,7 @@ public class BilibiliDownloadDialog {
                             return;
                         }
                     }
-                    Toast.makeText(ctx,R.string.message_bilibili_wait_sysdownload,Toast.LENGTH_LONG).show();
+                    Toast.makeText(ctx,R.string.message_bilibili_wait_sysdownload,Toast.LENGTH_SHORT).show();
                 })
                 .setView(R.layout.dialog_bilibili_download)
                 .show();

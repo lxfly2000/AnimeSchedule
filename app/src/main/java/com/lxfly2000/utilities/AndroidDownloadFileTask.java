@@ -14,6 +14,7 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
     private ByteArrayInputStream inStream;
     private Object extraObject;
     private String userAgent=null;
+    private String cookie=null;
 
     @Override
     protected Boolean doInBackground(String... params) {
@@ -34,6 +35,8 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
             connection=jUrl.openConnection();
             if(userAgent!=null)
                 connection.setRequestProperty("User-Agent",userAgent);
+            if(cookie!=null)
+                connection.setRequestProperty("Cookie",cookie);
             ins=connection.getInputStream();
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
@@ -65,6 +68,10 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
 
     public void SetUserAgent(String ua){
         userAgent=ua;
+    }
+
+    public void SetCookie(String _cookie){
+        cookie=_cookie;
     }
 
     public abstract void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra);

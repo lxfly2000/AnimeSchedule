@@ -144,4 +144,6 @@
     <string name="message_last_watch_date">上次观看：</string>
     <string name="button_skip_new_version">不再提示这个版本</string>
     <string name="button_bilibili_download_sysdown">系统下载</string>
+    <string name="message_download_failed">下载失败：\n%s</string>
+    <string name="message_bilibili_wait_sysdownload">下载任务已创建，请等待下载完成后再打开B站APP。</string>
 </resources>

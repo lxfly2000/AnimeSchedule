@@ -145,7 +145,7 @@
         download function.
     </string>
     <string name="message_bilibili_download_task_created">Download tasks are created, please go to Bilibili client and
-        manually start them.
+        manually start the downloads.
     </string>
     <string name="message_bilibili_download_region_restricted_warning">DL using system is recommended</string>
     <string name="label_using_3rdparty">Using third-party components</string>
@@ -164,4 +164,8 @@
     <string name="message_last_watch_date">Last watch:\u0020</string>
     <string name="button_skip_new_version">Skip this version</string>
     <string name="button_bilibili_download_sysdown">DL using system</string>
+    <string name="message_download_failed">Download Failed:\n%s</string>
+    <string name="message_bilibili_wait_sysdownload">Download tasks created, please wait the downloads to finish before
+        lauching Bilibili client.
+    </string>
 </resources>

@@ -10,6 +10,7 @@ import com.lxfly2000.utilities.AndroidSysDownload;
 import com.lxfly2000.utilities.AndroidUtility;
 import com.lxfly2000.utilities.FileUtility;
 import com.lxfly2000.utilities.StreamUtility;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -39,13 +40,15 @@ public class SysDownloadTest {
             public void OnDownloadComplete(long downloadId) {
                 if(downloadId==did){
                     Log.d("SysDownloadTest","下载完毕");
-                    assertEquals(localAnimeJS.replaceAll("\\r\\n","\n"),FileUtility.ReadFile(path));
                     lock.countDown();
                 }
             }
         });
         //https://stackoverflow.com/a/1829949
         lock.await();
+        String downloadJS=FileUtility.ReadFile(path);
+        assertEquals(new JSONObject(localAnimeJS.substring(localAnimeJS.indexOf('(')+1,localAnimeJS.lastIndexOf(')'))).toString(),
+                new JSONObject(downloadJS.substring(downloadJS.indexOf('(')+1,downloadJS.lastIndexOf(')'))).toString());
         assertTrue(sysDownload.IsDownloadIdExists(did));
     }
 }

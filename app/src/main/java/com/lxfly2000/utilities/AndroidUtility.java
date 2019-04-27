@@ -6,8 +6,11 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import androidx.appcompat.app.AlertDialog;
+
+import java.io.IOException;
 
 public class AndroidUtility {
     //检查权限，有返回true，无返回false并显示提示信息并关闭当前Activity
@@ -43,5 +46,16 @@ public class AndroidUtility {
 
     public static void StartApplication(Context ctx,String packageName)throws NullPointerException {
         ctx.startActivity(ctx.getPackageManager().getLaunchIntentForPackage(packageName));
+    }
+
+    public static int GetMediaFileDuration(String path){
+        MediaPlayer player=new MediaPlayer();
+        try{
+            player.setDataSource(path);
+            player.prepare();
+            return player.getDuration();
+        }catch (IOException e){
+            return 0;
+        }
     }
 }

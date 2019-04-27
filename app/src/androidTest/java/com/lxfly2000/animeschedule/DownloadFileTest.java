@@ -5,6 +5,7 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.StreamUtility;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -39,6 +40,7 @@ public class DownloadFileTest {
         };
         task.execute(Values.urlAuthor+"/raw/master/app/src/main/res/raw/anime.js");
         assertTrue(task.get());
-        assertEquals(localAnimeJS.replaceAll("\\r\\n","\n"),downloadJS);
+        assertEquals(new JSONObject(localAnimeJS.substring(localAnimeJS.indexOf('(')+1,localAnimeJS.lastIndexOf(')'))).toString(),
+                new JSONObject(downloadJS.substring(downloadJS.indexOf('(')+1,downloadJS.lastIndexOf(')'))).toString());
     }
 }

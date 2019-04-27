@@ -76,4 +76,8 @@ public class FileUtility {
         File file=new File(path);
         return file.exists();
     }
+
+    public static long GetFileSize(String path){
+        return new File(path).length();
+    }
 }

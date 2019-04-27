@@ -48,16 +48,6 @@ public class BilibiliDownloadDialog {
         }
     };
 
-    private String GetBilibiliDownloadPath(){
-        return preferences.getString(Values.keyBilibiliSavePath,Values.GetAppDataPathExternal(ctx))
-                .concat("/").concat(Values.pkgNameBilibiliVersions[preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex)])
-                .concat("/download");
-    }
-
-    private String GetBilibiliDownloadEntryPath(String ssid,String epid){
-        return GetBilibiliDownloadPath().concat("/s_").concat(ssid).concat("/").concat(epid).concat("/entry.json");
-    }
-
     void OpenDownloadDialog(AnimeJson json,int index){
         final String ssid=URLUtility.GetBilibiliSeasonIdString(json.GetWatchUrl(index));
         if(ssid==null){
@@ -72,11 +62,11 @@ public class BilibiliDownloadDialog {
                         if(!checkEpisodes.get(i_check).isChecked())
                             continue;
                         try {
-                            JSONObject jsonEntry = new JSONObject(Values.jsonRawBilibiliEntry);
+                            JSONObject jsonEntry = new JSONObject(BilibiliUtility.jsonRawBilibiliEntry);
                             JSONObject checkedEp=htmlJson.getJSONArray("episodes").getJSONObject(i_check);
                             jsonEntry.put("title",htmlJson.getString("title"));
                             jsonEntry.put("cover",htmlJson.getString("cover"));
-                            jsonEntry.put("prefered_video_quality",Values.typeBilibiliPreferredVideoQualities[spinnerVideoQuality.getSelectedItemPosition()]);
+                            jsonEntry.put("prefered_video_quality",BilibiliUtility.videoQualities[spinnerVideoQuality.getSelectedItemPosition()].value);
                             jsonEntry.put("time_create_stamp",System.currentTimeMillis());
                             jsonEntry.put("time_update_stamp",System.currentTimeMillis());
                             jsonEntry.put("season_id",String.valueOf(htmlJson.getInt("season_id")));
@@ -89,22 +79,23 @@ public class BilibiliDownloadDialog {
                             jsonEntry.getJSONObject("ep").put("index_title",checkedEp.getString("index_title"));
                             jsonEntry.getJSONObject("ep").put("from",checkedEp.getString("from"));
                             jsonEntry.getJSONObject("ep").put("season_type",htmlJson.getInt("season_type"));
-                            FileUtility.WriteFile(GetBilibiliDownloadEntryPath(jsonEntry.getString("season_id"),
+                            FileUtility.WriteFile(BilibiliUtility.GetBilibiliDownloadEntryPath(ctx,jsonEntry.getString("season_id"),
                                     String.valueOf(jsonEntry.getJSONObject("ep").getInt("episode_id"))),jsonEntry.toString());
                         }catch (JSONException e){
                             Toast.makeText(ctx,ctx.getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
                             return;
                         }
                     }
-                    Toast.makeText(ctx,R.string.message_bilibili_download_task_created,Toast.LENGTH_LONG).show();
                     AndroidUtility.KillProcess(ctx,pkgName);
                     if(checkOpenBilibili.isChecked()) {
                         try {
                             AndroidUtility.StartApplication(ctx, pkgName);
                         }catch (NullPointerException e){
                             Toast.makeText(ctx,ctx.getString(R.string.message_app_not_found,pkgName),Toast.LENGTH_LONG).show();
+                            return;
                         }
                     }
+                    Toast.makeText(ctx,R.string.message_bilibili_download_task_created,Toast.LENGTH_LONG).show();
                 })
                 .setNegativeButton(android.R.string.cancel,null)
                 .setNeutralButton(R.string.button_bilibili_download_sysdown,(dialogInterface, i) -> {
@@ -112,17 +103,19 @@ public class BilibiliDownloadDialog {
                     for(int i_check=0;i_check<checkEpisodes.size();i_check++) {
                         if (!checkEpisodes.get(i_check).isChecked())
                             continue;
+                        downloader.DownloadEpisode(BilibiliUtility.GetBilibiliDownloadPath(ctx), htmlJson,i_check,
+                                BilibiliUtility.videoQualities[spinnerVideoQuality.getSelectedItemPosition()].value);
+                    }
+                    AndroidUtility.KillProcess(ctx,pkgName);
+                    if(checkOpenBilibili.isChecked()) {
                         try {
-                            JSONObject checkedEp = htmlJson.getJSONArray("episodes").getJSONObject(i_check);
-                            downloader.DownloadEpisode(GetBilibiliDownloadPath(), htmlJson.getInt("season_id"),
-                                    checkedEp.getInt("ep_id"),Values.typeBilibiliPreferredVideoQualities[spinnerVideoQuality.getSelectedItemPosition()],
-                                    checkedEp.getInt("aid"),"["+checkedEp.getString("index")+"] "+checkedEp.getString("index_title"));
-                        }catch (JSONException e){
-                            Toast.makeText(ctx,ctx.getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+                            AndroidUtility.StartApplication(ctx, pkgName);
+                        }catch (NullPointerException e){
+                            Toast.makeText(ctx,ctx.getString(R.string.message_app_not_found,pkgName),Toast.LENGTH_LONG).show();
                             return;
                         }
                     }
-                    AndroidUtility.KillProcess(ctx,pkgName);
+                    Toast.makeText(ctx,R.string.message_bilibili_wait_sysdownload,Toast.LENGTH_LONG).show();
                 })
                 .setView(R.layout.dialog_bilibili_download)
                 .show();
@@ -152,8 +145,10 @@ public class BilibiliDownloadDialog {
                     try {
                         String animeTitle = htmlJson.getString("title");
                         dialog.setTitle(animeTitle);
-                        if (animeTitle.contains("僅"))
+                        if (animeTitle.contains("僅")) {
                             buttonOk.setText(R.string.message_bilibili_download_region_restricted_warning);
+                            checkOpenBilibili.setChecked(false);
+                        }
                     }catch (JSONException e){/*Ignore*/}
                     JSONArray epArray=htmlJson.getJSONArray("episodes");
                     for(int i=0;i<epArray.length();i++){

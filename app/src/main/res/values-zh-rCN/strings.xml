@@ -127,8 +127,7 @@
     <string name="label_download_open_bilibili_app">创建任务后打开B站APP</string>
     <string name="message_app_not_found">未找到“%s”，该应用可能未安装。</string>
     <string name="menu_download_not_available">下载（只对B站番剧链接有效）</string>
-    <string name="label_thanks">特别感谢</string>
-    <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>：对本程序的下载功能提供了帮助。</string>
+    <string name="label_thanks">参考</string>
     <string name="message_bilibili_download_task_created">下载任务已创建，请到哔哩哔哩客户端中手动开启下载。</string>
     <string name="message_bilibili_download_region_restricted_warning">地区限制番建议用系统下载</string>
     <string name="label_using_3rdparty">引用的第三方项目</string>
@@ -146,4 +145,5 @@
     <string name="button_bilibili_download_sysdown">系统下载</string>
     <string name="message_download_failed">下载失败：\n%s</string>
     <string name="message_bilibili_wait_sysdownload">下载任务已创建，请等待下载完成后再打开B站APP。</string>
+    <string name="message_cannot_fetch_bilibili_video_link">无法获取视频链接。</string>
 </resources>

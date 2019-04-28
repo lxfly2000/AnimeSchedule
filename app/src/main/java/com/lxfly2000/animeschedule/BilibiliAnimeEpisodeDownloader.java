@@ -17,17 +17,25 @@ import java.util.regex.Pattern;
 
 public class BilibiliAnimeEpisodeDownloader {
     private Context ctx;
-    AndroidSysDownload sysDownload;
+    private AndroidSysDownload sysDownload;
+    public int error=0;
     public BilibiliAnimeEpisodeDownloader(@NonNull Context context){
         ctx=context;
         sysDownload=new AndroidSysDownload(ctx);
     }
 
     private JSONObject jsonEntry,checkedEp;
-    String ssidString,epidString,avidString,cidString;
-    int videoQuality;
+    private String ssidString,epidString,avidString,cidString;
+    private int videoQuality;
 
-    public void DownloadEpisode(String savePath, JSONObject jsonSeason, int indexEpisode, int videoQuality) {
+    public void DownloadEpisode(JSONObject jsonSeason, int indexEpisode, int videoQuality) {
+        switch (videoQuality){
+            case 100:videoQuality=16;break;
+            case 150:videoQuality=32;break;
+            case 200:videoQuality=64;break;
+            case 400:videoQuality=80;break;
+            case 800:videoQuality=112;break;
+        }
         this.videoQuality=videoQuality;
         try {
             //写入entry.json文件
@@ -42,7 +50,7 @@ public class BilibiliAnimeEpisodeDownloader {
             jsonEntry.put("danmaku_count", 3000);//需要在弹幕文件下载完成后修改此值
             jsonEntry.put("time_create_stamp", System.currentTimeMillis());
             jsonEntry.put("time_update_stamp", System.currentTimeMillis());
-            ssidString=String.valueOf(jsonEntry.getInt("season_id"));
+            ssidString=String.valueOf(jsonSeason.getInt("season_id"));
             jsonEntry.put("season_id", ssidString);
             JSONObject jsonSource = new JSONObject();
             jsonSource.put("av_id", checkedEp.getInt("aid"));
@@ -85,9 +93,11 @@ public class BilibiliAnimeEpisodeDownloader {
                                 }
                             }
                         } catch (IOException e) {
+                            error=1;
                             Toast.makeText(ctx, ctx.getString(R.string.message_io_exception, e.getLocalizedMessage()), Toast.LENGTH_LONG).show();
                         }
                     } else {
+                        error=1;
                         Toast.makeText(ctx, ctx.getString(R.string.message_download_failed, damakuPath), Toast.LENGTH_LONG).show();
                     }
                     DownloadEpisode_SaveEntryJson();
@@ -95,6 +105,7 @@ public class BilibiliAnimeEpisodeDownloader {
             };
             taskDownloadDanmaku.execute("http://comment.bilibili.com/" + checkedEp.getInt("cid") + ".xml");
         } catch (JSONException e) {
+            error=1;
             Toast.makeText(ctx, ctx.getString(R.string.message_json_exception, e.getLocalizedMessage()), Toast.LENGTH_LONG).show();
         }
     }
@@ -104,10 +115,17 @@ public class BilibiliAnimeEpisodeDownloader {
         queryInfo.SetParam(ssidString, epidString, avidString, cidString, videoQuality);
         queryInfo.SetOnReturnEpisodeInfoFunction(new BilibiliQueryInfo.OnReturnEpisodeInfoFunction() {
             @Override
-            public void OnReturnEpisodeInfo(BilibiliQueryInfo.EpisodeInfo info) {
+            public void OnReturnEpisodeInfo(BilibiliQueryInfo.EpisodeInfo info,boolean success) {
+                if(!success){
+                    error=1;
+                    Toast.makeText(ctx,ctx.getString(R.string.message_cannot_fetch_bilibili_video_link),Toast.LENGTH_LONG).show();
+                    return;
+                }
                 try {
                     jsonEntry.put("total_bytes", info.GetDownloadBytesSum());
-                } catch (JSONException e) {/*Ignore*/}
+                } catch (JSONException e) {
+                    error=1;
+                }
                 FileUtility.WriteFile(BilibiliUtility.GetBilibiliDownloadEntryPath(ctx, ssidString, epidString), jsonEntry.toString());
                 DownloadEpisode_Video(info);
             }
@@ -150,10 +168,12 @@ public class BilibiliAnimeEpisodeDownloader {
             }
             FileUtility.WriteFile(BilibiliUtility.GetBilibiliDownloadEpisodeIndexPath(ctx, ssidString, epidString, videoQuality), jsonIndex.toString());
         }catch (JSONException e){
+            error=1;
             Toast.makeText(ctx, ctx.getString(R.string.message_json_exception, e.getLocalizedMessage()), Toast.LENGTH_LONG).show();
             return;
         }
         if(info.queryResult!=0){
+            error=1;
             Toast.makeText(ctx,info.resultMessage,Toast.LENGTH_LONG).show();
         }
     }

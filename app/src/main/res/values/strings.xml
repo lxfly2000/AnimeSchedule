@@ -140,9 +140,9 @@
     <string name="label_download_open_bilibili_app">Open Bilibili after this operation</string>
     <string name="message_app_not_found">\"%s\" not found, you might not install this application.</string>
     <string name="menu_download_not_available">Download (Only available for Bilibili Bangumi link)</string>
-    <string name="label_thanks">Special Thanks</string>
-    <string name="label_thanks_xiaoyaocz"><a href="https://github.com/xiaoyaocz">逍遥橙子@xiaoyaocz</a>: helped with the
-        download function.
+    <string name="label_thanks">Reference</string>
+    <string name="label_thanks_xiaoyaocz" translatable="false">
+        <a href="https://github.com/xiaoyaocz/BiliAnimeDownload">xiaoyaocz/BiliAnimeDownload</a>
     </string>
     <string name="message_bilibili_download_task_created">Download tasks are created, please go to Bilibili client and
         manually start the downloads.
@@ -167,5 +167,9 @@
     <string name="message_download_failed">Download Failed:\n%s</string>
     <string name="message_bilibili_wait_sysdownload">Download tasks created, please wait the downloads to finish before
         lauching Bilibili client.
+    </string>
+    <string name="message_cannot_fetch_bilibili_video_link">Cannot fetch video link.</string>
+    <string name="label_thanks_nI" translatable="false">
+        <a href="https://github.com/nICEnnnnnnnLee/BilibiliDown">nICEnnnnnnnLee/BilibiliDown</a>
     </string>
 </resources>

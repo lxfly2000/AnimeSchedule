@@ -33,5 +33,7 @@ public class TestPlayUrlApi {
         //结论：目前橙子提供的API只有2和4是有可能可用的
         //2的API经检测quality参数现已无法使用
         //4的API只提供港澳台区番剧且只有一种清晰度且不分段
+        //api.bilibili.com的第一个/x/的貌似没有条件限制
+        //而第二个/pgc/的会有区域限制及大会员检测限制
     }
 }

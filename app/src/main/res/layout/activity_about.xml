@@ -135,6 +135,11 @@
                     android:layout_height="wrap_content" android:id="@+id/textViewThanksXiaoyaocz"
                     android:textSize="18sp"/>
             <TextView
+                    android:text="@string/label_thanks_nI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textViewThanksNl"
+                    android:textSize="18sp"/>
+            <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textView20"/>
             <TextView

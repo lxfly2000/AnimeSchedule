@@ -103,19 +103,13 @@ public class BilibiliDownloadDialog {
                     for(int i_check=0;i_check<checkEpisodes.size();i_check++) {
                         if (!checkEpisodes.get(i_check).isChecked())
                             continue;
-                        downloader.DownloadEpisode(BilibiliUtility.GetBilibiliDownloadPath(ctx), htmlJson,i_check,
+                        downloader.DownloadEpisode(htmlJson,i_check,
                                 BilibiliUtility.videoQualities[spinnerVideoQuality.getSelectedItemPosition()].value);
                     }
-                    AndroidUtility.KillProcess(ctx,pkgName);
-                    if(checkOpenBilibili.isChecked()) {
-                        try {
-                            AndroidUtility.StartApplication(ctx, pkgName);
-                        }catch (NullPointerException e){
-                            Toast.makeText(ctx,ctx.getString(R.string.message_app_not_found,pkgName),Toast.LENGTH_LONG).show();
-                            return;
-                        }
+                    if(downloader.error==0) {
+                        AndroidUtility.KillProcess(ctx, pkgName);
+                        Toast.makeText(ctx, R.string.message_bilibili_wait_sysdownload, Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(ctx,R.string.message_bilibili_wait_sysdownload,Toast.LENGTH_SHORT).show();
                 })
                 .setView(R.layout.dialog_bilibili_download)
                 .show();
@@ -147,7 +141,6 @@ public class BilibiliDownloadDialog {
                         dialog.setTitle(animeTitle);
                         if (animeTitle.contains("僅")) {
                             buttonOk.setText(R.string.message_bilibili_download_region_restricted_warning);
-                            checkOpenBilibili.setChecked(false);
                         }
                     }catch (JSONException e){/*Ignore*/}
                     JSONArray epArray=htmlJson.getJSONArray("episodes");

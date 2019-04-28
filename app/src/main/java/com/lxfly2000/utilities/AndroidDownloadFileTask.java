@@ -15,6 +15,9 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
     private Object extraObject;
     private String userAgent=null;
     private String cookie=null;
+    private String contentType=null;
+    private String acceptCharset=null;
+    private String acceptEncoding=null;
 
     @Override
     protected Boolean doInBackground(String... params) {
@@ -37,6 +40,12 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
                 connection.setRequestProperty("User-Agent",userAgent);
             if(cookie!=null)
                 connection.setRequestProperty("Cookie",cookie);
+            if(contentType!=null)
+                connection.setRequestProperty("Content-Type",contentType);
+            if(acceptCharset!=null)
+                connection.setRequestProperty("Accept-Charset",acceptCharset);
+            if(acceptEncoding!=null)
+                connection.setRequestProperty("Accept-Encoding",acceptEncoding);
             ins=connection.getInputStream();
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
@@ -72,6 +81,18 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
 
     public void SetCookie(String _cookie){
         cookie=_cookie;
+    }
+
+    public void SetContentType(String _content){
+        contentType=_content;
+    }
+
+    public void SetAcceptCharset(String charset){
+        acceptCharset=charset;
+    }
+
+    public void SetAcceptEncoding(String encoding){
+        acceptEncoding=encoding;
     }
 
     public abstract void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra);

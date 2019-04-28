@@ -24,11 +24,11 @@ public class TestPlayUrlApi {
         System.out.println("番剧：请问今天要来点兔子吗（多Part）");
         ssid="2762";ep1epid="79193";ep1cid="10734463";avid="3257738";
         System.out.println(Api._playurlApi(ep1cid));
-        System.out.println(Api._playurlApi2(ep1cid));
+        System.out.println(Api._playurlApi2(ep1cid));//4个分段
         System.out.println(Api._playurlApi3(ssid,0));
         System.out.println(Api._playurlApi4(ssid,ep1cid,ep1epid));
-        System.out.println(BilibiliApi.GetVideoLink(1,0,avid,ep1cid,112));
-        System.out.println(BilibiliApi.GetVideoLink(1,1,avid,ep1cid,112));
+        System.out.println(BilibiliApi.GetVideoLink(1,0,avid,ep1cid,112));//4个分段
+        System.out.println(BilibiliApi.GetVideoLink(1,1,avid,ep1cid,112));//4个分段
 
         //结论：目前橙子提供的API只有2和4是有可能可用的
         //2的API经检测quality参数现已无法使用

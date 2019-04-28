@@ -72,6 +72,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textView24"/>
             <TextView
+                    android:text="@string/label_bilibili_download_api"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView26"/>
+            <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/radioBilibiliDownloadApis"
+                    android:orientation="horizontal"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView27"/>
+            <TextView
                     android:text="@string/label_choose_star_mark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textView25"

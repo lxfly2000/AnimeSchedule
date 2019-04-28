@@ -37,13 +37,13 @@ public class SysDownloadTest {
         Log.d("SysDownloadTest", "开始下载");
         sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
             @Override
-            public void OnDownloadComplete(long downloadId) {
+            public void OnDownloadComplete(long downloadId, boolean success,int downloadedSize,int returnedFileSize, Object extra) {
                 if(downloadId==did){
                     Log.d("SysDownloadTest","下载完毕");
                     lock.countDown();
                 }
             }
-        });
+        },null);
         //https://stackoverflow.com/a/1829949
         lock.await();
         String downloadJS=FileUtility.ReadFile(path);

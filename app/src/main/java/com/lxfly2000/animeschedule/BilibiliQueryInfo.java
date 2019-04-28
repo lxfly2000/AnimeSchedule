@@ -26,7 +26,7 @@ public class BilibiliQueryInfo {
         public int[]downloadBytes;
 
         public int queryResult=0;
-        public String resultMessage="";
+        public String resultMessage="-";
         public int GetDownloadBytesSum(){
             int s=0;
             for (int a : downloadBytes) {
@@ -37,6 +37,8 @@ public class BilibiliQueryInfo {
         public void SetResult(int resultCode,String message){
             queryResult=resultCode;
             resultMessage=message;
+            if("".equals(resultMessage))
+                resultMessage=String.valueOf(queryResult);
         }
     }
 
@@ -63,13 +65,14 @@ public class BilibiliQueryInfo {
         returnEpisodeInfoFunction.OnReturnEpisodeInfo(episodeInfo,success);
     }
 
-    //method:0~4
+    static final int queryMethodCount=4;
+    //method:0~3
     public void Query(int method){
         switch (method){
             default:Query();break;
-            case 2:Query2();break;
-            case 3:Query3();break;
-            case 4:Query4();break;
+            case 1:Query2();break;
+            case 2:Query3();break;
+            case 3:Query4();break;
         }
     }
     public void Query(){
@@ -97,7 +100,7 @@ public class BilibiliQueryInfo {
                                 episodeInfo.urls[i][j] = json.getJSONArray("durl").getJSONObject(i).getJSONArray("backup_url").getString(j - 1);
                             }
                         }
-                        episodeInfo.SetResult(0,"");
+                        episodeInfo.SetResult(0,"-");
                         FinishQuery(true);
                         return;
                     }catch (IOException e){
@@ -106,13 +109,13 @@ public class BilibiliQueryInfo {
                         episodeInfo.SetResult(2,e.getMessage());
                     }
                 }
-                Query2();
+                FinishQuery(false);
             }
         };
         task.execute(Api._playurlApi2(episodeInfo.cidString));
     }
 
-    void Query2(){
+    public void Query2(){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
@@ -126,7 +129,7 @@ public class BilibiliQueryInfo {
                             episodeInfo.downloadBytes[i]=Integer.parseInt(json.getJSONArray("data").getJSONObject(i).getString("size"));
                             episodeInfo.urls[i]=new String[]{json.getJSONArray("data").getJSONObject(i).getString("url")};
                         }
-                        episodeInfo.SetResult(0,"");
+                        episodeInfo.SetResult(0,"-");
                         FinishQuery(true);
                         return;
                     }catch (IOException e){
@@ -135,13 +138,13 @@ public class BilibiliQueryInfo {
                         episodeInfo.SetResult(2,e.getMessage());
                     }
                 }
-                Query3();
+                FinishQuery(false);
             }
         };
         task.execute(Api._playurlApi4(episodeInfo.ssidString,episodeInfo.cidString,episodeInfo.epidString));
     }
 
-    void Query3(){
+    public void Query3(){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
@@ -165,7 +168,7 @@ public class BilibiliQueryInfo {
                                 episodeInfo.urls[i][j] = json.getJSONArray("durl").getJSONObject(i).getJSONArray("backup_url").getString(j - 1);
                             }
                         }
-                        episodeInfo.SetResult(0,"");
+                        episodeInfo.SetResult(0,"-");
                         FinishQuery(true);
                         return;
                     }catch (IOException e){
@@ -174,14 +177,14 @@ public class BilibiliQueryInfo {
                         episodeInfo.SetResult(2,e.getMessage());
                     }
                 }
-                Query4();
+                FinishQuery(false);
             }
         };
         task.execute(BilibiliApi.GetVideoLink(1,0,episodeInfo.avidString,episodeInfo.cidString,
                 episodeInfo.videoQuality));
     }
 
-    void Query4(){
+    public void Query4(){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
@@ -205,7 +208,7 @@ public class BilibiliQueryInfo {
                                 episodeInfo.urls[i][j] = json.getJSONArray("durl").getJSONObject(i).getJSONArray("backup_url").getString(j - 1);
                             }
                         }
-                        episodeInfo.SetResult(0,"");
+                        episodeInfo.SetResult(0,"-");
                         FinishQuery(true);
                         return;
                     }catch (IOException e){

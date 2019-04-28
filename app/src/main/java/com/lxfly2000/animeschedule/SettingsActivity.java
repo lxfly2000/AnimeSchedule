@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.SpannableString;
@@ -27,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
     private Spinner spinnerSortMethods,spinnerSortOrder,spinnerBilibiliVersions;
     private TextView textBilibiliSavePath;
     private CheckBox checkSeperateAbandoned;
-    private RadioGroup radiosStarMark;
+    private RadioGroup radiosStarMark,radioBilbiliDownloadApis;
     private final List<Integer> radiosId=Arrays.asList(R.id.radioStarMarkStar,R.id.radioStarMarkBall);
     static final String keyNeedReload="need_reload";
 
@@ -45,6 +46,14 @@ public class SettingsActivity extends AppCompatActivity {
         checkSeperateAbandoned= findViewById(R.id.checkBoxSeperateAbandoned);
         textBilibiliSavePath= findViewById(R.id.textBilibiliSavePath);
         radiosStarMark= findViewById(R.id.radiosStarMark);
+        radioBilbiliDownloadApis=findViewById(R.id.radioBilibiliDownloadApis);
+        RadioGroup.LayoutParams radioLayout=new RadioGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        radioLayout.weight=1.0f;
+        for(int i=0;i<BilibiliQueryInfo.queryMethodCount;i++){
+            RadioButton radio=new RadioButton(this);
+            radio.setText(String.valueOf(i+1));
+            radioBilbiliDownloadApis.addView(radio,i,radioLayout);
+        }
         for(int i=0;i<radiosId.size();i++)
             ((RadioButton)findViewById(radiosId.get(i))).setText(Values.starMarks[i]);
 
@@ -52,12 +61,8 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerSortOrder.setOnItemSelectedListener(spinnerSelectListener);
         spinnerBilibiliVersions.setOnItemSelectedListener(spinnerSelectListener);
         checkSeperateAbandoned.setOnClickListener(buttonCallbacks);
-        radiosStarMark.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                modified=true;
-            }
-        });
+        radiosStarMark.setOnCheckedChangeListener((radioGroup, i) -> modified=true);
+        radioBilbiliDownloadApis.setOnCheckedChangeListener(((radioGroup, i) -> modified=true));
         LoadSettings();
     }
 
@@ -141,6 +146,7 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerBilibiliVersions.setSelection(preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex));
         SetBilibiliSavePathText(preferences.getString(Values.keyBilibiliSavePath,Values.GetvDefaultBilibiliSavePath(this)));
         radiosStarMark.check(radiosId.get(preferences.getInt(Values.keyStarMark,Values.vDefaultStarMark)));
+        ((RadioButton)radioBilbiliDownloadApis.getChildAt(preferences.getInt(Values.keyApiMethod,Values.vDefaultApiMethod))).toggle();
         modified=false;
     }
 
@@ -152,6 +158,12 @@ public class SettingsActivity extends AppCompatActivity {
         wPreference.putInt(Values.keyBilibiliVersionIndex,spinnerBilibiliVersions.getSelectedItemPosition());
         wPreference.putString(Values.keyBilibiliSavePath,textBilibiliSavePath.getText().toString());
         wPreference.putInt(Values.keyStarMark, radiosId.indexOf(radiosStarMark.getCheckedRadioButtonId()));
+        for(int i=0;i<radioBilbiliDownloadApis.getChildCount();i++){
+            if(((RadioButton)radioBilbiliDownloadApis.getChildAt(i)).isChecked()){
+                wPreference.putInt(Values.keyApiMethod,i);
+                break;
+            }
+        }
         wPreference.apply();
         modified=false;
         Toast.makeText(this,R.string.message_settings_saved,Toast.LENGTH_LONG).show();

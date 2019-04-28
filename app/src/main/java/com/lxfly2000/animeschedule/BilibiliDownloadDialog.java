@@ -99,14 +99,17 @@ public class BilibiliDownloadDialog {
                 })
                 .setNegativeButton(android.R.string.cancel,null)
                 .setNeutralButton(R.string.button_bilibili_download_sysdown,(dialogInterface, i) -> {
-                    BilibiliAnimeEpisodeDownloader downloader=new BilibiliAnimeEpisodeDownloader(ctx);
+                    int error=0;
                     for(int i_check=0;i_check<checkEpisodes.size();i_check++) {
                         if (!checkEpisodes.get(i_check).isChecked())
                             continue;
-                        downloader.DownloadEpisode(htmlJson,i_check,
-                                BilibiliUtility.videoQualities[spinnerVideoQuality.getSelectedItemPosition()].value);
+                        //一定要把对象创建放在里面要不然会下串集数的！！
+                        BilibiliAnimeEpisodeDownloader downloader=new BilibiliAnimeEpisodeDownloader(ctx);
+                        downloader.DownloadEpisode(htmlJson,i_check,BilibiliUtility.videoQualities[spinnerVideoQuality.getSelectedItemPosition()].value,
+                                preferences.getInt(Values.keyApiMethod,Values.vDefaultApiMethod));
+                        error|=downloader.error;
                     }
-                    if(downloader.error==0) {
+                    if(error==0) {
                         AndroidUtility.KillProcess(ctx, pkgName);
                         Toast.makeText(ctx, R.string.message_bilibili_wait_sysdownload, Toast.LENGTH_SHORT).show();
                     }

@@ -29,6 +29,8 @@ public class Values {
     public static final int vDefaultEditWatchedEpisodeDialogType=0;
     public static final String keySkippedVersionCode="skip_ver_code";
     public static final int vDefaultSkippedVersionCode=0;
+    public static final String keyApiMethod="bilibili_api_method";
+    public static final int vDefaultApiMethod=0;
     public static final String[] starMarks={"★☆","●○"};
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;

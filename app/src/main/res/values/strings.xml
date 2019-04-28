@@ -168,8 +168,11 @@
     <string name="message_bilibili_wait_sysdownload">Download tasks created, please wait the downloads to finish before
         lauching Bilibili client.
     </string>
-    <string name="message_cannot_fetch_bilibili_video_link">Cannot fetch video link.</string>
     <string name="label_thanks_nI" translatable="false">
         <a href="https://github.com/nICEnnnnnnnLee/BilibiliDown">nICEnnnnnnnLee/BilibiliDown</a>
     </string>
+    <string name="message_bilibili_video_link_all_failed">Cannot fetch video link, all methods failed.</string>
+    <string name="label_bilibili_download_api">Download API</string>
+    <string name="message_file_exists_skip_download">File \"%s\" exists, skip download.</string>
+    <string name="message_download_finish">\"%s\" Downloaded.</string>
 </resources>

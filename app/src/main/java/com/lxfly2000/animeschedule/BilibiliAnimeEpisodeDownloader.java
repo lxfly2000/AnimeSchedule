@@ -14,29 +14,22 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.Inflater;
+import java.util.zip.InflaterInputStream;
 
 public class BilibiliAnimeEpisodeDownloader {
     private Context ctx;
-    private AndroidSysDownload sysDownload;
     public int error=0;
     public BilibiliAnimeEpisodeDownloader(@NonNull Context context){
         ctx=context;
-        sysDownload=new AndroidSysDownload(ctx);
     }
 
     private JSONObject jsonEntry,checkedEp;
     private String ssidString,epidString,avidString,cidString;
     private int videoQuality;
 
-    public void DownloadEpisode(JSONObject jsonSeason, int indexEpisode, int videoQuality) {
-        switch (videoQuality){
-            case 100:videoQuality=16;break;
-            case 150:videoQuality=32;break;
-            case 200:videoQuality=64;break;
-            case 400:videoQuality=80;break;
-            case 800:videoQuality=112;break;
-        }
-        this.videoQuality=videoQuality;
+    public void DownloadEpisode(JSONObject jsonSeason, int indexEpisode, int videoQuality,int firstMethod) {
+        this.videoQuality=BilibiliUtility.GetVideoQuality(videoQuality,true).value;
         try {
             //写入entry.json文件
             jsonEntry = new JSONObject(BilibiliUtility.jsonRawBilibiliEntry);
@@ -77,7 +70,8 @@ public class BilibiliAnimeEpisodeDownloader {
                     String damakuPath = BilibiliUtility.GetBilibiliDownloadEpisodePath(ctx, ssidString, epidString) + "/danmaku.xml";
                     if (success) {
                         try {
-                            String xmlString = StreamUtility.GetStringFromStream(stream);
+                            //注意弹幕文件返回的输入流是带有Deflate压缩的
+                            String xmlString = StreamUtility.GetStringFromStream(new InflaterInputStream(stream,new Inflater(true)),false);
                             FileUtility.WriteFile(damakuPath, xmlString);
                             Matcher matcher = Pattern.compile("<maxlimit>[0-9]+</maxlimit>").matcher(xmlString);
                             if (matcher.find()) {
@@ -100,9 +94,10 @@ public class BilibiliAnimeEpisodeDownloader {
                         error=1;
                         Toast.makeText(ctx, ctx.getString(R.string.message_download_failed, damakuPath), Toast.LENGTH_LONG).show();
                     }
-                    DownloadEpisode_SaveEntryJson();
+                    DownloadEpisode_QueryLinksAndSaveEntryJson(firstMethod);
                 }
             };
+            taskDownloadDanmaku.SetAcceptEncoding("deflate");
             taskDownloadDanmaku.execute("http://comment.bilibili.com/" + checkedEp.getInt("cid") + ".xml");
         } catch (JSONException e) {
             error=1;
@@ -110,7 +105,14 @@ public class BilibiliAnimeEpisodeDownloader {
         }
     }
 
-    private void DownloadEpisode_SaveEntryJson() {
+    private int paramQueryMethod,queryTriesCount=0;
+    private void DownloadEpisode_QueryLinksAndSaveEntryJson(int queryMethod) {
+        queryTriesCount++;
+        if(queryTriesCount>BilibiliQueryInfo.queryMethodCount){
+            Toast.makeText(ctx,R.string.message_bilibili_video_link_all_failed,Toast.LENGTH_SHORT).show();
+            return;
+        }
+        paramQueryMethod=queryMethod;
         BilibiliQueryInfo queryInfo = new BilibiliQueryInfo(ctx);
         queryInfo.SetParam(ssidString, epidString, avidString, cidString, videoQuality);
         queryInfo.SetOnReturnEpisodeInfoFunction(new BilibiliQueryInfo.OnReturnEpisodeInfoFunction() {
@@ -118,7 +120,8 @@ public class BilibiliAnimeEpisodeDownloader {
             public void OnReturnEpisodeInfo(BilibiliQueryInfo.EpisodeInfo info,boolean success) {
                 if(!success){
                     error=1;
-                    Toast.makeText(ctx,ctx.getString(R.string.message_cannot_fetch_bilibili_video_link),Toast.LENGTH_LONG).show();
+                    Toast.makeText(ctx,info.resultMessage,Toast.LENGTH_LONG).show();
+                    DownloadEpisode_QueryLinksAndSaveEntryJson((paramQueryMethod+1)%BilibiliQueryInfo.queryMethodCount);
                     return;
                 }
                 try {
@@ -130,12 +133,12 @@ public class BilibiliAnimeEpisodeDownloader {
                 DownloadEpisode_Video(info);
             }
         });
-        queryInfo.Query();
+        queryInfo.Query(paramQueryMethod);
     }
 
     private void DownloadEpisode_Video(BilibiliQueryInfo.EpisodeInfo info){
         String episodeVideoQualityPath=BilibiliUtility.GetBilibiliDownloadEpisodePath(ctx,ssidString,epidString)+"/"+
-                BilibiliUtility.GetVideoQuality(videoQuality);
+                BilibiliUtility.GetVideoQuality(videoQuality).tag;
         try {
             //写入index.json文件
             JSONObject jsonIndex = new JSONObject(BilibiliUtility.jsonRawBilibiliEpisodeIndex);
@@ -163,13 +166,21 @@ public class BilibiliAnimeEpisodeDownloader {
                 FileUtility.WriteFile(episodeVideoQualityPath + "/"+i+".blv.4m.sum", sumFile.toString());
 
                 //执行系统下载
-                DownloadMultilinks(info.urls[i],0,info.downloadBytes[i], episodeVideoQualityPath + "/"+i+".blv", "[" + checkedEp.getString("index") + "] " +
-                        checkedEp.getString("index_title")+" - "+i);
+                String localPath=episodeVideoQualityPath + "/"+i+".blv";
+                //分段下载可测试SSID:2762,EP:7
+                //Toast.makeText(ctx,"API:"+paramQueryMethod+" Seg:"+i+"/"+info.parts+" URLNum:"+info.urls[i].length,Toast.LENGTH_SHORT).show();
+                if(FileUtility.IsFileExists(localPath)) {
+                    Toast.makeText(ctx, ctx.getString(R.string.message_file_exists_skip_download, localPath), Toast.LENGTH_LONG).show();
+                }else {
+                    DownloadMultilinks(info.urls[i], 0, info.downloadBytes[i], localPath,
+                            "[" + checkedEp.getString("index") + "] " + checkedEp.getString("index_title") + " - " + i);
+                }
             }
             FileUtility.WriteFile(BilibiliUtility.GetBilibiliDownloadEpisodeIndexPath(ctx, ssidString, epidString, videoQuality), jsonIndex.toString());
         }catch (JSONException e){
             error=1;
             Toast.makeText(ctx, ctx.getString(R.string.message_json_exception, e.getLocalizedMessage()), Toast.LENGTH_LONG).show();
+            DownloadEpisode_QueryLinksAndSaveEntryJson((paramQueryMethod+1)%BilibiliQueryInfo.queryMethodCount);
             return;
         }
         if(info.queryResult!=0){
@@ -179,20 +190,28 @@ public class BilibiliAnimeEpisodeDownloader {
     }
 
     private void DownloadMultilinks(String[]links,int ilink,int expectSize,String localPath,String notifyTitle){
-        if(ilink>=links.length)
+        if(ilink>=links.length) {
+            DownloadEpisode_QueryLinksAndSaveEntryJson((paramQueryMethod+1)%BilibiliQueryInfo.queryMethodCount);
             return;
-        sysDownload.StartDownloadFile(links[ilink],localPath,notifyTitle);
+        }else if(links[ilink].contains("8986943")){//https://github.com/xiaoyaocz/BiliAnimeDownload/blob/852eb5b4fb3fdbd9801be2c6e98f69e3ed4d427a/BiliAnimeDownload/BiliAnimeDownload/Helpers/Util.cs#L78
+            DownloadMultilinks(links,ilink+1,expectSize,localPath,notifyTitle);
+            return;
+        }
+        AndroidSysDownload sysDownload=new AndroidSysDownload(ctx);
         sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
             @Override
-            public void OnDownloadComplete(long downloadId) {
-                if(FileUtility.GetFileSize(localPath)<expectSize){
-                    //说明下载过程中出错或下载失败
-                    DownloadMultilinks(links,ilink+1,expectSize,localPath,notifyTitle);
-                }else{
-                    //下载完成后的动作
-                    //暂时先什么都不用做
+            public void OnDownloadComplete(long downloadId,boolean success,int downloadedSize,int returnedSize,Object extra) {
+                //Toast.makeText(ctx,"API:"+paramQueryMethod+" ["+(ilink+1)+"/"+links.length+"] S:"+success+
+                //        " Expect:"+expectSize+" Dn:"+downloadedSize+" Total:"+returnedSize,Toast.LENGTH_SHORT).show();
+                //if(!success||downloadedSize!=expectSize||expectSize!=returnedSize)//这样判断好像不起作用
+                if(FileUtility.GetFileSize(localPath)==expectSize) {//暂时先这样凑合着吧
+                    Toast.makeText(ctx, ctx.getString(R.string.message_download_finish, localPath), Toast.LENGTH_LONG).show();
+                }else {
+                    FileUtility.DeleteFile(localPath);
+                    DownloadMultilinks(links, (int) extra + 1, expectSize, localPath, notifyTitle);
                 }
             }
-        });
+        },ilink);
+        sysDownload.StartDownloadFile(links[ilink],localPath,notifyTitle);
     }
 }

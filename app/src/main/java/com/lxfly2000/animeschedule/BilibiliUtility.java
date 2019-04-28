@@ -52,6 +52,18 @@ public class BilibiliUtility {
     };
 
     public static VideoQuality GetVideoQuality(int quality){
+        return GetVideoQuality(quality,false);
+    }
+    public static VideoQuality GetVideoQuality(int quality,boolean convertToNewQuality){
+        if(convertToNewQuality){
+            switch (quality){
+                case 100:quality=16;break;
+                case 150:quality=32;break;
+                case 200:quality=64;break;
+                case 400:quality=80;break;
+                case 800:quality=112;break;
+            }
+        }
         for (VideoQuality e : videoQualities) {
             if (e.value == quality) return e;
         }

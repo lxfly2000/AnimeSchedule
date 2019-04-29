@@ -172,7 +172,7 @@ public class BilibiliAnimeEpisodeDownloader {
                 if(FileUtility.IsFileExists(localPath)) {
                     Toast.makeText(ctx, ctx.getString(R.string.message_file_exists_skip_download, localPath), Toast.LENGTH_LONG).show();
                 }else {
-                    DownloadMultilinks(info.urls[i], 0, info.downloadBytes[i], localPath,
+                    DownloadMultilinks(info.urls[i], 0,"https://www.bilibili.com/bangumi/play/ep"+info.epidString, info.downloadBytes[i], localPath,
                             "[" + checkedEp.getString("index") + "] " + checkedEp.getString("index_title") + " - " + i);
                 }
             }
@@ -189,15 +189,21 @@ public class BilibiliAnimeEpisodeDownloader {
         }
     }
 
-    private void DownloadMultilinks(String[]links,int ilink,int expectSize,String localPath,String notifyTitle){
+    private void DownloadMultilinks(String[]links,int ilink,String referer,int expectSize,String localPath,String notifyTitle){
         if(ilink>=links.length) {
             DownloadEpisode_QueryLinksAndSaveEntryJson((paramQueryMethod+1)%BilibiliQueryInfo.queryMethodCount);
             return;
         }else if(links[ilink].contains("8986943")){//https://github.com/xiaoyaocz/BiliAnimeDownload/blob/852eb5b4fb3fdbd9801be2c6e98f69e3ed4d427a/BiliAnimeDownload/BiliAnimeDownload/Helpers/Util.cs#L78
-            DownloadMultilinks(links,ilink+1,expectSize,localPath,notifyTitle);
+            DownloadMultilinks(links,ilink+1,referer,expectSize,localPath,notifyTitle);
             return;
         }
         AndroidSysDownload sysDownload=new AndroidSysDownload(ctx);
+        sysDownload.SetUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1");
+        String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie.txt";
+        if(!links[ilink].contains("360"))
+            sysDownload.SetReferer(referer);
+        if(FileUtility.IsFileExists(cookiePath))
+            sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));
         sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
             @Override
             public void OnDownloadComplete(long downloadId,boolean success,int downloadedSize,int returnedSize,Object extra) {
@@ -208,7 +214,7 @@ public class BilibiliAnimeEpisodeDownloader {
                     Toast.makeText(ctx, ctx.getString(R.string.message_download_finish, localPath), Toast.LENGTH_LONG).show();
                 }else {
                     FileUtility.DeleteFile(localPath);
-                    DownloadMultilinks(links, (int) extra + 1, expectSize, localPath, notifyTitle);
+                    DownloadMultilinks(links, (int) extra + 1,referer, expectSize, localPath, notifyTitle);
                 }
             }
         },ilink);

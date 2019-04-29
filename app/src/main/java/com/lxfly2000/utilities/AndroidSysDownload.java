@@ -9,12 +9,51 @@ import android.database.Cursor;
 import android.net.Uri;
 import androidx.annotation.NonNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AndroidSysDownload {
     private Context ctx;
     private DownloadManager dm;
     public AndroidSysDownload(@NonNull Context context){
         ctx=context;
         dm=(DownloadManager)ctx.getSystemService(Context.DOWNLOAD_SERVICE);
+    }
+
+    private String userAgent=null;
+    private String cookie=null;
+    private String contentType=null;
+    private String acceptCharset=null;
+    private String acceptEncoding=null;
+    private String referer=null;
+    private HashMap<String,String>headersEtc=new HashMap<>();
+
+    public void SetUserAgent(String ua){
+        userAgent=ua;
+    }
+
+    public void SetCookie(String _cookie){
+        cookie=_cookie;
+    }
+
+    public void SetContentType(String _content){
+        contentType=_content;
+    }
+
+    public void SetAcceptCharset(String charset){
+        acceptCharset=charset;
+    }
+
+    public void SetAcceptEncoding(String encoding){
+        acceptEncoding=encoding;
+    }
+
+    public void SetReferer(String _referer){
+        referer=_referer;
+    }
+
+    public void SetOtherHeader(String header,String value){
+        headersEtc.put(header,value);
     }
 
     public long StartDownloadFile(String urlString,String localPath){
@@ -38,6 +77,25 @@ public class AndroidSysDownload {
             request.setTitle(notifyTitle);
         if(notifyDesc!=null)
             request.setDescription(notifyDesc);
+
+        if(userAgent!=null)
+            request.addRequestHeader("User-Agent",userAgent);
+        if(cookie!=null)
+            request.addRequestHeader("Cookie",cookie);
+        if(contentType!=null)
+            request.addRequestHeader("Content-Type",contentType);
+        if(acceptCharset!=null)
+            request.addRequestHeader("Accept-Charset",acceptCharset);
+        if(acceptEncoding!=null)
+            request.addRequestHeader("Accept-Encoding",acceptEncoding);
+        if(referer!=null)
+            request.addRequestHeader("Referer",referer);
+        if(headersEtc.size()>0){
+            for (HashMap.Entry<String,String> e : headersEtc.entrySet()) {
+                request.addRequestHeader(e.getKey(), e.getValue());
+            }
+        }
+
         downloadId=dm.enqueue(request);
         return downloadId;
     }

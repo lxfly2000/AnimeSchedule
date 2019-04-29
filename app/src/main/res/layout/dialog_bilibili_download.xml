@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:paddingStart="8dp" android:paddingEnd="8dp">
-        <TextView
-                android:text="@string/label_bilibili_download_notice"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" android:id="@+id/textView16" android:layout_weight="1"/>
+            android:layout_height="wrap_content">
         <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-            <CheckBox
-                    android:text="@string/label_download_open_bilibili_app"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/checkOpenBilibili"
-                    android:checked="true"/>
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:paddingStart="8dp" android:paddingEnd="8dp">
             <TextView
-                    android:text="@string/label_bilibili_video_quality"
+                    android:text="@string/label_bilibili_download_notice"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" android:id="@+id/textView16" android:layout_weight="1"/>
+            <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView17"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:textSize="18sp"/>
-            <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/spinnerVideoQuality"
-                    android:entries="@array/list_bilibili_video_quality"/>
+                    android:layout_height="match_parent">
+                <CheckBox
+                        android:text="@string/label_download_open_bilibili_app"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/checkOpenBilibili"
+                        android:checked="true"/>
+                <TextView
+                        android:text="@string/label_bilibili_video_quality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/textView17"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:textSize="18sp"/>
+                <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/spinnerVideoQuality"
+                        android:entries="@array/list_bilibili_video_quality"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical" android:id="@+id/linearLayoutEpisodes"
                       android:paddingStart="8dp" android:paddingEnd="8dp">
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

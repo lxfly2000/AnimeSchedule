@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content" android:id="@+id/textDialogRank"/>
         <RatingBar
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/ratingDialogRank" android:numStars="5"
+                android:layout_height="match_parent" android:id="@+id/ratingDialogRank" android:numStars="5"
                 android:stepSize="1" style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
                 android:isIndicator="false"/>
     </LinearLayout>

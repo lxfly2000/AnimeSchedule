@@ -1,226 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/scrollViewEditAnime">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:orientation="vertical">
-            <TextView
-                    android:text="@string/label_watch_url"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:id="@+id/scrollViewEditAnime">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <TextView
+                android:text="@string/label_watch_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textDialogWatchUrl"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogWatchUrl"/>
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/editDialogWatchUrl" android:inputType="textUri"
+                    android:hint="@string/label_watch_url" android:layout_weight="1"/>
+            <Button
+                    android:text="@string/action_anime_auto_fill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/buttonDialogAutofill"
+                    android:layout_weight="0"/>
+        </LinearLayout>
+        <TextView
+                android:text="@string/label_anime_cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textDialogCover"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editDialogCover" android:inputType="textUri"
+                android:hint="@string/label_anime_cover"/>
+        <TextView
+                android:text="@string/label_anime_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textDialogTitle"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editDialogTitle" android:hint="@string/label_anime_title"
+                android:inputType="text"/>
+        <TextView
+                android:text="@string/label_anime_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textDialogDescription"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editTextDescription" android:hint="@string/label_anime_description"
+                android:inputType="none"/>
+        <TextView
+                android:text="@string/label_anime_actors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textDialogActors"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editTextActors" android:hint="@string/label_anime_actors"
+                android:inputType="none"/>
+        <TextView
+                android:text="@string/label_anime_staff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textDialogStaff"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editTextStaff" android:hint="@string/label_anime_staff" android:inputType="none"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:baselineAligned="false">
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:id="@+id/editDialogWatchUrl" android:inputType="textUri"
-                        android:hint="@string/label_watch_url" android:layout_weight="1"/>
-                <Button
-                        android:text="@string/action_anime_auto_fill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" android:id="@+id/buttonDialogAutofill"
-                        android:layout_weight="0"/>
-            </LinearLayout>
-            <TextView
-                    android:text="@string/label_anime_cover"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogCover"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editDialogCover" android:inputType="textUri"
-                    android:hint="@string/label_anime_cover"/>
-            <TextView
-                    android:text="@string/label_anime_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogTitle"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editDialogTitle" android:hint="@string/label_anime_title"
-                    android:inputType="text"/>
-            <TextView
-                    android:text="@string/label_anime_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogDescription"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editTextDescription" android:hint="@string/label_anime_description"
-                    android:inputType="none"/>
-            <TextView
-                    android:text="@string/label_anime_actors"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogActors"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editTextActors" android:hint="@string/label_anime_actors"
-                    android:inputType="none"/>
-            <TextView
-                    android:text="@string/label_anime_staff"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogStaff"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/editTextStaff" android:hint="@string/label_anime_staff" android:inputType="none"/>
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:layout_weight="1">
-                    <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" android:layout_weight="1">
-                        <TextView
-                                android:text="@string/label_start_date"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" android:id="@+id/textDialogStartDate"
-                                android:singleLine="true"/>
-                        <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:ems="10"
-                                android:id="@+id/editDialogStartDate"
-                                android:hint="@string/label_start_date" android:inputType="date"/>
-                    </LinearLayout>
-                    <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" android:layout_weight="1">
-                        <TextView
-                                android:text="@string/label_update_time"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" android:id="@+id/textDialogUpdateTime"/>
-                        <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="time"
-                                android:ems="10"
-                                android:id="@+id/editDialogUpdateTime" android:hint="@string/label_update_time"/>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="wrap_content" android:baselineAligned="false" android:layout_weight="1">
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:layout_weight="1">
+                        android:layout_height="wrap_content" android:layout_weight="0.5">
                     <TextView
-                            android:text="@string/label_update_period"
+                            android:text="@string/label_start_date"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/textDialogUpdatePeriod"/>
-                    <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                        <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:ems="10"
-                                android:id="@+id/editDialogUpdatePeriod" android:layout_weight="1"
-                                android:hint="@string/label_update_period"/>
-                        <Spinner
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" android:id="@+id/comboDialogUpdatePeriodUnit"
-                                android:layout_weight="1" android:entries="@array/label_units"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_weight="1">
-                <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:layout_weight="1">
-                    <TextView
-                            android:text="@string/label_anime_episode_count"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/textDialogEpisodeCount"/>
+                            android:layout_height="wrap_content" android:id="@+id/textDialogStartDate"
+                            android:singleLine="true"/>
                     <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:id="@+id/editDialogEpisodeCount" android:hint="@string/label_anime_episode_count"
-                            android:inputType="numberSigned"/>
+                            android:id="@+id/editDialogStartDate"
+                            android:hint="@string/label_start_date" android:inputType="date"/>
                 </LinearLayout>
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:layout_weight="1">
+                        android:layout_height="wrap_content" android:layout_weight="0.5">
                     <TextView
-                            android:text="@string/label_anime_absense_count"
+                            android:text="@string/label_update_time"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/textDialogAbsenseCount"/>
+                            android:layout_height="wrap_content" android:id="@+id/textDialogUpdateTime"/>
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="time"
+                            android:ems="10"
+                            android:id="@+id/editDialogUpdateTime" android:hint="@string/label_update_time"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_weight="1">
+                <TextView
+                        android:text="@string/label_update_period"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/textDialogUpdatePeriod"/>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                     <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:ems="10"
-                            android:id="@+id/editDialogAbsenseCount" android:hint="@string/label_anime_absense_count"/>
+                            android:id="@+id/editDialogUpdatePeriod"
+                            android:hint="@string/label_update_period"/>
+                    <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/comboDialogUpdatePeriodUnit"
+                            android:entries="@array/label_units"/>
                 </LinearLayout>
             </LinearLayout>
-            <TextView
-                    android:text="@string/label_anime_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogCategory"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/editDialogCategory" android:hint="@string/message_uncategoried"/>
-            <TextView
-                    android:text="@string/label_color"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogColor"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/editDialogColor" android:hint="@string/label_color"/>
-            <TextView
-                    android:text="@string/label_anime_ranking"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textDialogRank"
-                    android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:baselineAligned="false">
             <LinearLayout
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content" android:layout_weight="1">
+                <TextView
+                        android:text="@string/label_anime_episode_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/textDialogEpisodeCount"/>
                 <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:id="@+id/editDialogEpisodeCount" android:hint="@string/label_anime_episode_count"
+                        android:inputType="numberSigned"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_weight="1">
+                <TextView
+                        android:text="@string/label_anime_absense_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/textDialogAbsenseCount"/>
+                <EditText
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/editDialogRank" android:layout_weight="1"
-                        android:hint="@string/label_anime_ranking"/>
-                <CheckBox
-                        android:text="@string/label_abandoned"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" android:id="@+id/checkAbandoned"
-                        android:layout_weight="1"/>
+                        android:id="@+id/editDialogAbsenseCount" android:hint="@string/label_anime_absense_count"/>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+        <TextView
+                android:text="@string/label_anime_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textDialogCategory"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:ems="10"
+                android:id="@+id/editDialogCategory" android:hint="@string/message_uncategoried"/>
+        <TextView
+                android:text="@string/label_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textDialogColor"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:ems="10"
+                android:id="@+id/editDialogColor" android:hint="@string/label_color"/>
+        <TextView
+                android:text="@string/label_anime_ranking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textDialogRank"
+        />
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editDialogRank" android:layout_weight="1"
+                    android:hint="@string/label_anime_ranking"/>
+            <CheckBox
+                    android:text="@string/label_abandoned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/checkAbandoned"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

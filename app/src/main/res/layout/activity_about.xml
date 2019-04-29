@@ -63,27 +63,27 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent" style="?buttonBarStyle">
                 <Button
                         android:text="@string/label_app_name_qq"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonDonateQQ"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
                 <Button
                         android:text="@string/label_app_name_alipay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonDonateAlipay"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
                 <Button
                         android:text="@string/label_app_name_wechat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonDonateWechat"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
                 <Button
                         android:enabled="false" android:text="@string/label_app_name_paypal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonDonatePaypal"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
             </LinearLayout>
             <TextView
                     android:layout_width="match_parent"
@@ -96,22 +96,22 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent" style="?buttonBarStyle">
                 <Button
                         android:text="@string/label_app_name_qq"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonContactQQ"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
                 <Button
                         android:text="@string/label_app_name_twitter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonContactTwitter"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
                 <Button
                         android:text="@string/label_app_name_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonContactEmail"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
             </LinearLayout>
             <TextView
                     android:layout_width="match_parent"

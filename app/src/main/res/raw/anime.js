@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":270,
+	"last_watch_index":268,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -5231,7 +5231,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190430,20190430],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a3b2db2edeeac4fb51446724458cf93fe46d2797.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26818",
 		"title":"一个人的〇〇小日子",
@@ -5245,13 +5245,13 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":3,
 		"color":"silver",
 		"category":["漫画改","日常","萌系","校园"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":2,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190430,20190430,20190501,20190501],
 		"cover":"https:\/\/lain.bgm.tv\/pic\/cover\/l\/7d\/87\/268412_P63Pf.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26953",
 		"title":"滿腦都是○○的我沒辦法談戀愛",
@@ -5265,10 +5265,10 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["漫画改","搞笑","恋爱"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":4,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[0],
@@ -5311,10 +5311,10 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190430,20190501],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/368c60d973a8a3251534f599dcb2eff7fc64cef3.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26766",
-		"title":"水果篮子",
+		"title":"水果篮子2019版",
 		"description":"高中生本田透在失去了自己唯一亲人的母亲之后过起了独自一人的帐篷生活。但是，透安扎帐篷的地方刚好就是历史渊源的家族“草摩家”的领地之内！在草摩紫吴的邀请下成为了草摩家佣人的透，居然要与学校里王子般存在的草摩由希、以及视由希为眼中钉的草摩夹这两人一起生活。\n然而，透却仍未知晓。“草摩家”自从数百年前起就被忌讳的诅咒所束缚的事实……\n动画制作：TMS Entertainment",
 		"actors":"本田透：石见舞菜香\n草摩由希：岛崎信长\n草摩夹：内田雄马\n草摩紫吴：中村悠一\n草摩乐罗：钉宫理惠\n草摩红叶：潘惠美\n草摩泼春：古川慎\n草摩羽鸟：兴津和幸\n草摩绫女：樱井孝宏\n草摩慊人：坂本真绫\n鱼谷卯绪：种崎敦美\n花岛咲：佐藤聪美\n本田今日子：泽城美雪",
 		"staff":"原作、总监修：高屋奈月《水果篮子》（白泉社・花与梦COMICS）\n监督：井端义秀\n总编剧：岸本卓\n角色设计：进藤优\n动画制作：TMS Entertainment",
@@ -5325,10 +5325,10 @@ setJsonData({
 		"episode_count":25,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["漫画改","奇幻","校园","恋爱","少女"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":2,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414,20190417],
@@ -5571,24 +5571,24 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-14"
 	},{
-		"watched_episode":[0],
-		"cover":"http:\/\/www.dilidili.name\/uploads\/allimg\/190302\/312_1526305171.jpg",
-		"watch_url":"http:\/\/bangumi.bilibili.com\/anime\/26771",
+		"watched_episode":[0,null,null,20190501,20190501],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8b1ee76937d7425e981496df7b4edef69050a79d.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss27728",
 		"title":"在世界尽头咏唱恋曲的少女YU-NO",
-		"description":"主人公·有马拓也幼年丧母，身为历史学者的父亲也在两个月前因事故去世。在各个方面都失去了活力的高中最后的暑假。某天，他收到了装有镶嵌着用途不明的圆镜和玻璃珠的奇妙物体的小包裹。一起送来的信中有着令人想到父亲还活着的内容……？！“今晚10点，带着这个东西到剑之岬（三角山）来。”他按照指示前往那个地点，却……\n动画制作：Feel.\n2019-4-17：B站下架（目测避难中）",
-		"actors":"",
-		"staff":"",
-		"start_date":"2019-4-2",
-		"update_time_int":0,
+		"description":"【04\/30起同步播出，#01-03陸續上架】就讀境町學園三年級的「有馬拓也」，是個自幼喪母而父親又忙於研究的普通學生，就在暑假來臨的前一天，他得知了在二個月前身為歷史學者的父親．有馬廣大在研究的途中被捲入落石事故而過世，某天「有馬拓也」收到了一個且裝有像是古代鏡子的包裹，他無意間在鏡子裡發現父親的書信，信中除了寫到「雖然歷史是不可違逆的，但是時間卻是可以倒轉的」這樣令人摸不著頭緒的字句外，並要求他於當日 22 時前往某個地點會合！覺得事情並不單純的他，按照指示到達該地，而在那裡等著他的會是……。\n动画制作：Feel.\n2019-4-17：B站下架（原SSID:26771）\n2019-4-30：改为港澳台地区播出。",
+		"actors":"有馬拓也：林勇\n優諾：小澤亞李\n波多乃神奈：內田真禮\n一條美月：大西沙織\n島津澪：釘宮理惠\n武田繪里子：小林優\n朝倉香織：前田玲奈\n有馬亞由美：名冢佳織\n龍藏寺幸三：楠大典\n結城正勝：藤原祐規\n豐富秀夫：江口拓也",
+		"staff":"原作：菅野ひろゆき \/ MAGES.\n監督：平川哲生\n角色設計：大塚舞\n美術背景：ととにゃん\n音響監督：たなかかずや\n音樂：ヨナオケイシ \/ 高見龍 \/ エバン・コール \/ 川村竜\nOP \/ ED詞曲：志倉千代丸\n動畫制作：feel.\nProduce：GENCO",
+		"start_date":"2019-04-02",
+		"update_time_int":1320,
 		"update_period":7,
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":0,
+		"abandoned":true,
+		"rank":3,
 		"color":"silver",
-		"category":[],
-		"last_watch_episode_anime":0,
+		"category":["游戏改","科幻","恋爱","声控"],
+		"last_watch_episode_anime":5,
 		"create_date":"2019-4-17"
 	},{
 		"watched_episode":[0],
@@ -5830,5 +5830,25 @@ setJsonData({
 		"category":["游戏改","奇幻","魔法","神魔","恋爱","后宫","校园"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-28"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/b6966433ce40cd891a262441c811fcc4e4fe1463.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss981",
+		"title":"大神与七位伙伴",
+		"description":"平时帮助别人让对方欠下人情，等到有需要的时候再强迫对方偿还——如此居心叵测的做法，竟然是御伽学园学生相互扶助协会（通称“御伽银行”）的社团活动。这是正义的一方？还是邪恶的组织？还是怪人集会……？外表凶暴其实内心纤细的女主角大神凉子，有着视线恐惧症的废柴男主角森野亮士，外表娇小可爱其实腹黑的赤井林檎，一群性情愉快、随性乱来的御伽银行成员们，为改造社会而持续战斗着。热血人情恋爱喜剧即将上演！\n\n《大神与七位伙伴》是冲田雅轻小说作品《大神与…系列》的第一部，插画为うなじ，电击文库发行。漫画版2010年2月开始连载于《月刊Comic电击大王》，珠洲城くるみ作画。2009年12月公布动画化，并于2010年7月在AT-X和千叶电视台（独立UHF局）播放电视动画，J.C.STAFF制作。\n\n名为“大神与七位伙伴”，也同时被漫画化，在「月刊comic电击大王」里展开新连载。 TV动画「大神与七位伙伴们」将会由岩崎良明（代表作：《零之使魔》）担任监督一职。动画制作方面由动画制作公司J.C.STAFF（代表作：《灼眼的夏娜》《龙与虎》、《魔法禁书目录》、《某科学的超电磁炮》）来负责，并在2010年7月..\n动画制作：日创",
+		"actors":"桐木 爱丽丝：堀江由衣\n桐木 李斯特：野島裕史、佐藤聡美\n森野亮士：入野自由\n赤井林檎：伊藤かな恵\n大神 凉子：伊藤静\n鹤谷乙卯：川澄綾子\n浦岛太郎：浅沼晋太郎\n龙宫乙姬：豊崎愛生\n",
+		"staff":"脚本：白根秀樹、伊藤美智子\n导演：岩崎良明\n演出：田中宏紀、鈴木洋平\n分镜：柳沢テツヤ、長井龍雪、田中宏紀、鈴木洋平\n音乐：大桥恵、大橋恵\n人物设定：饭冢晴子、飯塚晴子\n系列构成：伊藤美智子\n色彩设计：石川恭介\n总作画监督：飯塚晴子\n作画监督：饭冢晴子、田中宏紀、飯塚晴子、小渕陽介、伊藤香織\n摄影监督：中西智一",
+		"start_date":"2010-07-01",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["奇幻","热血","社团"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-4-30"
 	}]
 });

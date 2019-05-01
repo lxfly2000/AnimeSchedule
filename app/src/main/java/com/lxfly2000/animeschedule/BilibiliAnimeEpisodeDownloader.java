@@ -172,7 +172,8 @@ public class BilibiliAnimeEpisodeDownloader {
                 if(FileUtility.IsFileExists(localPath)) {
                     Toast.makeText(ctx, ctx.getString(R.string.message_file_exists_skip_download, localPath), Toast.LENGTH_LONG).show();
                 }else {
-                    DownloadMultilinks(info.urls[i], 0,"https://www.bilibili.com/bangumi/play/ep"+info.epidString, info.downloadBytes[i], localPath,
+                    DownloadMultilinks(info.urls[i], 0,
+                            info.urls[i][0].contains("360")?null:"https://www.bilibili.com/bangumi/play/ep"+info.epidString, info.downloadBytes[i], localPath,
                             "[" + checkedEp.getString("index") + "] " + checkedEp.getString("index_title") + " - " + i);
                 }
             }
@@ -200,7 +201,7 @@ public class BilibiliAnimeEpisodeDownloader {
         AndroidSysDownload sysDownload=new AndroidSysDownload(ctx);
         sysDownload.SetUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1");
         String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie.txt";
-        if(!links[ilink].contains("360"))
+        if(referer!=null)
             sysDownload.SetReferer(referer);
         if(FileUtility.IsFileExists(cookiePath))
             sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));

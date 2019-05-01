@@ -1225,7 +1225,10 @@ public class MainActivity extends AppCompatActivity {
                         else
                             Toast.makeText(getBaseContext(),R.string.message_unable_get_id_number,Toast.LENGTH_LONG).show();
                     }else{
-                        Toast.makeText(getBaseContext(),R.string.message_unable_get_id_number_line,Toast.LENGTH_LONG).show();
+                        if(url.contains("www.iqiyi.com/v_"))//2019-5-1:无法识别www.iqiyi.com/v_开头的链接
+                            GetIQiyiAnimeIDFromURL(url.replaceFirst("www.iqiyi.com","m.iqiyi.com"));
+                        else
+                            Toast.makeText(getBaseContext(),R.string.message_unable_get_id_number_line,Toast.LENGTH_LONG).show();
                     }
                 }catch (IOException e){
                     Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();

@@ -983,14 +983,22 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(),resultMessage,Toast.LENGTH_LONG).show();
                 return;
             }
-            editDialogWatchUrl.setText(data.watchUrl);
-            editDialogCover.setText(data.coverUrl);
-            editDialogTitle.setText(data.title);
-            editDialogDescription.setText(data.description);
-            editDialogActors.setText(data.actors);
-            editDialogStaff.setText(data.staff);
-            editDialogStartDate.setText(data.startDate.ToYMDString());
-            editDialogUpdateTime.setText(data.updateTime.ToString());
+            if(data.watchUrl!=null)
+                editDialogWatchUrl.setText(data.watchUrl);
+            if(data.coverUrl!=null)
+                editDialogCover.setText(data.coverUrl);
+            if(data.title!=null)
+                editDialogTitle.setText(data.title);
+            if(data.description!=null)
+                editDialogDescription.setText(data.description);
+            if(data.actors!=null)
+                editDialogActors.setText(data.actors);
+            if(data.staff!=null)
+                editDialogStaff.setText(data.staff);
+            if(data.startDate!=null)
+                editDialogStartDate.setText(data.startDate);
+            if(data.updateTime!=null)
+                editDialogUpdateTime.setText(data.updateTime);
             editDialogUpdatePeriod.setText(String.valueOf(data.updatePeriod));
             switch (data.updatePeriodUnit){
                 case AnimeJson.unitDay:comboDialogUpdatePeriodUnit.setSelection(0,true);break;
@@ -999,13 +1007,15 @@ public class MainActivity extends AppCompatActivity {
             }
             editDialogEpisodeCount.setText(String.valueOf(data.episodeCount));
             editDialogAbsenseCount.setText(String.valueOf(data.absenseCount));
-            StringBuilder stringBuilder=new StringBuilder();
-            for(int i=0;i<data.categories.length;i++){
-                if(i!=0)
-                    stringBuilder.append(",");
-                stringBuilder.append(data.categories[i]);
+            if(data.categories!=null) {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i < data.categories.length; i++) {
+                    if (i != 0)
+                        stringBuilder.append(",");
+                    stringBuilder.append(data.categories[i]);
+                }
+                editDialogCategory.setText(stringBuilder.toString());
             }
-            editDialogCategory.setText(stringBuilder.toString());
             editDialogRanking.setText(String.valueOf(data.rank));
         }
     };

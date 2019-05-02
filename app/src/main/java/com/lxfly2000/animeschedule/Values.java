@@ -56,7 +56,7 @@ public class Values {
     public static final String[]parsableLinksRegex={
             "(.*bangumi.bilibili.com/anime/[0-9]+)|(.*bilibili.com/bangumi/play/ss[0-9]+)|(.*bilibili.com/bangumi/play/ep[0-9]+)|(.*bilibili.com/bangumi/media/md[0-9]+)",
             ".*iqiyi.com/[a|v]_.*.html",
-            "(.*v.qq.com/x/cover/.*.html)|(.*m.v.qq.com/play/play.html\\?[A-Za-z0-9\\-_=&]+)",
+            "(.*v.qq.com/x/cover/.*.html)|(.*m.v.qq.com/play/play.html\\?[A-Za-z0-9\\-_=&]+)|(.*v.qq.com/detail/./.*.html)",
             "(.*list.youku.com/show/id_.*.html)|(.*v.youku.com/v_show/id_.*.html)|(.*m.youku.com/video/id_.*.html)"
     };
     public static final String[]webFiles={

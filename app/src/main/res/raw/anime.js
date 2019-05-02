@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":268,
+	"last_watch_index":295,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -5850,5 +5850,25 @@ setJsonData({
 		"category":["奇幻","热血","社团"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-30"
+	},{
+		"watched_episode":[20190502],
+		"cover":"https:\/\/lain.bgm.tv\/pic\/cover\/l\/b9\/55\/260373_2Z2oz.jpg",
+		"watch_url":"https:\/\/ch.nicovideo.jp\/choukadou-anime",
+		"title":"超可動ガール1\/6",
+		"description":"大好きなアニメヒロインのフィギュアを「つい」買ってしまったばっかりに、そしてソレが何故か動き出したばっかりに、愛すべきヒロインは【口うるさい押しかけ女房】に変貌を遂げた!?　動く美少女フィギュア「ノーナ」とオタク社会人「春人」の奇妙な夫婦生活ギャグ。純粋だから手に負えない「愛すべきちっちゃい」は無敵です!?",
+		"actors":"房伊田春人：羽多野渉\nノーナ：木下鈴奈\nペルノア：千本木彩花\n天乃原すばる：M・A・O\nオズマ：森川智之\n房伊田ミコト：松田利冴\n冠成次郎：河西健吾\nクサビ：徳井青空、\nリンドウ：深町未紗\n比等間ルウ：篠原侑",
+		"staff":"原作：「超可動ガール1\/6」「超可動ガールズ」（原作者：ÖYSTER・双葉社刊）\n監督：元永慶太郎\nシリーズ構成：日暮茶坊\nキャラクターデザイン：山名秀和\n音響監督：阿部信行\nアニメーション制作：studio A-CAT\n音響制作：オンリード\n製作：「超可動ガール1\/6」製作委員会",
+		"start_date":"2019-4-9",
+		"update_time_int":30,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":4,
+		"color":"silver",
+		"category":[],
+		"last_watch_episode_anime":1,
+		"create_date":"2019-5-2"
 	}]
 });

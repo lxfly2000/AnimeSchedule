@@ -4,9 +4,9 @@ import android.content.Context;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 
 public abstract class Spider {
-    protected Context context;
-    public Spider(Context ctx){
-        context=ctx;
+    protected Context ctx;
+    public Spider(Context context){
+        ctx=context;
     }
     public static final int STATUS_OK=0,STATUS_ONGOING=1,STATUS_FAILED=-1;
     public static abstract class OnReturnDataFunction{

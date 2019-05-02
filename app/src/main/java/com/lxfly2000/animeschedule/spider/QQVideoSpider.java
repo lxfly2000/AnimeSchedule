@@ -19,6 +19,8 @@ public class QQVideoSpider extends Spider {
         super(context);
     }
 
+    private AnimeItem item=new AnimeItem();
+
     @Override
     public void Execute(String url){
         //腾讯网址格式：
@@ -53,7 +55,6 @@ public class QQVideoSpider extends Spider {
             onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_not_supported_url));
             return;
         }
-        AnimeItem item=new AnimeItem();
         item.title="CoverID: "+coverId;
         onReturnDataFunction.OnReturnData(item,STATUS_ONGOING,null);
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
@@ -98,7 +99,7 @@ public class QQVideoSpider extends Spider {
                     }catch (Exception e){
                         item.rank=0;
                     }
-                    onReturnDataFunction.OnReturnData(item,STATUS_OK,"");
+                    onReturnDataFunction.OnReturnData(item,STATUS_OK,null);
                 }catch (JSONException e){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
                 }catch (IOException e){

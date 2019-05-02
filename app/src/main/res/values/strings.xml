@@ -175,4 +175,5 @@
     <string name="label_bilibili_download_api">Download API</string>
     <string name="message_file_exists_skip_download">File \"%s\" exists, skip download.</string>
     <string name="message_download_finish">\"%s\" Downloaded.</string>
+    <string name="message_unable_to_fetch_anime_id">Cannot fetch Anime ID.</string>
 </resources>

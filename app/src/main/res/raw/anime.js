@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":295,
+	"last_watch_index":270,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -5351,7 +5351,7 @@ setJsonData({
 		"last_watch_episode_anime":2,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190412,20190418,20190425],
+		"watched_episode":[20190412,20190418,20190425,20190502],
 		"cover":"http:\/\/puui.qpic.cn\/vcover_vt_pic\/0\/5rs71cp7oy0429e1553758309\/0.jpeg",
 		"watch_url":"https:\/\/v.qq.com\/x\/cover\/5rs71cp7oy0429e.html",
 		"title":"贤惠幼妻仙狐小姐",
@@ -5368,7 +5368,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","治愈"],
-		"last_watch_episode_anime":3,
+		"last_watch_episode_anime":4,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[0],

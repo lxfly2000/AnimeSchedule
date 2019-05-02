@@ -24,9 +24,11 @@ public class QQVideoSpider extends Spider {
     @Override
     public void Execute(String url){
         //腾讯网址格式：
-        //应用&移动端：https://m.v.qq.com/play/play.html?cid=5rs71cp7oy0429e&vid=o0030avj27k&ptag=……&……(后面的参数可以不用管)
-        //     coverid,也称为cid，其实只管这个CoverID就可以了~~~~~~~~~~~~~~~     ~~~~~~~~~~~视频（分集的）VideoID
-        //网页端：①http://v.qq.com/x/cover/5rs71cp7oy0429e.html
+        //应用&移动端：①https://m.v.qq.com/play/play.html?cid=5rs71cp7oy0429e&vid=o0030avj27k&ptag=……&……(后面的参数可以不用管)
+        //　　　　　　　　　②https://m.v.qq.com/play.html?cid=5rs71cp7oy0429e&vid=o0030avj27k&ptag=……&……(后面的参数可以不用管)
+        //　　　　　　　　　　　　③https://m.v.qq.com/cover/5/5rs71cp7oy0429e.html ~~~~~~~~~~视频（分集的）VideoID
+        //                                                     ~~~~~~~~~~~~~~~coverid,也称为cid，其实只管这个CoverID就可以了
+        //网页端： ①http://v.qq.com/x/cover/5rs71cp7oy0429e.html
         //　　　　②https://v.qq.com/x/cover/5rs71cp7oy0429e/o0030avj27k.html
         //                                   ~~~~~~~~~~~~~~~同样也只需要管CoverID就行了
         //网页端剧集简介：https://v.qq.com/detail/5/5rs71cp7oy0429e.html
@@ -40,6 +42,10 @@ public class QQVideoSpider extends Spider {
                 m=Pattern.compile("cid=[A-Za-z0-9\\-_]+").matcher(url);
                 if(m.find()){
                     coverId=url.substring(m.start()+4,m.end());
+                }else{
+                    m=Pattern.compile("m.v.qq.com/cover/[A-Za-z0-9\\-_]/[A-Za-z0-9\\-_]+").matcher(url);
+                    if(m.find())
+                        coverId=url.substring(m.start()+19,m.end());
                 }
             }
         }else if(url.contains("v.qq.com/x/cover/")){

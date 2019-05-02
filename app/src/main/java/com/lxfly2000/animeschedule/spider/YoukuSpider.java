@@ -102,6 +102,8 @@ public class YoukuSpider extends Spider {
                                 item.coverUrl="http:"+item.coverUrl;
                             else if(!item.coverUrl.startsWith("http"))
                                 item.coverUrl="http://"+item.coverUrl;
+                            if(!item.coverUrl.substring(item.coverUrl.lastIndexOf('/')).contains("."))
+                                item.coverUrl=item.coverUrl+".jpg";
                         }
                     }
                     mHtml=Pattern.compile("<span class=\"intro-more hide\">[^<]*</span>").matcher(htmlString);

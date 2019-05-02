@@ -61,7 +61,7 @@ public class AnimeUpdateNotify extends Service {
                 PublishUpdateNotification(i);
                 updateCount++;
             }
-            if(BuildConfig.DEBUG&&updateCount>=5)
+            if(updateCount>=20)
                 break;
         }
         SharedPreferences.Editor updatePrefWrite=updatePreference.edit();

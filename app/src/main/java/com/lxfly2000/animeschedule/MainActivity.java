@@ -21,6 +21,10 @@ import android.text.TextWatcher;
 import android.view.*;
 import android.widget.*;
 import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
+import com.lxfly2000.animeschedule.data.AnimeItem;
+import com.lxfly2000.animeschedule.spider.QQVideoSpider;
+import com.lxfly2000.animeschedule.spider.Spider;
+import com.lxfly2000.animeschedule.spider.YoukuSpider;
 import com.lxfly2000.utilities.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -943,6 +947,17 @@ public class MainActivity extends AppCompatActivity {
                     }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())){
                         GetIQiyiAnimeIDFromURL(urlString);
                         break;
+                    }else {
+                        Spider spider=null;
+                        if(URLUtility.IsQQVideoLink(urlString))
+                            spider=new QQVideoSpider(this);
+                        else if(URLUtility.IsYoukuLink(urlString))
+                            spider=new YoukuSpider(this);
+                        if(spider!=null) {
+                            spider.SetOnReturnDataFunction(onReturnDataFunction);
+                            spider.Execute(urlString);
+                            break;
+                        }
                     }
                 }
             }
@@ -959,6 +974,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private Spider.OnReturnDataFunction onReturnDataFunction=new Spider.OnReturnDataFunction() {
+        @Override
+        public void OnReturnData(AnimeItem data, int status, String resultMessage) {
+            buttonDialogAutofill.setEnabled(status!=Spider.STATUS_ONGOING);
+            if(status==Spider.STATUS_FAILED){
+                Toast.makeText(getBaseContext(),resultMessage,Toast.LENGTH_LONG).show();
+                return;
+            }
+            editDialogWatchUrl.setText(data.watchUrl);
+            editDialogCover.setText(data.coverUrl);
+            editDialogTitle.setText(data.title);
+            editDialogDescription.setText(data.description);
+            editDialogActors.setText(data.actors);
+            editDialogStaff.setText(data.staff);
+            editDialogStartDate.setText(data.startDate.ToYMDString());
+            editDialogUpdateTime.setText(data.updateTime.ToString());
+            editDialogUpdatePeriod.setText(String.valueOf(data.updatePeriod));
+            switch (data.updatePeriodUnit){
+                case AnimeJson.unitDay:comboDialogUpdatePeriodUnit.setSelection(0,true);break;
+                case AnimeJson.unitMonth:comboDialogUpdatePeriodUnit.setSelection(1,true);break;
+                case AnimeJson.unitYear:comboDialogUpdatePeriodUnit.setSelection(2,true);break;
+            }
+            editDialogEpisodeCount.setText(String.valueOf(data.episodeCount));
+            editDialogAbsenseCount.setText(String.valueOf(data.absenseCount));
+            StringBuilder stringBuilder=new StringBuilder();
+            for(int i=0;i<data.categories.length;i++){
+                if(i!=0)
+                    stringBuilder.append(",");
+                stringBuilder.append(data.categories[i]);
+            }
+            editDialogCategory.setText(stringBuilder.toString());
+            editDialogRanking.setText(String.valueOf(data.rank));
+        }
+    };
 
     private void ReadBilibiliURL_OnCallback(final String urlString){//2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
         /*输入URL：parsableLinkRegex中的任何一个B站URL

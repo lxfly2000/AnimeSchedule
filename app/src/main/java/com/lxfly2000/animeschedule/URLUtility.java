@@ -64,6 +64,14 @@ public class URLUtility {
         return matcher.find();
     }
 
+    public static boolean IsQQVideoLink(String url){
+        return Pattern.compile(Values.parsableLinksRegex[2]).matcher(url).find();
+    }
+
+    public static boolean IsYoukuLink(String url){
+        return Pattern.compile(Values.parsableLinksRegex[3]).matcher(url).find();
+    }
+
     public static String GetBilibiliJsonContainingSSID(String htmlString,String ssid){
         Matcher m=Pattern.compile("<script>[^<>]+"+ssid+"[^<>]+</script>").matcher(htmlString);
         if(!m.find())

@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class URLUtility {
-    private static final String regexBilibiliSSID="(/[0-9]+)|(/ss[0-9]+)";
+    private static final String regexBilibiliSSID="(anime/[0-9]+)|(/ss[0-9]+)";
     private static final String regexBilibiliAVID="/av[0-9]+";
     public static boolean IsBilibiliBangumiLink(String url){
         Matcher matcher= Pattern.compile(Values.parsableLinksRegex[0]).matcher(url);

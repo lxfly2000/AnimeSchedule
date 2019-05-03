@@ -934,7 +934,7 @@ public class MainActivity extends AppCompatActivity {
         editDialogCategory.setText(stringBuilder.toString());
         checkDialogAbandoned.setChecked(animeJson.GetAbandoned(index));
         editDialogRanking.setText(String.valueOf(animeJson.GetRank(index)));
-        editDialog.findViewById(R.id.buttonDialogAutofill).setOnClickListener(view -> {
+        buttonDialogAutofill.setOnClickListener(view -> {
             String urlString=editDialogWatchUrl.getText().toString();
             int i_regex=0;
             for(;i_regex<Values.parsableLinksRegex.length;i_regex++){
@@ -972,6 +972,11 @@ public class MainActivity extends AppCompatActivity {
                     editDialogWatchUrl.setError(getString(R.string.message_not_supported_url));
                 }
             }
+        });
+        buttonDialogAutofill.setOnLongClickListener(view -> {
+            AndroidUtility.MessageBox(this,StringUtility.ArrayStringToString(Values.parsableLinksRegex,"\n\n"),
+                    getString(R.string.message_title_autofill_supported_url));
+            return true;
         });
     }
 
@@ -1127,6 +1132,8 @@ public class MainActivity extends AppCompatActivity {
                         if (htmlJson.getJSONObject("publish").getString("weekday").contentEquals("-1")) {
                             editDialogUpdatePeriod.setText("1");
                             comboDialogUpdatePeriodUnit.setSelection(1, true);
+                            editDialogUpdatePeriod.requestFocus();
+                            Toast.makeText(getBaseContext(),R.string.message_check_update_period,Toast.LENGTH_LONG).show();
                         } else if ("0123456".contains(htmlJson.getJSONObject("publish").getString("weekday"))) {
                             editDialogUpdatePeriod.setText("7");
                             comboDialogUpdatePeriodUnit.setSelection(0, true);

@@ -74,16 +74,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonDonateAlipay"
                         android:layout_weight="1" style="?buttonBarButtonStyle"/>
-                <Button
-                        android:text="@string/label_app_name_wechat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/buttonDonateWechat"
-                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
-                <Button
-                        android:enabled="false" android:text="@string/label_app_name_paypal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/buttonDonatePaypal"
-                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
             </LinearLayout>
             <TextView
                     android:layout_width="match_parent"
@@ -101,6 +91,11 @@
                         android:text="@string/label_app_name_qq"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonContactQQ"
+                        android:layout_weight="1" style="?buttonBarButtonStyle"/>
+                <Button
+                        android:text="@string/label_app_name_bilibili"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/buttonContactBilibili"
                         android:layout_weight="1" style="?buttonBarButtonStyle"/>
                 <Button
                         android:text="@string/label_app_name_twitter"

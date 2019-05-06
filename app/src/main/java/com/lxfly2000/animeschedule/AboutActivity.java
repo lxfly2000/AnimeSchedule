@@ -29,8 +29,7 @@ public class AboutActivity extends AppCompatActivity {
             switch (view.getId()) {
                 case R.id.buttonDonateAlipay:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonateAlipayBase64));break;
                 case R.id.buttonDonateQQ:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonateQQBase64));break;
-                case R.id.buttonDonateWechat:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonateWechatBase64));break;
-                case R.id.buttonDonatePaypal:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlDonatePaypalBase64));break;
+                case R.id.buttonContactBilibili:AndroidUtility.OpenUri(getBaseContext(),Values.urlContactBilibili);break;
                 case R.id.buttonContactQQ:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlContactQQBase64));break;
                 case R.id.buttonContactTwitter:AndroidUtility.OpenUri(getBaseContext(), Values.urlContactTwitter);break;
                 case R.id.buttonContactEmail:AndroidUtility.OpenUri(getBaseContext(), DecodeBase64(Values.urlAuthorEmailBase64));break;
@@ -56,8 +55,7 @@ public class AboutActivity extends AppCompatActivity {
         SetTextViewWithURL(findViewById(R.id.textViewUsingFilepicker),null);
         findViewById(R.id.buttonDonateQQ).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonDonateAlipay).setOnClickListener(buttonClickListener);
-        findViewById(R.id.buttonDonateWechat).setOnClickListener(buttonClickListener);
-        findViewById(R.id.buttonDonatePaypal).setOnClickListener(buttonClickListener);
+        findViewById(R.id.buttonContactBilibili).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonContactQQ).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonContactTwitter).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonContactEmail).setOnClickListener(buttonClickListener);

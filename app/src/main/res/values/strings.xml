@@ -178,4 +178,5 @@
     <string name="message_unable_to_fetch_anime_id">Cannot fetch Anime ID.</string>
     <string name="message_check_update_period">Please check whether the update period is correct.</string>
     <string name="message_title_autofill_supported_url">Supported URL (RegEx)</string>
+    <string name="label_app_name_bilibili" translatable="false">Bilibili</string>
 </resources>

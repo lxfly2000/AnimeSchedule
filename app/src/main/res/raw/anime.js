@@ -5108,7 +5108,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-3-31"
 	},{
-		"watched_episode":[20190505,20190505],
+		"watched_episode":[20190505,20190505,20190506,20190506,20190506],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/247c5e89bc9b26e8302830b4eb316c3af0409a47.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26870",
 		"title":"川柳少女",
@@ -5126,7 +5126,7 @@ setJsonData({
 		"color":"silver",
 		"category":["漫画改","恋爱","校园","日常"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":2,
+		"last_watch_episode_anime":5,
 		"create_date":"2019-4-2"
 	},{
 		"watched_episode":[20190406,20190407,20190408,20190409,20190409,20190409,20190411,20190413,20190413,20190413,20190413,20190413,20190413,20190413,20190414,20190414],
@@ -5271,7 +5271,7 @@ setJsonData({
 		"last_watch_episode_anime":5,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190506,20190506],
+		"watched_episode":[20190506,20190506,20190506],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/7625ac0a9409923bd3b285a978aeba04db4fd406.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26767",
 		"title":"我们无法一起学习",
@@ -5284,11 +5284,11 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
+		"abandoned":true,
 		"rank":3,
 		"color":"silver",
 		"category":["漫画改","日常","校园","恋爱"],
-		"last_watch_episode_anime":2,
+		"last_watch_episode_anime":3,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414],
@@ -6031,11 +6031,11 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-5-5"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190506,20190506],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/41c2658772fe2c1c3e15b0a72e31d0ac502e1e72.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26941",
 		"title":"強襲魔女 501部隊出動!（僅限台灣地區）",
-		"description":"宮藤芳佳於人類的防衛線“第501統合戰鬥航空團”入伍！…但是，重要的敵人·內洛伊遲遲不來。於是大家過著非戰鬥，而是忙於做飯洗衣的日常。有時被充滿個性的隊員們折騰，有時會吐槽，有時做後援，如此的芳佳和愉快的魔女們的奇怪日常就此開始！",
+		"description":"注意这个是日常向。\n宮藤芳佳於人類的防衛線“第501統合戰鬥航空團”入伍！…但是，重要的敵人·內洛伊遲遲不來。於是大家過著非戰鬥，而是忙於做飯洗衣的日常。有時被充滿個性的隊員們折騰，有時會吐槽，有時做後援，如此的芳佳和愉快的魔女們的奇怪日常就此開始！",
 		"actors":"宮藤芳佳：福圓美裡\n阪本美緒：世戶沙織\n莉涅特·畢所普：名塚佳織\n佩瑞妮·H·克洛斯特曼：澤城美雪\n米娜·底特瑞奇·威歐克：田中理惠\n歌爾特露特·巴克霍隆：園崎未惠\n艾瑞卡·哈特曼：野川櫻\n弗蘭西斯卡·魯奇尼：齋藤千和\n夏洛特·E·葉格：小清水亞美\n薩妮婭·V·利特維亞克：門脅舞以\n艾拉·伊爾瑪塔爾·尤蒂萊南：大橋步夕",
 		"staff":"原作：島田文金&Projekt Kagonish\n漫畫：藤林真\n監督：伊藤史夫\n角色設計：安食圭\n系列文藝：村上深夜\n音樂：長岡成貢\n音樂製作：日本哥倫比亞\n音響監督：吉田知弘\n音響製作：Glovision\n監製：立崎孝史\n動畫製作：Acca effe、戲畫Production\n動畫製作協力：Production I.G、Anime Beans",
 		"start_date":"2019-04-10",
@@ -6044,11 +6044,11 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":0,
+		"abandoned":true,
+		"rank":3,
 		"color":"silver",
 		"category":["漫画改","搞笑"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":2,
 		"create_date":"2019-5-5"
 	}]
 });

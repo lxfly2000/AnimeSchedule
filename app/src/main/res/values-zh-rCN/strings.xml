@@ -154,4 +154,5 @@
     <string name="message_unable_to_fetch_anime_id">无法获取番剧ID。</string>
     <string name="message_check_update_period">请检查更新周期是否正确。</string>
     <string name="message_title_autofill_supported_url">支持的网址（正则表达式）</string>
+    <string name="message_bilibili_sorry_region_restrict_anime">返回了地区限制的提示视频“肥肠抱歉，应版权方要求 您所在的地区无法观看本片TAT”</string>
 </resources>

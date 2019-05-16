@@ -195,6 +195,7 @@ public class BilibiliAnimeEpisodeDownloader {
             DownloadEpisode_QueryLinksAndSaveEntryJson((paramQueryMethod+1)%BilibiliQueryInfo.queryMethodCount);
             return;
         }else if(links[ilink].contains("8986943")){//https://github.com/xiaoyaocz/BiliAnimeDownload/blob/852eb5b4fb3fdbd9801be2c6e98f69e3ed4d427a/BiliAnimeDownload/BiliAnimeDownload/Helpers/Util.cs#L78
+            Toast.makeText(ctx,R.string.message_bilibili_sorry_region_restrict_anime,Toast.LENGTH_LONG).show();
             DownloadMultilinks(links,ilink+1,referer,expectSize,localPath,notifyTitle);
             return;
         }

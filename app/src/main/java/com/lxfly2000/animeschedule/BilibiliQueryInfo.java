@@ -12,6 +12,14 @@ import java.io.IOException;
 
 public class BilibiliQueryInfo {
     private Context ctx;
+    private static final int toastCutLength=100;
+    private static String ToastStringCut(String src){
+        if(src.length()>toastCutLength)
+            return src.substring(0,toastCutLength).concat("...");
+        else while(src.endsWith("\n"))
+            src=src.substring(0,src.length()-1);
+        return src;
+    }
     public BilibiliQueryInfo(Context context){
         ctx=context;
         episodeInfo=new EpisodeInfo();
@@ -81,8 +89,10 @@ public class BilibiliQueryInfo {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(success){
+                    String jsonString=Values.vDefaultString;
                     try {
-                        JSONObject json = new JSONObject(StreamUtility.GetStringFromStream(stream));
+                        jsonString=StreamUtility.GetStringFromStream(stream);
+                        JSONObject json = new JSONObject(jsonString);
                         episodeInfo.parts=json.getJSONArray("durl").length();
                         episodeInfo.downloadBytes=new int[episodeInfo.parts];
                         episodeInfo.urls=new String[episodeInfo.parts][];
@@ -106,7 +116,7 @@ public class BilibiliQueryInfo {
                     }catch (IOException e){
                         episodeInfo.SetResult(1,e.getLocalizedMessage());
                     }catch (JSONException e){
-                        episodeInfo.SetResult(2,e.getMessage());
+                        episodeInfo.SetResult(2,e.getMessage()+"\n"+ToastStringCut(jsonString));
                     }
                 }
                 FinishQuery(false);
@@ -120,8 +130,10 @@ public class BilibiliQueryInfo {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(success) {
+                    String jsonString=Values.vDefaultString;
                     try {
-                        JSONObject json = new JSONObject(StreamUtility.GetStringFromStream(stream));
+                        jsonString=StreamUtility.GetStringFromStream(stream);
+                        JSONObject json = new JSONObject(jsonString);
                         episodeInfo.parts=json.getJSONArray("data").length();
                         episodeInfo.downloadBytes=new int[episodeInfo.parts];
                         episodeInfo.urls=new String[episodeInfo.parts][];
@@ -135,7 +147,7 @@ public class BilibiliQueryInfo {
                     }catch (IOException e){
                         episodeInfo.SetResult(1,e.getLocalizedMessage());
                     }catch (JSONException e){
-                        episodeInfo.SetResult(2,e.getMessage());
+                        episodeInfo.SetResult(2,e.getMessage()+"\n"+ToastStringCut(jsonString));
                     }
                 }
                 FinishQuery(false);
@@ -149,8 +161,10 @@ public class BilibiliQueryInfo {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(success){
+                    String jsonString=Values.vDefaultString;
                     try {
-                        JSONObject json = new JSONObject(StreamUtility.GetStringFromStream(stream)).getJSONObject("data");
+                        jsonString=StreamUtility.GetStringFromStream(stream);
+                        JSONObject json = new JSONObject(jsonString).getJSONObject("data");
                         episodeInfo.parts=json.getJSONArray("durl").length();
                         episodeInfo.downloadBytes=new int[episodeInfo.parts];
                         episodeInfo.urls=new String[episodeInfo.parts][];
@@ -174,7 +188,7 @@ public class BilibiliQueryInfo {
                     }catch (IOException e){
                         episodeInfo.SetResult(1,e.getLocalizedMessage());
                     }catch (JSONException e){
-                        episodeInfo.SetResult(2,e.getMessage());
+                        episodeInfo.SetResult(2,e.getMessage()+"\n"+ToastStringCut(jsonString));
                     }
                 }
                 FinishQuery(false);
@@ -189,8 +203,10 @@ public class BilibiliQueryInfo {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
                 if(success){
+                    String jsonString=Values.vDefaultString;
                     try {
-                        JSONObject json = new JSONObject(StreamUtility.GetStringFromStream(stream)).getJSONObject("result");
+                        jsonString=StreamUtility.GetStringFromStream(stream);
+                        JSONObject json = new JSONObject(jsonString).getJSONObject("result");
                         episodeInfo.parts=json.getJSONArray("durl").length();
                         episodeInfo.downloadBytes=new int[episodeInfo.parts];
                         episodeInfo.urls=new String[episodeInfo.parts][];
@@ -214,7 +230,7 @@ public class BilibiliQueryInfo {
                     }catch (IOException e){
                         episodeInfo.SetResult(1,e.getLocalizedMessage());
                     }catch (JSONException e){
-                        episodeInfo.SetResult(2,e.getMessage());
+                        episodeInfo.SetResult(2,e.getMessage()+"\n"+ToastStringCut(jsonString));
                     }
                 }
                 FinishQuery(false);

@@ -179,4 +179,7 @@
     <string name="message_check_update_period">Please check whether the update period is correct.</string>
     <string name="message_title_autofill_supported_url">Supported URL (RegEx)</string>
     <string name="label_app_name_bilibili" translatable="false">Bilibili</string>
+    <string name="message_bilibili_sorry_region_restrict_anime">Returned a video containing the message \"Sorry, this
+        video is not available in your region.\"
+    </string>
 </resources>

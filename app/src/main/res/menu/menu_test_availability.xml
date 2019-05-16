@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/label_app_name_bilibili" android:id="@+id/action_show_bilibili"
+          android:checkable="true"/>
+    <item android:title="@string/label_app_name_iqiyi" android:id="@+id/action_show_iqiyi" android:checkable="true"/>
+    <item android:title="@string/label_app_name_qqvideo" android:id="@+id/action_show_qqvideo"
+          android:checkable="true"/>
+    <item android:title="@string/label_app_name_youku" android:id="@+id/action_show_youku" android:checkable="true"/>
+    <item android:title="@string/label_app_name_etc" android:id="@+id/action_show_etc" android:checkable="true"/>
+    <item android:title="@string/menu_show_availability_true" android:id="@+id/action_show_available"
+          android:checkable="true"/>
+    <item android:title="@string/menu_show_availability_false" android:id="@+id/action_show_unavailable"
+          android:checkable="true"/>
+    <item android:title="@string/menu_test_availability_retest" android:id="@+id/action_retest"
+          app:showAsAction="ifRoom" android:icon="@drawable/ic_refresh_black_24dp"/>
+</menu>

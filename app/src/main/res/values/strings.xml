@@ -178,8 +178,18 @@
     <string name="message_unable_to_fetch_anime_id">Cannot fetch Anime ID.</string>
     <string name="message_check_update_period">Please check whether the update period is correct.</string>
     <string name="message_title_autofill_supported_url">Supported URL (RegEx)</string>
-    <string name="label_app_name_bilibili" translatable="false">Bilibili</string>
+    <string name="label_app_name_bilibili">Bilibili</string>
     <string name="message_bilibili_sorry_region_restrict_anime">Returned a video containing the message \"Sorry, this
         video is not available in your region.\"
     </string>
+    <string name="menu_test_availability">Test Availability</string>
+    <string name="label_app_name_iqiyi">iQiyi</string>
+    <string name="label_app_name_qqvideo">QQ Video</string>
+    <string name="label_app_name_youku">Youku</string>
+    <string name="label_app_name_etc">etc</string>
+    <string name="label_availability_true">Available</string>
+    <string name="label_availability_false">Unavailable</string>
+    <string name="menu_test_availability_retest">Retest</string>
+    <string name="menu_show_availability_true">Show Available</string>
+    <string name="menu_show_availability_false">Show Unavailable</string>
 </resources>

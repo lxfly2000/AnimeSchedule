@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".TestAvailabilityActivity" android:orientation="vertical">
+
+    <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp" android:id="@+id/listAvailability" android:layout_weight="1"/>
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:stretchColumns="0,1,2,3,4,5,6">
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <Space android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                    android:text="@string/label_app_name_bilibili"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textAlignment="center"/>
+            <TextView
+                    android:text="@string/label_app_name_iqiyi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textAlignment="center"/>
+            <TextView
+                    android:text="@string/label_app_name_qqvideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textAlignment="center"/>
+            <TextView
+                    android:text="@string/label_app_name_youku"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textAlignment="center"/>
+            <TextView
+                    android:text="@string/label_app_name_etc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textAlignment="center"/>
+            <TextView
+                    android:text="@string/label_count_stat_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textAlignment="center"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TextView
+                    android:text="@string/label_availability_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAvailabilityBilibiliTrue"
+                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAvailabilityIQiyiTrue"
+                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAvailabilityQQVideoTrue"
+                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAvailabilityYoukuTrue"
+                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAvailabilityEtcTrue" android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAvailabilityTotalTrue"
+                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TextView
+                    android:text="@string/label_availability_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAvailabilityBilibiliFalse"
+                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAvailabilityIQiyiFalse"
+                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textAvailabilityQQVideoFalse"
+                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:id="@+id/textAvailabilityYoukuFalse"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:id="@+id/textAvailabilityEtcFalse"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:id="@+id/textAvailabilityTotalFalse"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                    android:text="@string/label_count_stat_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:id="@+id/textAvailabilityBilibiliTotal"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:id="@+id/textAvailabilityIQiyiTotal"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:id="@+id/textAvailabilityQQVideoTotal"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:id="@+id/textAvailabilityYoukuTotal"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:id="@+id/textAvailabilityEtcTotal"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:id="@+id/textAvailabilityTotalTotal"/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

@@ -5,6 +5,7 @@
     <item android:title="@string/action_remove_all_item" android:id="@+id/action_remove_all_item"/>
     <item android:title="@string/action_show_anime_update" android:id="@+id/action_show_anime_update"/>
     <item android:title="@string/action_show_count_statistics" android:id="@+id/action_show_count_statistics"/>
+    <item android:title="@string/menu_test_availability" android:id="@+id/action_test_availability"/>
     <item android:title="@string/action_view_web_page" android:id="@+id/action_view_web_page"/>
     <item android:title="@string/action_google_drive_upload" android:id="@+id/action_drive_upload"/>
     <item android:title="@string/action_google_drive_download" android:id="@+id/action_drive_download"/>

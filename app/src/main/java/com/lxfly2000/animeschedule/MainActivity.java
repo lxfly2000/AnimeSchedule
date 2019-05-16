@@ -568,11 +568,16 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_add_item:OnAddAnime();return true;
             case R.id.action_remove_all_item:OnRemoveAllAnime();return true;
             case R.id.action_show_count_statistics:ShowCountStatistics();return true;
+            case R.id.action_test_availability:TestAvailability();return true;
             case R.id.action_drive_download:GoogleDriveDownload();return true;
             case R.id.action_drive_upload:GoogleDriveUpload();return true;
             case R.id.action_about:OnActionAbout();return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void TestAvailability(){
+        startActivity(new Intent(this,TestAvailabilityActivity.class));
     }
 
     private void OnActionAbout(){

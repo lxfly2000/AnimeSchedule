@@ -155,4 +155,15 @@
     <string name="message_check_update_period">请检查更新周期是否正确。</string>
     <string name="message_title_autofill_supported_url">支持的网址（正则表达式）</string>
     <string name="message_bilibili_sorry_region_restrict_anime">返回了地区限制的提示视频“肥肠抱歉，应版权方要求 您所在的地区无法观看本片TAT”</string>
+    <string name="menu_test_availability">测试有效性</string>
+    <string name="label_app_name_bilibili">哔哩哔哩</string>
+    <string name="label_app_name_iqiyi">爱奇艺</string>
+    <string name="label_app_name_qqvideo">腾讯视频</string>
+    <string name="label_app_name_youku">优酷</string>
+    <string name="label_app_name_etc">其他</string>
+    <string name="label_availability_true">有效</string>
+    <string name="label_availability_false">无效</string>
+    <string name="menu_test_availability_retest">重新测试</string>
+    <string name="menu_show_availability_true">显示有效</string>
+    <string name="menu_show_availability_false">显示无效</string>
 </resources>

@@ -1030,7 +1030,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    int redirectCount;
+    int redirectCount=0;
 
     private void ReadBilibiliURL_OnCallback(final String urlString,String referer){//2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
         /*输入URL：parsableLinkRegex中的任何一个B站URL
@@ -1043,7 +1043,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         editDialogTitle.setText(R.string.message_fetching_bilibili_ssid);
-        redirectCount=0;
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
@@ -1055,6 +1054,7 @@ public class MainActivity extends AppCompatActivity {
                     redirectCount++;
                     if(redirectCount>preferences.getInt(Values.keyRedirectMaxCount,Values.vDefaultRedirectMaxCount)){
                         Toast.makeText(getBaseContext(),R.string.message_too_many_redirect,Toast.LENGTH_LONG).show();
+                        redirectCount=0;
                         return;
                     }
                     ReadBilibiliURL_OnCallback((String)additionalReturned,urlString);
@@ -1063,16 +1063,20 @@ public class MainActivity extends AppCompatActivity {
                     redirectCount++;
                     if(redirectCount>preferences.getInt(Values.keyRedirectMaxCount,Values.vDefaultRedirectMaxCount)){
                         Toast.makeText(getBaseContext(),R.string.message_too_many_redirect,Toast.LENGTH_LONG).show();
+                        redirectCount=0;
                         return;
                     }
                     ReadBilibiliURL_OnCallback(urlString,urlString);
                     return;
-                }else if(response==403){
-                    Toast.makeText(getBaseContext(),R.string.message_http_403,Toast.LENGTH_LONG).show();
-                    return;
-                }else if(response==404){
-                    Toast.makeText(getBaseContext(),R.string.message_http_404,Toast.LENGTH_LONG).show();
-                    return;
+                }else {
+                    redirectCount=0;
+                    if (response == 403) {
+                        Toast.makeText(getBaseContext(), R.string.message_http_403, Toast.LENGTH_LONG).show();
+                        return;
+                    } else if (response == 404) {
+                        Toast.makeText(getBaseContext(), R.string.message_http_404, Toast.LENGTH_LONG).show();
+                        return;
+                    }
                 }
                 try{
                     String htmlString=StreamUtility.GetStringFromStream(stream);

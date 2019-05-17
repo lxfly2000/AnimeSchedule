@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":304,
+	"last_watch_index":265,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -5111,7 +5111,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-3-31"
 	},{
-		"watched_episode":[20190505,20190505,20190506,20190506,20190506,20190511],
+		"watched_episode":[20190505,20190505,20190506,20190506,20190506,20190511,20190518],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/247c5e89bc9b26e8302830b4eb316c3af0409a47.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26870",
 		"title":"川柳少女",
@@ -5129,7 +5129,7 @@ setJsonData({
 		"color":"silver",
 		"category":["漫画改","恋爱","校园","日常"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-4-2"
 	},{
 		"watched_episode":[20190406,20190407,20190408,20190409,20190409,20190409,20190411,20190413,20190413,20190413,20190413,20190413,20190413,20190413,20190414,20190414],
@@ -5178,7 +5178,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/f3a4d4f127af0381f16a1579e2cd8300340ea426.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss774",
 		"title":"公立海老栖川高校天闷部",
-		"description":"本作的男主角野矢一树作为公立海老栖川高校的新生，本想加入天文部，但却错入部室，并最终成为了原本只有女生组成的天闷部成员。在天闷部里，有常常搞出问题来的户田山响子、天闷部的唯一常识人广松理圭、腐女子金森羽片、将一树稀里糊涂骗进天闷部的副部长大庭莲实等等个性十足的部员。作品描绘了“误上贼船”的野矢一树与这些部员们一起轻松自由搞笑不断的学园生活。故事中的主要登场人物名字都与日本的科学哲学、分析哲学家相关，而顶着这些知名人物名字的少年少女们在天闷部中进行着无边妄想，也是作品的笑点之一。",
+		"description":"本作的男主角野矢一树作为公立海老栖川高校的新生，本想加入天文部，但却错入部室，并最终成为了原本只有女生组成的天闷部成员。在天闷部里，有常常搞出问题来的户田山响子、天闷部的唯一常识人广松理圭、腐女子金森羽片、将一树稀里糊涂骗进天闷部的副部长大庭莲实等等个性十足的部员。作品描绘了“误上贼船”的野矢一树与这些部员们一起轻松自由搞笑不断的学园生活。故事中的主要登场人物名字都与日本的科学哲学、分析哲学家相关，而顶着这些知名人物名字的少年少女们在天闷部中进行着无边妄想，也是作品的笑点之一。\n2019-5-17:下架。",
 		"actors":"戸田山 響子：阿澄佳奈\n伊势田 结花：月宮みどり\n金森 羽片：西明日香\n大庭蓮實：佐藤聡美\n野矢 一树：伊瀬茉莉也\n广松理圭：村井理沙子\n伊莉莎白 玛格丽特：野水伊織\n大森庄子：名塚佳織\n",
 		"staff":"脚本：山口宏\n导演：岡本英樹\n总作画监督：サトウミチオ、山川宏治\n原作：SCA-自\n人物原案：狗神煌\n系列构成：柿原優子\n演出：高島大輔\n作画监督：サトウミチオ\n",
 		"start_date":"2012-07-14",
@@ -5234,7 +5234,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190430,20190504,20190504,20190504,20190511],
+		"watched_episode":[20190430,20190430,20190504,20190504,20190504,20190511,20190518],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a3b2db2edeeac4fb51446724458cf93fe46d2797.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26818",
 		"title":"一个人的〇〇小日子",
@@ -5251,10 +5251,10 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","日常","萌系","校园"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190430,20190501,20190501,20190505,20190511],
+		"watched_episode":[20190430,20190430,20190501,20190501,20190505,20190511,20190518],
 		"cover":"https:\/\/lain.bgm.tv\/pic\/cover\/l\/7d\/87\/268412_P63Pf.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26953",
 		"title":"滿腦都是○○的我沒辦法談戀愛",
@@ -5271,7 +5271,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","搞笑","恋爱"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190506,20190506,20190506],
@@ -5314,7 +5314,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511],
+		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/368c60d973a8a3251534f599dcb2eff7fc64cef3.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26766",
 		"title":"水果篮子2019版",
@@ -5331,7 +5331,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","奇幻","校园","恋爱","少女"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414,20190417],

@@ -31,6 +31,12 @@ public class Values {
     public static final int vDefaultSkippedVersionCode=0;
     public static final String keyApiMethod="bilibili_api_method";
     public static final int vDefaultApiMethod=0;
+    public static final String keyTestConnectionTimeout="test_connection_timeout";
+    public static final int vDefaultTestConnectionTimeout=10000;
+    public static final String keyTestReadTimeout="test_read_timeout";
+    public static final int vDefaultTestReadTimeout=10000;
+    public static final String keyRedirectMaxCount="redirect_max_count";
+    public static final int vDefaultRedirectMaxCount=5;
     public static final String[] starMarks={"★☆","●○"};
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
@@ -54,7 +60,7 @@ public class Values {
         editPref.apply();
     }
     public static final String[]parsableLinksRegex={
-            "(.*bangumi\\.bilibili\\.com/anime/[0-9]+)|(.*bilibili\\.com/bangumi/play/(ss|ep)[0-9]+)|(.*bilibili\\.com/bangumi/media/md[0-9]+)|(.*b23\\.tv/(ss|ep)\\d+)|(.*bangumi\\.bilibili\\.com/review/media/\\d+)",
+            "(.*bangumi\\.bilibili\\.com/anime/[0-9]+)|(.*bilibili\\.com/bangumi/play/(ss|ep)[0-9]+)|(.*bilibili\\.com/bangumi/media/md[0-9]+)|(.*b23\\.tv/(ss|ep|av)\\d+)|(.*bangumi\\.bilibili\\.com/review/media/\\d+)|(.*bilibili\\.com/video/av\\d+)",
             ".*iqiyi\\.com/[av]_.*\\.html",
             "(.*v\\.qq\\.com/x/cover/.*\\.html)|(.*m\\.v\\.qq\\.com/(play/)?play\\.html\\?[A-Za-z0-9\\-_=&]+)|(.*m\\.v\\.qq\\.com/cover/.*\\.html)|(.*v\\.qq\\.com/detail/./.*\\.html)",
             "(.*list\\.youku\\.com/show/id_.*\\.html)|(.*v\\.youku\\.com/v_show/id_.*\\.html)|(.*m\\.youku\\.com/video/id_.*\\.html)"

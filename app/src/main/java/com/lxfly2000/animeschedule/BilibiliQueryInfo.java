@@ -87,7 +87,7 @@ public class BilibiliQueryInfo {
         //获取URL
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(success){
                     String jsonString=Values.vDefaultString;
                     try {
@@ -128,7 +128,7 @@ public class BilibiliQueryInfo {
     public void Query2(){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(success) {
                     String jsonString=Values.vDefaultString;
                     try {
@@ -159,7 +159,7 @@ public class BilibiliQueryInfo {
     public void Query3(){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(success){
                     String jsonString=Values.vDefaultString;
                     try {
@@ -201,7 +201,7 @@ public class BilibiliQueryInfo {
     public void Query4(){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(success){
                     String jsonString=Values.vDefaultString;
                     try {

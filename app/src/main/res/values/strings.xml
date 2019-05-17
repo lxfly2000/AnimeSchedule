@@ -192,4 +192,24 @@
     <string name="menu_test_availability_retest">Retest</string>
     <string name="menu_show_availability_true">Show Available</string>
     <string name="menu_show_availability_false">Show Unavailable</string>
+    <string name="menu_show_following">Show Following</string>
+    <string name="menu_show_abandoned">Show Abandoned</string>
+    <string name="menu_stop">Stop</string>
+    <string name="help">Help</string>
+    <string name="button_show_more_help">Show more help</string>
+    <string name="message_http_response_help">HTTP Response code:\n0: Did not receive a response, maybe timed out, not
+        accessed to Internet, blocked or removed.\n200 OK: Indicates this Anime URL is available.\n301 Moved: Indicates
+        this Anime URL is redirected to another one.\n403 Forbidden: Indicates this Anime URL either may need login to
+        watch or is not able to be tested.\n404 Not Found: Indicates this Anime URL is unavailable or the Anime is taken
+        down.\nFor more information please click Show more help.
+    </string>
+    <string name="title_test_availability_result">Available: %d, Unavailable: %d</string>
+    <string name="label_test_availability_connection_time_out">Connection time out for testing availability
+        (Milliseconds)
+    </string>
+    <string name="label_test_availability_read_time_out">Read time out for testing availability (Milliseconds)</string>
+    <string name="message_too_many_redirect">Too many redirects.</string>
+    <string name="message_http_403">HTTP 403: Forbidden.</string>
+    <string name="message_http_404">HTTP 404: Not Found.</string>
+    <string name="label_max_redirect_count">Max redirect count</string>
 </resources>

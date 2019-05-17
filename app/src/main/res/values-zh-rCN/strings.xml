@@ -166,4 +166,19 @@
     <string name="menu_test_availability_retest">重新测试</string>
     <string name="menu_show_availability_true">显示有效</string>
     <string name="menu_show_availability_false">显示无效</string>
+    <string name="menu_show_following">显示追番</string>
+    <string name="menu_show_abandoned">显示弃番</string>
+    <string name="menu_stop">停止</string>
+    <string name="help">帮助</string>
+    <string name="button_show_more_help">显示更多帮助</string>
+    <string name="message_http_response_help">HTTP状态码：\n0: 未收到响应，可能是连接超时、未联网、被墙或链接失效。\n200 请求成功：表示该番剧链接有效。\n301
+        移动：表示该番剧链接被重定向到了其他链接。\n403 拒绝：表示该番剧链接可能需要登录观看或无法检测。\n404 未找到：表示该番剧链接无效或番剧已下架。\n如需更多信息请点击“显示更多帮助”。
+    </string>
+    <string name="title_test_availability_result">有效：%d，无效：%d</string>
+    <string name="label_test_availability_connection_time_out">测试有效性连接超时（毫秒）</string>
+    <string name="label_test_availability_read_time_out">测试有效性网络读取超时（毫秒）</string>
+    <string name="message_too_many_redirect">重定向次数太多。</string>
+    <string name="message_http_403">HTTP 403: 访问被阻止。</string>
+    <string name="message_http_404">HTTP 404: 未找到资源。</string>
+    <string name="label_max_redirect_count">最大重定向次数</string>
 </resources>

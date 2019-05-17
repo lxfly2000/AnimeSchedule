@@ -30,7 +30,7 @@ public class DownloadFileTest {
         localAnimeJS= StreamUtility.GetStringFromStream(appContext.getResources().openRawResource(R.raw.anime));
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 try{
                     downloadJS=StreamUtility.GetStringFromStream(stream);
                 }catch (IOException e){

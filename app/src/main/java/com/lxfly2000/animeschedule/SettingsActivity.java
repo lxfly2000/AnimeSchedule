@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ViewGroup;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView textBilibiliSavePath;
     private CheckBox checkSeperateAbandoned;
     private RadioGroup radiosStarMark,radioBilbiliDownloadApis;
+    private EditText editTestConnectionTimeout,editTestReadTimeout,editMaxRedirectCount;
     private final List<Integer> radiosId=Arrays.asList(R.id.radioStarMarkStar,R.id.radioStarMarkBall);
     static final String keyNeedReload="need_reload";
 
@@ -56,6 +59,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
         for(int i=0;i<radiosId.size();i++)
             ((RadioButton)findViewById(radiosId.get(i))).setText(Values.starMarks[i]);
+        editTestConnectionTimeout=findViewById(R.id.editTestConnectionTimeOut);
+        editTestReadTimeout=findViewById(R.id.editTestReadTimeOut);
+        editMaxRedirectCount=findViewById(R.id.editMaxRedirectCount);
 
         spinnerSortMethods.setOnItemSelectedListener(spinnerSelectListener);
         spinnerSortOrder.setOnItemSelectedListener(spinnerSelectListener);
@@ -63,8 +69,28 @@ public class SettingsActivity extends AppCompatActivity {
         checkSeperateAbandoned.setOnClickListener(buttonCallbacks);
         radiosStarMark.setOnCheckedChangeListener((radioGroup, i) -> modified=true);
         radioBilbiliDownloadApis.setOnCheckedChangeListener(((radioGroup, i) -> modified=true));
+        editTestConnectionTimeout.addTextChangedListener(textChangedListener);
+        editTestReadTimeout.addTextChangedListener(textChangedListener);
+        editMaxRedirectCount.addTextChangedListener(textChangedListener);
         LoadSettings();
     }
+
+    TextWatcher textChangedListener=new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            //Nothing here.
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            modified=true;
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            //Nothing here.
+        }
+    };
 
     private void SetBilibiliSavePathText(String text){
         //https://www.jianshu.com/p/29a379512a13
@@ -147,6 +173,9 @@ public class SettingsActivity extends AppCompatActivity {
         SetBilibiliSavePathText(preferences.getString(Values.keyBilibiliSavePath,Values.GetvDefaultBilibiliSavePath(this)));
         radiosStarMark.check(radiosId.get(preferences.getInt(Values.keyStarMark,Values.vDefaultStarMark)));
         ((RadioButton)radioBilbiliDownloadApis.getChildAt(preferences.getInt(Values.keyApiMethod,Values.vDefaultApiMethod))).toggle();
+        editTestConnectionTimeout.setText(String.valueOf(preferences.getInt(Values.keyTestConnectionTimeout,Values.vDefaultTestConnectionTimeout)));
+        editTestReadTimeout.setText(String.valueOf(preferences.getInt(Values.keyTestReadTimeout,Values.vDefaultTestReadTimeout)));
+        editMaxRedirectCount.setText(String.valueOf(preferences.getInt(Values.keyRedirectMaxCount,Values.vDefaultRedirectMaxCount)));
         modified=false;
     }
 
@@ -164,6 +193,9 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
             }
         }
+        wPreference.putInt(Values.keyTestConnectionTimeout,Integer.parseInt(editTestConnectionTimeout.getText().toString()));
+        wPreference.putInt(Values.keyTestReadTimeout,Integer.parseInt(editTestReadTimeout.getText().toString()));
+        wPreference.putInt(Values.keyRedirectMaxCount,Integer.parseInt(editMaxRedirectCount.getText().toString()));
         wPreference.apply();
         modified=false;
         Toast.makeText(this,R.string.message_settings_saved,Toast.LENGTH_LONG).show();

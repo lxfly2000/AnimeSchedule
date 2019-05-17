@@ -160,7 +160,7 @@ public class EditWatchedEpisodeDialog {
                 }
                 AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
                     @Override
-                    public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                    public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                         if(!success){
                             Toast.makeText(ctx,R.string.message_unable_to_fetch_anime_info,Toast.LENGTH_LONG).show();
                             return;

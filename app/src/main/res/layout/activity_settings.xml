@@ -100,6 +100,44 @@
                         android:layout_height="wrap_content" android:id="@+id/radioStarMarkBall"
                         android:layout_weight="1"/>
             </RadioGroup>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView28"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView29"
+                    android:text="@string/label_test_availability_connection_time_out"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:textSize="18sp"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editTestConnectionTimeOut"
+                    android:hint="@string/label_test_availability_connection_time_out"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView31"
+                    android:text="@string/label_test_availability_read_time_out"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:textSize="18sp"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editTestReadTimeOut" android:hint="@string/label_test_availability_read_time_out"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView30"
+                    android:text="@string/label_max_redirect_count"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:textSize="18sp"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editMaxRedirectCount"
+                    android:hint="@string/label_max_redirect_count"/>
         </LinearLayout>
     </ScrollView>
     <Button

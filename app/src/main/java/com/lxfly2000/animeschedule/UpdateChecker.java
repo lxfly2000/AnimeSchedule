@@ -31,7 +31,7 @@ public class UpdateChecker {
         //https://stackoverflow.com/questions/5150637/networkonmainthreadexception
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 try {
                     ((UpdateChecker) extra).OnReceiveData(success?StreamUtility.GetStringFromStream(stream):null);
                 }catch (IOException e){

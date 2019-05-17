@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorHttpNotify">#CCC</color>
+    <color name="colorHttpOk">#000</color>
+    <color name="colorHttpRedirect">#0CF</color>
+    <color name="colorHttpClient">#F30</color>
+    <color name="colorHttpServer">#C0F</color>
+    <color name="colorHttpTimeOut">#E63</color>
 </resources>

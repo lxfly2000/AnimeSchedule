@@ -66,7 +66,7 @@ public class BilibiliAnimeEpisodeDownloader {
             //下载danmaku.xml
             AndroidDownloadFileTask taskDownloadDanmaku = new AndroidDownloadFileTask() {
                 @Override
-                public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                     String damakuPath = BilibiliUtility.GetBilibiliDownloadEpisodePath(ctx, ssidString, epidString) + "/danmaku.xml";
                     if (success) {
                         try {

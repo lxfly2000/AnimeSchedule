@@ -49,31 +49,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textAvailabilityBilibiliTrue"
-                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textAvailabilityIQiyiTrue"
-                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textAvailabilityQQVideoTrue"
-                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textAvailabilityYoukuTrue"
-                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textAvailabilityEtcTrue" android:textAppearance="@style/TextAppearance.AppCompat"/>
+                    android:id="@+id/textAvailabilityEtcTrue" android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textAvailabilityTotalTrue"
-                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
         </TableRow>
         <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
             <TextView
@@ -84,32 +85,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textAvailabilityBilibiliFalse"
-                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textAvailabilityIQiyiFalse"
-                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textAvailabilityQQVideoFalse"
-                    android:textAppearance="@style/TextAppearance.AppCompat"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:id="@+id/textAvailabilityYoukuFalse"/>
+                    android:id="@+id/textAvailabilityYoukuFalse" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:id="@+id/textAvailabilityEtcFalse"/>
+                    android:id="@+id/textAvailabilityEtcFalse" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:id="@+id/textAvailabilityTotalFalse"/>
+                    android:id="@+id/textAvailabilityTotalFalse" android:textAlignment="center"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -120,32 +121,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:id="@+id/textAvailabilityBilibiliTotal"/>
+                    android:id="@+id/textAvailabilityBilibiliTotal" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:id="@+id/textAvailabilityIQiyiTotal"/>
+                    android:id="@+id/textAvailabilityIQiyiTotal" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:id="@+id/textAvailabilityQQVideoTotal"/>
+                    android:id="@+id/textAvailabilityQQVideoTotal" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:id="@+id/textAvailabilityYoukuTotal"/>
+                    android:id="@+id/textAvailabilityYoukuTotal" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:id="@+id/textAvailabilityEtcTotal"/>
+                    android:id="@+id/textAvailabilityEtcTotal" android:textAlignment="center"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:id="@+id/textAvailabilityTotalTotal"/>
+                    android:id="@+id/textAvailabilityTotalTotal" android:textAlignment="center"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

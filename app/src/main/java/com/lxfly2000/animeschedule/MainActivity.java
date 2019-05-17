@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
             String url=watchUrl;
             if(URLUtility.IsBilibiliVideoLink(url))
                 url=URLUtility.MakeBilibiliVideoUriString(URLUtility.GetBilibiliVideoIdString(url));
-            if(URLUtility.IsBilibiliSeasonBangumiLink(url))
+            else if(URLUtility.IsBilibiliSeasonBangumiLink(url))
                 url=URLUtility.MakeBilibiliSeasonUriString(URLUtility.GetBilibiliSeasonIdString(url));
             try {
                 AndroidUtility.OpenUri(getBaseContext(), url);
@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
                         @Override
-                        public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                        public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                             ParametersSetImage param = (ParametersSetImage) extra;
                             if(success) {
                                 FileUtility.WriteStreamToFile(param.imagePath,stream);
@@ -947,7 +947,7 @@ public class MainActivity extends AppCompatActivity {
                 Matcher m=p.matcher(urlString);
                 if(m.find()){
                     if(URLUtility.IsBilibiliBangumiLink(urlString.toLowerCase())){
-                        ReadBilibiliURL_OnCallback(urlString);
+                        ReadBilibiliURL_OnCallback(urlString,null);
                         break;
                     }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())){
                         GetIQiyiAnimeIDFromURL(urlString);
@@ -1030,22 +1030,48 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void ReadBilibiliURL_OnCallback(final String urlString){//2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
+    int redirectCount;
+
+    private void ReadBilibiliURL_OnCallback(final String urlString,String referer){//2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
         /*输入URL：parsableLinkRegex中的任何一个B站URL
         *
         * 在返回的HTML文本（转换成小写）里找ss#####, season_id:#####, "season_id":#####, ssid:#####, "ssid":#####
         * 得到的数值均为 Season ID, 然后就可以从ss##### URL里获取信息了。
         * */
-        if(URLUtility.IsBilibiliSeasonBangumiLink(urlString)){
+        if(URLUtility.IsBilibiliSeasonBangumiLink(urlString)&&!URLUtility.IsBilibiliVideoLink(urlString)){
             ReadBilibiliSSID_OnCallback(URLUtility.GetBilibiliSeasonIdString(urlString));
             return;
         }
         editDialogTitle.setText(R.string.message_fetching_bilibili_ssid);
+        redirectCount=0;
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(!success){
                     Toast.makeText(getBaseContext(),R.string.message_unable_to_fetch_episode_id,Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(response==301){
+                    redirectCount++;
+                    if(redirectCount>preferences.getInt(Values.keyRedirectMaxCount,Values.vDefaultRedirectMaxCount)){
+                        Toast.makeText(getBaseContext(),R.string.message_too_many_redirect,Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    ReadBilibiliURL_OnCallback((String)additionalReturned,urlString);
+                    return;
+                }else if(response==302){
+                    redirectCount++;
+                    if(redirectCount>preferences.getInt(Values.keyRedirectMaxCount,Values.vDefaultRedirectMaxCount)){
+                        Toast.makeText(getBaseContext(),R.string.message_too_many_redirect,Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    ReadBilibiliURL_OnCallback(urlString,urlString);
+                    return;
+                }else if(response==403){
+                    Toast.makeText(getBaseContext(),R.string.message_http_403,Toast.LENGTH_LONG).show();
+                    return;
+                }else if(response==404){
+                    Toast.makeText(getBaseContext(),R.string.message_http_404,Toast.LENGTH_LONG).show();
                     return;
                 }
                 try{
@@ -1084,6 +1110,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+        task.SetUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1");
+        if(referer!=null)
+            task.SetReferer(referer);
         task.execute(urlString);
     }
 
@@ -1092,7 +1121,7 @@ public class MainActivity extends AppCompatActivity {
         final String requestUrl="https://bangumi.bilibili.com/view/web_api/season?season_id="+idString;
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(!success){
                     Toast.makeText(getBaseContext(),R.string.message_unable_to_fetch_anime_info,Toast.LENGTH_LONG).show();
                     return;
@@ -1176,7 +1205,7 @@ public class MainActivity extends AppCompatActivity {
         if(htmlString==null){
             AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
                 @Override
-                public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                     if(!success){
                         Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_SHORT).show();
                         return;
@@ -1209,7 +1238,7 @@ public class MainActivity extends AppCompatActivity {
         if(htmlString==null){
             AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
                 @Override
-                public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                     if(!success){
                         Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_SHORT).show();
                         return;
@@ -1262,7 +1291,7 @@ public class MainActivity extends AppCompatActivity {
         editDialogTitle.setText(url);
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(!success){
                     Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_LONG).show();
                     return;
@@ -1343,7 +1372,7 @@ public class MainActivity extends AppCompatActivity {
         };*/
         AndroidDownloadFileTask taskDownloadJsonGetSnsScore=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(!success){
                     Toast.makeText(getBaseContext(),getString(R.string.message_cannot_fetch_property,"GetSnsScore"),Toast.LENGTH_LONG).show();
                     return;
@@ -1360,7 +1389,7 @@ public class MainActivity extends AppCompatActivity {
         };
         AndroidDownloadFileTask taskDownloadJsonpGetAvList=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(!success){
                     Toast.makeText(getBaseContext(),getString(R.string.message_cannot_fetch_property,"GetAvList"),Toast.LENGTH_LONG).show();
                     return;
@@ -1402,7 +1431,7 @@ public class MainActivity extends AppCompatActivity {
         String requestUrl="https://cache.video.iqiyi.com/jp/vi/"+tvidString+"/"+vidString+"/";
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(!success){
                     Toast.makeText(getBaseContext(),R.string.message_iqiyi_cannot_fetch_category,Toast.LENGTH_LONG).show();
                     return;

@@ -21,7 +21,7 @@ public class YoukuSpider extends Spider {
     public void FindListIDByVID(String vid){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(!success){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_unable_to_fetch_anime_id));
                     return;
@@ -81,7 +81,7 @@ public class YoukuSpider extends Spider {
 
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
                 if(!success){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_unable_to_fetch_anime_info));
                     return;

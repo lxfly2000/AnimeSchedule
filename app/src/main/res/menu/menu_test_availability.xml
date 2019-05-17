@@ -8,10 +8,17 @@
           android:checkable="true"/>
     <item android:title="@string/label_app_name_youku" android:id="@+id/action_show_youku" android:checkable="true"/>
     <item android:title="@string/label_app_name_etc" android:id="@+id/action_show_etc" android:checkable="true"/>
+    <item android:title="@string/menu_show_following" android:id="@+id/action_show_following" android:checkable="true"/>
+    <item android:title="@string/menu_show_abandoned" android:id="@+id/action_show_abandoned" android:checkable="true"/>
     <item android:title="@string/menu_show_availability_true" android:id="@+id/action_show_available"
           android:checkable="true"/>
     <item android:title="@string/menu_show_availability_false" android:id="@+id/action_show_unavailable"
           android:checkable="true"/>
     <item android:title="@string/menu_test_availability_retest" android:id="@+id/action_retest"
-          app:showAsAction="ifRoom" android:icon="@drawable/ic_refresh_black_24dp"/>
+          app:showAsAction="ifRoom" android:icon="@drawable/ic_refresh_black_24dp" android:visible="false"/>
+    <item android:title="@string/help" android:id="@+id/action_help"/>
+    <item android:title="@string/menu_test_availability" android:id="@+id/action_start"
+          android:icon="@drawable/ic_play_arrow_black_24dp" app:showAsAction="ifRoom"/>
+    <item android:title="@string/menu_stop" android:id="@+id/action_stop" app:showAsAction="ifRoom"
+          android:icon="@drawable/ic_pause_black_24dp" android:visible="false"/>
 </menu>

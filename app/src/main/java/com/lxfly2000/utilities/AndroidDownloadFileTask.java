@@ -6,18 +6,23 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
 public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,Boolean> {
     private ByteArrayInputStream inStream;
-    private Object extraObject;
+    private int responseCode=0;
+    private int connectTimeOut=0,readTimeOut=0;
+    private boolean downloadFile=true;
+    private Object extraObject,additionalReturnedObject;
     private String userAgent=null;
     private String cookie=null;
     private String contentType=null;
     private String acceptCharset=null;
     private String acceptEncoding=null;
+    private String referer=null;
 
     @Override
     protected Boolean doInBackground(String... params) {
@@ -46,17 +51,31 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
                 connection.setRequestProperty("Accept-Charset",acceptCharset);
             if(acceptEncoding!=null)
                 connection.setRequestProperty("Accept-Encoding",acceptEncoding);
-            ins=connection.getInputStream();
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int len;
-            while ((len = ins.read(buffer)) > -1 ) {
-                outputStream.write(buffer, 0, len);
+            if(referer!=null)
+                connection.setRequestProperty("Referer",referer);
+            if(connectTimeOut>0)
+                connection.setConnectTimeout(connectTimeOut);
+            if(readTimeOut>0)
+                connection.setReadTimeout(readTimeOut);
+            if(url.toLowerCase().startsWith("http"))
+                responseCode=((HttpURLConnection)connection).getResponseCode();
+            if(responseCode==301)
+                additionalReturnedObject=connection.getHeaderField("Location");
+            if(downloadFile) {
+                ins = connection.getInputStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = ins.read(buffer)) > -1) {
+                    outputStream.write(buffer, 0, len);
+                }
+                outputStream.flush();
+                // 打开一个新的输入流
+                inStream = new ByteArrayInputStream(outputStream.toByteArray());
+                ins.close();
+            }else{
+                inStream=null;
             }
-            outputStream.flush();
-            // 打开一个新的输入流
-            inStream=new ByteArrayInputStream(outputStream.toByteArray());
-            ins.close();
         }catch (IOException e){
             //安卓P中默认设置不允许明文HTTP传输，否则会报错
             //解决办法1：将http改为https协议，2：在清单文件中添加android:usesCleartextTraffic="true"
@@ -68,7 +87,23 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
     }
     @Override
     protected void onPostExecute(Boolean result){
-        OnReturnStream(inStream,result,extraObject);
+        OnReturnStream(inStream,result,responseCode,extraObject,additionalReturnedObject);
+    }
+
+    public void SetDownloadFile(boolean _downloadFile){
+        downloadFile=_downloadFile;
+    }
+
+    public void SetConnectTimeOut(int ms){
+        connectTimeOut=ms;
+    }
+
+    public void SetReadTimeOut(int ms){
+        readTimeOut=ms;
+    }
+
+    public void SetReferer(String _referer){
+        referer=_referer;
     }
 
     public void SetExtra(Object extra){
@@ -95,5 +130,5 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
         acceptEncoding=encoding;
     }
 
-    public abstract void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra);
+    public abstract void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned);
 }

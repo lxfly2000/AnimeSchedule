@@ -146,7 +146,7 @@
     <string name="button_skip_new_version">不再提示这个版本</string>
     <string name="button_bilibili_download_sysdown">系统下载</string>
     <string name="message_download_failed">下载失败：\n%s</string>
-    <string name="message_bilibili_wait_sysdownload">下载任务已创建，请等待下载完成后再打开B站APP。</string>
+    <string name="message_bilibili_wait_sysdownload">下载任务已创建，请等待下载完成后再打开B站APP。如果APP提示“文件已损坏”，请完全终止哔哩哔哩客户端进程后重新打开它。</string>
     <string name="message_bilibili_video_link_all_failed">无法获取视频链接，所有方法均失败。</string>
     <string name="label_bilibili_download_api">选择系统下载首选接口</string>
     <string name="message_file_exists_skip_download">文件“%s”已存在，跳过下载。</string>

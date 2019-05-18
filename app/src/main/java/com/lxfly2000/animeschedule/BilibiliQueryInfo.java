@@ -3,6 +3,7 @@ package com.lxfly2000.animeschedule;
 import android.content.Context;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.StreamUtility;
+import ipcjs.bilibilihelper.BilibiliBangumiAreaLimitHack;
 import org.json.JSONException;
 import org.json.JSONObject;
 import xiaoyaocz.BiliAnimeDownload.Helpers.Api;
@@ -34,7 +35,7 @@ public class BilibiliQueryInfo {
         public int[]downloadBytes;
 
         public int queryResult=0;
-        public String resultMessage="-";
+        public String resultMessage="(Empty)";
         public int GetDownloadBytesSum(){
             int s=0;
             for (int a : downloadBytes) {
@@ -73,7 +74,7 @@ public class BilibiliQueryInfo {
         returnEpisodeInfoFunction.OnReturnEpisodeInfo(episodeInfo,success);
     }
 
-    static final int queryMethodCount=4;
+    static final int queryMethodCount=6;
     //method:0~3
     public void Query(int method){
         switch (method){
@@ -81,6 +82,8 @@ public class BilibiliQueryInfo {
             case 1:Query2();break;
             case 2:Query3();break;
             case 3:Query4();break;
+            case 4:Query5();break;
+            case 5:Query6();break;
         }
     }
     public void Query(){
@@ -123,6 +126,90 @@ public class BilibiliQueryInfo {
             }
         };
         task.execute(Api._playurlApi2(episodeInfo.cidString));
+    }
+
+    public void Query5(){
+        //获取URL
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+                if(success){
+                    String jsonString=Values.vDefaultString;
+                    try {
+                        jsonString=StreamUtility.GetStringFromStream(stream);
+                        JSONObject json = new JSONObject(jsonString);
+                        episodeInfo.parts=json.getJSONArray("durl").length();
+                        episodeInfo.downloadBytes=new int[episodeInfo.parts];
+                        episodeInfo.urls=new String[episodeInfo.parts][];
+                        for(int i=0;i<episodeInfo.parts;i++) {
+                            //https://github.com/xiaoyaocz/BiliAnimeDownload/blob/852eb5b4fb3fdbd9801be2c6e98f69e3ed4d427a/BiliAnimeDownload/BiliAnimeDownload/Helpers/Util.cs#L86
+                            episodeInfo.downloadBytes[i]=json.getJSONArray("durl").getJSONObject(i).getInt("size");
+                            int urlCount=1;
+                            if(json.getJSONArray("durl").getJSONObject(i).has("backup_url")&&
+                                    !json.getJSONArray("durl").getJSONObject(i).isNull("backup_url")){
+                                urlCount+=json.getJSONArray("durl").getJSONObject(i).getJSONArray("backup_url").length();
+                            }
+                            episodeInfo.urls[i]=new String[urlCount];
+                            episodeInfo.urls[i][0]=json.getJSONArray("durl").getJSONObject(i).getString("url");
+                            for(int j=1;j<urlCount;j++) {
+                                episodeInfo.urls[i][j] = json.getJSONArray("durl").getJSONObject(i).getJSONArray("backup_url").getString(j - 1);
+                            }
+                        }
+                        episodeInfo.SetResult(0,"-");
+                        FinishQuery(true);
+                        return;
+                    }catch (IOException e){
+                        episodeInfo.SetResult(1,e.getLocalizedMessage());
+                    }catch (JSONException e){
+                        episodeInfo.SetResult(2,e.getMessage()+"\n"+ToastStringCut(jsonString));
+                    }
+                }
+                FinishQuery(false);
+            }
+        };
+        task.execute(BilibiliBangumiAreaLimitHack.balh_api_plus_playurl_biliplus_ipcjs_top(Integer.parseInt(episodeInfo.cidString),episodeInfo.videoQuality,true));
+    }
+
+    public void Query6(){
+        //获取URL
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+                if(success){
+                    String jsonString=Values.vDefaultString;
+                    try {
+                        jsonString=StreamUtility.GetStringFromStream(stream);
+                        JSONObject json = new JSONObject(jsonString);
+                        episodeInfo.parts=json.getJSONArray("durl").length();
+                        episodeInfo.downloadBytes=new int[episodeInfo.parts];
+                        episodeInfo.urls=new String[episodeInfo.parts][];
+                        for(int i=0;i<episodeInfo.parts;i++) {
+                            //https://github.com/xiaoyaocz/BiliAnimeDownload/blob/852eb5b4fb3fdbd9801be2c6e98f69e3ed4d427a/BiliAnimeDownload/BiliAnimeDownload/Helpers/Util.cs#L86
+                            episodeInfo.downloadBytes[i]=json.getJSONArray("durl").getJSONObject(i).getInt("size");
+                            int urlCount=1;
+                            if(json.getJSONArray("durl").getJSONObject(i).has("backup_url")&&
+                                    !json.getJSONArray("durl").getJSONObject(i).isNull("backup_url")){
+                                urlCount+=json.getJSONArray("durl").getJSONObject(i).getJSONArray("backup_url").length();
+                            }
+                            episodeInfo.urls[i]=new String[urlCount];
+                            episodeInfo.urls[i][0]=json.getJSONArray("durl").getJSONObject(i).getString("url");
+                            for(int j=1;j<urlCount;j++) {
+                                episodeInfo.urls[i][j] = json.getJSONArray("durl").getJSONObject(i).getJSONArray("backup_url").getString(j - 1);
+                            }
+                        }
+                        episodeInfo.SetResult(0,"-");
+                        FinishQuery(true);
+                        return;
+                    }catch (IOException e){
+                        episodeInfo.SetResult(1,e.getLocalizedMessage());
+                    }catch (JSONException e){
+                        episodeInfo.SetResult(2,e.getMessage()+"\n"+ToastStringCut(jsonString));
+                    }
+                }
+                FinishQuery(false);
+            }
+        };
+        task.execute(BilibiliBangumiAreaLimitHack.balh_api_plus_playurl_www_biliplus_com(Integer.parseInt(episodeInfo.cidString),episodeInfo.videoQuality,true));
     }
 
     public void Query2(){

@@ -166,7 +166,8 @@
     <string name="button_bilibili_download_sysdown">DL using system</string>
     <string name="message_download_failed">Download Failed:\n%s</string>
     <string name="message_bilibili_wait_sysdownload">Download tasks created, please wait the downloads to finish before
-        lauching Bilibili client.
+        lauching Bilibili client. If the app tells \"File broken\", please completely terminate the Bilibili client
+        process and reopen it.
     </string>
     <string name="label_thanks_nI" translatable="false">
         <a href="https://github.com/nICEnnnnnnnLee/BilibiliDown">nICEnnnnnnnLee/BilibiliDown</a>
@@ -201,7 +202,7 @@
         accessed to Internet, blocked or removed.\n200 OK: Indicates this Anime URL is available.\n301 Moved: Indicates
         this Anime URL is redirected to another one.\n403 Forbidden: Indicates this Anime URL either may need login to
         watch or is not able to be tested.\n404 Not Found: Indicates this Anime URL is unavailable or the Anime is taken
-        down.\nFor more information please click Show more help.
+        down.\nFor more information please click \"Show more help\".
     </string>
     <string name="title_test_availability_result">Available: %d, Unavailable: %d</string>
     <string name="label_test_availability_connection_time_out">Connection time out for testing availability
@@ -212,4 +213,10 @@
     <string name="message_http_403">HTTP 403: Forbidden.</string>
     <string name="message_http_404">HTTP 404: Not Found.</string>
     <string name="label_max_redirect_count">Max redirect count</string>
+    <string name="label_thanks_ipcjs_bilibili_helper" translatable="false">
+        <a href="https://github.com/ipcjs/bilibili-helper">ipcjs/bilibili-helper</a>
+    </string>
+    <string name="label_thanks_biliplus" translatable="false">
+        <a href="https://www.biliplus.com/">BiliPlus</a>
+    </string>
 </resources>

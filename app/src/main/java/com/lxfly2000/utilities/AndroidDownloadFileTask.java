@@ -59,7 +59,7 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
                 connection.setReadTimeout(readTimeOut);
             if(url.toLowerCase().startsWith("http"))
                 responseCode=((HttpURLConnection)connection).getResponseCode();
-            if(responseCode==301)
+            if(responseCode==301||responseCode==302)
                 additionalReturnedObject=connection.getHeaderField("Location");
             if(downloadFile) {
                 ins = connection.getInputStream();

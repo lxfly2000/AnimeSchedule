@@ -947,7 +947,7 @@ public class MainActivity extends AppCompatActivity {
                 Matcher m=p.matcher(urlString);
                 if(m.find()){
                     if(URLUtility.IsBilibiliBangumiLink(urlString.toLowerCase())){
-                        ReadBilibiliURL_OnCallback(urlString,null);
+                        ReadBilibiliURL_OnCallback(urlString);
                         break;
                     }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())){
                         GetIQiyiAnimeIDFromURL(urlString);
@@ -1032,7 +1032,7 @@ public class MainActivity extends AppCompatActivity {
 
     int redirectCount=0;
 
-    private void ReadBilibiliURL_OnCallback(final String urlString,String referer){//2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
+    private void ReadBilibiliURL_OnCallback(final String urlString){//2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
         /*输入URL：parsableLinkRegex中的任何一个B站URL
         *
         * 在返回的HTML文本（转换成小写）里找ss#####, season_id:#####, "season_id":#####, ssid:#####, "ssid":#####
@@ -1050,34 +1050,22 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),R.string.message_unable_to_fetch_episode_id,Toast.LENGTH_LONG).show();
                     return;
                 }
-                if(response==301){
+                if(response==301||response==302){
                     redirectCount++;
                     if(redirectCount>preferences.getInt(Values.keyRedirectMaxCount,Values.vDefaultRedirectMaxCount)){
-                        Toast.makeText(getBaseContext(),R.string.message_too_many_redirect,Toast.LENGTH_LONG).show();
-                        redirectCount=0;
+                        Toast.makeText(getBaseContext(),response+"\n"+getString(R.string.message_too_many_redirect),Toast.LENGTH_LONG).show();
+                    }else {
+                        ReadBilibiliURL_OnCallback((String) additionalReturned);
                         return;
                     }
-                    ReadBilibiliURL_OnCallback((String)additionalReturned,urlString);
-                    return;
-                }else if(response==302){
-                    redirectCount++;
-                    if(redirectCount>preferences.getInt(Values.keyRedirectMaxCount,Values.vDefaultRedirectMaxCount)){
-                        Toast.makeText(getBaseContext(),R.string.message_too_many_redirect,Toast.LENGTH_LONG).show();
-                        redirectCount=0;
-                        return;
-                    }
-                    ReadBilibiliURL_OnCallback(urlString,urlString);
-                    return;
                 }else {
-                    redirectCount=0;
                     if (response == 403) {
                         Toast.makeText(getBaseContext(), R.string.message_http_403, Toast.LENGTH_LONG).show();
-                        return;
                     } else if (response == 404) {
                         Toast.makeText(getBaseContext(), R.string.message_http_404, Toast.LENGTH_LONG).show();
-                        return;
                     }
                 }
+                redirectCount=0;
                 try{
                     String htmlString=StreamUtility.GetStringFromStream(stream);
                     Matcher m=Pattern.compile("ss[0-9]+").matcher(htmlString);
@@ -1115,8 +1103,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         task.SetUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1");
-        if(referer!=null)
-            task.SetReferer(referer);
         task.execute(urlString);
     }
 

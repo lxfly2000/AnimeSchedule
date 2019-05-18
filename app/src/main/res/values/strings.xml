@@ -91,7 +91,7 @@
     <string name="label_anime_staff">Staff</string>
     <string name="menu_anime_show_detail">Show Detail</string>
     <string name="message_fetching_bilibili_ssid">Fetching SSID...</string>
-    <string name="message_bilibili_ssid_not_found">Property of SSID not found.</string>
+    <string name="message_bilibili_ssid_not_found">Property of SSID not found, this video may not be an anime.</string>
     <string name="message_bilibili_ssid_not_found_advise">Try to modify the beginning \"http\" in URL to \"https\" and
         try again.
     </string>

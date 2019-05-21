@@ -661,6 +661,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void EditWatchedEpisodes(final int index){
+        int lastWatchEpisode=animeJson.GetLastWatchEpisodeForAnime(index);
+        String watchDate=animeJson.GetLastWatchDateStringForAnime(index);
+        if(lastWatchEpisode!=0&&!watchDate.equals(Values.dateStringDefault)&&animeJson.GetEpisodeWatchedIntDate(index,lastWatchEpisode)==0)
+            animeJson.SetEpisodeWatchedIntDate(index,lastWatchEpisode,new YMDDate(watchDate).To8DigitsInt());
         EditWatchedEpisodeDialog dlg=new EditWatchedEpisodeDialog(this);
         dlg.SetJson(animeJson);
         dlg.SetOnOkListener((dialogInterface, i) -> {

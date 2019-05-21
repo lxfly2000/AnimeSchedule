@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":265,
+	"last_watch_index":311,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -1386,7 +1386,7 @@ setJsonData({
 		"episode_count":24,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":5,
 		"color":"silver",
 		"category":["日常","奇幻","萌系","催泪","轻改","推理","萝莉"],
 		"staff":"原作：桜庭一樹\n监督：難波日登志\n脚本：猪爪慎一、岡田麿里、根元歳三\n分镜：松尾衡、難波日登志、後藤圭二、森邦宏\n演出：政木伸一、京田知己、博史池畠、和田純一\n系列构成：岡田麿里\n人物原案：武田日向\n人物设定：川元利浩、富岡隆司\n总作画监督：田中誠輝、谷口淳一郎\n作画监督：富岡隆司、三輪和宏\n音乐：中川幸太郎\n音响监督：原口昇\n摄影监督：古本真由子\n动画制作：BONES",
@@ -3893,7 +3893,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-1-9"
 	},{
-		"watched_episode":[true],
+		"watched_episode":[20190110,20190521,20190521,20190521],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/675674fcfa4dd5e207acb497a7b4603f3406ba21.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26285",
 		"title":"烟草",
@@ -3911,7 +3911,7 @@ setJsonData({
 		"color":"silver",
 		"category":["原创","战斗"],
 		"last_watch_date_anime":"2019-1-10",
-		"last_watch_episode_anime":1,
+		"last_watch_episode_anime":4,
 		"create_date":"2019-1-9"
 	},{
 		"watched_episode":[false],
@@ -5514,7 +5514,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-12"
 	},{
-		"watched_episode":[20190413,20190414,20190414,20190414],
+		"watched_episode":[20190413,20190414,20190414,20190414,20190520],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/33522e5eef0a2c167a31061a5366920e5044cba1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1602",
 		"title":"灼眼的夏娜II",
@@ -5531,7 +5531,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["校园","战斗","热血","小说改","奇幻","萝莉","神魔"],
-		"last_watch_episode_anime":4,
+		"last_watch_episode_anime":5,
 		"create_date":"2019-4-13"
 	},{
 		"watched_episode":[0],
@@ -5854,7 +5854,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-30"
 	},{
-		"watched_episode":[20190502,20190505,20190505,20190505,20190505,20190512],
+		"watched_episode":[20190502,20190505,20190505,20190505,20190505,20190512,20190520],
 		"cover":"https:\/\/lain.bgm.tv\/pic\/cover\/l\/b9\/55\/260373_2Z2oz.jpg",
 		"watch_url":"https:\/\/ch.nicovideo.jp\/choukadou-anime",
 		"title":"超可動ガール1\/6",
@@ -5867,11 +5867,11 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
+		"abandoned":true,
 		"rank":4,
 		"color":"silver",
 		"category":[],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-5-2"
 	},{
 		"watched_episode":[0],
@@ -6174,11 +6174,11 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-5-13"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190520,20190521,20190521,20190521],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8aa0bfce050c72c6626b63d3093a88527c251026.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1172",
 		"title":"轻音少女",
-		"description":"新学年开始，高中一年级新生平泽唯在误将“轻音乐”当做了“轻便、简易的音乐”，而由于自己小时候玩响板得到老师表扬，于是萌发申请入部的想法。\n另一方面，樱丘高中“轻音部”因原来的部员全部毕业离校，此时轻音部新成员只有秋山澪和田井中律两人，无法满足部员至少四人的最低人数要求即将废部，这下该如何是好呢？\n此外，温柔可爱的千金小姐琴吹䌷被律强拉进入轻音部。\n于是，这四名高一女生机缘巧合聚在了一起，便有了吉他手平泽唯、贝司手秋山澪、鼓手田井中律以及键盘手琴吹䌷，轻音部的故事也由此展开。",
+		"description":"新学年开始，高中一年级新生平泽唯在误将“轻音乐”当做了“轻便、简易的音乐”，而由于自己小时候玩响板得到老师表扬，于是萌发申请入部的想法。\n另一方面，樱丘高中“轻音部”因原来的部员全部毕业离校，此时轻音部新成员只有秋山澪和田井中律两人，无法满足部员至少四人的最低人数要求即将废部，这下该如何是好呢？\n此外，温柔可爱的千金小姐琴吹䌷被律强拉进入轻音部。\n于是，这四名高一女生机缘巧合聚在了一起，便有了吉他手平泽唯、贝司手秋山澪、鼓手田井中律以及键盘手琴吹䌷，轻音部的故事也由此展开。\n动画制作：京都动画\n========\n听到片中音乐，第一集我就给了5分。",
 		"actors":"中野梓：竹达彩奈\n秋山澪：日笠阳子\n田井中律：佐藤聪美\n平泽唯：丰崎爱生\n琴吹䌷：寿美菜子\n山中佐和子：真田麻美\n真锅和：藤东知夏\n平泽忧：米泽円\n铃木纯：永田依子",
 		"staff":"原作： かきふらい\n导演： 山田尚子\n脚本： 吉田玲子、村元克彦、花田十輝\n分镜： 山田尚子、高雄統子、石立太一\n演出： 山田尚子、高雄統子、石立太一\n音乐： 百石元、深井康介\n人物设定： 堀口悠紀子\n系列构成： 吉田玲子\n美术监督： 田村せいき\n色彩设计： 竹田明代\n作画监督： 堀口悠紀子、高橋真梨子、西屋太志、秋竹斉一、植野千世子、池田和美、高橋博行\n摄影监督： 山本倫\n原画： 山田尚子、石立太一、木上益治、池田晶子、高雄統子、斎藤敦史、門脇未来、鴨居知世\n企画： 小林宏之、田中潤一朗\n音响监督： 鶴岡陽太\n动画制作：京都动画",
 		"start_date":"2009-04-02",
@@ -6188,10 +6188,10 @@ setJsonData({
 		"episode_count":14,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":5,
 		"color":"silver",
 		"category":["日常","校园","音乐","漫画改"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":4,
 		"create_date":"2019-5-13"
 	},{
 		"watched_episode":[0],
@@ -6273,5 +6273,25 @@ setJsonData({
 		"category":[],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-5-18"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0bb9ea24a9ee6e14c36cb6678d1a4e5b8de44ae6.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss2586",
+		"title":"没有黄段子存在的无聊世界",
+		"description":"故事描述日本在16年前成立名为《公序良俗健全育成法》的法规，自此所有与“性”有关的文句都遭到禁止。某日，高中生奥间狸吉终于如愿进入由自己崇拜的学姐担任学生会长的优良名校就读，但刚入学就遭到名为“雪原之青”的下流梗恐怖份子抓住把柄，被迫成为下流梗恐怖组织“SOX”的一员。",
+		"actors":"奥间狸吉：小林裕介\n华城绫女：石上静香\n安娜·锦之宫：松来未佑\n不破冰菓：后藤沙绪里\n早乙女乙女：新井里美\n轰力雷树：三宅健太\n鬼头鼓修理：堀江由衣\n月见草胧：上坂堇\n小敏感：小仓唯\n苏菲亚·锦之..",
+		"staff":"监督：铃木洋平\n原作：赤城大空\n脚本：横谷昌宏\n分镜：湖山禎崇、篁蒼氓、鈴木洋平、梶井瀬賀\n演出：湖山禎崇、鈴木洋平\n系列构成：横谷昌宏\n角色原案：霜月八日\n角色设计：藤井昌宏\n总作画监督：藤井昌宏\n作画监督：小松原圣、藤井昌宏、大木良一\n美术监督：水谷利春\n音乐：立山秋航\n音响监督：明田川仁\n动画制作：J.C.STAFF",
+		"start_date":"2015-07-04",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["日常","后宫","校园"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-5-20"
 	}]
 });

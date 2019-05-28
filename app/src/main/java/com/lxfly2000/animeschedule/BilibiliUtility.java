@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
 public class BilibiliUtility {
     public static String GetBilibiliDownloadPath(Context context){
         SharedPreferences preferences=Values.GetPreference(context);
-        return preferences.getString(Values.keyBilibiliSavePath,Values.GetAppDataPathExternal(context))
-                .concat("/").concat(Values.pkgNameBilibiliVersions[preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex)])
+        return preferences.getString(context.getString(R.string.key_bilibili_save_path),Values.GetAppDataPathExternal(context))
+                .concat("/").concat(context.getResources().getStringArray(R.array.pkg_name_bilibili_versions)[preferences.getInt(context.getString(R.string.key_bilibili_version_index),Values.vDefaultBilibiliVersionIndex)])
                 .concat("/download");
     }
 

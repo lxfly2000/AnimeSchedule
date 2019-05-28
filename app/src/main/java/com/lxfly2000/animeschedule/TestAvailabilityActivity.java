@@ -143,8 +143,8 @@ public class TestAvailabilityActivity extends AppCompatActivity {
         };
         currentTask.SetDownloadFile(false);
         currentTask.SetExtra(jsonSortTable.get(currentIndex));
-        currentTask.SetConnectTimeOut(preferences.getInt(Values.keyTestConnectionTimeout,Values.vDefaultTestConnectionTimeout));
-        currentTask.SetReadTimeOut(preferences.getInt(Values.keyTestReadTimeout,Values.vDefaultTestReadTimeout));
+        currentTask.SetConnectTimeOut(preferences.getInt(getString(R.string.key_test_connection_timeout),Values.vDefaultTestConnectionTimeout));
+        currentTask.SetReadTimeOut(preferences.getInt(getString(R.string.key_test_read_timeout),Values.vDefaultTestReadTimeout));
         currentTask.execute(json.GetWatchUrl(jsonSortTable.get(currentIndex)));
     }
 

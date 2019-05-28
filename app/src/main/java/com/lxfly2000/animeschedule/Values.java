@@ -10,34 +10,34 @@ public class Values {
     public static final String[] pathJsonDataOnRepository={"anime.js","anime.json"};
     public static final String keyAnimeInfoDate="anime_info_date",vdAnimeInfoDate="1900-1-1";
     public static final String vDefaultString="(NOT SET)";
-    public static final String keySortMethod="anime_sort_method";
+    //public static final String keySortMethod="anime_sort_method";
     public static final int vDefaultSortMethod=1;
-    public static final String keySortOrder="anime_sort_order";
+    //public static final String keySortOrder="anime_sort_order";
     public static final int vDefaultSortOrder=2;
-    public static final String keySortSeperateAbandoned="anime_sort_separate_abandoned";
+    //public static final String keySortSeperateAbandoned="anime_sort_separate_abandoned";
     public static final boolean vDefaultSortSeperateAbandoned=true;
-    public static final String keyBilibiliSavePath="bilibili_save_path";
+    //public static final String keyBilibiliSavePath="bilibili_save_path";
     public static String GetvDefaultBilibiliSavePath(Context ctx){
         return GetAppDataPathExternal(ctx);
     }
-    public static final String keyBilibiliVersionIndex="bilibili_version_index";
+    //public static final String keyBilibiliVersionIndex="bilibili_version_index";
     public static final int vDefaultBilibiliVersionIndex =0;
     public static final String dateStringDefault="1900-1-1";
-    public static final String keyStarMark="star_mark";
+    //public static final String keyStarMark="star_mark";
     public static final int vDefaultStarMark=0;
     public static final String keyEditWatchedEpisodeDialogType="edit_watched_epi_dlg_type";
     public static final int vDefaultEditWatchedEpisodeDialogType=0;
     public static final String keySkippedVersionCode="skip_ver_code";
     public static final int vDefaultSkippedVersionCode=0;
-    public static final String keyApiMethod="bilibili_api_method";
+    //public static final String keyApiMethod="bilibili_api_method";
     public static final int vDefaultApiMethod=0;
-    public static final String keyTestConnectionTimeout="test_connection_timeout";
+    //public static final String keyTestConnectionTimeout="test_connection_timeout";
     public static final int vDefaultTestConnectionTimeout=10000;
-    public static final String keyTestReadTimeout="test_read_timeout";
+    //public static final String keyTestReadTimeout="test_read_timeout";
     public static final int vDefaultTestReadTimeout=10000;
-    public static final String keyRedirectMaxCount="redirect_max_count";
+    //public static final String keyRedirectMaxCount="redirect_max_count";
     public static final int vDefaultRedirectMaxCount=5;
-    public static final String[] starMarks={"★☆","●○"};
+    //public static final String[] starMarks={"★☆","●○"};
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
     }
@@ -91,7 +91,7 @@ public class Values {
     public static String GetCheckUpdateURL(){
         return urlAuthor+"/raw/master/app/build.gradle";
     }
-    public static final String pkgNameBilibiliVersions[]={"tv.danmaku.bili","com.bilibili.app.in","com.bilibili.app.blue"};
+    //public static final String pkgNameBilibiliVersions[]={"tv.danmaku.bili","com.bilibili.app.in","com.bilibili.app.blue"};
     public static String GetAppDataPathExternal(Context ctx){
         return ctx.getExternalCacheDir().getParentFile().getParent();
     }

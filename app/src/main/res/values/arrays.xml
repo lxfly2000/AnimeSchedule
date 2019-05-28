@@ -20,6 +20,11 @@
         <item>Bilibili International (com.bilibili.app.in)</item>
         <item>Bilibili Blue (com.bilibili.app.blue)</item>
     </string-array>
+    <string-array name="pkg_name_bilibili_versions">
+        <item>tv.danmaku.bili</item>
+        <item>com.bilibili.app.in</item>
+        <item>com.bilibili.app.blue</item>
+    </string-array>
     <string-array name="list_bilibili_video_quality">
         <item>Low(Legacy)</item>
         <item>Mid(Legacy)</item>
@@ -33,5 +38,9 @@
         <item>1080P+</item>
         <item>720P60</item>
         <item>1080P60</item>
+    </string-array>
+    <string-array name="star_marks">
+        <item>★☆</item>
+        <item>●○</item>
     </string-array>
 </resources>

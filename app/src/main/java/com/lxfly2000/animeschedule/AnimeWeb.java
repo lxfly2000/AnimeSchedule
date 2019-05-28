@@ -18,7 +18,7 @@ public class AnimeWeb extends AppCompatActivity {
         webAnime=(WebView)findViewById(R.id.webviewAnime);
         webAnime.getSettings().setJavaScriptEnabled(true);
         SharedPreferences preferences=Values.GetPreference(this);
-        String starMarks=Values.starMarks[preferences.getInt(Values.keyStarMark,Values.vDefaultStarMark)];
+        String starMarks=getResources().getStringArray(R.array.star_marks)[preferences.getInt(getString(R.string.key_star_mark),Values.vDefaultStarMark)];
         String starMarkFull=starMarks.substring(0,1),starMarkEmpty=starMarks.substring(1,2);
         webAnime.loadUrl("file://"+Values.GetRepositoryPathOnLocal()+"/"+Values.webFiles[0]+"?mark_full="+starMarkFull+"&mark_empty="+starMarkEmpty);
     }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+            android:title="@string/label_sort_method">
+
+        <ListPreference
+                android:defaultValue="1"
+                android:entries="@array/list_sort_methods"
+                android:key="@string/key_sort_method" android:title="@string/label_sort_method_sort_by"/>
+        <ListPreference
+                android:defaultValue="1"
+                android:entries="@array/list_sort_order"
+                android:key="@string/key_sort_order" android:title="@string/label_sort_method_sort_order"/>
+        <CheckBoxPreference
+                android:defaultValue="false"
+                android:title="@string/label_sort_split_abandoned" android:key="@string/key_sort_separate_abandoned"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+            android:title="@string/label_bilibili_download_settings">
+        <Preference android:key="@string/key_bilibili_save_path" android:title="@string/label_bilibili_download_path"/>
+        <ListPreference
+                android:defaultValue="1"
+                android:title="@string/label_bilibili_download_app_version"
+                android:entries="@array/list_bilibili_client_versions"
+                android:entryValues="@array/pkg_name_bilibili_versions"
+                android:key="@string/key_bilibili_version_index"/>
+        <ListPreference
+                android:defaultValue="1"
+                android:title="@string/label_bilibili_download_api"
+                android:key="@string/key_api_method"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+            android:title="@string/label_other_settings">
+
+        <ListPreference
+                android:defaultValue="1"
+                android:title="@string/label_choose_star_mark" android:entries="@array/star_marks"
+                android:entryValues="@array/star_marks" android:key="@string/key_star_mark"/>
+        <EditTextPreference
+                android:defaultValue="0"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="@string/label_test_availability_connection_time_out"
+                android:key="@string/key_test_connection_timeout" android:inputType="number"/>
+        <EditTextPreference
+                android:defaultValue="0"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="@string/label_test_availability_read_time_out"
+                android:key="@string/key_test_read_timeout" android:inputType="number"/>
+        <EditTextPreference
+                android:defaultValue="0"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="@string/label_max_redirect_count" android:key="@string/key_redirect_max_count"
+                android:inputType="number"/>
+    </PreferenceCategory>
+</PreferenceScreen>

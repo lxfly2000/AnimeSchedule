@@ -333,14 +333,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void DisplayList(){
-        RebuildSortTable(preferences.getInt(Values.keySortMethod,Values.vDefaultSortMethod),
-                preferences.getInt(Values.keySortOrder,Values.vDefaultSortOrder),
-                preferences.getBoolean(Values.keySortSeperateAbandoned,Values.vDefaultSortSeperateAbandoned));
+        RebuildSortTable(preferences.getInt(getString(R.string.key_sort_method),Values.vDefaultSortMethod),
+                preferences.getInt(getString(R.string.key_sort_order),Values.vDefaultSortOrder),
+                preferences.getBoolean(getString(R.string.key_sort_separate_abandoned),Values.vDefaultSortSeperateAbandoned));
         ArrayList<HashMap<String,Object>>listItems=new ArrayList<>();
         String[]keyStrings={"title","description","ranking","schedule","cover"};
         int[]viewIds={R.id.textAnimeTitle,R.id.textAnimeDescription,R.id.textRanking,R.id.textSchedule,R.id.imageCover};
         SimpleAdapter customAdapter=new SimpleAdapter(this,listItems,R.layout.item_anime,keyStrings,viewIds);
-        String starMarks=Values.starMarks[preferences.getInt(Values.keyStarMark,Values.vDefaultStarMark)];
+        String starMarks=getResources().getStringArray(R.array.star_marks)[preferences.getInt(getString(R.string.key_star_mark),Values.vDefaultStarMark)];
         String starMarkFull=starMarks.substring(0,1),starMarkEmpty=starMarks.substring(1,2);
         for(int i=0;i<animeJson.GetAnimeCount();i++){
             HashMap<String,Object>listItem=new HashMap<>();
@@ -1056,7 +1056,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(response==301||response==302){
                     redirectCount++;
-                    if(redirectCount>preferences.getInt(Values.keyRedirectMaxCount,Values.vDefaultRedirectMaxCount)){
+                    if(redirectCount>preferences.getInt(getString(R.string.key_redirect_max_count),Values.vDefaultRedirectMaxCount)){
                         Toast.makeText(getBaseContext(),response+"\n"+getString(R.string.message_too_many_redirect),Toast.LENGTH_LONG).show();
                     }else {
                         ReadBilibiliURL_OnCallback((String) additionalReturned);

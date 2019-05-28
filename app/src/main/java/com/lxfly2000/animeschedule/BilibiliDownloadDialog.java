@@ -54,7 +54,7 @@ public class BilibiliDownloadDialog {
             Toast.makeText(ctx,R.string.message_bilibili_ssid_not_found,Toast.LENGTH_LONG).show();
             return;
         }
-        String pkgName=Values.pkgNameBilibiliVersions[preferences.getInt(Values.keyBilibiliVersionIndex,Values.vDefaultBilibiliVersionIndex)];
+        String pkgName=ctx.getResources().getStringArray(R.array.pkg_name_bilibili_versions)[preferences.getInt(ctx.getString(R.string.key_bilibili_version_index),Values.vDefaultBilibiliVersionIndex)];
         final AlertDialog dialog=new AlertDialog.Builder(ctx)
                 .setTitle(json.GetTitle(index))
                 .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
@@ -106,7 +106,7 @@ public class BilibiliDownloadDialog {
                         //一定要把对象创建放在里面要不然会下串集数的！！
                         BilibiliAnimeEpisodeDownloader downloader=new BilibiliAnimeEpisodeDownloader(ctx);
                         downloader.DownloadEpisode(htmlJson,i_check,BilibiliUtility.videoQualities[spinnerVideoQuality.getSelectedItemPosition()].value,
-                                preferences.getInt(Values.keyApiMethod,Values.vDefaultApiMethod));
+                                preferences.getInt(ctx.getString(R.string.key_api_method),Values.vDefaultApiMethod));
                         error|=downloader.error;
                     }
                     if(error==0) {

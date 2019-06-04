@@ -2986,7 +2986,7 @@ setJsonData({
 		"watched_episode":[false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e429e1bae20bfb31a7137053ad3e4f19572f1616.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss25951",
-		"title":"吸血鬼仆人",
+		"title":"吸血鬼仆人 剧场版",
 		"description":"城田真昼是一个凡事都奉行简单的高中一年级男生。\n某天他在路上捡了一只黑猫回家，并将之取名为「小黑」。没想到那只猫其实是名为史利比亚修的吸血鬼仆人──SERVAMP，意外成为黑仔主人的真昼，随之被卷入了一场由名叫「椿」的真祖所引发的吸血鬼大战，究竟他能不能顺利地守护自己的朋友与家人，SERVAMP们的身上到底隐藏着什么样惊人的秘密？吸血鬼和主仆契约的战斗奇幻故事就此开始了。\n动画制作：Platinum Vision",
 		"start_date":"2018-11-01",
 		"update_period":1,
@@ -4989,7 +4989,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e7950f21042cade73ed4282d988d131769c98d5d.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1057",
 		"title":"凉宫春日的忧郁",
-		"description":"“我对普通的人类没有兴趣。你们之中要是有外星人、未来人、异世界人或者超能力者的话，就尽管来找我吧！”这是围绕着被天上天下唯我独尊超积极任性女孩凉宫春日所指挥的阿虚和SOS团而展开的微妙的非日常校园故事。\n动画制作：京都动画\n========\n如果我有个长门大萌神这样的朋友会怎么样？\n26话插入曲「God Knows」",
+		"description":"“我对普通的人类没有兴趣。你们之中要是有外星人、未来人、异世界人或者超能力者的话，就尽管来找我吧！”这是围绕着被天上天下唯我独尊超积极任性女孩凉宫春日所指挥的阿虚和SOS团而展开的微妙的非日常校园故事。\n动画制作：京都动画\n========\n如果我有个长门大萌神这样的朋友会怎么样？\n26话插入曲「God Knows」「Lost my music」",
 		"actors":"阿虚：杉田智和\n凉宫春日：平野绫\n长门有希：茅原实里\n朝比奈实玖琉：后藤邑子\n古泉一树：小野大辅\n鹤屋学姐：松冈由贵\n谷口：白石稔\n国木田：松元惠\n虚妹：青木静香\n三味线：绪方贤一",
 		"staff":"原作、构成协力：谷川流\n原作插图、角色原案：いとうのいぢ\n团长：凉宫春日\n团长代理（导演）：石原立也\n团长辅佐（执行导演）：武本康弘\n剪接：重村建吾 (Studio Gong)\n系列构成：凉宫春日和还是愉快的伙伴们\n角色设计：池田晶子\n总作画指导：西屋太志\n美术指导：田村清辉\n色彩设计：石田奈央美\n摄影指导：中上龙太\n音响指导：鹤冈阳太\n音乐：神前晓\n音乐制作：Lantis\n监制：伊藤敦、八田英明\n动画监制：山口真由美\n动画制作：京都动画\n制作协力：角川书店、角川Media House\n出品：SOS团（角川书店、角川电影、京都动画、The Klock Worx Company、Lantis）",
 		"start_date":"2009-04-02",
@@ -5234,7 +5234,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190430,20190504,20190504,20190504,20190511,20190518,20190525],
+		"watched_episode":[20190430,20190430,20190504,20190504,20190504,20190511,20190518,20190525,20190604],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a3b2db2edeeac4fb51446724458cf93fe46d2797.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26818",
 		"title":"一个人的〇〇小日子",
@@ -5251,10 +5251,10 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","日常","萌系","校园"],
-		"last_watch_episode_anime":8,
+		"last_watch_episode_anime":9,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190430,20190501,20190501,20190505,20190511,20190518,20190525],
+		"watched_episode":[20190430,20190430,20190501,20190501,20190505,20190511,20190518,20190525,20190604],
 		"cover":"https:\/\/lain.bgm.tv\/pic\/cover\/l\/7d\/87\/268412_P63Pf.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26953",
 		"title":"滿腦都是○○的我沒辦法談戀愛",
@@ -5271,7 +5271,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","搞笑","恋爱"],
-		"last_watch_episode_anime":8,
+		"last_watch_episode_anime":9,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190506,20190506,20190506],
@@ -5314,7 +5314,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525],
+		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/368c60d973a8a3251534f599dcb2eff7fc64cef3.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26766",
 		"title":"水果篮子2019版",
@@ -5331,7 +5331,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","奇幻","校园","恋爱","少女"],
-		"last_watch_episode_anime":8,
+		"last_watch_episode_anime":9,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414,20190417],
@@ -5958,7 +5958,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/41510732a15f86c96cb6e1d52032d5cdfab4790e.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss6481",
 		"title":"妄想学生会 剧场版",
-		"description":"「私立樱才学园」、原本是传统女子高中，但因为少子化问题影响，在现任校长政策下不得不改制为男女合校。作为改制后第一年入学的28名男性新生之一的「津田隆利」，偶然之下被拉入了学生会之中。学生会在外人看来是美女如云的天堂，但是津田身边的三位学生会女干部性格都非常独特，津田开始了他那每天吐槽不完的校园生活……\n动画制作：GoHands",
+		"description":"「私立樱才学园」、原本是传统女子高中，但因为少子化问题影响，在现任校长政策下不得不改制为男女合校。作为改制后第一年入学的28名男性新生之一的「津田隆利」，偶然之下被拉入了学生会之中。学生会在外人看来是美女如云的天堂，但是津田身边的三位学生会女干部性格都非常独特，津田开始了他那每天吐槽不完的校园生活……\n动画制作：GoHands\n2019-5-28:下架。",
 		"actors":"津田隆利：浅沼晋太郎\n天草筱：日笠陽子\n七条天空：佐藤聡美\n萩村铃：矢作紗友里\n鱼见千寻：斎藤千和\n津田琴美：下田麻美\n横岛鸣子：小林优\n三叶睦美：小見川千明\n五十岚枫：加藤英美里\n畑兰子：新井里美",
 		"staff":"导演: 金澤洪充\n音乐: 森悠也\n人物设定: 古田誠\n系列构成: 金澤洪充\n美术监督: 内藤健\n总作画监督: 古田誠\n摄影监督: 菊地貴紀\n音响监督: 田中亮\n音响: グロービジョン\n音乐制作: キングレコード\n动画制作: GoHands",
 		"start_date":"2017-07-21",
@@ -6034,7 +6034,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-5-5"
 	},{
-		"watched_episode":[20190506,20190506,20190509,20190509,20190509,20190516],
+		"watched_episode":[20190506,20190506,20190509,20190509,20190509,20190516,20190604,20190604],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/41c2658772fe2c1c3e15b0a72e31d0ac502e1e72.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26941",
 		"title":"強襲魔女 501部隊出動!（僅限台灣地區）",
@@ -6051,7 +6051,7 @@ setJsonData({
 		"rank":3,
 		"color":"silver",
 		"category":["漫画改","搞笑"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":8,
 		"create_date":"2019-5-5"
 	},{
 		"watched_episode":[0],
@@ -6194,11 +6194,11 @@ setJsonData({
 		"last_watch_episode_anime":14,
 		"create_date":"2019-5-13"
 	},{
-		"watched_episode":[20190525,20190525,20190525,20190526,20190526,20190526,20190528],
+		"watched_episode":[20190525,20190525,20190525,20190526,20190526,20190526,20190528,20190528,20190529,20190602,20190603,20190604,20190605],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/c3c68d569810a1eec76d878ae39f62e8c0096d3e.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1173",
 		"title":"轻音少女 第二季",
-		"description":"【本片翻译由华盟字幕社提供】故事紧接第一季动画剧情展开，讲述的是平泽唯等四人从升入高三到毕业这一年间和高二部员中野梓的日常温馨生活。\n动画制作：京都动画\n这什么鬼畜op。",
+		"description":"【本片翻译由华盟字幕社提供】故事紧接第一季动画剧情展开，讲述的是平泽唯等四人从升入高三到毕业这一年间和高二部员中野梓的日常温馨生活。\n动画制作：京都动画\n这什么鬼畜op。\n7话「ぴゅあぴゅあはーと」（纯洁之心）",
 		"actors":"平泽唯：丰崎爱生\n中野梓：竹达彩奈\n琴吹䌷：寿美菜子\n秋山澪：日笠阳子\n田井中律：佐藤聪美\n真锅和：藤东知夏\n平泽忧：米泽円\n山中佐和子：真田麻美\n铃木纯：永田依子",
 		"staff":"原作：kakifly（芳文社月刊《Manga Time Kirara》连载）\n导演：山田尚子\n系列构成：吉田玲子\n人物设定、总作画监督：堀口悠纪子\n乐器监修：高桥博行\n美术监督：田村盛挥\n色彩设计：竹田明代\n背景监督：田峰育子\n摄影监督：山本伦\n编辑：重村建吾\n音响监督：鹤冈阳太\n音乐：百石元\n音乐制作人：小森茂生\n音乐A&R：矶山敦、冈本真梨子\n音乐协调：深井康介\n音乐制作：波丽佳音\n顾问：石原立也\n制片人：中山佳久、中村伸一、太布尚弘、八田阳子\n助理制作人：藤野麻耶、松永裕一\n动画制片人：大桥永晴\n动画制作： 京都アニメーション（京都动画）",
 		"start_date":"2010-04-06",
@@ -6211,7 +6211,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","萌系","音乐","校园","日常"],
-		"last_watch_episode_anime":7,
+		"last_watch_episode_anime":13,
 		"create_date":"2019-5-13"
 	},{
 		"watched_episode":[0],
@@ -6393,5 +6393,65 @@ setJsonData({
 		"category":["萌系","搞笑","日常","社团"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-5-27"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8574b7abe046b20ad19374106a78ccb7cc0359c6.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss5032",
+		"title":"吸血鬼仆人",
+		"description":"高中一年级学生·城田真昼在路边捡了一只黑猫，并取名为小黑。\n然而，那只猫其实是名为\"SERVAMP\"的，听从与其定下契约的人类之言的\"SERVANT(仆人)\"同时是\"VAMPIRE(吸血鬼)\"！\n因为契约所以成为了小黑的主人的真昼，\n却又因此卷入了吸血鬼同士之间的争斗…\n这是吸血鬼×主仆契约的现代战斗幻想故事！\n动画制作：Brain's Base",
+		"actors":"小黑：梶裕貴\n城田真昼：寺岛拓笃\n修·扎·达克·阿尔吉侬三世：村濑步\n千驮谷铁：小野友树\nSnow Lily：堀江一真\n有栖院御园：下野纮\n椿：鈴木达央\nLawless：木村良平\n",
+		"staff":"原作：田中Strike\n总监督：更一灯\n监督：中野英明\n系列构成：古怒田健志\n角色设计：山中纯子\n总作画监督：山中纯子　小林利充\n道具设计：杉村友和\n动作作画监督：才木康寛\n美术监督：黛昌树\n色彩设计：晴子登\n摄影监督：浅川茂辉\n编集：木村佳史子\n音乐：川井宪次\n音乐监制：关根杨一\n音乐制作：LANTIS\n声音监督：龟山俊树\n动画制作：Brain's Base",
+		"start_date":"2016-07-05",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["漫画改","战斗","奇幻"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-6-3"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ed8f624e710c57078ead176dcab042955011c8f2.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss3586",
+		"title":"山田君与7人魔女 OAD",
+		"description":"《山田君与7人魔女》的OAD共2话，与漫画单行本第15和17卷的限定版同捆发行。\n动画制作：LIDENFILMS",
+		"actors":"山田龙：逢坂良太\n白石丽：早見沙織\n山崎春马：福山潤\n小田切宁宁：喜多村英梨\n伊藤雅：内田真礼\n宫村虎之介：増田俊樹",
+		"staff":"原作：吉河美希\n监督：宅野誠起\n脚本：塚本のりこ\n分镜：宅野誠起\n演出：臼井文明、宅野誠起\n系列构成：塚本のりこ\n人物设定：飯田恵理子\n美术监督：徳田俊之\n色彩设计：池田ひとみ\n总作画监督：寺尾憲治\n作画监督：岡本達明、冨谷美香\n音乐：横山克\n音响监督：鶴岡陽太\n动画制作：ライデンフィルム",
+		"start_date":"2014-12-17",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":2,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":5,
+		"color":"silver",
+		"category":["奇幻"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-6-4"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/css.njhzmxx.com\/comic\/acg\/2016\/12\/13\/96dd29621eb06cfd202ef911273938a594c1311a.jpg",
+		"watch_url":"http:\/\/www.yhdm.tv\/show\/2511.html",
+		"title":"无彩限的怪灵世界",
+		"description":"在本世纪初，因为恐怖分子袭击阿赖耶识研究所基因实验基地的关系，导致特殊病毒的泄露，从此人类的大脑当中出现了变异，开始能够看到一些幽灵般的存在——“phantom（怪灵）”。而在此次事件前后出生的孩子当中，一部分人就拥有能够跟怪灵战斗的能力，为此防卫省也于中小学内成立“脑功能异常对策室”，安排孩子们解决怪灵问题。主人公·赫塞亚学院高一学生一条晴彦便是其中的一员，而他跟前辈川神舞、被称为“怪灵吞噬者”的和泉玲奈以及“反怪灵要员”水无濑小糸一起投入到同怪灵的作战，然而世界的真相还在等待他们去揭开……\n动画制作：京都动画",
+		"actors":"",
+		"staff":"",
+		"start_date":"2016-1-6",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["科幻","奇幻","冒险"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-6-4"
 	}]
 });

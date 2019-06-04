@@ -88,7 +88,11 @@ public class SettingsFragment extends PreferenceFragment {
         if(preference instanceof CheckBoxPreference) {
             sharedPreferences.edit().putBoolean(preference.getKey(), (boolean) o).apply();
         }else if(preference instanceof EditTextPreference||preference instanceof ListPreference){
-            sharedPreferences.edit().putInt(preference.getKey(),Integer.parseInt((String)o)).apply();
+            try {
+                sharedPreferences.edit().putInt(preference.getKey(), Integer.parseInt((String) o)).apply();
+            }catch (NumberFormatException e){
+                return false;
+            }
         }else{
             sharedPreferences.edit().putString(preference.getKey(),(String)o).apply();
         }

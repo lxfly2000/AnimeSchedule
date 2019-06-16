@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":312,
+	"last_watch_index":268,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -5234,7 +5234,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190430,20190504,20190504,20190504,20190511,20190518,20190525,20190604],
+		"watched_episode":[20190430,20190430,20190504,20190504,20190504,20190511,20190518,20190525,20190604,20190609,20190615],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a3b2db2edeeac4fb51446724458cf93fe46d2797.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26818",
 		"title":"一个人的〇〇小日子",
@@ -5251,10 +5251,10 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","日常","萌系","校园"],
-		"last_watch_episode_anime":9,
+		"last_watch_episode_anime":11,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190430,20190501,20190501,20190505,20190511,20190518,20190525,20190604],
+		"watched_episode":[20190430,20190430,20190501,20190501,20190505,20190511,20190518,20190525,20190604,20190609,20190615],
 		"cover":"https:\/\/lain.bgm.tv\/pic\/cover\/l\/7d\/87\/268412_P63Pf.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26953",
 		"title":"滿腦都是○○的我沒辦法談戀愛",
@@ -5271,7 +5271,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","搞笑","恋爱"],
-		"last_watch_episode_anime":9,
+		"last_watch_episode_anime":11,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190506,20190506,20190506],
@@ -5314,7 +5314,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604],
+		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/368c60d973a8a3251534f599dcb2eff7fc64cef3.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26766",
 		"title":"水果篮子2019版",
@@ -5331,7 +5331,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","奇幻","校园","恋爱","少女"],
-		"last_watch_episode_anime":9,
+		"last_watch_episode_anime":11,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414,20190417],
@@ -6034,7 +6034,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-5-5"
 	},{
-		"watched_episode":[20190506,20190506,20190509,20190509,20190509,20190516,20190604,20190604],
+		"watched_episode":[20190506,20190506,20190509,20190509,20190509,20190516,20190604,20190604,20190605,20190612],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/41c2658772fe2c1c3e15b0a72e31d0ac502e1e72.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26941",
 		"title":"強襲魔女 501部隊出動!（僅限台灣地區）",
@@ -6051,7 +6051,7 @@ setJsonData({
 		"rank":3,
 		"color":"silver",
 		"category":["漫画改","搞笑"],
-		"last_watch_episode_anime":8,
+		"last_watch_episode_anime":10,
 		"create_date":"2019-5-5"
 	},{
 		"watched_episode":[0],
@@ -6194,7 +6194,7 @@ setJsonData({
 		"last_watch_episode_anime":14,
 		"create_date":"2019-5-13"
 	},{
-		"watched_episode":[20190525,20190525,20190525,20190526,20190526,20190526,20190528,20190528,20190529,20190602,20190603,20190604,20190605],
+		"watched_episode":[20190525,20190525,20190525,20190526,20190526,20190526,20190528,20190528,20190529,20190602,20190603,20190604,20190605,20190605,20190605,20190607,20190614],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/c3c68d569810a1eec76d878ae39f62e8c0096d3e.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1173",
 		"title":"轻音少女 第二季",
@@ -6211,7 +6211,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","萌系","音乐","校园","日常"],
-		"last_watch_episode_anime":13,
+		"last_watch_episode_anime":17,
 		"create_date":"2019-5-13"
 	},{
 		"watched_episode":[0],
@@ -6453,5 +6453,65 @@ setJsonData({
 		"category":["科幻","奇幻","冒险"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-4"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ac5fe32dcdb50b2741896a4501bb24fe577489d9.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss5278",
+		"title":"秋之回忆 OVA",
+		"description":"メモリーズオフ OVA 第1弾 終わらない雨~唯笑編~\nメモリーズオフ OVA 第2弾 仮面の心~詩音編~\nメモリーズオフ OVA 第3弾 黄金の海~みなも編~",
+		"actors":"",
+		"staff":"原作：KID\n",
+		"start_date":"2001-11-21",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":3,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["恋爱"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-6-7"
+	},{
+		"watched_episode":[20190607],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/01bcdd1b11e153a52454877f724b68aac9b6a13b.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss602",
+		"title":"天使的水果糖",
+		"description":"在寄宿制的圣阿斯玛利亚女子学园，刚刚入学的牡丹和小忍和自称天使的小翁相遇。在偶然吃到小翁头上天使环一样的点心天使之蛋之后，两人也变成了会下(读作尿裤子)天使之蛋的体质。按照小翁的说法，似乎产下10万个天使之蛋就能实现愿望...\n\n《天使的糖果（天使のどろっぷ）》是由日本漫画家中嶋ちずな自2012年7月24日起在WEB漫画杂志《COMIC メテオ》上连载的WEB漫画，每周三更新。2012年12月1日，《天使的糖果》的“SPECIAL SITE”网站开启，并宣布动画化决定的消息。电视动画将于2013年5月12日开始播放。",
+		"actors":"牡丹(ぼたん)：松嵜丽\n小忍(しのぶ)：后藤麻衣\n小翁(うん)：五十岚裕美",
+		"staff":"脚本：伊藤浩二\n导演：伊藤浩二\n人物设定：奈須一裕\n原作：中嶋ちずな\n分镜：伊藤浩二\n动画制作：AIC\n",
+		"start_date":"2013-05-12",
+		"update_time_int":0,
+		"update_period":1,
+		"update_period_unit":"month",
+		"episode_count":1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":2,
+		"color":"silver",
+		"category":["日常","泡面"],
+		"last_watch_episode_anime":1,
+		"create_date":"2019-6-7"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/f506cf6ae9b8af4965826a20f604b5a12786e2cb.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss846",
+		"title":"电波女与青春男",
+		"description":"故事的主角是将“青春点数”分配到自己的行动和相关的事情上、有时欢喜有时忧愁的少年丹羽真，及把被子卷在身上、自称外星人的“电波女”（却是美少女）的藤和艾莉欧。作品以这二人为中心，展开了有点奇怪、却又非常清爽的青春故事。",
+		"actors":"藤和女女：野中藍\n前川同学：渕上舞\n御船流子：加藤英美里\n藤和艾莉欧：大亀あすか\n丹羽真：入野自由\n花泽：花澤香菜\n星宫社：井口裕香\n",
+		"staff":"脚本：綾奈ゆにこ\n原作：入間人間\n分镜：畠山守、杉山延寛、笹木信作、高橋知也、八瀬祐樹、板村智幸、平川哲生\n演出：間島崇寛、八瀬祐樹、畠山守、板村智幸、川畑喬、向井雅浩、下田久人\n音乐：Franz Maxwell I.（藤澤慶昌（F）、前山田健一（M）、板垣祐介（I））\n人物原案：ブリキ\n人物设定：西田亜沙子\n系列构成：綾奈ゆにこ\n色彩设计：日比野仁\n总作画监督：たむらかずひこ、杉山延寛、西田亜沙子\n作画监督：矢向宏志、松本元気",
+		"start_date":"2011-04-14",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["萌系","日常","小说改"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-6-15"
 	}]
 });

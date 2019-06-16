@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="label_units">
+        <item>日</item>
+        <item>月</item>
+    </string-array>
+    <string-array name="list_sort_methods">
+        <item>原始順序</item>
+        <item>更新日期</item>
+        <item>觀看日期</item>
+        <item>評價</item>
+    </string-array>
+    <string-array name="list_sort_order">
+        <item>不排序</item>
+        <item>升序</item>
+        <item>降序</item>
+    </string-array>
+    <string-array name="list_bilibili_client_versions">
+        <item>嗶哩嗶哩彈幕 (tv.danmaku.bili)</item>
+        <item>嗶哩嗶哩國際版 (com.bilibili.app.in)</item>
+        <item>嗶哩嗶哩概念 (com.bilibili.app.blue)</item>
+    </string-array>
+    <string-array name="list_bilibili_video_quality">
+        <item>流暢(舊版本)</item>
+        <item>清晰(舊版本)</item>
+        <item>高清(舊版本)</item>
+        <item>超清(舊版本)</item>
+        <item>1080P(舊版本)</item>
+        <item>流暢360P</item>
+        <item>清晰480P</item>
+        <item>高清720P</item>
+        <item>高清1080P</item>
+        <item>1080P+</item>
+        <item>720P60</item>
+        <item>1080P60</item>
+    </string-array>
+</resources>

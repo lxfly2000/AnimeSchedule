@@ -5755,7 +5755,7 @@ setJsonData({
 		"create_date":"2019-4-24"
 	},{
 		"watched_episode":[0],
-		"cover":"http:\/\/r1.ykimg.com\/0516400059E85570859B5E11280901DF.jpg",
+		"cover":"http:\/\/r1.ykimg.com\/0516400059E85570859B5E11280901DF",
 		"watch_url":"http:\/\/list.youku.com\/show\/id_zfcbf969861ad11e0bea1.html",
 		"title":"侵略！乌贼娘",
 		"description":"优酷：作品内容大致是以一个生活在海底的乌贼娘对于人类污染大海的行为无法忍受，而挺身出海决定要教训一下人类而展开的轻松故事。虽然目的是征服人类，但却因为缺乏常识而被各种各样的新事物吓到，继而沦为了在一个不起眼的沙滩小店打工的店员，之后的故事以各种联系不紧密的单元剧形...",

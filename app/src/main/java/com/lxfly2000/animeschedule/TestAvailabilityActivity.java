@@ -23,11 +23,11 @@ public class TestAvailabilityActivity extends AppCompatActivity {
     ListView listAvailability;
     SimpleAdapter listAdapter;
     ArrayList<Integer>jsonSortTable;
-    TextView textBilibiliAvailable,textIQiyiAvailable,textQQVideoAvailable,textYoukuAvailable,textEtcAvailable,textTotalAvailable;
-    TextView textBilibiliUnavailable,textIQiyiUnavailable,textQQVideoUnavailable,textYoukuUnavailable,textEtcUnavailable,textTotalUnavailable;
-    TextView textBilibiliTotal,textIQiyiTotal,textQQVideoTotal,textYoukuTotal,textEtcTotal,textTotalTotal;
-    int countBilibiliAvailable,countIQiyiAvailable,countQQVideoAvailable,countYoukuAvailable,countEtcAvailable;
-    int countBilibiliUnavailable,countIQiyiUnavailable,countQQVideoUnavailable,countYoukuUnavailable,countEtcUnavailable;
+    TextView textBilibiliAvailable,textIQiyiAvailable,textQQVideoAvailable,textYoukuAvailable,textAcFunAvailable,textEtcAvailable,textTotalAvailable;
+    TextView textBilibiliUnavailable,textIQiyiUnavailable,textQQVideoUnavailable,textYoukuUnavailable,textAcFunUnavailable,textEtcUnavailable,textTotalUnavailable;
+    TextView textBilibiliTotal,textIQiyiTotal,textQQVideoTotal,textYoukuTotal,textAcFunTotal,textEtcTotal,textTotalTotal;
+    int countBilibiliAvailable,countIQiyiAvailable,countQQVideoAvailable,countYoukuAvailable,countAcFunAvailable,countEtcAvailable;
+    int countBilibiliUnavailable,countIQiyiUnavailable,countQQVideoUnavailable,countYoukuUnavailable,countAcFunUnavailable,countEtcUnavailable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +41,21 @@ public class TestAvailabilityActivity extends AppCompatActivity {
         textIQiyiAvailable=findViewById(R.id.textAvailabilityIQiyiTrue);
         textQQVideoAvailable=findViewById(R.id.textAvailabilityQQVideoTrue);
         textYoukuAvailable=findViewById(R.id.textAvailabilityYoukuTrue);
+        textAcFunAvailable=findViewById(R.id.textAvailabilityAcFunTrue);
         textEtcAvailable=findViewById(R.id.textAvailabilityEtcTrue);
         textTotalAvailable=findViewById(R.id.textAvailabilityTotalTrue);
         textBilibiliUnavailable=findViewById(R.id.textAvailabilityBilibiliFalse);
         textIQiyiUnavailable=findViewById(R.id.textAvailabilityIQiyiFalse);
         textQQVideoUnavailable=findViewById(R.id.textAvailabilityQQVideoFalse);
         textYoukuUnavailable=findViewById(R.id.textAvailabilityYoukuFalse);
+        textAcFunUnavailable=findViewById(R.id.textAvailabilityAcFunFalse);
         textEtcUnavailable=findViewById(R.id.textAvailabilityEtcFalse);
         textTotalUnavailable=findViewById(R.id.textAvailabilityTotalFalse);
         textBilibiliTotal=findViewById(R.id.textAvailabilityBilibiliTotal);
         textIQiyiTotal=findViewById(R.id.textAvailabilityIQiyiTotal);
         textQQVideoTotal=findViewById(R.id.textAvailabilityQQVideoTotal);
         textYoukuTotal=findViewById(R.id.textAvailabilityYoukuTotal);
+        textAcFunTotal=findViewById(R.id.textAvailabilityAcFunTotal);
         textEtcTotal=findViewById(R.id.textAvailabilityEtcTotal);
         textTotalTotal=findViewById(R.id.textAvailabilityTotalTotal);
 
@@ -84,7 +87,7 @@ public class TestAvailabilityActivity extends AppCompatActivity {
     }
 
     MenuItem menuItemRetest,menuItemStop,menuItemStart,menuItemHelp;
-    MenuItem menuItemBilibili,menuItemIQiyi,menuItemQQVideo,menuItemYouku,menuItemEtc;
+    MenuItem menuItemBilibili,menuItemIQiyi,menuItemQQVideo,menuItemYouku,menuItemAcFun,menuItemEtc;
     MenuItem menuItemShowFollowing,menuItemShowAbandoned,menuItemShowAvailable,menuItemShowUnavailable;
 
     @Override
@@ -99,6 +102,7 @@ public class TestAvailabilityActivity extends AppCompatActivity {
         menuItemIQiyi=menu.findItem(R.id.action_show_iqiyi);
         menuItemQQVideo=menu.findItem(R.id.action_show_qqvideo);
         menuItemYouku=menu.findItem(R.id.action_show_youku);
+        menuItemAcFun=menu.findItem(R.id.action_show_acfun);
         menuItemEtc=menu.findItem(R.id.action_show_etc);
         menuItemShowFollowing=menu.findItem(R.id.action_show_following);
         menuItemShowAbandoned=menu.findItem(R.id.action_show_abandoned);
@@ -112,6 +116,7 @@ public class TestAvailabilityActivity extends AppCompatActivity {
         menuItemIQiyi.setChecked(true);
         menuItemQQVideo.setChecked(true);
         menuItemYouku.setChecked(true);
+        menuItemAcFun.setChecked(true);
         menuItemEtc.setChecked(true);
         menuItemShowFollowing.setChecked(true);
         menuItemShowAbandoned.setChecked(true);
@@ -248,6 +253,8 @@ public class TestAvailabilityActivity extends AppCompatActivity {
             return false;
         else if(URLUtility.IsYoukuLink(url)&&!menuItemYouku.isChecked())
             return false;
+        else if(URLUtility.IsAcFunLink(url)&&!menuItemAcFun.isChecked())
+            return false;
         else if(!(URLUtility.IsBilibiliVideoLink(url)||URLUtility.IsBilibiliBangumiLink(url))&&
                 !URLUtility.IsIQiyiLink(url)&&!URLUtility.IsQQVideoLink(url)&&!URLUtility.IsYoukuLink(url)&&
                 !menuItemEtc.isChecked())
@@ -295,15 +302,24 @@ public class TestAvailabilityActivity extends AppCompatActivity {
                 textQQVideoUnavailable.setText(String.valueOf(countQQVideoUnavailable));
             }
             textQQVideoTotal.setText(String.valueOf(countQQVideoAvailable+countQQVideoUnavailable));
-        }else if(URLUtility.IsYoukuLink(url)){
-            if(available) {
+        }else if(URLUtility.IsYoukuLink(url)) {
+            if (available) {
                 countYoukuAvailable++;
                 textYoukuAvailable.setText(String.valueOf(countYoukuAvailable));
-            }else {
+            } else {
                 countYoukuUnavailable++;
                 textYoukuUnavailable.setText(String.valueOf(countYoukuUnavailable));
             }
-            textYoukuTotal.setText(String.valueOf(countYoukuAvailable+countYoukuUnavailable));
+            textYoukuTotal.setText(String.valueOf(countYoukuAvailable + countYoukuUnavailable));
+        }else if(URLUtility.IsAcFunLink(url)){
+            if(available){
+                countAcFunAvailable++;
+                textAcFunAvailable.setText(String.valueOf(countAcFunAvailable));
+            }else{
+                countAcFunUnavailable++;
+                textAcFunUnavailable.setText(String.valueOf(countAcFunUnavailable));
+            }
+            textAcFunTotal.setText(String.valueOf(countAcFunAvailable+countAcFunUnavailable));
         }else {
             if(available) {
                 countEtcAvailable++;
@@ -314,8 +330,8 @@ public class TestAvailabilityActivity extends AppCompatActivity {
             }
             textEtcTotal.setText(String.valueOf(countEtcAvailable+countEtcUnavailable));
         }
-        int totalAvailable=countBilibiliAvailable+countIQiyiAvailable+countQQVideoAvailable+countYoukuAvailable+countEtcAvailable;
-        int totalUnavailable=countBilibiliUnavailable+countIQiyiUnavailable+countQQVideoUnavailable+countYoukuUnavailable+countEtcUnavailable;
+        int totalAvailable=countBilibiliAvailable+countIQiyiAvailable+countQQVideoAvailable+countYoukuAvailable+countAcFunAvailable+countEtcAvailable;
+        int totalUnavailable=countBilibiliUnavailable+countIQiyiUnavailable+countQQVideoUnavailable+countYoukuUnavailable+countAcFunUnavailable+countEtcUnavailable;
         if(available)
             textTotalAvailable.setText(String.valueOf(totalAvailable));
         else
@@ -329,20 +345,23 @@ public class TestAvailabilityActivity extends AppCompatActivity {
         textIQiyiAvailable.setText(String.valueOf(countIQiyiAvailable=0));
         textQQVideoAvailable.setText(String.valueOf(countQQVideoAvailable=0));
         textYoukuAvailable.setText(String.valueOf(countYoukuAvailable=0));
+        textAcFunAvailable.setText(String.valueOf(countAcFunAvailable=0));
         textEtcAvailable.setText(String.valueOf(countEtcAvailable=0));
-        int totalAvailable=countBilibiliAvailable+countIQiyiAvailable+countQQVideoAvailable+countYoukuAvailable+countEtcAvailable;
+        int totalAvailable=countBilibiliAvailable+countIQiyiAvailable+countQQVideoAvailable+countYoukuAvailable+countAcFunAvailable+countEtcAvailable;
         textTotalAvailable.setText(String.valueOf(totalAvailable));
         textBilibiliUnavailable.setText(String.valueOf(countBilibiliUnavailable=0));
         textIQiyiUnavailable.setText(String.valueOf(countIQiyiUnavailable=0));
         textQQVideoUnavailable.setText(String.valueOf(countQQVideoUnavailable=0));
         textYoukuUnavailable.setText(String.valueOf(countYoukuUnavailable=0));
+        textAcFunUnavailable.setText(String.valueOf(countAcFunUnavailable=0));
         textEtcUnavailable.setText(String.valueOf(countEtcUnavailable=0));
-        int totalUnavailable=countBilibiliUnavailable+countIQiyiUnavailable+countQQVideoUnavailable+countYoukuUnavailable+countEtcUnavailable;
+        int totalUnavailable=countBilibiliUnavailable+countIQiyiUnavailable+countQQVideoUnavailable+countYoukuUnavailable+countAcFunUnavailable+countEtcUnavailable;
         textTotalUnavailable.setText(String.valueOf(totalUnavailable));
         textBilibiliTotal.setText(String.valueOf(countBilibiliAvailable+countBilibiliUnavailable));
         textIQiyiTotal.setText(String.valueOf(countIQiyiAvailable+countIQiyiUnavailable));
         textQQVideoTotal.setText(String.valueOf(countQQVideoAvailable+countQQVideoUnavailable));
         textYoukuTotal.setText(String.valueOf(countYoukuAvailable+countYoukuUnavailable));
+        textAcFunTotal.setText(String.valueOf(countAcFunAvailable+countAcFunUnavailable));
         textEtcTotal.setText(String.valueOf(countEtcAvailable+countEtcUnavailable));
         textTotalTotal.setText(String.valueOf(totalAvailable+totalUnavailable));
     }
@@ -395,6 +414,9 @@ public class TestAvailabilityActivity extends AppCompatActivity {
                 break;
             case R.id.action_show_youku:
                 menuItemYouku.setChecked(!menuItemYouku.isChecked());
+                break;
+            case R.id.action_show_acfun:
+                menuItemAcFun.setChecked(!menuItemAcFun.isChecked());
                 break;
             case R.id.action_show_etc:
                 menuItemEtc.setChecked(!menuItemEtc.isChecked());

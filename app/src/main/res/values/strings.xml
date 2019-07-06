@@ -231,4 +231,6 @@
     <string name="key_redirect_max_count" translatable="false">redirect_max_count</string>
     <string name="label_sort_method_sort_by">Sort by</string>
     <string name="label_sort_method_sort_order">In order</string>
+    <string name="message_acfun_bangumi_id_not_found">Bangumi ID not found.</string>
+    <string name="label_app_name_acfun">AcFun</string>
 </resources>

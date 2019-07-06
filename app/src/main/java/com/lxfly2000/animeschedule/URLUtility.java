@@ -72,6 +72,23 @@ public class URLUtility {
         return Pattern.compile(Values.parsableLinksRegex[3]).matcher(url).find();
     }
 
+    public static boolean IsAcFunLink(String url){
+        return Pattern.compile(Values.parsableLinksRegex[4]).matcher(url).find();
+    }
+
+    public static String GetAcFunBangumiId(String url){
+        if(!IsAcFunLink(url))
+            return null;
+        Matcher matcher=Pattern.compile("(/a[ab]\\d+)|(ab=\\d+)").matcher(url);
+        if(matcher.find()){
+            url=url.substring(matcher.start(),matcher.end());
+            matcher=Pattern.compile("\\d+").matcher(url);
+            if(matcher.find())
+                return url.substring(matcher.start(),matcher.end());
+        }
+        return null;
+    }
+
     public static String GetBilibiliJsonContainingSSID(String htmlString,String ssid){
         Matcher m=Pattern.compile("<script>[^<>]+"+ssid+"[^<>]+</script>").matcher(htmlString);
         if(!m.find())

@@ -63,7 +63,8 @@ public class Values {
             "(.*bangumi\\.bilibili\\.com/anime/[0-9]+)|(.*bilibili\\.com/bangumi/play/(ss|ep)[0-9]+)|(.*bilibili\\.com/bangumi/media/md[0-9]+)|(.*b23\\.tv/(ss|ep|av)\\d+)|(.*bangumi\\.bilibili\\.com/review/media/\\d+)|(.*bilibili\\.com/video/av\\d+)",
             ".*iqiyi\\.com/[av]_.*\\.html",
             "(.*v\\.qq\\.com/x/cover/.*\\.html)|(.*m\\.v\\.qq\\.com/(play/)?play\\.html\\?[A-Za-z0-9\\-_=&]+)|(.*m\\.v\\.qq\\.com/cover/.*\\.html)|(.*v\\.qq\\.com/detail/./.*\\.html)",
-            "(.*list\\.youku\\.com/show/id_.*\\.html)|(.*v\\.youku\\.com/v_show/id_.*\\.html)|(.*m\\.youku\\.com/video/id_.*\\.html)"
+            "(.*list\\.youku\\.com/show/id_.*\\.html)|(.*v\\.youku\\.com/v_show/id_.*\\.html)|(.*m\\.youku\\.com/video/id_.*\\.html)",
+            "(.*acfun\\.cn/bangumi/a[ab]\\d+)|(.*m\\.acfun\\.cn/v/?\\?ab=\\d+)"
     };
     public static final String[]webFiles={
             "index.html",//第一个应该是首页文件
@@ -96,5 +97,6 @@ public class Values {
         return ctx.getExternalCacheDir().getParentFile().getParent();
     }
 
-    public static final String userAgentChromeWindows="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36";
+    public static final String userAgentChromeWindows="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36";
+    public static final String userAgentChromeAndroid="Mozilla/5.0 (Linux; Android 7.0; SM-N9200) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.101 Mobile Safari/537.36";
 }

@@ -950,9 +950,11 @@ public class MainActivity extends AppCompatActivity {
                 Matcher m=p.matcher(urlString);
                 if(m.find()){
                     Spider spider=null;
-                    if(URLUtility.IsBilibiliBangumiLink(urlString.toLowerCase())) {
+                    if(URLUtility.IsBilibiliBangumiLink(urlString)) {
                         spider = new BilibiliSpider(this);
-                    }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())) {
+                    }else if(URLUtility.IsAcFunLink(urlString)){
+                        spider=new AcFunSpider(this);
+                    }else if(URLUtility.IsIQiyiLink(urlString)) {
                         spider = new IQiyiSpider(this);
                     }else if(URLUtility.IsQQVideoLink(urlString)) {
                         spider = new QQVideoSpider(this);

@@ -183,4 +183,6 @@
     <string name="label_other_settings">其他設定</string>
     <string name="label_sort_method_sort_by">排序依據</string>
     <string name="label_sort_method_sort_order">排序順序</string>
+    <string name="message_acfun_bangumi_id_not_found">未找到番劇ID。</string>
+    <string name="label_app_name_acfun">AcFun</string>
 </resources>

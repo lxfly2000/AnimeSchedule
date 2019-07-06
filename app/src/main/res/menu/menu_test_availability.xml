@@ -7,6 +7,7 @@
     <item android:title="@string/label_app_name_qqvideo" android:id="@+id/action_show_qqvideo"
           android:checkable="true"/>
     <item android:title="@string/label_app_name_youku" android:id="@+id/action_show_youku" android:checkable="true"/>
+    <item android:title="@string/label_app_name_acfun" android:id="@+id/action_show_acfun" android:checkable="true"/>
     <item android:title="@string/label_app_name_etc" android:id="@+id/action_show_etc" android:checkable="true"/>
     <item android:title="@string/menu_show_following" android:id="@+id/action_show_following" android:checkable="true"/>
     <item android:title="@string/menu_show_abandoned" android:id="@+id/action_show_abandoned" android:checkable="true"/>

@@ -1,8 +1,6 @@
 package com.lxfly2000.animeschedule.data;
 
 import com.lxfly2000.animeschedule.AnimeJson;
-import com.lxfly2000.utilities.MinuteStamp;
-import com.lxfly2000.utilities.YMDDate;
 
 public class AnimeItem {
     public String watchUrl;

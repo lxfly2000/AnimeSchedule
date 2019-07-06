@@ -105,12 +105,12 @@ public class QQVideoSpider extends Spider {
                     }catch (Exception e){
                         item.rank=0;
                     }
-                    onReturnDataFunction.OnReturnData(item,STATUS_OK,null);
                 }catch (JSONException e){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
                 }catch (IOException e){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
                 }
+                onReturnDataFunction.OnReturnData(item,STATUS_OK,null);
             }
         };
         task.SetUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36");

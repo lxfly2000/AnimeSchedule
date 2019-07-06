@@ -22,9 +22,7 @@ import android.view.*;
 import android.widget.*;
 import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
 import com.lxfly2000.animeschedule.data.AnimeItem;
-import com.lxfly2000.animeschedule.spider.QQVideoSpider;
-import com.lxfly2000.animeschedule.spider.Spider;
-import com.lxfly2000.animeschedule.spider.YoukuSpider;
+import com.lxfly2000.animeschedule.spider.*;
 import com.lxfly2000.utilities.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -826,9 +824,10 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox checkDialogAbandoned;
     private EditText editDialogRanking;
     private Button buttonDialogAutofill;
+    private AlertDialog editDialog;
     private void EditAnime(final int index, final boolean fromAddAction){
         //此处的index已经是对应到JSON的序号了，不用再从排序表里找
-        AlertDialog editDialog=new AlertDialog.Builder(this)
+        editDialog=new AlertDialog.Builder(this)
                 .setTitle(R.string.action_edit_item)
                 .setView(R.layout.dialog_edit_anime)
                 .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
@@ -950,23 +949,19 @@ public class MainActivity extends AppCompatActivity {
                 Pattern p=Pattern.compile(Values.parsableLinksRegex[i_regex]);
                 Matcher m=p.matcher(urlString);
                 if(m.find()){
-                    if(URLUtility.IsBilibiliBangumiLink(urlString.toLowerCase())){
-                        ReadBilibiliURL_OnCallback(urlString);
+                    Spider spider=null;
+                    if(URLUtility.IsBilibiliBangumiLink(urlString.toLowerCase())) {
+                        spider = new BilibiliSpider(this);
+                    }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())) {
+                        spider = new IQiyiSpider(this);
+                    }else if(URLUtility.IsQQVideoLink(urlString)) {
+                        spider = new QQVideoSpider(this);
+                    }else if(URLUtility.IsYoukuLink(urlString)) {
+                        spider = new YoukuSpider(this);
+                    }if(spider!=null) {
+                        spider.SetOnReturnDataFunction(onReturnDataFunction);
+                        spider.Execute(urlString);
                         break;
-                    }else if(URLUtility.IsIQiyiLink(urlString.toLowerCase())){
-                        GetIQiyiAnimeIDFromURL(urlString);
-                        break;
-                    }else {
-                        Spider spider=null;
-                        if(URLUtility.IsQQVideoLink(urlString))
-                            spider=new QQVideoSpider(this);
-                        else if(URLUtility.IsYoukuLink(urlString))
-                            spider=new YoukuSpider(this);
-                        if(spider!=null) {
-                            spider.SetOnReturnDataFunction(onReturnDataFunction);
-                            spider.Execute(urlString);
-                            break;
-                        }
                     }
                 }
             }
@@ -991,12 +986,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Spider.OnReturnDataFunction onReturnDataFunction=new Spider.OnReturnDataFunction() {
         @Override
-        public void OnReturnData(AnimeItem data, int status, String resultMessage) {
+        public void OnReturnData(AnimeItem data, int status, String resultMessage, int focusId) {
             buttonDialogAutofill.setEnabled(status!=Spider.STATUS_ONGOING);
-            if(status==Spider.STATUS_FAILED){
+            if(resultMessage!=null)
                 Toast.makeText(getBaseContext(),resultMessage,Toast.LENGTH_LONG).show();
+            if(focusId!=0)
+                editDialog.findViewById(focusId).requestFocus();
+            if(status==Spider.STATUS_FAILED)
                 return;
-            }
             if(data.watchUrl!=null)
                 editDialogWatchUrl.setText(data.watchUrl);
             if(data.coverUrl!=null)
@@ -1033,433 +1030,6 @@ public class MainActivity extends AppCompatActivity {
             editDialogRanking.setText(String.valueOf(data.rank));
         }
     };
-
-    int redirectCount=0;
-
-    private void ReadBilibiliURL_OnCallback(final String urlString){//2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
-        /*输入URL：parsableLinkRegex中的任何一个B站URL
-        *
-        * 在返回的HTML文本（转换成小写）里找ss#####, season_id:#####, "season_id":#####, ssid:#####, "ssid":#####
-        * 得到的数值均为 Season ID, 然后就可以从ss##### URL里获取信息了。
-        * */
-        if(URLUtility.IsBilibiliSeasonBangumiLink(urlString)&&!URLUtility.IsBilibiliVideoLink(urlString)){
-            ReadBilibiliSSID_OnCallback(URLUtility.GetBilibiliSeasonIdString(urlString));
-            return;
-        }
-        editDialogTitle.setText(R.string.message_fetching_bilibili_ssid);
-        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-            @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
-                if(!success){
-                    Toast.makeText(getBaseContext(),R.string.message_unable_to_fetch_episode_id,Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(response==301||response==302){
-                    redirectCount++;
-                    if(redirectCount>preferences.getInt(getString(R.string.key_redirect_max_count),Values.vDefaultRedirectMaxCount)){
-                        Toast.makeText(getBaseContext(),response+"\n"+getString(R.string.message_too_many_redirect),Toast.LENGTH_LONG).show();
-                    }else {
-                        ReadBilibiliURL_OnCallback((String) additionalReturned);
-                        return;
-                    }
-                }else {
-                    if (response == 403) {
-                        Toast.makeText(getBaseContext(), R.string.message_http_403, Toast.LENGTH_LONG).show();
-                    } else if (response == 404) {
-                        Toast.makeText(getBaseContext(), R.string.message_http_404, Toast.LENGTH_LONG).show();
-                    }
-                }
-                redirectCount=0;
-                try{
-                    String htmlString=StreamUtility.GetStringFromStream(stream);
-                    Matcher m=Pattern.compile("ss[0-9]+").matcher(htmlString);
-                    if(m.find()){
-                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+2,m.end()));
-                        return;
-                    }
-                    m=Pattern.compile("season_id:[0-9]+").matcher(htmlString);
-                    if(m.find()){
-                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+10,m.end()));
-                        return;
-                    }
-                    m=Pattern.compile("\"season_id\":[0-9]+").matcher(htmlString);
-                    if(m.find()){
-                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+12,m.end()));
-                        return;
-                    }
-                    m=Pattern.compile("ssId:[0-9]+").matcher(htmlString);
-                    if(m.find()){
-                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+5,m.end()));
-                        return;
-                    }
-                    m=Pattern.compile("\"ssId\":[0-9]+").matcher(htmlString);
-                    if(m.find()){
-                        ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+7,m.end()));
-                        return;
-                    }
-                    String ssid_not_found_string=getString(R.string.message_bilibili_ssid_not_found);
-                    if(urlString.startsWith("http:"))
-                        ssid_not_found_string+="\n"+getString(R.string.message_bilibili_ssid_not_found_advise);
-                    Toast.makeText(getBaseContext(),ssid_not_found_string,Toast.LENGTH_LONG).show();
-                }catch (IOException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_io_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        task.SetUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1");
-        task.execute(urlString);
-    }
-
-    private void ReadBilibiliSSID_OnCallback(final String idString){
-        editDialogTitle.setText("SSID:"+idString);
-        final String requestUrl="https://bangumi.bilibili.com/view/web_api/season?season_id="+idString;
-        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-            @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
-                if(!success){
-                    Toast.makeText(getBaseContext(),R.string.message_unable_to_fetch_anime_info,Toast.LENGTH_LONG).show();
-                    return;
-                }
-                try {
-                    //2019-1-19：B站网页更新，原有查询方法失效。
-                    //参考：https://github.com/xiaoyaocz/BiliAnimeDownload/blob/master/BiliAnimeDownload/BiliAnimeDownload/Helpers/Api.cs
-                    String jsonString=StreamUtility.GetStringFromStream(stream);
-                    if(jsonString==null){
-                        Toast.makeText(getBaseContext(),getString(R.string.message_bilibili_ssid_code_not_found,idString),Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    JSONObject htmlJson=new JSONObject(jsonString).getJSONObject("result");
-                    try {
-                        editDialogCover.setText(htmlJson.getString("cover"));
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        editDialogTitle.setText(htmlJson.getString("series_title"));
-                    }catch (JSONException e){
-                        //2019-2-16：经检查发现番剧《天使降临到我身边》（SSID：26291）不存在“series_title”属性
-                        try {
-                            editDialogTitle.setText(htmlJson.getString("title"));
-                        }catch (JSONException ee){/*Ignore*/}
-                    }
-                    try {
-                        editDialogDescription.setText(htmlJson.getString("evaluate"));
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        editDialogActors.setText(htmlJson.getString("actors"));
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        editDialogStaff.setText(htmlJson.getString("staff"));
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        String[] pubTimeParts = htmlJson.getJSONObject("publish").getString("pub_time").split(" ");
-                        editDialogStartDate.setText(pubTimeParts[0]);
-                        //Bug:SSID:22574 pub_time字段不存在时间（2019-4-8）
-                        if (pubTimeParts.length > 1)
-                            editDialogUpdateTime.setText(pubTimeParts[1]);
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        if (htmlJson.getJSONObject("publish").getString("weekday").contentEquals("-1")) {
-                            editDialogUpdatePeriod.setText("1");
-                            comboDialogUpdatePeriodUnit.setSelection(1, true);
-                            editDialogUpdatePeriod.requestFocus();
-                            Toast.makeText(getBaseContext(),R.string.message_check_update_period,Toast.LENGTH_LONG).show();
-                        } else if ("0123456".contains(htmlJson.getJSONObject("publish").getString("weekday"))) {
-                            editDialogUpdatePeriod.setText("7");
-                            comboDialogUpdatePeriodUnit.setSelection(0, true);
-                        }
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        String countString = htmlJson.getString("total_ep");
-                        if (countString.contentEquals("0"))
-                            editDialogEpisodeCount.setText("-1");
-                        else
-                            editDialogEpisodeCount.setText(countString);
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        StringBuilder tagString = new StringBuilder();
-                        for (int i = 0; i < htmlJson.getJSONArray("style").length(); i++) {
-                            if (i != 0)
-                                tagString.append(",");
-                            tagString.append(htmlJson.getJSONArray("style").getString(i));
-                        }
-                        editDialogCategory.setText(tagString.toString());
-                    }catch (JSONException e){/*Ignore*/}
-                    editDialogWatchUrl.setText("https://www.bilibili.com/bangumi/play/ss"+idString);//为避免输入的URL无法被客户端打开把URL统一改成SSID形式
-                    editDialogRanking.setText(String.valueOf(Math.round(htmlJson.getJSONObject("rating").getDouble("score")/2)));
-                }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }catch (IOException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        task.execute(requestUrl);
-    }
-
-    private void GetIQiyiAnimeDescriptionFromTaiwanURL(String url, String htmlString){
-        if(htmlString==null){
-            AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-                @Override
-                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
-                    if(!success){
-                        Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    try {
-                        GetIQiyiAnimeDescriptionFromTaiwanURL((String)extra, StreamUtility.GetStringFromStream(stream));
-                    }catch (IOException e){
-                        Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                    }
-                }
-            };
-            task.SetExtra(url);
-            task.execute(url);
-            return;
-        }
-        Matcher m=Pattern.compile("more-desc *= *\"?[^\"]+\"?").matcher(htmlString);
-        if(m.find()){
-            String descString=htmlString.substring(m.start(),m.end());
-            editDialogDescription.setText(descString.substring(descString.indexOf('\"')+1,descString.lastIndexOf('\"')));
-            return;
-        }
-        if(url.toLowerCase().contains("/v_")&&url.substring(0,url.lastIndexOf('/')).toLowerCase().contains("tw")) {
-            Matcher mLink = Pattern.compile(url.substring(url.indexOf(':') + 1, url.lastIndexOf('/')).concat("/a_[a-zA-Z0-9]+\\.html")).matcher(htmlString);
-            if(mLink.find())
-                GetIQiyiAnimeDescriptionFromTaiwanURL(url.substring(0,url.indexOf(':')+1).concat(htmlString.substring(mLink.start(), mLink.end())), null);
-        }
-    }
-
-    private void GetIQiyiAnimeActorsInfo(String url,String htmlString){
-        if(htmlString==null){
-            AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-                @Override
-                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
-                    if(!success){
-                        Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    try {
-                        GetIQiyiAnimeActorsInfo((String)extra, StreamUtility.GetStringFromStream(stream));
-                    }catch (IOException e){
-                        Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                    }
-                }
-            };
-            task.SetExtra(url);
-            task.SetUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1");
-            task.execute(url);
-            return;
-        }
-        String strJson=URLUtility.GetIQiyiJsonContainingActorsInfo(htmlString);
-        if(strJson!=null){
-            try{
-                JSONArray jsonCast=new JSONObject(strJson).getJSONArray("dubbers");
-                StringBuilder strCast=new StringBuilder();
-                for(int j=0;j<jsonCast.length();j++){
-                    if(j>0)
-                        strCast.append("\n");
-                    JSONArray jsonRoles=jsonCast.getJSONObject(j).getJSONArray("roles");
-                    for(int i=0;i<jsonRoles.length();i++){
-                        if(i>0)
-                            strCast.append("，");
-                        strCast.append(jsonRoles.getString(i));
-                    }
-                    strCast.append("：").append(jsonCast.getJSONObject(j).getString("name"));
-                }
-                editDialogActors.setText(strCast.toString());
-            }catch (JSONException e){
-                Toast.makeText(this,getString(R.string.message_json_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-            }
-            return;
-        }
-        if(url.toLowerCase().contains("/a_")) {
-            Matcher mLink = Pattern.compile(url.substring(url.indexOf(':') + 1, url.lastIndexOf('/')).concat("/v_[a-zA-Z0-9]+\\.html")).matcher(htmlString);
-            if(mLink.find())
-                GetIQiyiAnimeActorsInfo(url.substring(0,url.indexOf(':')+1).concat(htmlString.substring(mLink.start(), mLink.end())), null);
-        }
-        if(url.startsWith("http:"))
-            GetIQiyiAnimeActorsInfo(url.replaceFirst("http","https"),null);
-    }
-
-    private void GetIQiyiAnimeIDFromURL(String url){
-        //根据目前（2018-10-1）观察到的情况，爱奇艺的链接无论是a链接还是v链接都有含有“albumId: #########,”代码的脚本，通过此就能查询到番剧的数字ID
-        editDialogTitle.setText(url);
-        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-            @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
-                if(!success){
-                    Toast.makeText(getBaseContext(),R.string.message_unable_to_read_url,Toast.LENGTH_LONG).show();
-                    return;
-                }
-                Pattern p=Pattern.compile("albumId: *\"?[0-9]+\"?,");
-                try {
-                    String htmlString = StreamUtility.GetStringFromStream(stream);//整个网页的内容
-                    Matcher m = p.matcher(htmlString);
-                    boolean mfind=false;
-                    if(m.find())
-                        mfind=true;
-                    else{
-                        p=Pattern.compile("a(lbum-)?id *= *\"[0-9]+\"");
-                        m=p.matcher(htmlString);
-                        if(m.find())
-                            mfind=true;
-                        else{
-                            if(((String)extra).startsWith("http:")) {
-                                GetIQiyiAnimeIDFromURL(((String) extra).replaceFirst("http", "https"));
-                                return;
-                            }
-                        }
-                    }
-                    GetIQiyiAnimeActorsInfo((String)extra,htmlString);
-                    GetIQiyiAnimeDescriptionFromTaiwanURL((String)extra,htmlString);
-                    if(mfind) {
-                        htmlString = htmlString.substring(m.start(), m.end());//数字ID所在代码的内容
-                        Pattern pSub=Pattern.compile("[0-9]+");
-                        Matcher mSub=pSub.matcher(htmlString);
-                        if(mSub.find())
-                            ReadIQiyiJson_OnCallback(htmlString.substring(mSub.start(),mSub.end()));//数字ID的字符串
-                        else
-                            Toast.makeText(getBaseContext(),R.string.message_unable_get_id_number,Toast.LENGTH_LONG).show();
-                    }else{
-                        if(url.contains("www.iqiyi.com/v_"))//2019-5-1:无法识别www.iqiyi.com/v_开头的链接
-                            GetIQiyiAnimeIDFromURL(url.replaceFirst("www.iqiyi.com","m.iqiyi.com"));
-                        else
-                            Toast.makeText(getBaseContext(),R.string.message_unable_get_id_number_line,Toast.LENGTH_LONG).show();
-                    }
-                }catch (IOException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        task.SetExtra(url);
-        task.execute(url);
-    }
-
-    private void ReadIQiyiJson_OnCallback(String idString){
-        editDialogTitle.setText("Album ID: "+idString);
-        //String jsonUrlGetAlbumId="https://nl-rcd.iqiyi.com/apis/urc/getalbumrc?albumId="+idString;//因为此链接爱奇艺要求登录或验证所以无法使用
-        String jsonUrlGetSnsScore="https://pcw-api.iqiyi.com/video/score/getsnsscore?qipu_ids="+idString;
-        String jsonpUrlGetAvList="https://cache.video.iqiyi.com/jp/avlist/"+idString+"/1/50/";//这后面的1/50好像没有什么影响的吧……
-        /*AndroidDownloadFileTask taskDownloadJsonGetAlbumId=new AndroidDownloadFileTask() {
-            @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, Object extra) {
-                if(!success){
-                    Toast.makeText(getBaseContext(),"无法获取 GetAlbumRC.",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                try {
-                    JSONObject jsonObject = new JSONObject(StreamUtility.GetStringFromStream(stream));
-                    editDialogCover.setText(jsonObject.getJSONObject("data").getString("albumImageUrl"));
-                    editDialogTitle.setText(jsonObject.getJSONObject("data").getString("albumName"));
-                    String tvYearString=String.valueOf(jsonObject.getJSONObject("data").getInt("tvYear"));
-                    editDialogStartDate.setText(tvYearString.substring(0,4)+"-"+tvYearString.substring(4,6)+"-"+tvYearString.substring(6));
-
-                    //总集数可能是data.allSet，data.allSets或data.mpd，AvList链接中pt，allNum……中的一个
-                    editDialogEpisodeCount.setText(String.valueOf(jsonObject.getJSONObject("data").getInt("allSet")));
-                    //editDialogEpisodeCount.setText(String.valueOf(jsonObject.getJSONObject("data").getInt("allSets")));
-                    //editDialogEpisodeCount.setText(String.valueOf(jsonObject.getJSONObject("data").getInt("mpd")));
-                }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),"发生异常：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-                }catch (IOException e){
-                    Toast.makeText(getBaseContext(),"读取流出错：\n"+e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-                }
-            }
-        };*/
-        AndroidDownloadFileTask taskDownloadJsonGetSnsScore=new AndroidDownloadFileTask() {
-            @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
-                if(!success){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_cannot_fetch_property,"GetSnsScore"),Toast.LENGTH_LONG).show();
-                    return;
-                }
-                try {
-                    JSONObject jsonObject=new JSONObject(StreamUtility.GetStringFromStream(stream));
-                    editDialogRanking.setText(String.valueOf(Math.round(jsonObject.getJSONArray("data").getJSONObject(0).getDouble("sns_score"))/2));
-                }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }catch (IOException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        AndroidDownloadFileTask taskDownloadJsonpGetAvList=new AndroidDownloadFileTask() {
-            @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
-                if(!success){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_cannot_fetch_property,"GetAvList"),Toast.LENGTH_LONG).show();
-                    return;
-                }
-                try {
-                    String jsonString=StreamUtility.GetStringFromStream(stream);
-                    jsonString=jsonString.substring(jsonString.indexOf('{'),jsonString.lastIndexOf('}')+1);
-                    JSONObject jsonObject=new JSONObject(jsonString);
-                    try {
-                        String descString = jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("desc");
-                        if (descString.length() > 0)
-                            editDialogDescription.setText(descString);
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        String qiyiPlayStrategy = jsonObject.getJSONObject("data").getString("ps");
-                        if (qiyiPlayStrategy.contains("每周")) {
-                            editDialogUpdatePeriod.setText("7");
-                            comboDialogUpdatePeriodUnit.setSelection(0, true);
-                        }
-                        Matcher mTime = Pattern.compile("[0-9]+:[0-9]+").matcher(qiyiPlayStrategy);
-                        if (mTime.find())
-                            editDialogUpdateTime.setText(qiyiPlayStrategy.substring(mTime.start(), mTime.end()));
-                    }catch (JSONException e){/*Ignore*/}
-                    ReadIQiyiJsonpAnimeCategory_OnCallback(String.valueOf(jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getInt("id")),
-                            jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("vid"));
-                }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }catch (IOException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        //taskDownloadJsonGetAlbumId.execute(jsonUrlGetAlbumId);
-        taskDownloadJsonGetSnsScore.execute(jsonUrlGetSnsScore);
-        taskDownloadJsonpGetAvList.execute(jsonpUrlGetAvList);
-    }
-
-    private void ReadIQiyiJsonpAnimeCategory_OnCallback(String tvidString,String vidString){
-        String requestUrl="https://cache.video.iqiyi.com/jp/vi/"+tvidString+"/"+vidString+"/";
-        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-            @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
-                if(!success){
-                    Toast.makeText(getBaseContext(),R.string.message_iqiyi_cannot_fetch_category,Toast.LENGTH_LONG).show();
-                    return;
-                }
-                try {
-                    String jsonString=StreamUtility.GetStringFromStream(stream);
-                    jsonString=jsonString.substring(jsonString.indexOf('{'),jsonString.lastIndexOf('}')+1);
-                    JSONObject jsonObject=new JSONObject(jsonString);
-                    try {
-                        editDialogCategory.setText(jsonObject.getString("tg").replaceAll(" ", ","));
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        editDialogTitle.setText(jsonObject.getString("an"));
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        String startTimeString = jsonObject.getString("stm");
-                        if (startTimeString.length() >= 8)
-                            editDialogStartDate.setText(startTimeString.substring(0, 4) + "-" + startTimeString.substring(4, 6) + "-" + startTimeString.substring(6));
-                        else
-                            Toast.makeText(getBaseContext(), getString(R.string.message_date_string_too_short, startTimeString.length()), Toast.LENGTH_LONG).show();
-                    }catch (JSONException e){/*Ignore*/}
-                    try {
-                        editDialogEpisodeCount.setText(String.valueOf(jsonObject.getInt("es")));//其他地方也有疑似总集数的属性
-                    }catch (JSONException e){/*Ignore*/}
-                    editDialogCover.setText(jsonObject.getString("apic"));
-                }catch (JSONException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }catch (IOException e){
-                    Toast.makeText(getBaseContext(),getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        task.execute(requestUrl);
-    }
 
     private void RemoveAllAnime(){
         ConfirmRemoveAllDialog dlg=new ConfirmRemoveAllDialog(this);

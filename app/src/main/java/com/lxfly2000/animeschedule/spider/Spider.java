@@ -10,7 +10,10 @@ public abstract class Spider {
     }
     public static final int STATUS_OK=0,STATUS_ONGOING=1,STATUS_FAILED=-1;
     public static abstract class OnReturnDataFunction{
-        public abstract void OnReturnData(AnimeItem data,int status,String resultMessage);
+        public abstract void OnReturnData(AnimeItem data,int status,String resultMessage,int focusId);
+        public void OnReturnData(AnimeItem data,int status,String resultMessage){
+            OnReturnData(data,status,resultMessage,0);
+        }
     }
     protected OnReturnDataFunction onReturnDataFunction=null;
     public void SetOnReturnDataFunction(OnReturnDataFunction f){

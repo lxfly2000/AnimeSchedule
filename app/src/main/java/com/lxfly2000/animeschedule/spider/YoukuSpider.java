@@ -146,10 +146,10 @@ public class YoukuSpider extends Spider {
                             item.rank=Math.round(Float.parseFloat(rk.substring(mRk.start(),mRk.end()))/2);
                         }
                     }
-                    onReturnDataFunction.OnReturnData(item,STATUS_OK,null);
                 }catch (IOException e){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
                 }
+                onReturnDataFunction.OnReturnData(item,STATUS_OK,null);
             }
         };
         task.SetUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36");

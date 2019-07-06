@@ -6698,7 +6698,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8fa97d1f68517724a0afcb1ca536bfe5b818e0d8.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28007",
 		"title":"街角魔族",
-		"description":"某天早晨，突然觉醒了暗之力量的女高中生·吉田优子，为了解除一族所遭受的诅咒而准备开始打倒魔法少女！！但对方却是自己的救命恩人！？而且根本就没可能打赢！？废柴系庶民派魔族与高冷系肌肉魔法少女编织的日常系魔法喜剧开始！！！",
+		"description":"某天早晨，突然觉醒了暗之力量的女高中生·吉田优子，为了解除一族所遭受的诅咒而准备开始打倒魔法少女！！但对方却是自己的救命恩人！？而且根本就没可能打赢！？废柴系庶民派魔族与高冷系肌肉魔法少女编织的日常系魔法喜剧开始！！！\n动画制作：日创",
 		"actors":"吉田优子：小原好美\n千代田桃：鬼头明里\n莉莉丝：高桥未奈美\n阳夏木蜜柑：高柳知叶",
 		"staff":"原作：伊藤いづも《街角魔族》\n监督：樱井弘明\n总编剧：大知庆一郎\n角色设计：大冢舞\n动画制作：J.C.STAFF",
 		"start_date":"2019-07-11",
@@ -6733,5 +6733,25 @@ setJsonData({
 		"category":["小说改","奇幻","战斗"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-27"
+	},{
+		"watched_episode":[0],
+		"cover":"https:\/\/imgs.aixifan.com\/image-manager_1562306582316-PAi1ZPjVIH",
+		"watch_url":"https:\/\/www.acfun.cn\/bangumi\/aa5024870",
+		"title":"满月之战GRANBELM",
+		"description":"满月的命运——齿轮转动的新月之夜。\n世界上的魔力消失后近1000年的时间过去了，魔法已经完全消逝于人们的记忆之中。在这样的世界里生活着的开朗活泼的高中生小日向满月。虽然过着积极向前的生活，但心里还是有些不安。自己什么也不擅长——。不擅长学习和运动的她，憧憬着只有自己能做到的“什么”。\n在夜月感觉上特别大的满月之夜，她和一个以月为名的少女、新月艾尔涅丝塔深海相遇了，这也是她和魔法人偶“阿尔玛诺克斯”的首次相遇。满月命运的齿轮，发出咯吱咯吱的声音现在开始转动了——\n动画制作：Nexus",
+		"actors":"",
+		"staff":"",
+		"start_date":"2019-7-6",
+		"update_time_int":85,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["机战","美少女"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-7-7"
 	}]
 });

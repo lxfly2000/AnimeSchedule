@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
             if(item.get("cover")==null){
                 String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(i));
                 String[]tempSplit=coverUrl.split("/");
-                String coverExt="";
+                String coverExt=".jpg";
                 if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
                     coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
                 }

@@ -2,6 +2,7 @@ package com.lxfly2000.animeschedule.spider;
 
 import android.content.Context;
 import com.lxfly2000.animeschedule.R;
+import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.StreamUtility;
@@ -152,7 +153,7 @@ public class YoukuSpider extends Spider {
                 onReturnDataFunction.OnReturnData(item,STATUS_OK,null);
             }
         };
-        task.SetUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36");
+        task.SetUserAgent(Values.userAgentChromeWindows);
         task.execute("https://list.youku.com/show/id_"+listId+".html");
     }
 

@@ -5,6 +5,7 @@ import android.widget.Toast;
 import com.lxfly2000.animeschedule.AnimeJson;
 import com.lxfly2000.animeschedule.R;
 import com.lxfly2000.animeschedule.URLUtility;
+import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.StreamUtility;
@@ -80,7 +81,7 @@ public class IQiyiSpider extends Spider {
                 }
             };
             task.SetExtra(url);
-            task.SetUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1");
+            task.SetUserAgent(Values.userAgentChromeWindows);
             task.execute(url);
             return;
         }

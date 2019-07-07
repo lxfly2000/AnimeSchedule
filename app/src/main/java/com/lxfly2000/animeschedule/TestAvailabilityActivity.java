@@ -192,8 +192,8 @@ public class TestAvailabilityActivity extends AppCompatActivity {
     private void OnFinishedTest(){
         StopTest();
         setTitle(getString(R.string.title_test_availability_result,
-                countBilibiliAvailable+countIQiyiAvailable+countQQVideoAvailable+countYoukuAvailable+countEtcAvailable,
-                countBilibiliUnavailable+countIQiyiUnavailable+countQQVideoUnavailable+countYoukuUnavailable+countEtcUnavailable));
+                countBilibiliAvailable+countIQiyiAvailable+countQQVideoAvailable+countYoukuAvailable+countAcFunAvailable+countEtcAvailable,
+                countBilibiliUnavailable+countIQiyiUnavailable+countQQVideoUnavailable+countYoukuUnavailable+countAcFunUnavailable+countEtcUnavailable));
         menuItemStart.setVisible(false);
         runningStatus=0;
     }

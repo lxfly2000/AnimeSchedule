@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":250,
+	"last_watch_index":335,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -5314,7 +5314,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630],
+		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630,20190707],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/368c60d973a8a3251534f599dcb2eff7fc64cef3.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26766",
 		"title":"水果篮子2019版",
@@ -5331,7 +5331,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","奇幻","校园","恋爱","少女"],
-		"last_watch_episode_anime":13,
+		"last_watch_episode_anime":14,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414,20190417],
@@ -6621,8 +6621,8 @@ setJsonData({
 		"description":"位于东京西部的巨大“学园都市”。 \n在总人口达230万人，其中约8成是学生的这座都市中，实施着超能力开发的特殊课程，学生们的能力被给予从“无能力Level 0”到“超能力Level 5”的六阶段评价。 \n在这样的学园都市君临能力者顶点的最强能力者·一方通行。他在仅有7人的“超能力者”当中也以远超其他人的能力位居第一。不断重复、脱离常轨的“实验”，以及在追求绝对力量的最后品尝到的败北。在那之后，随着与一位少女——最后之作的相遇，他的命运产生了巨大变化。 \n最强而最凶的“恶”——一方通行， \n扫平学园都市的“黑暗”!!\n动画制作：日创",
 		"actors":"一方通行：冈本信彦\n最后之作：日高里菜\n埃斯特·罗森塔尔：久保由利香\n祸斗：渡部纱弓\n御坂妹妹：佐佐木望\n黄泉川爱穗：甲斐田裕子\n菱形干比谷：逢坂良太\n菱形蛭魅：真野步",
 		"staff":"原作：镰池和马+山路新\n角色原案：灰村清孝、山路新\n监督：镰仲史阳\n角色设计：八重樫洋平\n音响监督：明田川仁\n音乐：井内舞子\n动画制作：J.C.STAFF",
-		"start_date":"2019-07-12",
-		"update_time_int":0,
+		"start_date":"2019-07-13",
+		"update_time_int":60,
 		"update_period":7,
 		"update_period_unit":"day",
 		"episode_count":12,
@@ -6654,7 +6654,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-24"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190707],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/4c7324327dd9ae035007c3e9bc40cd2ce08635b1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28006",
 		"title":"擅长捉弄的高木同学 第二季",
@@ -6662,16 +6662,16 @@ setJsonData({
 		"actors":"西片同学：梶裕贵\n高木同学：高桥李依\n日比野美奈：小原好美\n天川友加里：M·A·O\n月本早苗：小仓唯\n中井高贵：内田雄马\n真野：小岩井小鸟\n高尾：冈本信彦\n木村真脏：落合福嗣\n滨口：内山昂辉\n北条：悠木碧\n田边老师：田所阳向",
 		"staff":"原作：山本崇一朗《擅长捉弄的高木同学》\n监督：赤城博昭\n副监督：宇根信也\n剧本：加藤还一、伊丹秋、福田裕子\n角色设计：高野绫\n次要角色设计：茂木琢次、近藤奈都子\n总作画监督：茂木琢次、近藤奈都子、诹访壮大、高野绫\n音乐：堤博明\n动画制作：SHIN-EI动画",
 		"start_date":"2019-07-07",
-		"update_time_int":0,
+		"update_time_int":1380,
 		"update_period":7,
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":5,
 		"color":"silver",
 		"category":["漫画改","校园","恋爱","日常","搞笑"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-6-24"
 	},{
 		"watched_episode":[0],
@@ -6701,8 +6701,8 @@ setJsonData({
 		"description":"某天早晨，突然觉醒了暗之力量的女高中生·吉田优子，为了解除一族所遭受的诅咒而准备开始打倒魔法少女！！但对方却是自己的救命恩人！？而且根本就没可能打赢！？废柴系庶民派魔族与高冷系肌肉魔法少女编织的日常系魔法喜剧开始！！！\n动画制作：日创",
 		"actors":"吉田优子：小原好美\n千代田桃：鬼头明里\n莉莉丝：高桥未奈美\n阳夏木蜜柑：高柳知叶",
 		"staff":"原作：伊藤いづも《街角魔族》\n监督：樱井弘明\n总编剧：大知庆一郎\n角色设计：大冢舞\n动画制作：J.C.STAFF",
-		"start_date":"2019-07-11",
-		"update_time_int":0,
+		"start_date":"2019-07-12",
+		"update_time_int":88,
 		"update_period":7,
 		"update_period_unit":"day",
 		"episode_count":12,
@@ -6722,7 +6722,7 @@ setJsonData({
 		"actors":"南云始：深町寿成\n月：桑原由气\n希娅·哈乌利亚：高桥未奈美\n缇奥·库拉鲁斯：日笠阳子\n白崎香织：大西沙织\n八重樫雫：花守由美里\n畑山爱子：加隈亚衣\n天之河光辉：柿原彻也\n桧山大介：白石稔",
 		"staff":"原作：白米良（Overlap文库刊）\n角色原案：たかやKi\n监督：吉本欣司\n总编剧、剧本：佐藤胜一、吉本欣司\n角色设计、总作画监督：小岛智加\n动画制作：asread×WHITE FOX",
 		"start_date":"2019-07-08",
-		"update_time_int":0,
+		"update_time_int":1410,
 		"update_period":7,
 		"update_period_unit":"day",
 		"episode_count":12,
@@ -6752,6 +6752,26 @@ setJsonData({
 		"color":"silver",
 		"category":["机战","美少女"],
 		"last_watch_episode_anime":0,
+		"create_date":"2019-7-7"
+	},{
+		"watched_episode":[20190707],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/5941576c59fb2103a8aef70c4bb542f1da7264d7.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss27997",
+		"title":"偶像梦幻祭",
+		"description":"专门培养男性偶像的私立梦之咲学院。\n冰鹰北斗、明星昴流、游木真、衣更真绪4人组成了“Trickstar”的偶像组合，以顶尖偶像作为目标，每天努力练习着。\n可是，梦之咲学院主办了偶像们相互比拼各自魅力的实况录音活动，通称“梦幻祭”，学院的秩序也被这一活动所统治着。\n为了寻求改革、“Trickstar”向学生会发起了挑战。\n动画制作：David Production\n这题材，这配音……好像打开了新世界的大门。",
+		"actors":"冰鹰北斗：前野智昭\n明星昴流：柿原彻也\n游木真：森久保祥太郎\n衣更真绪：梶裕贵\n天祥院英智：绿川光\n日日树涉：江口拓也\n姬宫桃李：村濑步\n伏见弓弦：桥本晃太朗\n莲巳敬人：梅原裕一郎\n鬼龙红郎：神尾晋一郎\n神崎飒马：神永圭佑\n朔间零：增田俊树\n羽风薰：细贝圭\n大神晃牙：小野友树\n乙狩阿多尼斯：羽多野涉\n月永雷欧：浅沼晋太郎\n濑名泉：伊藤正巳\n朔间凛月：山下大辉\n鸣上岚：北村谅\n朱樱司：土田玲央\n守泽千秋：帆世雄一\n深海奏汰：西山宏太朗\n南云铁虎：中岛良树\n高峯翠：渡边拓海\n仙石忍：新田杏树\n仁兔成鸣：米内佑希\n天满光：池田纯矢\n真白友也：比留间俊哉\n紫之创：高坂知也\n葵日向 \/ 葵裕太：齐藤壮马\n斋宫宗：高桥广树\n影片みか：大须贺纯\n逆先夏目：野岛健儿\n春川宙：山本和臣\n青叶纺：石川界人\n三毛缟斑：鸟海浩辅\n乱凪砂：诹访部顺一\n七种茨：逢坂良太\n巴日和：花江夏树\n涟纯：内田雄马\n佐贺美阵：樋柴智康\n门章臣：驹田航",
+		"staff":"原作：Happy Elements\n监督：橹下纯白\n总编剧：日日日\n系列导演：副岛惠文\n主笔：猪爪慎一\n角色原案：Happy Elements\n角色设计：饭冢晴子、下谷智之、长田绘里\n美术监督：山根左帆\n色彩设计：铃木依里\n3D监督：日下大辅\n摄影监督：上条智也\n编集：长谷川舞\n音乐制作人：桑原圣\n音乐：加藤达也\n音响监督：滨野高年\n动画制作：david production\n迷你角色制作：纸屋りな",
+		"start_date":"2019-07-07",
+		"update_time_int":1320,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":4,
+		"color":"silver",
+		"category":["游戏改","音乐","偶像","声控"],
+		"last_watch_episode_anime":1,
 		"create_date":"2019-7-7"
 	}]
 });

@@ -233,9 +233,16 @@ public class IQiyiSpider extends Spider {
                     jsonString=jsonString.substring(jsonString.indexOf('{'),jsonString.lastIndexOf('}')+1);
                     JSONObject jsonObject=new JSONObject(jsonString);
                     try {
-                        String descString = jsonObject.getJSONObject("data").getJSONArray("vlist").getJSONObject(0).getString("desc");
+                        JSONArray vlist=jsonObject.getJSONObject("data").getJSONArray("vlist");
+                        String descString = vlist.getJSONObject(0).getString("desc");
                         if (descString.length() > 0)
                             item.description=descString;
+                        for(int i=0;i<vlist.length();i++){
+                            AnimeItem.EpisodeTitle et=new AnimeItem.EpisodeTitle();
+                            et.episodeIndex=vlist.getJSONObject(i).getString("pds");
+                            et.episodeTitle=vlist.getJSONObject(i).getString("vt");
+                            item.episodeTitles.add(et);
+                        }
                     }catch (JSONException e){/*Ignore*/}
                     try {
                         String qiyiPlayStrategy = jsonObject.getJSONObject("data").getString("ps");

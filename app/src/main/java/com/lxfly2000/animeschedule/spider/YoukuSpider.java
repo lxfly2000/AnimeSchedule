@@ -6,6 +6,10 @@ import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.StreamUtility;
+import com.lxfly2000.utilities.StringUtility;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -29,6 +33,7 @@ public class YoukuSpider extends Spider {
                 }
                 try{
                     String htmlString= StreamUtility.GetStringFromStream(stream);
+                    FindEpisodeTitle(htmlString,null);
                     Matcher m=Pattern.compile("<a href=\"((http(s)?:)?//)?list.youku.com/show/id_[A-Za-z0-9]+(.html)?\"( \\w+=\"[A-Za-z0-9+\\-=_]*\")* class=\"title\"").matcher(htmlString);
                     if(m.find()){
                         String listIdLine=htmlString.substring(m.start(),m.end());
@@ -44,8 +49,47 @@ public class YoukuSpider extends Spider {
                 }
             }
         };
-        task.SetUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36");
+        task.SetUserAgent(Values.userAgentChromeWindows);
         task.execute("https://v.youku.com/v_show/id_"+vid);
+    }
+
+    public void FindEpisodeTitle(String vidHtmlString,String listIdHtmlString){
+        if(vidHtmlString==null){
+            Matcher m=Pattern.compile("v\\.youku\\.com/v_show/id_[a-zA-Z0-9+=\\-_]+\\.html").matcher(listIdHtmlString);
+            if(m.find()){
+                String vidUrl="https://"+listIdHtmlString.substring(m.start(),m.end());
+                AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+                    @Override
+                    public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+                        if(!success){
+                            return;
+                        }
+                        try {
+                            FindEpisodeTitle(StreamUtility.GetStringFromStream(stream), null);
+                        }catch (IOException e){/*Ignore*/}
+                    }
+                };
+                task.SetUserAgent(Values.userAgentChromeWindows);
+                task.execute(vidUrl);
+            }
+            return;
+        }
+        Matcher m=Pattern.compile("window\\.playerAnthology=[^<]*</script>").matcher(vidHtmlString);
+        if(m.find()){
+            String jsonString=vidHtmlString.substring(m.start(),m.end());
+            jsonString=StringUtility.ParseBracketObject(jsonString,23,'{','}');
+            try{
+                JSONArray epArray=new JSONObject(jsonString).getJSONArray("list");
+                for(int i=0;i<epArray.length();i++){
+                    JSONObject epObject=epArray.getJSONObject(i);
+                    AnimeItem.EpisodeTitle et=new AnimeItem.EpisodeTitle();
+                    et.episodeTitle=epObject.getString("title");
+                    et.episodeIndex=epObject.getString("seq");
+                    item.episodeTitles.add(et);
+                }
+                onReturnDataFunction.OnReturnData(item,STATUS_OK,null);
+            }catch (JSONException e) {/*Ignore*/}
+        }
     }
 
     @Override
@@ -89,6 +133,7 @@ public class YoukuSpider extends Spider {
                 }
                 try{
                     String htmlString=StreamUtility.GetStringFromStream(stream);
+                    FindEpisodeTitle(null,htmlString);
                     //妈个球优酷的网页可以说是这4个网站里面最难抓的
                     Matcher mHtml=Pattern.compile("<img src=\"((http(s)?:)?//)?r[0-9]+.ykimg.com/[A-Z0-9]+\" alt=\"[^\"]*\"").matcher(htmlString);
                     if(mHtml.find()){

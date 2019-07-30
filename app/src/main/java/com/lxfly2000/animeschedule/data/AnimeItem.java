@@ -2,7 +2,13 @@ package com.lxfly2000.animeschedule.data;
 
 import com.lxfly2000.animeschedule.AnimeJson;
 
+import java.util.ArrayList;
+
 public class AnimeItem {
+    public static class EpisodeTitle{
+        public String episodeTitle,episodeIndex;
+    }
+
     public String watchUrl;
     public String coverUrl;
     public String title;
@@ -17,4 +23,5 @@ public class AnimeItem {
     public int absenseCount=0;
     public String[]categories;
     public int rank=0;
+    public ArrayList<EpisodeTitle>episodeTitles=new ArrayList<>();
 }

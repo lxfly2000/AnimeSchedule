@@ -80,5 +80,27 @@ public class AcFunSpider extends Spider {
         };
         task.SetUserAgent(Values.userAgentChromeWindows);
         task.execute(requestUrl);
+        AndroidDownloadFileTask taskEpisodeTitle=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+                if(!success){
+                    return;
+                }
+                try{
+                    String htmlString=StreamUtility.GetStringFromStream(stream);
+                    JSONArray epArray=new JSONObject(htmlString).getJSONObject("data").getJSONArray("content");
+                    for(int i=0;i<epArray.length();i++){
+                        JSONObject epObject=epArray.getJSONObject(i).getJSONArray("videos").getJSONObject(0);
+                        AnimeItem.EpisodeTitle et=new AnimeItem.EpisodeTitle();
+                        et.episodeIndex=epObject.getString("episodeName");
+                        et.episodeTitle=epObject.getString("newTitle");
+                        item.episodeTitles.add(et);
+                    }
+                    onReturnDataFunction.OnReturnData(item,STATUS_OK,null);
+                }catch (JSONException e){/*Ignore*/}catch (IOException e){/*Ignore*/}
+            }
+        };
+        taskEpisodeTitle.SetUserAgent(Values.userAgentChromeWindows);
+        taskEpisodeTitle.execute("https://www.acfun.cn/album/abm/bangumis/video?albumId="+bangumiId);
     }
 }

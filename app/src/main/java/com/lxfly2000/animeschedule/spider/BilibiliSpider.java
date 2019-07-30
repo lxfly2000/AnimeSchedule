@@ -12,6 +12,7 @@ import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.StreamUtility;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +29,11 @@ public class BilibiliSpider extends Spider {
 
     private AnimeItem item=new AnimeItem();
     private SharedPreferences preferences;
+
+    boolean titleUseSeriesTitle=true;
+    public void SetTitleUseSeriesTitle(boolean b){
+        titleUseSeriesTitle=b;
+    }
 
     @Override
     public void Execute(String url){
@@ -135,7 +141,7 @@ public class BilibiliSpider extends Spider {
                         item.coverUrl=htmlJson.getString("cover");
                     }catch (JSONException e){/*Ignore*/}
                     try {
-                        item.title=htmlJson.getString("series_title");
+                        item.title=htmlJson.getString(titleUseSeriesTitle?"series_title":"title");
                     }catch (JSONException e){
                         //2019-2-16：经检查发现番剧《天使降临到我身边》（SSID：26291）不存在“series_title”属性
                         try {
@@ -183,6 +189,16 @@ public class BilibiliSpider extends Spider {
                             tagString.append(htmlJson.getJSONArray("style").getString(i));
                         }
                         item.categories=tagString.toString().split(",");
+                    }catch (JSONException e){/*Ignore*/}
+                    try{
+                        JSONArray epArray=htmlJson.getJSONArray("episodes");
+                        for(int i=0;i<epArray.length();i++){
+                            AnimeItem.EpisodeTitle et=new AnimeItem.EpisodeTitle();
+                            JSONObject epObject=epArray.getJSONObject(i);
+                            et.episodeTitle=epObject.getString("index_title");
+                            et.episodeIndex=epObject.getString("index");
+                            item.episodeTitles.add(et);
+                        }
                     }catch (JSONException e){/*Ignore*/}
                     item.watchUrl="https://www.bilibili.com/bangumi/play/ss"+idString;//为避免输入的URL无法被客户端打开把URL统一改成SSID形式
                     item.rank=(int)Math.round(htmlJson.getJSONObject("rating").getDouble("score")/2);

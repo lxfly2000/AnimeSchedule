@@ -7,6 +7,8 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import com.google.android.flexbox.FlexboxLayout;
+import com.lxfly2000.animeschedule.data.AnimeItem;
+import com.lxfly2000.animeschedule.spider.*;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.StreamUtility;
 import com.lxfly2000.utilities.YMDDate;
@@ -111,8 +113,9 @@ public class EditWatchedEpisodeDialog {
     private class TypeCheckList implements DialogType{
         private LinearLayout linearLayout;
         private RatingBar ratingBarRank;
+        AlertDialog dlg;
         public void Show(){
-            final AlertDialog dlg=new AlertDialog.Builder(ctx)
+            dlg=new AlertDialog.Builder(ctx)
                     .setTitle(animeJson.GetTitle(paramIndex))
                     .setView(R.layout.dialog_edit_watched_episodes_checklist)
                     .setNegativeButton(android.R.string.cancel,null)
@@ -152,50 +155,48 @@ public class EditWatchedEpisodeDialog {
                 checkBox.setText(sb.toString());
                 linearLayout.addView(checkBox);
             }
+            Spider spider=null;
             if(URLUtility.IsBilibiliSeasonBangumiLink(animeJson.GetWatchUrl(paramIndex))){
-                final String ssid=URLUtility.GetBilibiliSeasonIdString(animeJson.GetWatchUrl(paramIndex));
-                if(ssid==null){
-                    Toast.makeText(ctx,R.string.message_bilibili_ssid_not_found,Toast.LENGTH_LONG).show();
-                    return;
-                }
-                AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-                    @Override
-                    public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
-                        if(!success){
-                            Toast.makeText(ctx,R.string.message_unable_to_fetch_anime_info,Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        try {
-                            String jsonString = StreamUtility.GetStringFromStream(stream);
-                            if (jsonString == null) {
-                                Toast.makeText(ctx, R.string.message_bilibili_ssid_code_not_found, Toast.LENGTH_LONG).show();
-                                return;
-                            }
-                            JSONObject htmlJson = new JSONObject(jsonString).getJSONObject("result");
-                            try {
-                                dlg.setTitle(htmlJson.getString("title"));
-                            }catch (JSONException e){/*Ignore*/}
-                            JSONArray epArray=htmlJson.getJSONArray("episodes");
-                            for(int i=0;i<epArray.length()&&i<linearLayout.getChildCount();i++){
-                                CheckBox checkBox=(CheckBox)linearLayout.getChildAt(i);
-                                try {
-                                    JSONObject epObject = epArray.getJSONObject(i);
-                                    String titleText = "[" + epObject.getString("index") + "] " + epObject.getString("index_title");
-                                    String originalString = checkBox.getText().toString();
-                                    if (originalString.indexOf("]") + 1 < originalString.length())
-                                        titleText += "\n";
-                                    checkBox.setText(originalString.replaceFirst("\\[\\d*\\] *", titleText));
-                                }catch (JSONException e){/*Ignore*/}
-                            }
-                        }catch (JSONException e){
-                            Toast.makeText(ctx,ctx.getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                        }catch (IOException e){
-                            Toast.makeText(ctx,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
-                        }
-                    }
-                };
-                task.execute("https://bangumi.bilibili.com/view/web_api/season?season_id="+ssid);
+                spider=new BilibiliSpider(ctx);
+                ((BilibiliSpider)spider).SetTitleUseSeriesTitle(false);
+            }else if(URLUtility.IsAcFunLink(animeJson.GetWatchUrl(paramIndex))){
+                spider=new AcFunSpider(ctx);
+            }else if(URLUtility.IsIQiyiLink(animeJson.GetWatchUrl(paramIndex))){
+                spider=new IQiyiSpider(ctx);
+            }else if(URLUtility.IsYoukuLink(animeJson.GetWatchUrl(paramIndex))){
+                spider=new YoukuSpider(ctx);
+            }/*else if(URLUtility.IsQQVideoLink(animeJson.GetWatchUrl(paramIndex))){//腾讯视频目前不提供各集标题，暂时无解
+                spider=new QQVideoSpider(ctx);
+            }*/
+            if(spider!=null){
+                spider.SetOnReturnDataFunction(onReturnDataFunction);
+                spider.Execute(animeJson.GetWatchUrl(paramIndex));
             }
         }
+
+        private boolean titleOK=false;
+
+        private Spider.OnReturnDataFunction onReturnDataFunction=new Spider.OnReturnDataFunction() {
+            @Override
+            public void OnReturnData(AnimeItem data, int status, String resultMessage, int focusId) {
+                if(resultMessage!=null)
+                    Toast.makeText(ctx,resultMessage,Toast.LENGTH_LONG).show();
+                if(status==Spider.STATUS_FAILED)
+                    return;
+                if(data.title!=null)
+                    dlg.setTitle(data.title);
+                if(titleOK)
+                    return;
+                for(int i=0;i<Math.min(data.episodeTitles.size(),linearLayout.getChildCount());i++) {
+                    CheckBox checkBox=(CheckBox)linearLayout.getChildAt(i);
+                    String titleText = "[" + data.episodeTitles.get(i).episodeIndex + "] " + data.episodeTitles.get(i).episodeTitle;
+                    String originalString = checkBox.getText().toString();
+                    if (originalString.indexOf("]") + 1 < originalString.length())
+                        titleText += "\n";
+                    checkBox.setText(originalString.replaceFirst("\\[\\d*\\] *", titleText));
+                    titleOK=true;
+                }
+            }
+        };
     }
 }

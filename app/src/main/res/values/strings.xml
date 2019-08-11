@@ -138,7 +138,7 @@
     </string>
     <string name="label_download_open_bilibili_app">Open Bilibili after this operation</string>
     <string name="message_app_not_found">\"%s\" not found, you might not install this application.</string>
-    <string name="menu_download_not_available">Download (Only available for Bilibili Bangumi link)</string>
+    <string name="menu_download_not_available">Download (Not available for this URL)</string>
     <string name="label_thanks">Reference</string>
     <string name="label_thanks_xiaoyaocz" translatable="false">
         <a href="https://github.com/xiaoyaocz/BiliAnimeDownload">xiaoyaocz/BiliAnimeDownload</a>
@@ -233,4 +233,9 @@
     <string name="label_sort_method_sort_order">In order</string>
     <string name="message_acfun_bangumi_id_not_found">Bangumi ID not found.</string>
     <string name="label_app_name_acfun">AcFun</string>
+    <string name="message_not_supported_source_type">Not supported source type \"%s\".</string>
+    <string name="message_acfun_download_advise">"Sorry, the download function for AcFun is under developing at this time. If you like, I suggest you do this on a computer by making good use of you-get, which is a very convenient tool for downloading videos from many websites.\n\nI'm looking for someone who can help with this~!"</string>
+    <string name="label_thanks_youget" translatable="false">
+        <a href="https://github.com/soimort/you-get">you-get</a>
+    </string>
 </resources>

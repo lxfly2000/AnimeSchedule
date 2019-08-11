@@ -26,9 +26,11 @@ public class AcFunSpider extends Spider {
     public void Execute(String url){
         //A站链接形式：
         //[1]手机端：https://m.acfun.cn/v/?ab=5024870#[...参数]
-        //                                    ~~~~~~~番剧播放/介绍页（手机端的两个页面是合并在一起的）
+        //                                    ~~~~~~~番剧ID，番剧播放/介绍页（手机端的两个页面是合并在一起的）
         //[2]电脑端介绍页：https://www.acfun.cn/bangumi/aa5024870#[...参数]
         //[3]电脑端播放页1：https://www.acfun.cn/bangumi/ab5024870_34169_326905[用下划线加了一些莫名其妙的数字]
+        //                                                  GroupID~~~~~ ~~~~~~ItemID
+        //   目前(2019-8-11)观察到的结果是同一番剧的GroupID是相同的。
         //[4]电脑端播放页2：https://www.acfun.cn/bangumi/ab5024870
         String bangumiId= URLUtility.GetAcFunBangumiId(url);
         if(bangumiId==null){

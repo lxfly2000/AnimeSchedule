@@ -127,7 +127,7 @@
     </string>
     <string name="label_download_open_bilibili_app">创建任务后打开B站APP</string>
     <string name="message_app_not_found">未找到“%s”，该应用可能未安装。</string>
-    <string name="menu_download_not_available">下载（只对B站番剧链接有效）</string>
+    <string name="menu_download_not_available">下载（暂不支持该网站链接）</string>
     <string name="label_thanks">参考</string>
     <string name="message_bilibili_download_task_created">下载任务已创建，请到哔哩哔哩客户端中手动开启下载。</string>
     <string name="message_bilibili_download_region_restricted_warning">地区限制番建议用系统下载</string>
@@ -185,4 +185,6 @@
     <string name="label_sort_method_sort_order">排序顺序</string>
     <string name="message_acfun_bangumi_id_not_found">未找到番剧ID。</string>
     <string name="label_app_name_acfun">AcFun</string>
+    <string name="message_not_supported_source_type">不支持的视频源“%s”。</string>
+    <string name="message_acfun_download_advise">非常抱歉，针对AcFun的番剧下载功能尚未完成。如果你愿意，你可以在电脑上使用you-get来下载到A站最高画质的视频，这是一个非常好用的支持非常多网站的视频下载工具。\n\n希望能有大佬帮我完善这个功能～！::&gt;_&lt;::</string>
 </resources>

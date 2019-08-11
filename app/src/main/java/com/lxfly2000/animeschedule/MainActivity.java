@@ -642,7 +642,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu,View v,ContextMenu.ContextMenuInfo menuInfo){
         getMenuInflater().inflate(R.menu.menu_anime_list,menu);
-        if(!URLUtility.IsBilibiliSeasonBangumiLink(animeJson.GetWatchUrl(jsonSortTable.get(longPressedListItem))))
+        String url=animeJson.GetWatchUrl(jsonSortTable.get(longPressedListItem));
+        if(!URLUtility.IsBilibiliSeasonBangumiLink(url)&&!URLUtility.IsAcFunLink(url))
             menu.findItem(R.id.action_download).setEnabled(false).setTitle(R.string.menu_download_not_available);
     }
 
@@ -685,7 +686,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void OpenDownloadDialog(int index){//这个index已经是json中的索引了，无需再通过排序表查找
-        new BilibiliDownloadDialog(this).OpenDownloadDialog(animeJson,index);
+        String url=animeJson.GetWatchUrl(index);
+        if(URLUtility.IsBilibiliSeasonBangumiLink(url)) {
+            new BilibiliDownloadDialog(this).OpenDownloadDialog(animeJson, index);
+        }else if(URLUtility.IsAcFunLink(url)){
+            AndroidUtility.MessageBox(this,getString(R.string.message_acfun_download_advise),animeJson.GetTitle(index));
+        }
     }
 
     public void ShowCountStatistics(){

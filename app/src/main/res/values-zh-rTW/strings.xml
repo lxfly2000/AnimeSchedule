@@ -127,7 +127,7 @@
     </string>
     <string name="label_download_open_bilibili_app">創建任務後打開B站APP</string>
     <string name="message_app_not_found">未找到“%s”，該應用程式可能未安裝。</string>
-    <string name="menu_download_not_available">下載（僅對B站番劇連結有效）</string>
+    <string name="menu_download_not_available">下載（暫不支援該網站連結）</string>
     <string name="label_thanks">參考</string>
     <string name="message_bilibili_download_task_created">下載任務已創建，請到嗶哩嗶哩APP中手動啟動下載。</string>
     <string name="message_bilibili_download_region_restricted_warning">地區限制番劇建議用系統下載</string>
@@ -185,4 +185,8 @@
     <string name="label_sort_method_sort_order">排序順序</string>
     <string name="message_acfun_bangumi_id_not_found">未找到番劇ID。</string>
     <string name="label_app_name_acfun">AcFun</string>
+    <string name="message_not_supported_source_type">不支援的影片源“%s”。</string>
+    <string name="message_acfun_download_advise">
+        非常抱歉，番劇下載功能暫時無法支援AcFun。如果你願意，你可以到電腦上用you-get來下載影片，這是一個易於使用、支援超多網站的影片下載工具。\n\n希望能有高手來幫我完善這個功能！
+    </string>
 </resources>

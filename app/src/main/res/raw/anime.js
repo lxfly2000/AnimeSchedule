@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":349,
+	"last_watch_index":268,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -1691,9 +1691,9 @@ setJsonData({
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/df92247e200aeb61f8aceda2e2b661c7dc07a328.jpg",
-		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss24583",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28321",
 		"title":"春原庄的管理人",
-		"description":"椎名亚树由于外表的缘故而总不被人当成男人看待，他为了改变自己而在升入初中时前往东京，住进了春原庄。在那里等着亚树的，是受到性格天然又爱恶作剧的春原庄管理员·春原彩花从身心两方面疼爱有加的每一天。不止如此，其他的同居人也全都是年长的女生……。治愈与心跳满载，不由得想要向管理员姐姐撒娇的年龄差（御姐正太）恋爱喜剧决定版！\n动画制作：银链\n========\n这剪辑得快没法看了。",
+		"description":"椎名亚树由于外表的缘故而总不被人当成男人看待，他为了改变自己而在升入初中时前往东京，住进了春原庄。在那里等着亚树的，是受到性格天然又爱恶作剧的春原庄管理员·春原彩花从身心两方面疼爱有加的每一天。不止如此，其他的同居人也全都是年长的女生……。治愈与心跳满载，不由得想要向管理员姐姐撒娇的年龄差（御姐正太）恋爱喜剧决定版！\n动画制作：银链\n========\n这剪辑得快没法看了。\n原SSID：24583",
 		"start_date":"2018-07-05",
 		"update_period":7,
 		"update_period_unit":"day",
@@ -2093,7 +2093,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/37e22d2feafdf9ea5ad2b39860bd0205fb5a2d1d.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss296",
 		"title":"天体的秩序",
-		"description":"某日，日本雾弥湖的上空出现了谜样的圆盘，一度造成全世界的混乱与恐慌。但飞碟却只是停留在空中，并没有进一步的行动。随着时间流逝，人们渐渐对这件事失去了兴趣......\n两名少女相遇之后，静止的时间再次流动，让众人有所改变的全新故事展开了。在中学生活的最后一年，她们将拥有一生无法忘怀的回忆。\n动画制作：Studio 3Hz",
+		"description":"某日，日本雾弥湖的上空出现了谜样的圆盘，一度造成全世界的混乱与恐慌。但飞碟却只是停留在空中，并没有进一步的行动。随着时间流逝，人们渐渐对这件事失去了兴趣......\n两名少女相遇之后，静止的时间再次流动，让众人有所改变的全新故事展开了。在中学生活的最后一年，她们将拥有一生无法忘怀的回忆。\n动画制作：Studio 3Hz\n承包：5B币",
 		"start_date":"2014-10-05",
 		"update_period":1,
 		"update_period_unit":"month",
@@ -3389,11 +3389,11 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2018-12-22"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[20190805,20190806,20190806,20190806,20190807,20190807,20190807],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/10183cadf6a9bdd0b4ab3ea80cafe12a11140fe1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss2590",
 		"title":"若叶女孩",
-		"description":"外貌秀丽却很憧憬“GAL”的若叶，天真无邪的童话少女萌子，奔放而又总是一时兴起的真鱼，以及原本是运动少女、现在却爱好BL的直。这是一部描绘个性洋溢的少女们日常的故事。\n动画制作：Nexus",
+		"description":"外貌秀丽却很憧憬“GAL”的若叶，天真无邪的童话少女萌子，奔放而又总是一时兴起的真鱼，以及原本是运动少女、现在却爱好BL的直。这是一部描绘个性洋溢的少女们日常的故事。\n动画制作：Nexus\n通常的⅓长度的番剧。\n原悠衣经典的女体叔心设定。",
 		"actors":"小桥若叶：小澤亜李\n时田萌子：井澤美香子\n黑川真鱼：M・A・O\n真柴直：村川梨衣\n小桥柚叶：木村珠莉\n小橋乙葉：浅倉杏美\n老师：能登麻美子\n生徒：石上静香\n",
 		"staff":"原作：原悠衣（芳文社《Manga Time Kirara MAX》）\n企画：臼井久人\n脚本：花田十輝\n导演：渡邊政治\n人物设定：石田可奈\n主题歌演出：Ray\n总作画监督：石田可奈\n系列构成：花田十輝\n音乐：川井憲次\n",
 		"start_date":"2015-07-03",
@@ -3403,11 +3403,11 @@ setJsonData({
 		"episode_count":13,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":5,
 		"color":"silver",
 		"category":["萌系","日常","校园","治愈","萝莉"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":7,
 		"create_date":"2018-12-22"
 	},{
 		"watched_episode":[false],
@@ -4628,11 +4628,11 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-2-12"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[20190805,20190806,20190806,20190807,20190808,20190809,20190809,20190809],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/92824bc6a8c7aabbf494c0b276d4aa7b70842976.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss3365",
 		"title":"境界的彼方",
-		"description":"【本片翻译由澄空学园字幕组提供】“那一族”唯一存活下来的少女与根本说不上是存在的“半妖”少年的二个人之间的故事。由人类与妖梦所生出的少年神原秋人某天在学校的屋顶上遇到从天而降的少女栗山未来。就算在异界士中，她也算是拥有著特异之诅咒一族最后活下来的少女。不变的教室、不变的日常、不变的世界，原本日子理应如此一天一天的走过。不过……唯一生存下来的少女与半妖少年的相会成为了这个世界唯一的改变……。\n动画制作：京都动画",
+		"description":"【本片翻译由澄空学园字幕组提供】“那一族”唯一存活下来的少女与根本说不上是存在的“半妖”少年的二个人之间的故事。由人类与妖梦所生出的少年神原秋人某天在学校的屋顶上遇到从天而降的少女栗山未来。就算在异界士中，她也算是拥有著特异之诅咒一族最后活下来的少女。不变的教室、不变的日常、不变的世界，原本日子理应如此一天一天的走过。不过……唯一生存下来的少女与半妖少年的相会成为了这个世界唯一的改变……。\n动画制作：京都动画\n开幕雷击。\n？？？",
 		"actors":"栗山未来：种田梨沙\n神原秋人：KENN\n名濑美月：茅原实里\n名濑博臣：铃木达央\n新堂爱：山冈百合\n新堂彩华：进藤尚美\n二之宫雫：渡边明乃\n伊波樱：丰田萌绘\n伊波唯：矢作纱友里\n藤真弥勒：松风雅也\n..",
 		"staff":"原作：鸟居なごむ\n插画、角色原案：鸭居知世（KA Esuma文库\/京都动画）\n监督：石立太一\n系列构成：花田十辉\n角色设计、总作画监督：门脇未来\n美术监督：渡边美希子\n色彩设计：宫田佳奈\n小物品设定：高桥博行\n妖梦设定：秋竹齐一\n摄影监督：中上龙太\n编辑：重村建吾\n音响监督：鹤冈阳太\n音乐：七濑光\n企划制作人：八田英明\n制作人：濑波里梨、中村伸一、斋藤滋、田中豪\n动画制作：京都动画\n制作：境界的彼方制作委员会（京都动画、波丽佳音、Lantis、TBS）",
 		"start_date":"2013-10-02",
@@ -4642,11 +4642,11 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":3,
 		"color":"silver",
 		"category":["恋爱","奇幻","战斗"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":8,
 		"create_date":"2019-2-12"
 	},{
 		"watched_episode":[true,true,true],
@@ -5314,7 +5314,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630,20190707,20190714,20190725,20190727],
+		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630,20190707,20190714,20190725,20190727,20190803,20190810],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/368c60d973a8a3251534f599dcb2eff7fc64cef3.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26766",
 		"title":"水果篮子2019版",
@@ -5331,7 +5331,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","奇幻","校园","恋爱","少女"],
-		"last_watch_episode_anime":17,
+		"last_watch_episode_anime":19,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414,20190417],
@@ -6614,7 +6614,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-19"
 	},{
-		"watched_episode":[20190714,20190720,20190727],
+		"watched_episode":[20190714,20190720,20190727,20190803,20190810],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/da3b4ad9f24a1defef978ced3150e558996c7b0f.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28002",
 		"title":"某科学的一方通行",
@@ -6631,7 +6631,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","科幻","战斗","魔法","校园"],
-		"last_watch_episode_anime":3,
+		"last_watch_episode_anime":5,
 		"create_date":"2019-6-21"
 	},{
 		"watched_episode":[0],
@@ -6654,7 +6654,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-24"
 	},{
-		"watched_episode":[20190707,20190715,20190723,20190729],
+		"watched_episode":[20190707,20190715,20190723,20190729,20190805],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/4c7324327dd9ae035007c3e9bc40cd2ce08635b1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28006",
 		"title":"擅长捉弄的高木同学 第二季",
@@ -6671,7 +6671,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","校园","恋爱","日常","搞笑"],
-		"last_watch_episode_anime":4,
+		"last_watch_episode_anime":5,
 		"create_date":"2019-6-24"
 	},{
 		"watched_episode":[0],
@@ -6694,7 +6694,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-26"
 	},{
-		"watched_episode":[20190712,20190719,20190727],
+		"watched_episode":[20190712,20190719,20190727,20190802,20190809],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8fa97d1f68517724a0afcb1ca536bfe5b818e0d8.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28007",
 		"title":"街角魔族",
@@ -6711,10 +6711,10 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","日常","萌系"],
-		"last_watch_episode_anime":3,
+		"last_watch_episode_anime":5,
 		"create_date":"2019-6-27"
 	},{
-		"watched_episode":[20190709,20190716,20190723,20190730],
+		"watched_episode":[20190709,20190716,20190723,20190730,20190806],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/ce55ba2772db23fcf816ac7f82afc2f6eb2c26c9.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss27995",
 		"title":"平凡职业造就世界最强",
@@ -6727,14 +6727,14 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":2,
+		"abandoned":true,
+		"rank":1,
 		"color":"silver",
 		"category":["小说改","奇幻","战斗"],
-		"last_watch_episode_anime":4,
+		"last_watch_episode_anime":5,
 		"create_date":"2019-6-27"
 	},{
-		"watched_episode":[20190717,20190717,20190720,20190727],
+		"watched_episode":[20190717,20190717,20190720,20190727,20190803,20190810],
 		"cover":"https:\/\/imgs.aixifan.com\/image-manager_1562306582316-PAi1ZPjVIH",
 		"watch_url":"https:\/\/www.acfun.cn\/bangumi\/aa5024870",
 		"title":"满月之战GRANBELM",
@@ -6751,7 +6751,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["机战","美少女"],
-		"last_watch_episode_anime":4,
+		"last_watch_episode_anime":6,
 		"create_date":"2019-7-7"
 	},{
 		"watched_episode":[20190707],
@@ -6914,7 +6914,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-7-17"
 	},{
-		"watched_episode":[20190725,20190725,20190725,20190726,20190726,20190726],
+		"watched_episode":[20190725,20190725,20190725,20190726,20190726,20190726,20190731,20190802,20190802,20190803,20190803,20190803,20190803],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/b69a9fc2ce1c50915b3158c2f6ac51ed64101b23.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss4349",
 		"title":"中二病也要谈恋爱！恋",
@@ -6931,10 +6931,10 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["搞笑","恋爱"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":13,
 		"create_date":"2019-7-24"
 	},{
-		"watched_episode":[20190730,20190730],
+		"watched_episode":[20190730,20190730,20190731,20190731,20190802,20190809],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/97007f464a9511abdbf8bf938c01dcdbaab151e0.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28016",
 		"title":"女高中生的虚度日常",
@@ -6951,7 +6951,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日常","漫画改","校园","搞笑","声控"],
-		"last_watch_episode_anime":2,
+		"last_watch_episode_anime":6,
 		"create_date":"2019-7-27"
 	},{
 		"watched_episode":[0],
@@ -7073,5 +7073,85 @@ setJsonData({
 		"category":["小说改","奇幻","魔法","冒险","推理"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-7-30"
+	},{
+		"watched_episode":[20190805,20190805,20190805,20190808,20190809],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/15c587a046c6fa135410a978d00be87972c4cf66.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss5556",
+		"title":"奇异太郎少年的妖怪绘日记",
+		"description":"由于进入了禁止入内的仓库而被逐出本宅，并被下令住到别馆的“奇异太郎”。他在那里遇到了座敷童子“铃”，并开始了同居生活（？）。妖狐、雪女、雪娘等各种各样的怪异来到了别馆。面对奇异太郎和铃，怪异们时而让他们欢笑，时而让他们困扰，时而帮助他们加深羁绊。与并不可怕的怪异们度过的日常就此开始了。\n泡面番都是这种沙雕样的么？",
+		"actors":"奇异太郎：五十嵐裕美\nすず：仲田ありさ\n狐面の女：喜多村英梨\n雪娘：長縄まりあ\n雪母：大原さやか\n",
+		"staff":"人物设定：今岡律之\n动画制作：Creators in Pack\n总导演：ひらさわひさよし\n官方网站：http：\/\/kiitarou.jp\/\n播放电视台：TOKYO MX\n其他电视台：サンテレビ\nCopyright：© 影山理一 \/ マイクロマガジン社・奇異太郎少年の妖怪絵日記製作委員会\n原作：影山理一\n脚本：WORDS in STEREO",
+		"start_date":"2016-10-05",
+		"update_time_int":1293,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":3,
+		"color":"silver",
+		"category":["漫画改","神魔","泡面"],
+		"last_watch_episode_anime":5,
+		"create_date":"2019-8-5"
+	},{
+		"watched_episode":[20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/54003a09e72f0daf2ac4bc69f5e4b08e4d016667.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1178",
+		"title":"CLANNAD ～After Story～",
+		"description":"在某个小镇，主角冈崎朋也因家庭因素成为不良少年，一直与春原阳平为伍，在光坂高校过着潦倒的生活，但冀望终有一天能够离开所在的小镇。某一天，他在学校坡道前发现了一个止步不前的女孩，在朋也认识了这个名为“古河渚”的女孩后，他的生活开始有了重大的变化。\n动画制作：京都动画",
+		"actors":"冈崎朋也：中村悠一\n春原阳平：阪口大助\n古河渚：中原麻衣\n冈崎汐：兴梠里美\n古河秋生：置鲇龙太郎\n古河早苗：井上喜久子\n芳野祐介：绿川光\n藤林杏：广桥凉\n藤林椋：神田朱未\n坂上智代：桑岛法子\n伊吹风子：野中蓝\n一之濑琴美：能登麻美子",
+		"staff":"原作：Key、ビジュアルアーツ\n监督：石原立也\n系列构成 \/ 脚本：志茂文彦\n角色原案：樋上いたる\n角色设计 \/ 总作画监督：池田和美\n美术监督：篠原睦雄\n色彩设计：竹田明代\n摄影监督：山本倫\n设定：高橋博行\n音响监督：鶴岡陽太\n音响制作：楽音舎\n音乐：折戸伸治、戸越まごめ、麻枝准\n动画制作：京都アニメーション（京都动画）",
+		"start_date":"2008-10-02",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":24,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":5,
+		"color":"silver",
+		"category":["时泪","校园","治愈","催泪","游戏改"],
+		"last_watch_episode_anime":24,
+		"create_date":"2019-8-6"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/2b3d026c913dfb98b449b3a1c3a5c70f7c9c604e.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss3135",
+		"title":"归宅部活动记录",
+		"description":"安藤夏希升上高中后，本来没有要参加社团的意愿。她随口回答同学塔野花梨“我要参加归宅部”，想不到真的有这个社团，就这样被同样打算参加归宅部的花梨硬是拉进去。夏希在归宅部结识爱搞怪的部长道明寺樱，擅长古武术的大萩牡丹，还有家财万贯的千金九重克蕾儿。道明寺告诉夏希，归宅部的宗旨，在於利用放学後回家前的时间，去做开心的事情……\n\n上了初高中后，社团活动成为学校生活最重要的一部分。除了平时课业外，能够找到一个符合自己兴趣的休闲活动，并乐在其中，和同侪和前辈教学相长，无疑是一件美事。不过，对于拒绝参加社团的人，外界会戏称他们是“归宅部（回家社）”。\n\n《归宅部活动记录》是由日本漫画家くろは从2011年8月18日开始在SQUARE ENIX旗下的网络漫画网站“GANGAN ONLINE”上连载、描绘“集结在‘归宅部’内女子高中生的日常”的漫画作品。由NOMAD制作的电视动画。\n动画制作：NOMAD",
+		"actors":"安藤 夏希：木戸衣吹\n塔野 花梨：結名 美月\n道明寺 樱：小林美晴\n大荻牡丹：相内沙英\n九重久 礼亚：千本木彩花\n高圆 礼奈：三澤紗千香\n海豹：M・A・O\n",
+		"staff":"原作： くろは\n导演： 佐藤光\n分镜： 佐藤光、秋田谷典昭、宮崎なぎさ\n演出： 矢野孝典、駒屋健一郎、佐藤光、秋田谷典昭、久保山英一\n音乐： 坂部剛\n人物设定： 佐々木貴宏\n系列构成： 雑破業\n总作画监督： 佐々木貴宏\n作画监督： 高橋克之、山内尚樹\n剪辑： 武宮むつみ\n音效： 小山恭正\n动画制作： NOMAD、ノーマッド\n别名： Chronicles of the Going Home Club\n官方网站： http：\/\/www.ntv.co.jp\/kitakubu\/\n播放电视台： 日本テレビ",
+		"start_date":"2013-07-04",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["校园"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-8-7"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/5ce66f68d54052e3a305524b9b06a76977e974fc.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss5989",
+		"title":"月色真美",
+		"description":"茜与小太郎。\n第一次被分到同班，相识的两人。\n同班同学、社团伙伴、教师、父母……与周围的关联，自己的成长。\n在那个一边被变化与不安追着，一边慌慌张张地向前飞奔的季节之中，有着一段稚嫩而又令人眩目的青春校园生活。",
+		"actors":"安昙小太郎：千葉翔也\n水野茜：小原好美\n比良拓海：田丸篤志\n西尾千夏：村川梨衣\n泷泽葵：白石晴香\n山科ろまん：筆村栄心\n小笠原大地：金子誠\n宫本心咲：石見舞菜香\n佐藤节子：鈴木美園",
+		"staff":"脚本：柿原優子\n导演：岸誠二\n人物设定：森田和明\n摄影监督：中村雄太\n系列构成：柿原優子\n人物原案：loundraw\n色彩设计：伊藤さき子\n美术监督：安田ゆかり\n音乐：伊賀拓郎\n",
+		"start_date":"2017-04-06",
+		"update_time_int":1380,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["恋爱","校园","原创"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-8-9"
 	}]
 });

@@ -23,6 +23,8 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
     private String acceptCharset=null;
     private String acceptEncoding=null;
     private String referer=null;
+    private String accept=null;
+    private String acceptLanguage=null;
 
     @Override
     protected Boolean doInBackground(String... params) {
@@ -53,6 +55,10 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
                 connection.setRequestProperty("Accept-Encoding",acceptEncoding);
             if(referer!=null)
                 connection.setRequestProperty("Referer",referer);
+            if(accept!=null)
+                connection.setRequestProperty("Accept",accept);
+            if(acceptLanguage!=null)
+                connection.setRequestProperty("Accept-Language",acceptLanguage);
             if(connectTimeOut>0)
                 connection.setConnectTimeout(connectTimeOut);
             if(readTimeOut>0)
@@ -128,6 +134,14 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
 
     public void SetAcceptEncoding(String encoding){
         acceptEncoding=encoding;
+    }
+
+    public void SetAccept(String _accept){
+        accept=_accept;
+    }
+
+    public void SetAcceptLanguage(String _al){
+        acceptLanguage=_al;
     }
 
     public abstract void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned);

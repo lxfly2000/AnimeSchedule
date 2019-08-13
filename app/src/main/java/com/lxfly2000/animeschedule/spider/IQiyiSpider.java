@@ -261,6 +261,8 @@ public class IQiyiSpider extends Spider {
                     onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
                 }catch (IOException e){
                     onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
+                }catch (IndexOutOfBoundsException e){
+                    onReturnDataFunction.OnReturnData(item,STATUS_FAILED,e.getClass().getName()+"\n"+e.getLocalizedMessage());
                 }
             }
         };

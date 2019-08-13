@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":218,
+	"last_watch_index":176,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -3389,7 +3389,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2018-12-22"
 	},{
-		"watched_episode":[20190805,20190806,20190806,20190806,20190807,20190807,20190807],
+		"watched_episode":[20190805,20190806,20190806,20190806,20190807,20190807,20190807,20190813],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/10183cadf6a9bdd0b4ab3ea80cafe12a11140fe1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss2590",
 		"title":"若叶女孩",
@@ -3407,7 +3407,7 @@ setJsonData({
 		"color":"silver",
 		"category":["萌系","日常","校园","治愈","萝莉"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":7,
+		"last_watch_episode_anime":8,
 		"create_date":"2018-12-22"
 	},{
 		"watched_episode":[false],
@@ -4271,7 +4271,7 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"create_date":"2019-1-24"
 	},{
-		"watched_episode":[20190812],
+		"watched_episode":[20190812,20190813],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/88739b4d0f11ac59eda06629fc131a0ae347974b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss281",
 		"title":"甘城光辉游乐园",
@@ -4289,7 +4289,7 @@ setJsonData({
 		"color":"silver",
 		"category":["装逼","日常","奇幻","励志","职场"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":1,
+		"last_watch_episode_anime":2,
 		"create_date":"2019-1-24"
 	},{
 		"watched_episode":[false],

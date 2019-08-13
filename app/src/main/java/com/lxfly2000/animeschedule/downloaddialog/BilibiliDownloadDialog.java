@@ -1,4 +1,4 @@
-package com.lxfly2000.animeschedule;
+package com.lxfly2000.animeschedule.downloaddialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import android.widget.*;
+import com.lxfly2000.animeschedule.*;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.AndroidUtility;
 import com.lxfly2000.utilities.FileUtility;
@@ -19,12 +20,11 @@ import java.io.IOException;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-public class BilibiliDownloadDialog {
-    private Context ctx;
+public class BilibiliDownloadDialog extends DownloadDialog{
     private SharedPreferences preferences;
-    BilibiliDownloadDialog(@NonNull Context context){
-        ctx=context;
-        preferences=Values.GetPreference(ctx);
+    public BilibiliDownloadDialog(@NonNull Context context){
+        super(context);
+        preferences= Values.GetPreference(ctx);
         checkEpisodes=new ArrayList<>();
     }
 
@@ -49,10 +49,11 @@ public class BilibiliDownloadDialog {
         }
     };
 
-    void OpenDownloadDialog(AnimeJson json,int index){
-        final String ssid=URLUtility.GetBilibiliSeasonIdString(json.GetWatchUrl(index));
+    @Override
+    public void OpenDownloadDialog(AnimeJson json, int index){
+        final String ssid= URLUtility.GetBilibiliSeasonIdString(json.GetWatchUrl(index));
         if(ssid==null){
-            Toast.makeText(ctx,R.string.message_bilibili_ssid_not_found,Toast.LENGTH_LONG).show();
+            Toast.makeText(ctx, R.string.message_bilibili_ssid_not_found,Toast.LENGTH_LONG).show();
             return;
         }
         String pkgName=ctx.getResources().getStringArray(R.array.pkg_name_bilibili_versions)[preferences.getInt(ctx.getString(R.string.key_bilibili_version_index),Values.vDefaultBilibiliVersionIndex)];

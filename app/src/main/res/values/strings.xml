@@ -240,4 +240,6 @@
         <a href="https://github.com/soimort/you-get">you-get</a>
     </string>
     <string name="label_acfun_download_settings">AcFun download settings</string>
+    <string name="label_acfun_download_notice">"Choose the episodes you want to download.\nAttention: Only the highest quality will be downloaded."</string>
+    <string name="label_download_acfun_include_danmaku">Also download Danmaku</string>
 </resources>

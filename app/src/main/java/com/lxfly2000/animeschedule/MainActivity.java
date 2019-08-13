@@ -22,11 +22,10 @@ import android.view.*;
 import android.widget.*;
 import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
 import com.lxfly2000.animeschedule.data.AnimeItem;
+import com.lxfly2000.animeschedule.downloaddialog.AcFunDownloadDialog;
+import com.lxfly2000.animeschedule.downloaddialog.BilibiliDownloadDialog;
 import com.lxfly2000.animeschedule.spider.*;
 import com.lxfly2000.utilities.*;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -691,7 +690,7 @@ public class MainActivity extends AppCompatActivity {
         if(URLUtility.IsBilibiliSeasonBangumiLink(url)) {
             new BilibiliDownloadDialog(this).OpenDownloadDialog(animeJson, index);
         }else if(URLUtility.IsAcFunLink(url)){
-            AndroidUtility.MessageBox(this,getString(R.string.message_acfun_download_advise),animeJson.GetTitle(index));
+            new AcFunDownloadDialog(this).OpenDownloadDialog(animeJson,index);
         }
     }
 

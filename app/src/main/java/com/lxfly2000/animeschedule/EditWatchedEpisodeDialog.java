@@ -9,15 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.google.android.flexbox.FlexboxLayout;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.animeschedule.spider.*;
-import com.lxfly2000.utilities.AndroidDownloadFileTask;
-import com.lxfly2000.utilities.StreamUtility;
 import com.lxfly2000.utilities.YMDDate;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 
 public class EditWatchedEpisodeDialog {
     private Context ctx;
@@ -174,7 +166,7 @@ public class EditWatchedEpisodeDialog {
             }
         }
 
-        private boolean titleOK=false;
+        private boolean episodeTitleOK =false;
 
         private Spider.OnReturnDataFunction onReturnDataFunction=new Spider.OnReturnDataFunction() {
             @Override
@@ -185,7 +177,7 @@ public class EditWatchedEpisodeDialog {
                     return;
                 if(data.title!=null)
                     dlg.setTitle(data.title);
-                if(titleOK)
+                if(episodeTitleOK)
                     return;
                 for(int i=0;i<Math.min(data.episodeTitles.size(),linearLayout.getChildCount());i++) {
                     CheckBox checkBox=(CheckBox)linearLayout.getChildAt(i);
@@ -194,7 +186,7 @@ public class EditWatchedEpisodeDialog {
                     if (originalString.indexOf("]") + 1 < originalString.length())
                         titleText += "\n";
                     checkBox.setText(originalString.replaceFirst("\\[\\d*\\] *", titleText));
-                    titleOK=true;
+                    episodeTitleOK =true;
                 }
             }
         };

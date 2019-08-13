@@ -188,4 +188,6 @@
     <string name="message_not_supported_source_type">不支持的视频源“%s”。</string>
     <string name="message_acfun_download_advise">非常抱歉，针对AcFun的番剧下载功能尚未完成。如果你愿意，你可以在电脑上使用you-get来下载到A站最高画质的视频，这是一个非常好用的支持非常多网站的视频下载工具。\n\n希望能有大佬帮我完善这个功能～！::&gt;_&lt;::</string>
     <string name="label_acfun_download_settings">A站番剧下载设置</string>
+    <string name="label_acfun_download_notice">选择要下载的分集。\n注意：只能下载最高画质。</string>
+    <string name="label_download_acfun_include_danmaku">同时下载弹幕</string>
 </resources>

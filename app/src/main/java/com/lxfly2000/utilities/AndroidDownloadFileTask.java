@@ -25,6 +25,7 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
     private String referer=null;
     private String accept=null;
     private String acceptLanguage=null;
+    private URLConnection connection;
 
     @Override
     protected Boolean doInBackground(String... params) {
@@ -39,7 +40,6 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
         }catch (MalformedURLException e){
             return false;
         }
-        URLConnection connection;
         InputStream ins;
         try{
             connection=jUrl.openConnection();
@@ -93,7 +93,7 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
     }
     @Override
     protected void onPostExecute(Boolean result){
-        OnReturnStream(inStream,result,responseCode,extraObject,additionalReturnedObject);
+        OnReturnStream(inStream,result,responseCode,extraObject,connection);
     }
 
     public void SetDownloadFile(boolean _downloadFile){
@@ -144,5 +144,5 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
         acceptLanguage=_al;
     }
 
-    public abstract void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned);
+    public abstract void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection);
 }

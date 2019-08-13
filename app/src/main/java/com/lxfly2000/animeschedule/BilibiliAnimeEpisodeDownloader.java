@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.Inflater;
@@ -66,7 +67,7 @@ public class BilibiliAnimeEpisodeDownloader {
             //下载danmaku.xml
             AndroidDownloadFileTask taskDownloadDanmaku = new AndroidDownloadFileTask() {
                 @Override
-                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                     String damakuPath = BilibiliUtility.GetBilibiliDownloadEpisodePath(ctx, ssidString, epidString) + "/danmaku.xml";
                     if (success) {
                         try {

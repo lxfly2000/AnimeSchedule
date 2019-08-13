@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +27,7 @@ public class YoukuSpider extends Spider {
     public void FindListIDByVID(String vid){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(!success){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_unable_to_fetch_anime_id));
                     return;
@@ -60,7 +61,7 @@ public class YoukuSpider extends Spider {
                 String vidUrl="https://"+listIdHtmlString.substring(m.start(),m.end());
                 AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
                     @Override
-                    public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+                    public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                         if(!success){
                             return;
                         }
@@ -126,7 +127,7 @@ public class YoukuSpider extends Spider {
 
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,URLConnection connection) {
                 if(!success){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_unable_to_fetch_anime_info));
                     return;

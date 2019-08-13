@@ -31,6 +31,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -309,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
                         @Override
-                        public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+                        public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                             ParametersSetImage param = (ParametersSetImage) extra;
                             if(success) {
                                 FileUtility.WriteStreamToFile(param.imagePath,stream);

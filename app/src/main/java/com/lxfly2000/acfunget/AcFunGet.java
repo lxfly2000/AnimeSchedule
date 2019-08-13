@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -34,14 +35,6 @@ public class AcFunGet {
         return "https://danmu.aixifan.com/V2/"+videoId;
     }
 
-    private void SetHttpHeader(AndroidDownloadFileTask task){
-        task.SetUserAgent("Mozilla/5.0 (X11; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0");
-        task.SetAcceptCharset("UTF-8,*;q=0.5");
-        task.SetAcceptEncoding("gzip,deflate,sdch");
-        task.SetAccept("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-        task.SetAcceptLanguage("en-US,en;q=0.8");
-    }
-
     class YoukuStreamType{
         public ArrayList<String> segUrl;
         public int totalSize;
@@ -55,7 +48,7 @@ public class AcFunGet {
         String url=String.format("https://player.acfun.cn/flash_data?vid=%s&ct=85&ev=3&sign=%s&time=%s",vid,sign,System.currentTimeMillis());
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(onFinishFunction ==null)
                     return;
                 if(!success){
@@ -92,7 +85,7 @@ public class AcFunGet {
                 }
             }
         };
-        SetHttpHeader(task);
+        Common.SetAcFunHttpHeader(task);
         task.SetReferer(ref);
         task.execute(url);
     }
@@ -100,7 +93,7 @@ public class AcFunGet {
     private void AcFunDownloadByVid(){
         AndroidDownloadFileTask taskGetVideo=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(onFinishFunction ==null)
                     return;
                 if(!success){
@@ -122,7 +115,7 @@ public class AcFunGet {
                 }
             }
         };
-        SetHttpHeader(taskGetVideo);
+        Common.SetAcFunHttpHeader(taskGetVideo);
         taskGetVideo.execute("http://www.acfun.cn/video/getVideo.aspx?id="+videoId);
     }
 
@@ -162,7 +155,7 @@ public class AcFunGet {
         if(paramDownloadDanmaku){
             AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
                 @Override
-                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                     if(onFinishFunction ==null)
                         return;
                     if(!success){
@@ -176,7 +169,7 @@ public class AcFunGet {
                         onFinishFunction.OnFinish(true,null,savePath,ctx.getString(R.string.message_download_finish,(String)extra));
                 }
             };
-            SetHttpHeader(task);
+            Common.SetAcFunHttpHeader(task);
             String danmakuUrl=GetDanmakuUrl(videoId);
             task.SetExtra(danmakuUrl);
             task.execute(danmakuUrl);
@@ -195,7 +188,7 @@ public class AcFunGet {
         }
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(onFinishFunction ==null)
                     return;
                 if(!success){
@@ -222,7 +215,7 @@ public class AcFunGet {
                 }
             }
         };
-        SetHttpHeader(task);
+        Common.SetAcFunHttpHeader(task);
         task.execute(url);
     }
 

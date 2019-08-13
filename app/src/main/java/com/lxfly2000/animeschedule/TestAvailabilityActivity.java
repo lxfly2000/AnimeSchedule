@@ -14,6 +14,7 @@ import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.AndroidUtility;
 
 import java.io.ByteArrayInputStream;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -140,7 +141,7 @@ public class TestAvailabilityActivity extends AppCompatActivity {
         setTitle(String.format("%d/%d %s...",currentIndex+1,json.GetAnimeCount(),json.GetTitle(currentIndex)));
         currentTask=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 AddResult((int)extra,response);
                 if(runningStatus==1)
                     TestAvailability(index+1);

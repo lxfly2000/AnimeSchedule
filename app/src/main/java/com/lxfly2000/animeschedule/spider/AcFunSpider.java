@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 
 public class AcFunSpider extends Spider {
     public AcFunSpider(Context context){
@@ -42,7 +43,7 @@ public class AcFunSpider extends Spider {
         String requestUrl="https://www.acfun.cn/bangumi/aa"+bangumiId;
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(!success){
                     onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_unable_to_fetch_anime_info));
                     return;
@@ -84,7 +85,7 @@ public class AcFunSpider extends Spider {
         task.execute(requestUrl);
         AndroidDownloadFileTask taskEpisodeTitle=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(!success){
                     return;
                 }

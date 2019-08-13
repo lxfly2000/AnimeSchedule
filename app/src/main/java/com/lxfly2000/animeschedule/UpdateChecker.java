@@ -14,6 +14,7 @@ import com.lxfly2000.utilities.StreamUtility;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,7 +32,7 @@ public class UpdateChecker {
         //https://stackoverflow.com/questions/5150637/networkonmainthreadexception
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 try {
                     ((UpdateChecker) extra).OnReceiveData(success?StreamUtility.GetStringFromStream(stream):null);
                 }catch (IOException e){

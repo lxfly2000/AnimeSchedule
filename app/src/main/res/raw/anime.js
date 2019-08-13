@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":268,
+	"last_watch_index":218,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -4271,7 +4271,7 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"create_date":"2019-1-24"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[20190812],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/88739b4d0f11ac59eda06629fc131a0ae347974b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss281",
 		"title":"甘城光辉游乐园",
@@ -4285,11 +4285,11 @@ setJsonData({
 		"episode_count":14,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["装逼","日常","奇幻","励志","职场"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-1-24"
 	},{
 		"watched_episode":[false],
@@ -4628,11 +4628,11 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-2-12"
 	},{
-		"watched_episode":[20190805,20190806,20190806,20190807,20190808,20190809,20190809,20190809],
+		"watched_episode":[20190805,20190806,20190806,20190807,20190808,20190809,20190809,20190809,20190812,20190812,20190812,20190812],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/92824bc6a8c7aabbf494c0b276d4aa7b70842976.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss3365",
 		"title":"境界的彼方",
-		"description":"【本片翻译由澄空学园字幕组提供】“那一族”唯一存活下来的少女与根本说不上是存在的“半妖”少年的二个人之间的故事。由人类与妖梦所生出的少年神原秋人某天在学校的屋顶上遇到从天而降的少女栗山未来。就算在异界士中，她也算是拥有著特异之诅咒一族最后活下来的少女。不变的教室、不变的日常、不变的世界，原本日子理应如此一天一天的走过。不过……唯一生存下来的少女与半妖少年的相会成为了这个世界唯一的改变……。\n动画制作：京都动画\n开幕雷击。\n？？？",
+		"description":"【本片翻译由澄空学园字幕组提供】“那一族”唯一存活下来的少女与根本说不上是存在的“半妖”少年的二个人之间的故事。由人类与妖梦所生出的少年神原秋人某天在学校的屋顶上遇到从天而降的少女栗山未来。就算在异界士中，她也算是拥有著特异之诅咒一族最后活下来的少女。不变的教室、不变的日常、不变的世界，原本日子理应如此一天一天的走过。不过……唯一生存下来的少女与半妖少年的相会成为了这个世界唯一的改变……。\n动画制作：京都动画\n开幕雷击。\n？？？\n这个？绕了一大圈，我？？？\n不愉快です。",
 		"actors":"栗山未来：种田梨沙\n神原秋人：KENN\n名濑美月：茅原实里\n名濑博臣：铃木达央\n新堂爱：山冈百合\n新堂彩华：进藤尚美\n二之宫雫：渡边明乃\n伊波樱：丰田萌绘\n伊波唯：矢作纱友里\n藤真弥勒：松风雅也\n..",
 		"staff":"原作：鸟居なごむ\n插画、角色原案：鸭居知世（KA Esuma文库\/京都动画）\n监督：石立太一\n系列构成：花田十辉\n角色设计、总作画监督：门脇未来\n美术监督：渡边美希子\n色彩设计：宫田佳奈\n小物品设定：高桥博行\n妖梦设定：秋竹齐一\n摄影监督：中上龙太\n编辑：重村建吾\n音响监督：鹤冈阳太\n音乐：七濑光\n企划制作人：八田英明\n制作人：濑波里梨、中村伸一、斋藤滋、田中豪\n动画制作：京都动画\n制作：境界的彼方制作委员会（京都动画、波丽佳音、Lantis、TBS）",
 		"start_date":"2013-10-02",
@@ -4642,11 +4642,11 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":3,
+		"rank":4,
 		"color":"silver",
 		"category":["恋爱","奇幻","战斗"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":8,
+		"last_watch_episode_anime":12,
 		"create_date":"2019-2-12"
 	},{
 		"watched_episode":[true,true,true],
@@ -6654,7 +6654,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-24"
 	},{
-		"watched_episode":[20190707,20190715,20190723,20190729,20190805],
+		"watched_episode":[20190707,20190715,20190723,20190729,20190805,20190812],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/4c7324327dd9ae035007c3e9bc40cd2ce08635b1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28006",
 		"title":"擅长捉弄的高木同学 第二季",
@@ -6671,7 +6671,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","校园","恋爱","日常","搞笑"],
-		"last_watch_episode_anime":5,
+		"last_watch_episode_anime":6,
 		"create_date":"2019-6-24"
 	},{
 		"watched_episode":[0],
@@ -7153,5 +7153,45 @@ setJsonData({
 		"category":["恋爱","校园","原创"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-8-9"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/6b6b2423ceff5fbdfbbee3a09a85173b8bd59a03.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1699",
+		"title":"四月是你的谎言",
+		"description":"从小接受母亲严格的钢琴训练，并在各种音乐比赛上获胜的“神童”——有马公生，11岁那年因为母亲去世，他从此变得听不见钢琴的声音，因而放弃了弹奏钢琴。\n国中三年级时，在青梅竹马椿的引见下，公生认识了与他同年级的小提琴手——宫园薰，并于一场比赛中被薰自由奔放的演奏风格所吸引。自此，公生的日常生活开始有了改变。",
+		"actors":"有马公生：花江夏樹\n宫园薰：種田梨沙\n泽部椿：佐倉綾音\n渡亮太：逢坂良太\n有马早希：能登麻美子\n相座武士：梶裕貴\n井川绘见：早見沙織\n相座凪：茅野愛衣\n濑户纮子：園崎未恵",
+		"staff":"原作：新川直司\n监督：イシグロキョウヘイ\n脚本：吉岡たかを\n分镜：倉田綾子、井端義秀、神戸守、イシグロキョウヘイ、後藤圭二、中村章子、黒木美幸、石井俊匡\n演出：倉田綾子、井端義秀、原田孝宏、イシグロキョウヘイ、福島利規、河野亜矢子、小島崇史、こさや\n人物设定：愛敬由紀子\n系列构成：吉岡たかを\n美术监督：薄井久代\n色彩设计：中島和子\n总作画监督：愛敬由紀子、高野綾\n作画监督：時永宜幸、愛敬由紀子、長森佳容、浅賀和行、小林恵祐、髙田晃、高野綾、小島崇史、伊藤香織\n音乐：横山克\n音响监督：明田川仁\n音乐制作：エピックレコードジャパン、フジパシフィック音楽出版、Aniplex\n摄影监督：野澤圭輔、関谷能弘\n剪辑：三嶋章紀\n动画制作：A-1 Pictures",
+		"start_date":"2014-10-09",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":22,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":5,
+		"color":"silver",
+		"category":["少女","音乐","催泪","恋爱"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-8-12"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/pic.xiaomingming.org\/FileUpload\/4760.jpg",
+		"watch_url":"http:\/\/www.imomoe.io\/view\/2110.html",
+		"title":"斩！赤红之瞳",
+		"description":"樱花动漫\n动画制作：白狐\n据说是个全员挂掉的寄刀片神作？",
+		"actors":"",
+		"staff":"",
+		"start_date":"2014-7-6",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":24,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":[],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-8-12"
 	}]
 });

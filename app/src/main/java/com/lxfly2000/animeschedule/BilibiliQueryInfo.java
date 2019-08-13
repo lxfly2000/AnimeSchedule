@@ -10,6 +10,7 @@ import xiaoyaocz.BiliAnimeDownload.Helpers.Api;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 
 public class BilibiliQueryInfo {
     private Context ctx;
@@ -90,7 +91,7 @@ public class BilibiliQueryInfo {
         //获取URL
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(success){
                     String jsonString=Values.vDefaultString;
                     try {
@@ -132,7 +133,7 @@ public class BilibiliQueryInfo {
         //获取URL
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,URLConnection connection) {
                 if(success){
                     String jsonString=Values.vDefaultString;
                     try {
@@ -174,7 +175,7 @@ public class BilibiliQueryInfo {
         //获取URL
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,URLConnection connection) {
                 if(success){
                     String jsonString=Values.vDefaultString;
                     try {
@@ -215,7 +216,7 @@ public class BilibiliQueryInfo {
     public void Query2(){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,URLConnection connection) {
                 if(success) {
                     String jsonString=Values.vDefaultString;
                     try {
@@ -246,7 +247,7 @@ public class BilibiliQueryInfo {
     public void Query3(){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,URLConnection connection) {
                 if(success){
                     String jsonString=Values.vDefaultString;
                     try {
@@ -288,7 +289,7 @@ public class BilibiliQueryInfo {
     public void Query4(){
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,URLConnection connection) {
                 if(success){
                     String jsonString=Values.vDefaultString;
                     try {

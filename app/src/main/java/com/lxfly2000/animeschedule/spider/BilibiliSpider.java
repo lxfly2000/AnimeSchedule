@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,7 +57,7 @@ public class BilibiliSpider extends Spider {
         onReturnDataFunction.OnReturnData(item,STATUS_ONGOING,null);
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(!success){
                     onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_unable_to_fetch_episode_id));
                     return;
@@ -66,7 +67,7 @@ public class BilibiliSpider extends Spider {
                     if(redirectCount>preferences.getInt(ctx.getString(R.string.key_redirect_max_count), Values.vDefaultRedirectMaxCount)){
                         onReturnDataFunction.OnReturnData(item,STATUS_ONGOING,response+"\n"+ctx.getString(R.string.message_too_many_redirect));
                     }else {
-                        ReadBilibiliURL_OnCallback((String) additionalReturned);
+                        ReadBilibiliURL_OnCallback(connection.getRequestProperty("Location"));
                         return;
                     }
                 }else {
@@ -123,7 +124,7 @@ public class BilibiliSpider extends Spider {
         final String requestUrl="https://bangumi.bilibili.com/view/web_api/season?season_id="+idString;
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,URLConnection connection) {
                 if(!success){
                     onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_unable_to_fetch_anime_info));
                     return;

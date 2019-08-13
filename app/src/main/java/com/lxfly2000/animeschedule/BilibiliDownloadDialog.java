@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class BilibiliDownloadDialog {
@@ -126,7 +127,7 @@ public class BilibiliDownloadDialog {
         spinnerVideoQuality.setSelection(3);
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(!success){
                     dialog.dismiss();
                     Toast.makeText(ctx,R.string.message_unable_to_fetch_anime_info,Toast.LENGTH_LONG).show();

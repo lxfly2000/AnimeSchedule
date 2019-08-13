@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -66,7 +67,7 @@ public class QQVideoSpider extends Spider {
         onReturnDataFunction.OnReturnData(item,STATUS_ONGOING,null);
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(!success){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_unable_to_fetch_anime_info));
                     return;

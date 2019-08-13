@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.widget.*;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import com.lxfly2000.acfunget.AcFunGet;
 import com.lxfly2000.animeschedule.AnimeJson;
@@ -54,6 +55,24 @@ public class AcFunDownloadDialog extends DownloadDialog {
                     for(int i_check=0;i_check<checkEpisodes.size();i_check++) {
                         if (checkEpisodes.get(i_check).isChecked()){
                             AcFunGet acfunGet=new AcFunGet(ctx);
+                            acfunGet.SetOnFinish(new AcFunGet.OnFinishFunction() {
+                                @Override
+                                public void OnFinish(boolean success, @Nullable String bangumiPath, @Nullable String danmakuPath, @Nullable String msg) {
+                                    if(msg!=null)
+                                        Toast.makeText(ctx,msg,Toast.LENGTH_LONG).show();
+                                    if(!success){
+                                        String path=bangumiPath;
+                                        if(path==null)
+                                            path=danmakuPath;
+                                        Toast.makeText(ctx,ctx.getString(R.string.message_download_failed,path),Toast.LENGTH_LONG).show();
+                                        return;
+                                    }
+                                    if(bangumiPath!=null)
+                                        Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,bangumiPath),Toast.LENGTH_LONG).show();
+                                    if(danmakuPath!=null)
+                                        Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,danmakuPath),Toast.LENGTH_LONG).show();
+                                }
+                            });
                             acfunGet.DownloadBangumi(json.GetWatchUrl(index),i_check,preferences.getString(ctx.getString(
                                     R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()),checkIncludeDanmaku.isChecked());
                         }

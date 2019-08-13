@@ -7193,5 +7193,25 @@ setJsonData({
 		"category":[],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-8-12"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/16f9ef3ba39dc2294680ffab50811c4e89a6f8e5.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1071",
+		"title":"狼与香辛料",
+		"description":"到处旅行靠贩卖一些小商品为生的商人罗伦斯，从因为收获祭而沸腾的帕斯罗村回来后，发现貌似有什么东西在自己的运货马车里。罗伦斯把麦束拨开一看，发现里面睡着一只长有狼耳和狼尾巴的少女。这位少女自称是“掌控丰收的贤狼——赫萝”，靠麦子为生的她，如果脖子上挂的帕斯罗麦子遗失了就会死。\n赫萝死缠着罗伦斯，希望他能够带自己回到遥远的北方故乡，见到少女的一只手变化成狼爪的罗伦斯，虽然仍对赫萝的身份抱有怀疑，但也答应了让想回到出生地的少女一同旅行。于是，狼女与商人“完全没有剑与魔法的”旅行由此展开……",
+		"actors":"克拉福·罗伦斯：福山润\n赫萝：小清水亚美\n库洛艾：名冢佳织\n诺儿菈·艾伦：中原麻衣\n列支敦·马贺特：大冢芳忠\n杰廉：浪川大辅\n怀兹：花轮英司\n叶克伯·塔兰铁诺：辻亲八\n翰斯·雷玛里欧：乡田穗积\n马..",
+		"staff":"原作：支倉凍砂\n监督：高橋丈夫\n脚本：荒川稔久\n分镜：高橋丈夫\n演出：高橋丈夫\n人物原案：文倉十\n人物设定：黒田和也\n色彩设计：佐野ひとみ\n作画监督：広田知子\n音乐：吉野裕司、井上裕香子\n音响监督：高桑一\n摄影监督：松井伸哉\n动画制作：イマジン",
+		"start_date":"2008-01-08",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["奇幻","日常","治愈","小说改","架空","冒险"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-8-13"
 	}]
 });

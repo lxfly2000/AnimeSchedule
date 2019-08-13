@@ -54,7 +54,7 @@ public class AcFunGet {
                 if(onFinishFunction ==null)
                     return;
                 if(!success){
-                    onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
                     return;
                 }
                 try{
@@ -81,9 +81,9 @@ public class AcFunGet {
                     }
                     AcFunDownloadByVid_Async1(mapYoukuStream);
                 }catch (IOException e){
-                    onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
                 }catch (JSONException e){
-                    onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
                 }
             }
         };
@@ -99,21 +99,21 @@ public class AcFunGet {
                 if(onFinishFunction ==null)
                     return;
                 if(!success){
-                    onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
                     return;
                 }
                 try{
                     JSONObject jsonInfo=new JSONObject(StreamUtility.GetStringFromStream(stream));
                     String sourceType=jsonInfo.getString("sourceType");
                     if(!sourceType.equals("zhuzhan")){
-                        onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_not_supported_source_type,sourceType));
+                        onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_not_supported_source_type,sourceType));
                         return;
                     }
                     YoukuAcFunProxy(jsonInfo.getString("sourceId"),jsonInfo.getString("encode"),"https://www.acfun.cn/v/ac"+videoId);
                 }catch (IOException e){
-                    onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
                 }catch (JSONException e){
-                    onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
                 }
             }
         };
@@ -134,8 +134,7 @@ public class AcFunGet {
             return;
         int size=0;
         for (String url : preferred.segUrl) {
-            //TODO: url_info???
-            int segSize=0;
+            int segSize=Common.GetURLResponseSize(url);
             size+=segSize;
         }
         String ext="";
@@ -160,13 +159,13 @@ public class AcFunGet {
                 public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                     if(onFinishFunction ==null)
                         return;
+                    String savePath=paramSavePath+"/"+fileNameWithoutExt+".json";
                     if(!success){
-                        onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_download_failed,(String)extra));
+                        onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
                         return;
                     }
-                    String savePath=paramSavePath+"/"+fileNameWithoutExt+".json";
                     if(!FileUtility.WriteStreamToFile(savePath,stream))
-                        onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_download_failed,(String)extra));
+                        onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
                     else
                         onFinishFunction.OnFinish(true,null,savePath,ctx.getString(R.string.message_download_finish,(String)extra));
                 }
@@ -187,30 +186,30 @@ public class AcFunGet {
         Matcher mUrl= Pattern.compile("https?://[^\\.]*\\.*acfun\\.[^\\.]+/bangumi/a[ab](\\d+)").matcher(url);
         if(!mUrl.find()){
             if(onFinishFunction !=null)
-                onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_not_supported_url));
+                onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_not_supported_url));
             return;
         }
-        mUrl=Pattern.compile("\\d+").matcher(url);
+        mUrl=Pattern.compile("/bangumi/a[ab]\\d+").matcher(url);
         if(!mUrl.find()){
             if(onFinishFunction !=null)
-                onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_not_supported_url));
+                onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_not_supported_url));
             return;
         }
-        url="https://www.acfun.cn/bangumi/ab"+url.substring(mUrl.start(),mUrl.end());
+        paramPlayUrl=url=paramPlayUrl.replaceFirst("/bangumi/aa","/bangumi/ab");
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 if(onFinishFunction ==null)
                     return;
                 if(!success){
-                    onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
                     return;
                 }
                 try{
                     htmlString= StreamUtility.GetStringFromStream(stream);
                     Matcher m=Pattern.compile("<script>window\\.pageInfo([^<]+)</script>").matcher(htmlString);
                     if(!m.find()){
-                        onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_cannot_fetch_property,m.pattern().toString()));
+                        onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_cannot_fetch_property,m.pattern().toString()));
                         return;
                     }
                     String tagScript=htmlString.substring(m.start(),m.end());
@@ -220,13 +219,14 @@ public class AcFunGet {
                     videoId=String.valueOf(jsonData.getInt("videoId"));
                     AcFunDownloadByVid();
                 }catch (IOException e){
-                    onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
                 }catch (JSONException e){
-                    onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
                 }
             }
         };
         Common.SetAcFunHttpHeader(task);
+        task.SetExtra(url);
         task.execute(url);
     }
 

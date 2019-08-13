@@ -2,6 +2,7 @@ package com.lxfly2000.acfunget;
 
 import android.content.Context;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +17,15 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.Inflater;
+import java.util.zip.InflaterInputStream;
 
 public class AcFunGet {
     private String paramPlayUrl,paramSavePath, fileNameWithoutExt;
@@ -206,7 +211,13 @@ public class AcFunGet {
                     return;
                 }
                 try{
-                    htmlString= StreamUtility.GetStringFromStream(stream);
+                    String enc=connection.getContentEncoding();
+                    InputStream iStream=stream;
+                    if(enc=="gzip")//判断输入流是否是压缩的，并获取压缩算法
+                        iStream=new GZIPInputStream(stream);
+                    else if(enc=="deflate")
+                        iStream=new InflaterInputStream(stream,new Inflater(true));
+                    htmlString= StreamUtility.GetStringFromStream(iStream,false);
                     Matcher m=Pattern.compile("<script>window\\.pageInfo([^<]+)</script>").matcher(htmlString);
                     if(!m.find()){
                         onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_cannot_fetch_property,m.pattern().toString()));
@@ -225,7 +236,6 @@ public class AcFunGet {
                 }
             }
         };
-        Common.SetAcFunHttpHeader(task);
         task.SetExtra(url);
         task.execute(url);
     }

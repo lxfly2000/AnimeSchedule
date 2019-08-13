@@ -223,6 +223,7 @@
     <string name="key_sort_order" translatable="false">anime_sort_order</string>
     <string name="key_sort_separate_abandoned" translatable="false">anime_sort_separate_abandoned</string>
     <string name="key_bilibili_save_path" translatable="false">bilibili_save_path</string>
+    <string name="key_acfun_save_path" translatable="false">acfun_save_path</string>
     <string name="key_bilibili_version_index" translatable="false">bilibili_version_index</string>
     <string name="key_api_method" translatable="false">bilibili_api_method</string>
     <string name="key_star_mark" translatable="false">star_mark</string>
@@ -238,4 +239,5 @@
     <string name="label_thanks_youget" translatable="false">
         <a href="https://github.com/soimort/you-get">you-get</a>
     </string>
+    <string name="label_acfun_download_settings">AcFun download settings</string>
 </resources>

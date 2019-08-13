@@ -17,6 +17,10 @@
                 android:title="@string/label_sort_split_abandoned" android:key="@string/key_sort_separate_abandoned"/>
     </PreferenceCategory>
     <PreferenceCategory
+        android:title="@string/label_acfun_download_settings">
+        <Preference android:key="@string/key_acfun_save_path" android:title="@string/label_bilibili_download_path"/>
+    </PreferenceCategory>
+    <PreferenceCategory
             android:title="@string/label_bilibili_download_settings">
         <Preference android:key="@string/key_bilibili_save_path" android:title="@string/label_bilibili_download_path"/>
         <ListPreference

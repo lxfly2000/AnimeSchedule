@@ -11,7 +11,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     ListPreference enumSortMethod,enumSortOrder;
     CheckBoxPreference checkSeperate;
-    Preference prefBilibiliSavePath;
+    Preference prefBilibiliSavePath,prefAcFunSavePath;
     ListPreference enumBilibiliClient,enumBilibiliApi;
     ListPreference enumStarMark;
     EditTextPreference numConnectionTimeOut,numReadTimeOut,numMaxRedirect;
@@ -28,6 +28,7 @@ public class SettingsFragment extends PreferenceFragment {
         enumSortOrder=(ListPreference)findPreference(getString(R.string.key_sort_order));
         checkSeperate=(CheckBoxPreference)findPreference(getString(R.string.key_sort_separate_abandoned));
         prefBilibiliSavePath=findPreference(getString(R.string.key_bilibili_save_path));
+        prefAcFunSavePath=findPreference(getString(R.string.key_acfun_save_path));
         enumBilibiliClient=(ListPreference)findPreference(getString(R.string.key_bilibili_version_index));
         enumBilibiliApi=(ListPreference)findPreference(getString(R.string.key_api_method));
         enumStarMark=(ListPreference)findPreference(getString(R.string.key_star_mark));
@@ -59,18 +60,8 @@ public class SettingsFragment extends PreferenceFragment {
         for(int i=0;i<stringArray.length;i++)
             stringArray[i]=String.valueOf(i);
         enumStarMark.setEntryValues(stringArray);
-        prefBilibiliSavePath.setOnPreferenceClickListener(preference -> {
-            //https://github.com/hedzr/android-file-chooser#choose-a-folder
-            new ChooserDialog(this)
-                    .displayPath(true)
-                    .withFilter(true,false)
-                    .withStartFile(preference.getSummary().toString())
-                    .withResources(R.string.label_bilibili_download_path,android.R.string.ok,android.R.string.cancel)
-                    .withChosenListener((s, file) -> {
-                        onChangeListener.onPreferenceChange(preference,s);
-                    }).build().show();
-            return true;
-        });
+        prefBilibiliSavePath.setOnPreferenceClickListener(pcListener);
+        prefAcFunSavePath.setOnPreferenceClickListener(pcListener);
         enumSortMethod.setOnPreferenceChangeListener(onChangeListener);
         enumSortOrder.setOnPreferenceChangeListener(onChangeListener);
         checkSeperate.setOnPreferenceChangeListener(onChangeListener);
@@ -101,6 +92,19 @@ public class SettingsFragment extends PreferenceFragment {
         return true;
     };
 
+    Preference.OnPreferenceClickListener pcListener=(preference)->{
+        //https://github.com/hedzr/android-file-chooser#choose-a-folder
+        new ChooserDialog(this)
+                .displayPath(true)
+                .withFilter(true,false)
+                .withStartFile(preference.getSummary().toString())
+                .withResources(R.string.label_bilibili_download_path,android.R.string.ok,android.R.string.cancel)
+                .withChosenListener((s, file) -> {
+                    onChangeListener.onPreferenceChange(preference,s);
+                }).build().show();
+        return true;
+    };
+
     public boolean isUpdated() {
         return updated;
     }
@@ -110,6 +114,7 @@ public class SettingsFragment extends PreferenceFragment {
         StringizeSettings();
         sharedPreferences.edit()
                 .putString(getString(R.string.key_bilibili_save_path),Values.GetvDefaultBilibiliSavePath(getActivity()))
+                .putString(getString(R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal())
                 .putBoolean(getString(R.string.key_sort_separate_abandoned),Values.vDefaultSortSeperateAbandoned)
                 .apply();
         ConvertIntSettings();
@@ -122,6 +127,7 @@ public class SettingsFragment extends PreferenceFragment {
         PresentSettings(enumSortOrder,Values.vDefaultSortOrder);
         PresentSettings(checkSeperate,Values.vDefaultSortSeperateAbandoned);
         PresentSettings(prefBilibiliSavePath,Values.GetvDefaultBilibiliSavePath(getActivity()));
+        PresentSettings(prefAcFunSavePath,Values.GetRepositoryPathOnLocal());
         PresentSettings(enumBilibiliClient,Values.vDefaultBilibiliVersionIndex);
         PresentSettings(enumBilibiliApi,Values.vDefaultApiMethod);
         PresentSettings(enumStarMark,Values.vDefaultStarMark);

@@ -186,10 +186,8 @@
     <string name="message_acfun_bangumi_id_not_found">未找到番劇ID。</string>
     <string name="label_app_name_acfun">AcFun</string>
     <string name="message_not_supported_source_type">不支援的影片源“%s”。</string>
-    <string name="message_acfun_download_advise">
-        非常抱歉，番劇下載功能暫時無法支援AcFun。如果你願意，你可以到電腦上用you-get來下載影片，這是一個易於使用、支援超多網站的影片下載工具。\n\n希望能有高手來幫我完善這個功能！
-    </string>
     <string name="label_acfun_download_settings">A站番劇下載設定</string>
     <string name="label_acfun_download_notice">選擇要下載的分集。\n注意：僅下載最高畫質。</string>
     <string name="label_download_acfun_include_danmaku">同時下載彈幕</string>
+    <string name="message_download_task_created">下載任務已創建，請耐心等待下載完成。</string>
 </resources>

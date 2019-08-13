@@ -2,11 +2,14 @@ package com.lxfly2000.animeschedule.downloaddialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import com.lxfly2000.acfunget.AcFunGet;
 import com.lxfly2000.animeschedule.AnimeJson;
 import com.lxfly2000.animeschedule.R;
+import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.animeschedule.spider.AcFunSpider;
 import com.lxfly2000.animeschedule.spider.Spider;
@@ -15,8 +18,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class AcFunDownloadDialog extends DownloadDialog {
+    private SharedPreferences preferences;
     public AcFunDownloadDialog(@NonNull Context context){
         super(context);
+        preferences= Values.GetPreference(ctx);
         checkEpisodes=new ArrayList<>();
     }
 
@@ -46,15 +51,14 @@ public class AcFunDownloadDialog extends DownloadDialog {
         AlertDialog dialog=new AlertDialog.Builder(ctx)
                 .setTitle(json.GetTitle(index))
                 .setPositiveButton(android.R.string.ok,(dialogInterface, i) -> {
-                    /*int error=0;
                     for(int i_check=0;i_check<checkEpisodes.size();i_check++) {
-                        if (!checkEpisodes.get(i_check).isChecked())
-                            continue;
+                        if (checkEpisodes.get(i_check).isChecked()){
+                            AcFunGet acfunGet=new AcFunGet(ctx);
+                            acfunGet.DownloadBangumi(json.GetWatchUrl(index),i_check,preferences.getString(ctx.getString(
+                                    R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()),checkIncludeDanmaku.isChecked());
+                        }
                     }
-                    if(error==0) {
-                        Toast.makeText(ctx, R.string.message_bilibili_wait_sysdownload, Toast.LENGTH_SHORT).show();
-                    }*/
-                    Toast.makeText(ctx, R.string.message_acfun_download_advise,Toast.LENGTH_LONG).show();
+                    Toast.makeText(ctx,R.string.message_download_task_created,Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton(android.R.string.cancel,null)
                 .setView(R.layout.dialog_acfun_download)

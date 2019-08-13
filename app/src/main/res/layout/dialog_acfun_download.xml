@@ -18,7 +18,7 @@
                     android:text="@string/label_download_acfun_include_danmaku"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" android:id="@+id/checkAcfunIncludeDanmaku"
-                    android:layout_weight="0"/>
+                    android:layout_weight="0" android:checked="true"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="vertical"

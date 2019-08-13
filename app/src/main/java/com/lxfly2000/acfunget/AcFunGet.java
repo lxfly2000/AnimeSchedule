@@ -2,6 +2,7 @@ package com.lxfly2000.acfunget;
 
 import android.content.Context;
 import android.util.Base64;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.lxfly2000.animeschedule.R;
@@ -23,6 +24,7 @@ import java.util.regex.Pattern;
 
 public class AcFunGet {
     private String paramPlayUrl,paramSavePath, fileNameWithoutExt;
+    private int paramDownloadEpisodeFromZero;
     private boolean paramDownloadDanmaku;
     private String htmlString;
     private String videoId;
@@ -31,7 +33,7 @@ public class AcFunGet {
         ctx=context;
     }
 
-    public String GetDanmakuUrl(String videoId){
+    protected String GetDanmakuUrl(String videoId){
         return "https://danmu.aixifan.com/V2/"+videoId;
     }
 
@@ -176,16 +178,25 @@ public class AcFunGet {
         }
     }
 
-    public void DownloadBangumi(String url,String savePath,boolean downloadDanmaku){
+    public void DownloadBangumi(String url,int dnEpisodeFromZero,String savePath,boolean downloadDanmaku){
+        Toast.makeText(ctx,"非常抱歉，针对AcFun的番剧下载功能尚未完成。如果你愿意，你可以在电脑上使用you-get来下载到A站最高画质的视频，这是一个非常好用的支持非常多网站的视频下载工具。\n\n希望能有大佬帮我完善这个功能～！::>_<::",Toast.LENGTH_LONG).show();
         paramPlayUrl=url;
+        paramDownloadEpisodeFromZero=dnEpisodeFromZero;
         paramSavePath=savePath;
         paramDownloadDanmaku=downloadDanmaku;
-        Matcher mUrl= Pattern.compile("https?://[^\\.]*\\.*acfun\\.[^\\.]+/bangumi/ab(\\d+)").matcher(url);
+        Matcher mUrl= Pattern.compile("https?://[^\\.]*\\.*acfun\\.[^\\.]+/bangumi/a[ab](\\d+)").matcher(url);
         if(!mUrl.find()){
             if(onFinishFunction !=null)
                 onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_not_supported_url));
             return;
         }
+        mUrl=Pattern.compile("\\d+").matcher(url);
+        if(!mUrl.find()){
+            if(onFinishFunction !=null)
+                onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_not_supported_url));
+            return;
+        }
+        url="https://www.acfun.cn/bangumi/ab"+url.substring(mUrl.start(),mUrl.end());
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {

@@ -64,6 +64,8 @@ public class AcFunDownloadDialog extends DownloadDialog {
                                         String path=bangumiPath;
                                         if(path==null)
                                             path=danmakuPath;
+                                        if(path==null)
+                                            return;
                                         Toast.makeText(ctx,ctx.getString(R.string.message_download_failed,path),Toast.LENGTH_LONG).show();
                                         return;
                                     }

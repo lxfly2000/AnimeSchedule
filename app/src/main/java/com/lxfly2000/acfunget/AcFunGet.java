@@ -1,12 +1,14 @@
 package com.lxfly2000.acfunget;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.lxfly2000.animeschedule.R;
+import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 import com.lxfly2000.utilities.FileUtility;
 import com.lxfly2000.utilities.JSONUtility;
@@ -34,8 +36,10 @@ public class AcFunGet {
     private String htmlString;
     private String videoId;
     private Context ctx;
+    private SharedPreferences preferences;
     public AcFunGet(@NonNull Context context){
         ctx=context;
+        preferences= Values.GetPreference(ctx);
     }
 
     protected String GetDanmakuUrl(String videoId){
@@ -63,9 +67,15 @@ public class AcFunGet {
                     return;
                 }
                 try{
-                    String jsonData=new JSONObject(StreamUtility.GetStringFromStream(stream)).getString("data");
+                    String enc=connection.getHeaderField("Content-Encoding");
+                    InputStream iStream=stream;
+                    if("gzip".equals(enc))//判断输入流是否是压缩的，并获取压缩算法
+                        iStream=new GZIPInputStream(stream);
+                    else if("deflate".equals(enc))
+                        iStream=new InflaterInputStream(stream,new Inflater(true));
+                    String jsonData=new JSONObject(StreamUtility.GetStringFromStream(iStream,false)).getString("data");
                     String encText=new String(Base64.decode(jsonData,Base64.DEFAULT));
-                    String decText=RC4.decryptRC4(encText,"8bdc7e1a");
+                    String decText=RC4.decryptRC4(encText.getBytes(),"8bdc7e1a");
                     JSONObject jsonYouku=new JSONObject(decText);
 
                     HashMap<String,YoukuStreamType> mapYoukuStream=new HashMap<>();
@@ -97,7 +107,9 @@ public class AcFunGet {
         task.execute(url);
     }
 
-    private void AcFunDownloadByVid(){
+    private int redirectCount=0;
+
+    private void AcFunDownloadByVid(String vidUrl){
         AndroidDownloadFileTask taskGetVideo=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
@@ -107,8 +119,23 @@ public class AcFunGet {
                     onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
                     return;
                 }
+                if(response==301||response==302){
+                    redirectCount++;
+                    if(redirectCount>preferences.getInt(ctx.getString(R.string.key_redirect_max_count),Values.vDefaultRedirectMaxCount)){
+                        onFinishFunction.OnFinish(false,null,null,ctx.getString(R.string.message_too_many_redirect));
+                        return;
+                    }
+                    AcFunDownloadByVid(connection.getHeaderField("Location"));
+                    return;
+                }
                 try{
-                    JSONObject jsonInfo=new JSONObject(StreamUtility.GetStringFromStream(stream));
+                    String enc=connection.getHeaderField("Content-Encoding");
+                    InputStream iStream=stream;
+                    if("gzip".equals(enc))//判断输入流是否是压缩的，并获取压缩算法
+                        iStream=new GZIPInputStream(stream);
+                    else if("deflate".equals(enc))
+                        iStream=new InflaterInputStream(stream,new Inflater(true));
+                    JSONObject jsonInfo=new JSONObject(StreamUtility.GetStringFromStream(iStream,false));
                     String sourceType=jsonInfo.getString("sourceType");
                     if(!sourceType.equals("zhuzhan")){
                         onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_not_supported_source_type,sourceType));
@@ -123,7 +150,7 @@ public class AcFunGet {
             }
         };
         Common.SetAcFunHttpHeader(taskGetVideo);
-        taskGetVideo.execute("http://www.acfun.cn/video/getVideo.aspx?id="+videoId);
+        taskGetVideo.execute(vidUrl);
     }
 
     private void AcFunDownloadByVid_Async1(HashMap<String,YoukuStreamType> mapYouku){
@@ -211,11 +238,11 @@ public class AcFunGet {
                     return;
                 }
                 try{
-                    String enc=connection.getContentEncoding();
+                    String enc=connection.getHeaderField("Content-Encoding");
                     InputStream iStream=stream;
-                    if(enc=="gzip")//判断输入流是否是压缩的，并获取压缩算法
+                    if("gzip".equals(enc))//判断输入流是否是压缩的，并获取压缩算法
                         iStream=new GZIPInputStream(stream);
-                    else if(enc=="deflate")
+                    else if("deflate".equals(enc))
                         iStream=new InflaterInputStream(stream,new Inflater(true));
                     htmlString= StreamUtility.GetStringFromStream(iStream,false);
                     Matcher m=Pattern.compile("<script>window\\.pageInfo([^<]+)</script>").matcher(htmlString);
@@ -228,7 +255,7 @@ public class AcFunGet {
                     JSONObject jsonData=new JSONObject(jsonString);
                     fileNameWithoutExt =jsonData.getString("bangumiTitle")+" "+jsonData.getString("episodeName")+" "+jsonData.getString("title");
                     videoId=String.valueOf(jsonData.getInt("videoId"));
-                    AcFunDownloadByVid();
+                    AcFunDownloadByVid("https://www.acfun.cn/video/getVideo.aspx?id="+videoId);
                 }catch (IOException e){
                     onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
                 }catch (JSONException e){
@@ -236,6 +263,7 @@ public class AcFunGet {
                 }
             }
         };
+        Common.SetAcFunHttpHeader(task);
         task.SetExtra(url);
         task.execute(url);
     }

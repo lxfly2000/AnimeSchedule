@@ -56,10 +56,15 @@ public class FileUtility {
         return new File(path).delete();
     }
 
-    public static boolean WriteStreamToFile(String path,ByteArrayInputStream stream){
+    public static boolean WriteStreamToFile(String path,InputStream stream){
+        return WriteStreamToFile(path,stream,true);
+    }
+
+    public static boolean WriteStreamToFile(String path,InputStream stream,boolean reset){
         try {
             FileOutputStream outputStream = new FileOutputStream(CreateFile(path));
-            stream.reset();
+            if(reset)
+                stream.reset();
             byte[]buffer=new byte[1024];
             while(stream.read(buffer)!=-1){
                 outputStream.write(buffer);

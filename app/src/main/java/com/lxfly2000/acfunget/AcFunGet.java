@@ -9,10 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.lxfly2000.animeschedule.R;
 import com.lxfly2000.animeschedule.Values;
-import com.lxfly2000.utilities.AndroidDownloadFileTask;
-import com.lxfly2000.utilities.FileUtility;
-import com.lxfly2000.utilities.JSONUtility;
-import com.lxfly2000.utilities.StreamUtility;
+import com.lxfly2000.utilities.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +29,6 @@ import java.util.zip.InflaterInputStream;
 
 public class AcFunGet {
     private String paramPlayUrl,paramSavePath, fileNameWithoutExt;
-    private int paramDownloadEpisodeFromZero;
     private boolean paramDownloadDanmaku;
     private String htmlString;
     private String videoId;
@@ -75,8 +71,8 @@ public class AcFunGet {
                     else if("deflate".equals(enc))
                         iStream=new InflaterInputStream(stream,new Inflater(true));
                     String jsonData=new JSONObject(StreamUtility.GetStringFromStream(iStream,false)).getString("data");
-                    String encText=new String(Base64.decode(jsonData,Base64.DEFAULT));
-                    String decText=new String(RC4.RC4("8bdc7e1a".getBytes(),encText.getBytes()), StandardCharsets.UTF_8);
+                    byte[]encBytes=Base64.decode(jsonData,Base64.DEFAULT);
+                    String decText=new String(Common.RC4("8bdc7e1a".getBytes(),encBytes), StandardCharsets.UTF_8);
                     JSONObject jsonYouku=new JSONObject(decText);
 
                     HashMap<String,YoukuStreamType> mapYoukuStream=new HashMap<>();
@@ -165,26 +161,29 @@ public class AcFunGet {
         }
         if(preferred==null)
             return;
-        int size=0;
-        for (String url : preferred.segUrl) {
-            int segSize=Common.GetURLResponseSize(url);
-            size+=segSize;
-        }
+        //获取所有链接大小总和的那段代码就不往这加了
         String ext="";
         if(Pattern.compile("fid=[0-9A-Z\\-]*.flv").matcher(preferred.segUrl.get(0)).find())
             ext="flv";
         else
             ext="mp4";
 
-        //牛批，辣是真的牛批，下载用Python，网盘用Python，翻墙用Python，你是不是沙币啊这种人，
-        //下载用Python，网盘用Python，是不是要把你家你公司电脑都装个Python全家桶才觉得有效率吗？惹了你的马了，那个人累了，
-        //不想敲键盘了是破坏Python吗？做Java是破坏Python吗？做安卓那么辛苦的时候，我要用Python吗？在你老板电脑上装Python吧，日你马的
-        //回去等你被炒吧，像你马个弱智一样，用Python，你电脑炸了，对了吧，我是你哥哥，我们俩都是Python铁粉，你电脑炸了，好吧，你马的弱智
-        //用Python，我用你马的赖孩，用Python，你让我怎么用吗，是不是跟个码农一样Python放桌面，老子也学那个GEEK一样的24小时开着Python？
-        //用Python，我PY你马，你马PY通红，滚去修Bug吧，沙币一样的，不会搞APP就不要搞，日你的温了，弱智一样的
-
-        //只能等好心人有缘人来帮我把这功能完成了吧……肝不动了
-        //TODO:download_urls？？？
+        for (String epiUrl :
+                preferred.segUrl) {
+            AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
+            sysDownload.SetUserAgent(Values.userAgentChromeWindows);
+            String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie_acfun.txt";
+            if(FileUtility.IsFileExists(cookiePath))
+                sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));
+            String savePath=paramSavePath+"/"+fileNameWithoutExt+"."+ext;
+            sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
+                @Override
+                public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
+                    Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,savePath),Toast.LENGTH_LONG).show();
+                }
+            },savePath);
+            sysDownload.StartDownloadFile(epiUrl,savePath,fileNameWithoutExt);
+        }
 
         if(paramDownloadDanmaku){
             AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
@@ -192,15 +191,23 @@ public class AcFunGet {
                 public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                     if(onFinishFunction ==null)
                         return;
-                    String savePath=paramSavePath+"/"+fileNameWithoutExt+".json";
+                    String enc=connection.getHeaderField("Content-Encoding");
+                    InputStream iStream=stream;
+                    try{
+                        if("gzip".equals(enc))//判断输入流是否是压缩的，并获取压缩算法
+                            iStream=new GZIPInputStream(stream);
+                        else if("deflate".equals(enc))
+                            iStream=new InflaterInputStream(stream,new Inflater(true));
+                    }catch (IOException e){/*Ignore*/}
+                    String savePath=paramSavePath+"/"+fileNameWithoutExt+".cmt.json";
                     if(!success){
                         onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
                         return;
                     }
-                    if(!FileUtility.WriteStreamToFile(savePath,stream))
+                    if(!FileUtility.WriteStreamToFile(savePath,iStream,false))
                         onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
                     else
-                        onFinishFunction.OnFinish(true,null,savePath,ctx.getString(R.string.message_download_finish,(String)extra));
+                        onFinishFunction.OnFinish(true,null,savePath,null);
                 }
             };
             Common.SetAcFunHttpHeader(task);
@@ -210,10 +217,14 @@ public class AcFunGet {
         }
     }
 
-    public void DownloadBangumi(String url,int dnEpisodeFromZero,String savePath,boolean downloadDanmaku){
-        Toast.makeText(ctx,"非常抱歉，针对AcFun的番剧下载功能尚未完成。如果你愿意，你可以在电脑上使用you-get来下载到A站最高画质的视频，这是一个非常好用的支持非常多网站的视频下载工具。\n\n希望能有大佬帮我完善这个功能～！::>_<::",Toast.LENGTH_LONG).show();
+    public void DownloadBangumi(String url,int episodeToDownload,String savePath,boolean downloadDanmaku){
+        DownloadBangumi(url,episodeToDownload,savePath,downloadDanmaku,false);
+    }
+
+    //注意episodeToDownload是从0数起的
+    public void DownloadBangumi(String url,int episodeToDownload,String savePath,boolean downloadDanmaku,boolean episodeFound){
+        //参考：https://github.com/soimort/you-get/blob/develop/src/you_get/extractors/acfun.py#L111
         paramPlayUrl=url;
-        paramDownloadEpisodeFromZero=dnEpisodeFromZero;
         paramSavePath=savePath;
         paramDownloadDanmaku=downloadDanmaku;
         Matcher mUrl= Pattern.compile("https?://[^\\.]*\\.*acfun\\.[^\\.]+/bangumi/a[ab](\\d+)").matcher(url);

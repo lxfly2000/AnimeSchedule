@@ -66,12 +66,13 @@ public class AcFunDownloadDialog extends DownloadDialog {
                                             path=danmakuPath;
                                         if(path==null)
                                             return;
-                                        Toast.makeText(ctx,ctx.getString(R.string.message_download_failed,path),Toast.LENGTH_LONG).show();
+                                        if(msg==null)
+                                            Toast.makeText(ctx,ctx.getString(R.string.message_download_failed,path),Toast.LENGTH_LONG).show();
                                         return;
                                     }
-                                    if(bangumiPath!=null)
+                                    if(bangumiPath!=null&&msg==null)
                                         Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,bangumiPath),Toast.LENGTH_LONG).show();
-                                    if(danmakuPath!=null)
+                                    if(danmakuPath!=null&&msg==null)
                                         Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,danmakuPath),Toast.LENGTH_LONG).show();
                                 }
                             });

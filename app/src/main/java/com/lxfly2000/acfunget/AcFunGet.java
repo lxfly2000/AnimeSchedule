@@ -21,6 +21,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -75,7 +76,7 @@ public class AcFunGet {
                         iStream=new InflaterInputStream(stream,new Inflater(true));
                     String jsonData=new JSONObject(StreamUtility.GetStringFromStream(iStream,false)).getString("data");
                     String encText=new String(Base64.decode(jsonData,Base64.DEFAULT));
-                    String decText=RC4.decryptRC4(encText.getBytes(),"8bdc7e1a");
+                    String decText=new String(RC4.RC4("8bdc7e1a".getBytes(),encText.getBytes()), StandardCharsets.UTF_8);
                     JSONObject jsonYouku=new JSONObject(decText);
 
                     HashMap<String,YoukuStreamType> mapYoukuStream=new HashMap<>();

@@ -257,6 +257,23 @@ public class AcFunGet {
                     else if("deflate".equals(enc))
                         iStream=new InflaterInputStream(stream,new Inflater(true));
                     htmlString= StreamUtility.GetStringFromStream(iStream,false);
+                    if(!episodeFound){
+                        Matcher mEpi=Pattern.compile("/bangumi/ab\\d+").matcher(paramPlayUrl);
+                        if(mEpi.find()){
+                            String re="data-href=\""+paramPlayUrl.substring(mEpi.start(),mEpi.end())+"_\\d+_\\d+";
+                            ArrayList<String> urlEpisodes=new ArrayList<>();
+                            String tempHtml=htmlString;
+                            Pattern p=Pattern.compile(re);
+                            for(mEpi=p.matcher(tempHtml);mEpi.find();mEpi=p.matcher(tempHtml)){
+                                String foundUrl="https://www.acfun.cn"+tempHtml.substring(mEpi.start()+11,mEpi.end());
+                                if(!urlEpisodes.contains(foundUrl))
+                                    urlEpisodes.add(foundUrl);
+                                tempHtml=tempHtml.substring(mEpi.start()+1);
+                            }
+                            DownloadBangumi(urlEpisodes.get(episodeToDownload),episodeToDownload,savePath,downloadDanmaku,true);
+                        }
+                        return;
+                    }
                     Matcher m=Pattern.compile("<script>window\\.pageInfo([^<]+)</script>").matcher(htmlString);
                     if(!m.find()){
                         onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_cannot_fetch_property,m.pattern().toString()));

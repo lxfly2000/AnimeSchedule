@@ -83,6 +83,14 @@ public class AcFunSpider extends Spider {
         };
         task.SetUserAgent(Values.userAgentChromeWindows);
         task.execute(requestUrl);
+        GetTitleForEachEpisode(bangumiId,20);
+    }
+
+    private void GetTitleForEachEpisode(String bangumiId){
+        GetTitleForEachEpisode(bangumiId,0);
+    }
+
+    private void GetTitleForEachEpisode(String bangumiId,int epiSize){
         AndroidDownloadFileTask taskEpisodeTitle=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
@@ -91,7 +99,13 @@ public class AcFunSpider extends Spider {
                 }
                 try{
                     String htmlString=StreamUtility.GetStringFromStream(stream);
-                    JSONArray epArray=new JSONObject(htmlString).getJSONObject("data").getJSONArray("content");
+                    JSONObject jsonData=new JSONObject(htmlString).getJSONObject("data");
+                    int totalCount=jsonData.getInt("totalCount");
+                    if(jsonData.getInt("size")<totalCount){
+                        GetTitleForEachEpisode(bangumiId,totalCount);
+                        return;
+                    }
+                    JSONArray epArray=jsonData.getJSONArray("content");
                     for(int i=0;i<epArray.length();i++){
                         JSONObject epObject=epArray.getJSONObject(i).getJSONArray("videos").getJSONObject(0);
                         AnimeItem.EpisodeTitle et=new AnimeItem.EpisodeTitle();
@@ -104,6 +118,10 @@ public class AcFunSpider extends Spider {
             }
         };
         taskEpisodeTitle.SetUserAgent(Values.userAgentChromeWindows);
-        taskEpisodeTitle.execute("https://www.acfun.cn/album/abm/bangumis/video?albumId="+bangumiId);
+        String queryUrl="https://www.acfun.cn/album/abm/bangumis/video?albumId="+bangumiId;
+        if(epiSize>0)
+            queryUrl=queryUrl+"&size="+epiSize;
+        //https://www.acfun.cn/album/abm/bangumis/video?albumId=[番剧abID]&groupId=[GroupID]&num=1&size=[请求集数]&_=[时间戳毫秒]
+        taskEpisodeTitle.execute(queryUrl);
     }
 }

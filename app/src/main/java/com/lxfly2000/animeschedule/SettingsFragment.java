@@ -85,7 +85,8 @@ public class SettingsFragment extends PreferenceFragment {
             }catch (NumberFormatException e){
                 return false;
             }
-            if(preference.getKey().equals(enumSortMethod.getKey())||preference.getKey().equals(enumSortOrder.getKey()))
+            if(preference.getKey().equals(enumSortMethod.getKey())||preference.getKey().equals(enumSortOrder.getKey())||
+                    preference.getKey().equals(enumStarMark.getKey()))
                 needReload=true;
         }else{
             sharedPreferences.edit().putString(preference.getKey(),(String)o).apply();

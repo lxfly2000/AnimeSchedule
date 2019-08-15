@@ -70,7 +70,7 @@ public class SettingsActivity extends AppCompatActivity {
         if(fragment.isUpdated()){
             Toast.makeText(this,R.string.message_settings_saved,Toast.LENGTH_LONG).show();
             Intent rIntent=new Intent();
-            rIntent.putExtra(keyNeedReload,true);
+            rIntent.putExtra(keyNeedReload,fragment.isNeedReload());
             setResult(RESULT_OK,rIntent);
         }
         super.finish();

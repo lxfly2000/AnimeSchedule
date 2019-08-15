@@ -7,7 +7,7 @@ import com.obsez.android.lib.filechooser.ChooserDialog;
 
 public class SettingsFragment extends PreferenceFragment {
     SharedPreferences sharedPreferences;
-    boolean updated=false;
+    private boolean updated=false,needReload=false;
 
     ListPreference enumSortMethod,enumSortOrder;
     CheckBoxPreference checkSeperate;
@@ -78,12 +78,15 @@ public class SettingsFragment extends PreferenceFragment {
     Preference.OnPreferenceChangeListener onChangeListener=(preference, o) -> {
         if(preference instanceof CheckBoxPreference) {
             sharedPreferences.edit().putBoolean(preference.getKey(), (boolean) o).apply();
+            needReload=true;
         }else if(preference instanceof EditTextPreference||preference instanceof ListPreference){
             try {
                 sharedPreferences.edit().putInt(preference.getKey(), Integer.parseInt((String) o)).apply();
             }catch (NumberFormatException e){
                 return false;
             }
+            if(preference.getKey().equals(enumSortMethod.getKey())||preference.getKey().equals(enumSortOrder.getKey()))
+                needReload=true;
         }else{
             sharedPreferences.edit().putString(preference.getKey(),(String)o).apply();
         }
@@ -109,6 +112,10 @@ public class SettingsFragment extends PreferenceFragment {
         return updated;
     }
 
+    public boolean isNeedReload() {
+        return needReload;
+    }
+
     public void RestoreSettinngs(){
         sharedPreferences.edit().clear().apply();
         StringizeSettings();
@@ -119,7 +126,7 @@ public class SettingsFragment extends PreferenceFragment {
                 .apply();
         ConvertIntSettings();
         PresentSettings();
-        updated=true;
+        updated=needReload=true;
     }
 
     private void PresentSettings(){

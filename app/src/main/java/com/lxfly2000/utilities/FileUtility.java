@@ -85,4 +85,12 @@ public class FileUtility {
     public static long GetFileSize(String path){
         return new File(path).length();
     }
+
+    public static String ReplaceIllegalPathChar(String path){
+        return ReplaceIllegalPathChar(path,"_");
+    }
+
+    public static String ReplaceIllegalPathChar(String path,String replacingChar){
+        return path.replaceAll("[/\":|<>?*]",replacingChar);
+    }
 }

@@ -101,6 +101,8 @@ public class AcFunSpider extends Spider {
                     String htmlString=StreamUtility.GetStringFromStream(stream);
                     JSONObject jsonData=new JSONObject(htmlString).getJSONObject("data");
                     int totalCount=jsonData.getInt("totalCount");
+                    //防止出现集数不全的问题
+                    //已测试链接：https://www.acfun.cn/bangumi/ab5022156
                     if(jsonData.getInt("size")<totalCount){
                         GetTitleForEachEpisode(bangumiId,totalCount);
                         return;

@@ -168,8 +168,7 @@ public class AcFunGet {
         else
             ext="mp4";
 
-        for (String epiUrl :
-                preferred.segUrl) {
+        for (String epiUrl : preferred.segUrl) {
             AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
             sysDownload.SetUserAgent(Values.userAgentChromeWindows);
             String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie_acfun.txt";
@@ -282,7 +281,7 @@ public class AcFunGet {
                     String tagScript=htmlString.substring(m.start(),m.end());
                     String jsonString=tagScript.substring(tagScript.indexOf("{"),tagScript.indexOf("};")+1);
                     JSONObject jsonData=new JSONObject(jsonString);
-                    fileNameWithoutExt =jsonData.getString("bangumiTitle")+" "+jsonData.getString("episodeName")+" "+jsonData.getString("title");
+                    fileNameWithoutExt =FileUtility.ReplaceIllegalPathChar(jsonData.getString("bangumiTitle")+" "+jsonData.getString("episodeName")+" "+jsonData.getString("title"));
                     videoId=String.valueOf(jsonData.getInt("videoId"));
                     AcFunDownloadByVid("https://www.acfun.cn/video/getVideo.aspx?id="+videoId);
                 }catch (IOException e){

@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":356,
+	"last_watch_index":337,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -3389,7 +3389,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2018-12-22"
 	},{
-		"watched_episode":[20190805,20190806,20190806,20190806,20190807,20190807,20190807,20190813],
+		"watched_episode":[20190805,20190806,20190806,20190806,20190807,20190807,20190807,20190813,20190816,20190816],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/10183cadf6a9bdd0b4ab3ea80cafe12a11140fe1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss2590",
 		"title":"若叶女孩",
@@ -3407,7 +3407,7 @@ setJsonData({
 		"color":"silver",
 		"category":["萌系","日常","校园","治愈","萝莉"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":8,
+		"last_watch_episode_anime":10,
 		"create_date":"2018-12-22"
 	},{
 		"watched_episode":[false],
@@ -3666,7 +3666,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e1015a803ad97406f9eddfbc6ad608cc965f8b05.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26291",
 		"title":"天使降临到了我的身边！",
-		"description":"怕生的御宅族女大学生宫子，遇到了天使般的小学生！？在看到妹妹带来的新朋友小花的瞬间，宫子就无法抑制住心跳！！她为了和小花成为朋友而奋斗，但……“想要和超绝可爱的她做朋友”系小品喜剧，开幕！\n动画制作：动画工房",
+		"description":"怕生的御宅族女大学生宫子，遇到了天使般的小学生！？在看到妹妹带来的新朋友小花的瞬间，宫子就无法抑制住心跳！！她为了和小花成为朋友而奋斗，但……“想要和超绝可爱的她做朋友”系小品喜剧，开幕！\n动画制作：动画工房\n喵内～！",
 		"actors":"星野宫子：上田丽奈\n白咲花：指出球亚\n星野日向：长江里加\n姬坂乃爱：鬼头明里\n种村小依：大和田仁美\n小之森夏音：大空直美",
 		"staff":"原作：椋木ななつ\n监督：平牧大辅\n总编剧：山田由香\n角色设计：中川洋未\n美术监督：安田由香里\n色彩设计：石黑启 \/ 吴政宏\n摄影监督：工藤康史\n编辑：坪根健太郎\n音响监督：高寺雄\n音乐：伊贺拓郎\n音乐制作：FlyingDog\n动画制作：动画工房\n制作：天使降临制作委员会",
 		"start_date":"2019-01-08",
@@ -4271,11 +4271,11 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"create_date":"2019-1-24"
 	},{
-		"watched_episode":[20190812,20190813,20190815],
+		"watched_episode":[20190812,20190813,20190815,20190816],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/88739b4d0f11ac59eda06629fc131a0ae347974b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss281",
 		"title":"甘城光辉游乐园",
-		"description":"本作的舞台是架空都市甘城市，其中一座即将倒闭的主题公园“甘城光辉游乐园”。故事主要描写主角——自恋的高中生可儿江西也拯救游乐园、与吉祥物打闹的日常生活。\n某天在放学后的教室，可儿江西也突然被转学生·千斗五十铃以毛瑟枪抵著太阳穴并要求与其约会，心不甘情不愿地答应后，两人便在星期日前往“甘城光辉游乐园”。这座游乐园建立于泡沫经济全盛期，近年假日来客人数不超过三千人，同时也是臭名远播的糟糕约会地点的代名词。现在最大的问题是两周内来客人数如不满10万人，游乐园就得关闭，此时公主·拉媞珐委托西也重建游乐园……\n动画制作：京都动画\n这个人物画风的特征跟中二病的差不多。",
+		"description":"本作的舞台是架空都市甘城市，其中一座即将倒闭的主题公园“甘城光辉游乐园”。故事主要描写主角——自恋的高中生可儿江西也拯救游乐园、与吉祥物打闹的日常生活。\n某天在放学后的教室，可儿江西也突然被转学生·千斗五十铃以毛瑟枪抵著太阳穴并要求与其约会，心不甘情不愿地答应后，两人便在星期日前往“甘城光辉游乐园”。这座游乐园建立于泡沫经济全盛期，近年假日来客人数不超过三千人，同时也是臭名远播的糟糕约会地点的代名词。现在最大的问题是两周内来客人数如不满10万人，游乐园就得关闭，此时公主·拉媞珐委托西也重建游乐园……\n动画制作：京都动画\n这个人物画风的特征跟中二病的差不多。\nBGM不错。",
 		"actors":"可儿江西也：内山昂辉\n千斗五十铃：加隈亚衣\n拉媞珐·芙尔兰札：藤井雪代\n安达映子：五十岚裕美\n伴藤美衣乃：高森奈津美\n米丝：相坂优歌\n西尔菲：黑泽知叶\n柯波莉：三上枝织\n萨拉玛：津田美波\n莫夫鲁：..",
 		"staff":"原作：贺东招二\n监督：武本康弘\n脚本：志茂文彦、武本康弘、西冈麻衣子、贺东招二、石川知佳\n分镜·演出：河浪荣作、石原立也、北之原孝将、武本康弘、藤田春香、山村卓也、小川太一、雪村爱\n系列构成：志茂文彦\n系列监修：贺东招二\n人物原案：なかじまゆか、四季童子\n角色设计：门胁未来\n总作画监督：丸木宣明\n美术监督：渡边美希子\n音响监督：鹤冈阳太\n音乐：光宗信吉\n音乐制作：Flying Dog\n摄影监督：富板纪宏\n剪辑：重村建吾\n动画制作：京都动画公司",
 		"start_date":"2014-10-06",
@@ -4285,11 +4285,11 @@ setJsonData({
 		"episode_count":14,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":5,
 		"color":"silver",
 		"category":["装逼","日常","奇幻","励志","职场"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":3,
+		"last_watch_episode_anime":4,
 		"create_date":"2019-1-24"
 	},{
 		"watched_episode":[false],
@@ -6694,7 +6694,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-26"
 	},{
-		"watched_episode":[20190712,20190719,20190727,20190802,20190809],
+		"watched_episode":[20190712,20190719,20190727,20190802,20190809,20190816],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8fa97d1f68517724a0afcb1ca536bfe5b818e0d8.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28007",
 		"title":"街角魔族",
@@ -6711,7 +6711,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","日常","萌系"],
-		"last_watch_episode_anime":5,
+		"last_watch_episode_anime":6,
 		"create_date":"2019-6-27"
 	},{
 		"watched_episode":[20190709,20190716,20190723,20190730,20190806],

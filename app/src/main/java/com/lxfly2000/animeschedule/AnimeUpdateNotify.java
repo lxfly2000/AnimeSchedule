@@ -84,12 +84,12 @@ public class AnimeUpdateNotify extends Service {
         //获取cover路径
         String coverUrl=jsonForNotify.GetCoverUrl(index);
         String[]tempSplit=coverUrl.split("/");
-        String coverExt="";
+        String coverExt=".jpg";
         if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
             coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
         }
         String coverPath=Values.GetCoverPathOnLocal()+"/"+
-                jsonForNotify.GetTitle(index).replaceAll("[/\":|<>?*]","_")+coverExt;
+                FileUtility.ReplaceIllegalPathChar(jsonForNotify.GetTitle(index)+coverExt);
         final NotificationManager nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         //putExtra的参数在获取时为空的问题：https://blog.csdn.net/wangbole/article/details/7465385
         //注意requestCode在不同的通知里也要是不同的，否则会被覆盖

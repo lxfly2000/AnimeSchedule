@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
                     coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
                 }
                 final String coverPath=Values.GetCoverPathOnLocal()+"/"+
-                        FileUtility.ReplaceIllegalPathChar(animeJson.GetTitle(jsonSortTable.get(i)))+coverExt;
+                        FileUtility.ReplaceIllegalPathChar(animeJson.GetTitle(jsonSortTable.get(i))+coverExt);
                 if(FileUtility.IsFileExists(coverPath)){
                     AsyncTask<Object,Integer,Boolean>task=new AsyncTask<Object, Integer, Boolean>() {
                         @Override

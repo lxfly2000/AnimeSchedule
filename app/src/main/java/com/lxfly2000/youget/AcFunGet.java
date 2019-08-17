@@ -1,9 +1,8 @@
-package com.lxfly2000.acfunget;
+package com.lxfly2000.youget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
-import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":337,
+	"last_watch_index":176,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -1245,7 +1245,7 @@ setJsonData({
 		"actors":"保登心爱：佐倉綾音\n香风智乃：水濑祈\n天天座理世：種田梨沙\n桐间纱路：内田真礼\n宇治松千夜：佐藤聡美\n香风隆宏：速水奨\n麻耶：徳井青空\n奈津惠：村川梨衣\n提比：清川元夢",
 		"update_time_int":60
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,20190318],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/be4675a5ecab5595ca5324312db6f5cb80ec1a7b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1293",
 		"title":"幸运☆星",
@@ -3389,7 +3389,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2018-12-22"
 	},{
-		"watched_episode":[20190805,20190806,20190806,20190806,20190807,20190807,20190807,20190813,20190816,20190816],
+		"watched_episode":[20190805,20190806,20190806,20190806,20190807,20190807,20190807,20190813,20190816,20190816,20190817,20190817,20190817],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/10183cadf6a9bdd0b4ab3ea80cafe12a11140fe1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss2590",
 		"title":"若叶女孩",
@@ -3407,7 +3407,7 @@ setJsonData({
 		"color":"silver",
 		"category":["萌系","日常","校园","治愈","萝莉"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":10,
+		"last_watch_episode_anime":13,
 		"create_date":"2018-12-22"
 	},{
 		"watched_episode":[false],
@@ -4882,9 +4882,9 @@ setJsonData({
 	},{
 		"watched_episode":[true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/be4675a5ecab5595ca5324312db6f5cb80ec1a7b.jpg",
-		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss3548",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1293",
 		"title":"幸运☆星 OVA",
-		"description":"2007年的热门动画《幸运星》，本次以OVA形式推出了续篇。御宅族女孩泉此方、性格迥异的柊家姐妹、经常考虑问题不周到的高良美幸，四位女孩又要开始新的故事了！\n小狗Cherry的奇怪举动搞得大家哭笑不得；与老师一起玩网络游戏引出了话题大讨论；姐姐柊镜突然进入不伦不类的灰姑娘世界；排球比赛中妹妹柊司努力挑战自我，要做得比姐姐还好；去山区郊游的四人陷入了迷路的困境；放学后大家一起去的宠物店似乎隐藏着不可告人的秘密……\n动画制作：京都动画",
+		"description":"2007年的热门动画《幸运星》，本次以OVA形式推出了续篇。御宅族女孩泉此方、性格迥异的柊家姐妹、经常考虑问题不周到的高良美幸，四位女孩又要开始新的故事了！\n小狗Cherry的奇怪举动搞得大家哭笑不得；与老师一起玩网络游戏引出了话题大讨论；姐姐柊镜突然进入不伦不类的灰姑娘世界；排球比赛中妹妹柊司努力挑战自我，要做得比姐姐还好；去山区郊游的四人陷入了迷路的困境；放学后大家一起去的宠物店似乎隐藏着不可告人的秘密……\n动画制作：京都动画\n原SSID：3548",
 		"actors":"泉此方：平野綾\n柊镜：加藤英美里\n高良美幸：遠藤綾\n柊司：福原香織\n峰岸绫乃：相沢舞\n日下部美纱绪：水原薫\n高良由香里：小菅真美",
 		"staff":"原作：美水かがみ\n监督：武本康弘\n脚本：武本康弘、美水かがみ、荒谷朋恵、村元克彦、待田堂子、伊藤敦\n分镜：武本康弘\n演出：武本康弘、北之原孝將、石立太一、坂本一也、山田尚子、高雄統子\n人物设定：堀口悠紀子\n美术监督：田村せいき\n色彩设计：下浦亜弓\n总作画监督：堀口悠紀子\n作画监督：堀口悠紀子、秋竹斉一、高橋真梨子、西屋太志\n音响监督：鶴岡陽太\n音响：楽音舎\n摄影监督：高尾一也\n动画制作：京都アニメーション",
 		"start_date":"2008-09-26",
@@ -5314,7 +5314,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630,20190707,20190714,20190725,20190727,20190803,20190810],
+		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630,20190707,20190714,20190725,20190727,20190803,20190810,20190817],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/368c60d973a8a3251534f599dcb2eff7fc64cef3.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26766",
 		"title":"水果篮子2019版",
@@ -5331,7 +5331,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","奇幻","校园","恋爱","少女"],
-		"last_watch_episode_anime":19,
+		"last_watch_episode_anime":20,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414,20190417],
@@ -6614,11 +6614,11 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-19"
 	},{
-		"watched_episode":[20190714,20190720,20190727,20190803,20190810],
+		"watched_episode":[20190714,20190720,20190727,20190803,20190810,20190817],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/da3b4ad9f24a1defef978ced3150e558996c7b0f.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28002",
 		"title":"某科学的一方通行",
-		"description":"位于东京西部的巨大“学园都市”。 \n在总人口达230万人，其中约8成是学生的这座都市中，实施着超能力开发的特殊课程，学生们的能力被给予从“无能力Level 0”到“超能力Level 5”的六阶段评价。 \n在这样的学园都市君临能力者顶点的最强能力者·一方通行。他在仅有7人的“超能力者”当中也以远超其他人的能力位居第一。不断重复、脱离常轨的“实验”，以及在追求绝对力量的最后品尝到的败北。在那之后，随着与一位少女——最后之作的相遇，他的命运产生了巨大变化。 \n最强而最凶的“恶”——一方通行， \n扫平学园都市的“黑暗”!!\n动画制作：日创",
+		"description":"位于东京西部的巨大“学园都市”。 \n在总人口达230万人，其中约8成是学生的这座都市中，实施着超能力开发的特殊课程，学生们的能力被给予从“无能力Level 0”到“超能力Level 5”的六阶段评价。 \n在这样的学园都市君临能力者顶点的最强能力者·一方通行。他在仅有7人的“超能力者”当中也以远超其他人的能力位居第一。不断重复、脱离常轨的“实验”，以及在追求绝对力量的最后品尝到的败北。在那之后，随着与一位少女——最后之作的相遇，他的命运产生了巨大变化。 \n最强而最凶的“恶”——一方通行， \n扫平学园都市的“黑暗”!!\n动画制作：日创\n节操社怎么又犯病了……",
 		"actors":"一方通行：冈本信彦\n最后之作：日高里菜\n埃斯特·罗森塔尔：久保由利香\n祸斗：渡部纱弓\n御坂妹妹：佐佐木望\n黄泉川爱穗：甲斐田裕子\n菱形干比谷：逢坂良太\n菱形蛭魅：真野步",
 		"staff":"原作：镰池和马+山路新\n角色原案：灰村清孝、山路新\n监督：镰仲史阳\n角色设计：八重樫洋平\n音响监督：明田川仁\n音乐：井内舞子\n动画制作：J.C.STAFF",
 		"start_date":"2019-07-13",
@@ -6631,7 +6631,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","科幻","战斗","魔法","校园"],
-		"last_watch_episode_anime":5,
+		"last_watch_episode_anime":6,
 		"create_date":"2019-6-21"
 	},{
 		"watched_episode":[0],
@@ -6734,7 +6734,7 @@ setJsonData({
 		"last_watch_episode_anime":5,
 		"create_date":"2019-6-27"
 	},{
-		"watched_episode":[20190717,20190717,20190720,20190727,20190803,20190810],
+		"watched_episode":[20190717,20190717,20190720,20190727,20190803,20190810,20190817],
 		"cover":"https:\/\/imgs.aixifan.com\/image-manager_1562306582316-PAi1ZPjVIH",
 		"watch_url":"https:\/\/www.acfun.cn\/bangumi\/aa5024870",
 		"title":"满月之战GRANBELM",
@@ -6751,7 +6751,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["机战","美少女"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-7-7"
 	},{
 		"watched_episode":[20190707],
@@ -6934,11 +6934,11 @@ setJsonData({
 		"last_watch_episode_anime":13,
 		"create_date":"2019-7-24"
 	},{
-		"watched_episode":[20190730,20190730,20190731,20190731,20190802,20190809],
+		"watched_episode":[20190730,20190730,20190731,20190731,20190802,20190809,20190817],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/97007f464a9511abdbf8bf938c01dcdbaab151e0.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28016",
 		"title":"女高中生的虚度日常",
-		"description":"被浪费的青春——\n偏差值差不多的田中（通称“笨蛋”）、沉迷于BL的菊池（通称：“御宅”）、面无表情的才女・鹭宫（通称“机器人”）。个性十足的女高中生们无所事事的日常校园生活——\n动画制作：Passione",
+		"description":"被浪费的青春——\n偏差值差不多的田中（通称“笨蛋”）、沉迷于BL的菊池（通称：“御宅”）、面无表情的才女・鹭宫（通称“机器人”）。个性十足的女高中生们无所事事的日常校园生活——\n动画制作：Passione\n？？？？？？这什么玩意？",
 		"actors":"田中望（笨蛋）：赤崎千夏\n菊池茜（阿宅）：户松遥\n鹭宫栞（机器人）：丰崎爱生\n百井咲久（萝莉）：长绳麻理亚\n山本美波（有病）：富田美忧\n一奏（死认真）：高桥李依\n染谷莉莉（百合）：佐藤聪美\n久条翡翠（魔女）：M·A·O\n佐渡正敬（早稻田）：兴津和幸",
 		"staff":"原作：ビーノ（KADOKAWA《Comic Newtype》连载）\n总监督：高桥丈夫\n监督：三瓶圣\n系列构成：横谷昌宏\n角色设计、总作画监督：安田祥子\n次要角色设计：古川英树、番由纪子、满若高代\n监督辅佐：橘纱央莉\n美术监督：齐藤隆博\n美术设定：中村嘉博\n色彩设计：铃木咲绘\n摄影监督：山本弥芳\n编辑：丹彩子\n音响监督：明田川仁\n音乐：菊谷知树\n音乐制作：KADOKAWA\n动画制作：Passione",
 		"start_date":"2019-07-05",
@@ -6951,7 +6951,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日常","漫画改","校园","搞笑","声控"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-7-27"
 	},{
 		"watched_episode":[0],

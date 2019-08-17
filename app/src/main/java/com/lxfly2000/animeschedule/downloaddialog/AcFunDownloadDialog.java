@@ -7,7 +7,7 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import com.lxfly2000.acfunget.AcFunGet;
+import com.lxfly2000.youget.AcFunGet;
 import com.lxfly2000.animeschedule.AnimeJson;
 import com.lxfly2000.animeschedule.R;
 import com.lxfly2000.animeschedule.Values;

@@ -1,13 +1,9 @@
-package com.lxfly2000.acfunget;
+package com.lxfly2000.youget;
 
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
 
 public class Common {
     public static void SetAcFunHttpHeader(AndroidDownloadFileTask task){

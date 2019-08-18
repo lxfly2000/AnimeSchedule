@@ -1245,7 +1245,7 @@ setJsonData({
 		"actors":"保登心爱：佐倉綾音\n香风智乃：水濑祈\n天天座理世：種田梨沙\n桐间纱路：内田真礼\n宇治松千夜：佐藤聡美\n香风隆宏：速水奨\n麻耶：徳井青空\n奈津惠：村川梨衣\n提比：清川元夢",
 		"update_time_int":60
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,20190318],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,20190318,20190818],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/be4675a5ecab5595ca5324312db6f5cb80ec1a7b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1293",
 		"title":"幸运☆星",
@@ -1253,7 +1253,7 @@ setJsonData({
 		"start_date":"2007-04-08",
 		"update_period":7,
 		"update_period_unit":"day",
-		"episode_count":24,
+		"episode_count":25,
 		"absense_count":0,
 		"abandoned":false,
 		"rank":5,
@@ -1262,7 +1262,7 @@ setJsonData({
 		"staff":"原作：美水かがみ\n监督：武本康弘、山本寛\n脚本：関根奈美、山本寛、待田堂子、賀東招二、村元克彦、荒谷朋恵\n分镜：門脇聡、武本康弘、山本寛、高雄統子、木上益治、坂本一也、石原立也、石立太一、吉岡忍、荒谷朋恵\n演出：石原立也、門脇聡、高雄統子、木上益治、坂本一也、武本康弘、山本寛、石立太一、吉岡忍、荒谷朋恵、北之原孝將\n人物原案：美水かがみ\n人物设定：堀口悠紀子\n系列构成：待田堂子\n美术监督：田村せいき\n色彩设计：下浦亜弓\n作画监督：堀口悠紀子、門脇聡、木上益治、高橋博行、西屋太志、池田晶子、荒谷朋恵、坂本一也\n音乐：剱持満、神前暁\n摄影监督：高尾一也",
 		"actors":"泉此方：平野綾\n柊镜：加藤英美里\n高良美幸：遠藤綾\n柊司：福原香織\n峰岸绫乃：相沢舞\n日下部美纱绪：水原薫\n高良由香里：小菅真美\n柊まつり：明坂聡美\n柊いのり：升望\n",
 		"update_time_int":0,
-		"last_watch_episode_anime":24,
+		"last_watch_episode_anime":25,
 		"last_watch_date_anime":"2019-3-18"
 	},{
 		"watched_episode":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
@@ -3389,7 +3389,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2018-12-22"
 	},{
-		"watched_episode":[20190805,20190806,20190806,20190806,20190807,20190807,20190807,20190813,20190816,20190816,20190817,20190817,20190817],
+		"watched_episode":[20190805,20190806,20190806,20190806,20190807,20190807,20190807,20190813,20190816,20190816,20190817,20190817,20190817,20190818],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/10183cadf6a9bdd0b4ab3ea80cafe12a11140fe1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss2590",
 		"title":"若叶女孩",
@@ -3400,14 +3400,14 @@ setJsonData({
 		"update_time_int":0,
 		"update_period":7,
 		"update_period_unit":"day",
-		"episode_count":13,
+		"episode_count":14,
 		"absense_count":0,
 		"abandoned":false,
 		"rank":5,
 		"color":"silver",
 		"category":["萌系","日常","校园","治愈","萝莉"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":13,
+		"last_watch_episode_anime":14,
 		"create_date":"2018-12-22"
 	},{
 		"watched_episode":[false],

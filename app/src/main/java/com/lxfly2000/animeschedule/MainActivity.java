@@ -22,8 +22,7 @@ import android.view.*;
 import android.widget.*;
 import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
 import com.lxfly2000.animeschedule.data.AnimeItem;
-import com.lxfly2000.animeschedule.downloaddialog.AcFunDownloadDialog;
-import com.lxfly2000.animeschedule.downloaddialog.BilibiliDownloadDialog;
+import com.lxfly2000.animeschedule.downloaddialog.*;
 import com.lxfly2000.animeschedule.spider.*;
 import com.lxfly2000.utilities.*;
 
@@ -643,7 +642,12 @@ public class MainActivity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu,View v,ContextMenu.ContextMenuInfo menuInfo){
         getMenuInflater().inflate(R.menu.menu_anime_list,menu);
         String url=animeJson.GetWatchUrl(jsonSortTable.get(longPressedListItem));
-        if(!URLUtility.IsBilibiliSeasonBangumiLink(url)&&!URLUtility.IsAcFunLink(url))
+        boolean downloadAvailable=URLUtility.IsBilibiliSeasonBangumiLink(url)||
+                URLUtility.IsAcFunLink(url)||
+                URLUtility.IsQQVideoLink(url)||
+                URLUtility.IsYoukuLink(url)||
+                URLUtility.IsIQiyiLink(url);
+        if(!downloadAvailable)
             menu.findItem(R.id.action_download).setEnabled(false).setTitle(R.string.menu_download_not_available);
     }
 
@@ -691,6 +695,12 @@ public class MainActivity extends AppCompatActivity {
             new BilibiliDownloadDialog(this).OpenDownloadDialog(animeJson, index);
         }else if(URLUtility.IsAcFunLink(url)){
             new AcFunDownloadDialog(this).OpenDownloadDialog(animeJson,index);
+        }else if(URLUtility.IsQQVideoLink(url)){
+            new QQDownloadDialog(this).OpenDownloadDialog(animeJson,index);
+        }else if(URLUtility.IsYoukuLink(url)){
+            new YoukuDownloadDialog(this).OpenDownloadDialog(animeJson,index);
+        }else if(URLUtility.IsIQiyiLink(url)){
+            new IQiyiDownloadDialog(this).OpenDownloadDialog(animeJson,index);
         }
     }
 

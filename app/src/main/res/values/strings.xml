@@ -242,4 +242,8 @@
     <string name="label_acfun_download_notice">"Choose the episodes you want to download.\nAttention: Only the highest quality will be downloaded."</string>
     <string name="label_download_acfun_include_danmaku">Also download Danmaku</string>
     <string name="message_download_task_created">Download task created, please wait for the download finishing.</string>
+    <string name="label_qq_download_notice">TODO：Label for QQ download.</string>
+    <string name="label_youku_download_notice">TODO：Label for Youku download.</string>
+    <string name="label_iqiyi_download_notice">TODO：Label for IQiyi download.</string>
+    <string name="label_choose_video_quality">Choose video quality.</string>
 </resources>

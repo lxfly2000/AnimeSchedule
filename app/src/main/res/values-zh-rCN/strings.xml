@@ -190,4 +190,8 @@
     <string name="label_acfun_download_notice">选择要下载的分集。\n注意：只能下载最高画质。</string>
     <string name="label_download_acfun_include_danmaku">同时下载弹幕</string>
     <string name="message_download_task_created">下载任务已创建，请耐心等待下载完成。</string>
+    <string name="label_qq_download_notice">TODO：腾讯视频下载注意事项。</string>
+    <string name="label_youku_download_notice">TODO：优酷下载注意事项。</string>
+    <string name="label_iqiyi_download_notice">TODO：爱奇艺下载注意事项。</string>
+    <string name="label_choose_video_quality">选择下载画质。</string>
 </resources>

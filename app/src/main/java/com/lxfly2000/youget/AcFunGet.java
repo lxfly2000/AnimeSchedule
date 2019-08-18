@@ -149,6 +149,8 @@ public class AcFunGet {
         taskGetVideo.execute(vidUrl);
     }
 
+    private String videoSavePath;
+
     private void AcFunDownloadByVid_Async1(HashMap<String,YoukuStreamType> mapYouku){
         String[]seq={"mp4hd3", "mp4hd2", "mp4hd", "flvhd"};
         YoukuStreamType preferred=null;
@@ -167,20 +169,27 @@ public class AcFunGet {
         else
             ext="mp4";
 
-        for (String epiUrl : preferred.segUrl) {
+        for (int i=0;i< preferred.segUrl.size();i++) {
             AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
             sysDownload.SetUserAgent(Values.userAgentChromeWindows);
             String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie_acfun.txt";
             if(FileUtility.IsFileExists(cookiePath))
                 sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));
-            String savePath=paramSavePath+"/"+fileNameWithoutExt+"."+ext;
+            videoSavePath=paramSavePath+"/"+fileNameWithoutExt;
+            if(preferred.segUrl.size()>1)
+                videoSavePath+=" ["+i+"]";
+            videoSavePath+="."+ext;
             sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
                 @Override
                 public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
-                    Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,savePath),Toast.LENGTH_LONG).show();
+                    Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,videoSavePath),Toast.LENGTH_LONG).show();
+                    //TODO:考虑多段的情况
                 }
-            },savePath);
-            sysDownload.StartDownloadFile(epiUrl,savePath,fileNameWithoutExt);
+            },videoSavePath);
+            sysDownload.StartDownloadFile(preferred.segUrl.get(i),videoSavePath,fileNameWithoutExt);
+        }
+        if(preferred.segUrl.size()>1){
+            Toast.makeText(ctx,"这个视频是多段的，请在下载完成后手动合并。\n自动合并功能尚未制作。",Toast.LENGTH_LONG).show();
         }
 
         if(paramDownloadDanmaku){
@@ -202,6 +211,7 @@ public class AcFunGet {
                         onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
                         return;
                     }
+                    //TODO：为什么下载的弹幕有杂乱内容？
                     if(!FileUtility.WriteStreamToFile(savePath,iStream,false))
                         onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
                     else

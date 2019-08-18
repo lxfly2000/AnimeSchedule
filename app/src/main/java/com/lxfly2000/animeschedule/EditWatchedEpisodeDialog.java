@@ -157,9 +157,9 @@ public class EditWatchedEpisodeDialog {
                 spider=new IQiyiSpider(ctx);
             }else if(URLUtility.IsYoukuLink(animeJson.GetWatchUrl(paramIndex))){
                 spider=new YoukuSpider(ctx);
-            }/*else if(URLUtility.IsQQVideoLink(animeJson.GetWatchUrl(paramIndex))){//腾讯视频目前不提供各集标题，暂时无解
+            }else if(URLUtility.IsQQVideoLink(animeJson.GetWatchUrl(paramIndex))){//腾讯视频目前不提供各集标题，暂时无解
                 spider=new QQVideoSpider(ctx);
-            }*/
+            }
             if(spider!=null){
                 spider.SetOnReturnDataFunction(onReturnDataFunction);
                 spider.Execute(animeJson.GetWatchUrl(paramIndex));

@@ -1,12 +1,16 @@
 package com.lxfly2000.youget;
 
+import androidx.annotation.NonNull;
 import com.lxfly2000.utilities.AndroidDownloadFileTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Common {
-    public static void SetAcFunHttpHeader(AndroidDownloadFileTask task){
+    public static void SetYouGetHttpHeader(AndroidDownloadFileTask task){
         task.SetUserAgent("Mozilla/5.0 (X11; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0");
         task.SetAcceptCharset("UTF-8,*;q=0.5");
         task.SetAcceptEncoding("gzip,deflate,sdch");
@@ -46,5 +50,13 @@ public class Common {
             output.flush();
         }catch (IOException e){/*Ignore*/}
         return output.toByteArray();
+    }
+
+    //返回正则匹配后的第一组（括号）内的字符串，如果未找到，返回null
+    public static String Match1(String text,String regex){
+        Matcher m= Pattern.compile(regex).matcher(text);
+        if(m.find())
+            return m.group(1);
+        return null;
     }
 }

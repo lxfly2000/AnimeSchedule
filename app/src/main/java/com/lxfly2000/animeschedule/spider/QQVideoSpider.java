@@ -107,6 +107,12 @@ public class QQVideoSpider extends Spider {
                     }catch (Exception e){
                         item.rank=0;
                     }
+                    for(int i=1;i<=item.episodeCount;i++){
+                        AnimeItem.EpisodeTitle et=new AnimeItem.EpisodeTitle();
+                        et.episodeTitle=item.title+" "+i;
+                        et.episodeIndex=String.valueOf(i);
+                        item.episodeTitles.add(et);
+                    }
                 }catch (JSONException e){
                     onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
                 }catch (IOException e){

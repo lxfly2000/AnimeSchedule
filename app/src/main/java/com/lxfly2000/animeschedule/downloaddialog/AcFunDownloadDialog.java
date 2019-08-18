@@ -7,14 +7,13 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import com.lxfly2000.youget.AcFunGet;
 import com.lxfly2000.animeschedule.AnimeJson;
 import com.lxfly2000.animeschedule.R;
 import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.animeschedule.spider.AcFunSpider;
 import com.lxfly2000.animeschedule.spider.Spider;
-import org.json.JSONObject;
+import com.lxfly2000.youget.AcFunGet;
 
 import java.util.ArrayList;
 
@@ -30,8 +29,6 @@ public class AcFunDownloadDialog extends DownloadDialog {
     ArrayList<CheckBox> checkEpisodes;
     Button buttonOk;
     LinearLayout linearLayout;
-
-    JSONObject htmlJson;
 
     private CompoundButton.OnCheckedChangeListener checkChangeListener=new CompoundButton.OnCheckedChangeListener() {
         @Override
@@ -76,7 +73,7 @@ public class AcFunDownloadDialog extends DownloadDialog {
                                         Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,danmakuPath),Toast.LENGTH_LONG).show();
                                 }
                             });
-                            acfunGet.DownloadBangumi(json.GetWatchUrl(index),i_check,preferences.getString(ctx.getString(
+                            acfunGet.DownloadBangumi(json.GetWatchUrl(index),i_check,0,preferences.getString(ctx.getString(
                                     R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()),checkIncludeDanmaku.isChecked());
                         }
                     }

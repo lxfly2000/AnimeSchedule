@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.util.Base64;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import com.lxfly2000.animeschedule.R;
 import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.utilities.*;
@@ -26,26 +25,25 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 
-public class AcFunGet {
+public class AcFunGet extends YouGet{
     private String paramPlayUrl,paramSavePath, fileNameWithoutExt;
     private boolean paramDownloadDanmaku;
     private String htmlString;
     private String videoId;
-    private Context ctx;
     private SharedPreferences preferences;
     public AcFunGet(@NonNull Context context){
-        ctx=context;
+        super(context);
         preferences= Values.GetPreference(ctx);
     }
 
-    protected String GetDanmakuUrl(String videoId){
+    private String GetDanmakuUrl(String videoId){
         return "https://danmu.aixifan.com/V2/"+videoId;
     }
 
-    class YoukuStreamType{
-        public ArrayList<String> segUrl;
-        public int totalSize;
-        public YoukuStreamType(ArrayList<String> segUrl,int totalSize){
+    static class YoukuStreamType{
+        ArrayList<String> segUrl;
+        int totalSize;
+        YoukuStreamType(ArrayList<String> segUrl, int totalSize){
             this.segUrl=segUrl;
             this.totalSize=totalSize;
         }
@@ -79,7 +77,7 @@ public class AcFunGet {
                     for(int i=0;i<jArray.length();i++){
                         JSONObject jStream=jArray.getJSONObject(i);
                         String tp=jStream.getString("stream_type");
-                        mapYoukuStream.put(tp,new YoukuStreamType(new ArrayList<>(),jStream.getInt("total_size")));
+                        mapYoukuStream.put(tp, new YoukuStreamType(new ArrayList<>(), jStream.getInt("total_size")));
                         if(jStream.has("segs")){
                             JSONArray segs=jStream.getJSONArray("segs");
                             for(int j=0;j<segs.length();j++){
@@ -87,7 +85,7 @@ public class AcFunGet {
                                 mapYoukuStream.get(tp).segUrl.add(seg.getString("url"));
                             }
                         }else{
-                            mapYoukuStream.put(tp,new YoukuStreamType(JSONUtility.JSONArrayToStringArray(jStream.getJSONArray("m3u8")),jStream.getInt("total_size")));
+                            mapYoukuStream.put(tp, new YoukuStreamType(JSONUtility.JSONArrayToStringArray(jStream.getJSONArray("m3u8")), jStream.getInt("total_size")));
                         }
                     }
                     AcFunDownloadByVid_Async1(mapYoukuStream);
@@ -98,7 +96,7 @@ public class AcFunGet {
                 }
             }
         };
-        Common.SetAcFunHttpHeader(task);
+        Common.SetYouGetHttpHeader(task);
         task.SetReferer(ref);
         task.execute(url);
     }
@@ -145,7 +143,7 @@ public class AcFunGet {
                 }
             }
         };
-        Common.SetAcFunHttpHeader(taskGetVideo);
+        Common.SetYouGetHttpHeader(taskGetVideo);
         taskGetVideo.execute(vidUrl);
     }
 
@@ -163,7 +161,7 @@ public class AcFunGet {
         if(preferred==null)
             return;
         //获取所有链接大小总和的那段代码就不往这加了
-        String ext="";
+        String ext;
         if(Pattern.compile("fid=[0-9A-Z\\-]*.flv").matcher(preferred.segUrl.get(0)).find())
             ext="flv";
         else
@@ -218,22 +216,35 @@ public class AcFunGet {
                         onFinishFunction.OnFinish(true,null,savePath,null);
                 }
             };
-            Common.SetAcFunHttpHeader(task);
+            Common.SetYouGetHttpHeader(task);
             String danmakuUrl=GetDanmakuUrl(videoId);
             task.SetExtra(danmakuUrl);
             task.execute(danmakuUrl);
         }
     }
 
-    public void DownloadBangumi(String url,int episodeToDownload,String savePath,boolean downloadDanmaku){
-        DownloadBangumi(url,episodeToDownload,savePath,downloadDanmaku,false);
+    @Override
+    public void DownloadBangumi(String url,int episodeToDownload_fromZero,int quality,String saveDirPath){
+        DownloadBangumi(url, episodeToDownload_fromZero,0, saveDirPath,true);
+    }
+
+    @Override
+    public void QueryQualities(String url, int episodeToDownload_fromZero, OnReturnVideoQualityFunction f) {
+        ArrayList<VideoQuality>vqs=new ArrayList<>();
+        VideoQuality vq=new VideoQuality(0,"");
+        vqs.add(vq);
+        f.OnReturnVideoQuality(true,vqs);
+    }
+
+    public void DownloadBangumi(String url,int episodeToDownload_fromZero,int quality,String saveDirPath,boolean downloadDanmaku){
+        DownloadBangumi(url,episodeToDownload_fromZero,quality,saveDirPath,downloadDanmaku,false);
     }
 
     //注意episodeToDownload是从0数起的
-    public void DownloadBangumi(String url,int episodeToDownload,String savePath,boolean downloadDanmaku,boolean episodeFound){
+    private void DownloadBangumi(String url,int episodeToDownload_fromZero,int quality,String saveDirPath,boolean downloadDanmaku,boolean episodeFound){
         //参考：https://github.com/soimort/you-get/blob/develop/src/you_get/extractors/acfun.py#L111
         paramPlayUrl=url;
-        paramSavePath=savePath;
+        paramSavePath=saveDirPath;
         paramDownloadDanmaku=downloadDanmaku;
         Matcher mUrl= Pattern.compile("https?://[^\\.]*\\.*acfun\\.[^\\.]+/bangumi/a[ab](\\d+)").matcher(url);
         if(!mUrl.find()){
@@ -278,7 +289,7 @@ public class AcFunGet {
                                     urlEpisodes.add(foundUrl);
                                 tempHtml=tempHtml.substring(mEpi.start()+1);
                             }
-                            DownloadBangumi(urlEpisodes.get(episodeToDownload),episodeToDownload,savePath,downloadDanmaku,true);
+                            DownloadBangumi(urlEpisodes.get(episodeToDownload_fromZero),episodeToDownload_fromZero,quality,saveDirPath,downloadDanmaku,true);
                         }
                         return;
                     }
@@ -300,18 +311,8 @@ public class AcFunGet {
                 }
             }
         };
-        Common.SetAcFunHttpHeader(task);
+        Common.SetYouGetHttpHeader(task);
         task.SetExtra(url);
         task.execute(url);
-    }
-
-    public static abstract class OnFinishFunction {
-        public abstract void OnFinish(boolean success, @Nullable String bangumiPath, @Nullable String danmakuPath, @Nullable String msg);
-    }
-
-    private OnFinishFunction onFinishFunction;
-
-    public void SetOnFinish(OnFinishFunction f){
-        onFinishFunction =f;
     }
 }

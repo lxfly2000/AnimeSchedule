@@ -28,6 +28,7 @@ public class QQGet extends YouGet {
     private String paramPlayUrl,paramSavePath, fileNameWithoutExt;
     private String htmlString,title;
     private String videoId;
+    String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie_qqvideo.txt";
     public QQGet(@NonNull Context context) {
         super(context);
     }
@@ -84,6 +85,8 @@ public class QQGet extends YouGet {
             }
         };
         Common.SetYouGetHttpHeader(taskGetContent);
+        if(FileUtility.IsFileExists(cookiePath))
+            taskGetContent.SetCookie(FileUtility.ReadFile(cookiePath));
         taskGetContent.execute(url);
     }
 
@@ -147,6 +150,8 @@ public class QQGet extends YouGet {
             }
         };
         Common.SetYouGetHttpHeader(task);
+        if(FileUtility.IsFileExists(cookiePath))
+            task.SetCookie(FileUtility.ReadFile(cookiePath));
         task.execute(infoApi);
     }
 
@@ -223,6 +228,8 @@ public class QQGet extends YouGet {
             };
             Common.SetYouGetHttpHeader(task);
             task.SetExtra(dp);
+            if(FileUtility.IsFileExists(cookiePath))
+                task.SetCookie(FileUtility.ReadFile(cookiePath));
             task.execute(keyApi);
             return;
         }
@@ -235,7 +242,6 @@ public class QQGet extends YouGet {
             partParams.get(i).downloadFullPath=videoSavePath;
             partParams.get(i).downloaded=false;
             AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
-            String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie_qqvideo.txt";
             if(FileUtility.IsFileExists(cookiePath))
                 sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));
             sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {

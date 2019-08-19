@@ -261,8 +261,12 @@ public class QQGet extends YouGet {
                     String[]a=new String[si.size()];
                     Joiner joiner=Joiner.AutoChooseJoiner(si.toArray(a));
                     if(joiner!=null) {
-                        if(joiner.join(a, output)==0)
-                            Toast.makeText(ctx,ctx.getString(R.string.message_merged_videos)+"\n"+output,Toast.LENGTH_SHORT).show();
+                        if(joiner.join(a, output)==0) {
+                            for(String dPath:a){
+                                FileUtility.DeleteFile(dPath);
+                            }
+                            Toast.makeText(ctx, ctx.getString(R.string.message_merged_videos) + "\n" + output, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             },i);

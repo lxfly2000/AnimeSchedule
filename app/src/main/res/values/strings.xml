@@ -250,4 +250,10 @@
     <string name="label_iqiyi_download_notice">TODO：Label for IQiyi download.</string>
     <string name="label_choose_video_quality">Choose video quality.</string>
     <string name="message_merged_videos">Videos merged</string>
+    <string name="label_using_3rdparty_mp4parser" translatable="false">
+        <a href="https://github.com/sannies/mp4parser">mp4parser</a>
+    </string>
+    <string name="label_using_3rdparty_bilibilimerge" translatable="false">
+        <a href="https://gitee.com/chengww5217/BiliBiliMerge">BilibiliMerge</a>
+    </string>
 </resources>

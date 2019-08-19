@@ -1,10 +1,12 @@
-package com.lxfly2000.javatest;
+package com.lxfly2000.animeschedule;
 
-import com.lxfly2000.animeschedule.BilibiliApi;
+import org.junit.Assert;
+import org.junit.Test;
 import xiaoyaocz.BiliAnimeDownload.Helpers.Api;
 
 public class TestPlayUrlApi {
-    public static void main(String[]arguments){
+    @Test
+    public void TestPlayUrlApiMain(){
         System.out.println("番剧：孤独地躲在墙角画圈圈");
         String ssid="26818",ep1epid="267811",ep1cid="84763740",avid="48394822";
         System.out.println(Api._playurlApi(ep1cid));
@@ -35,5 +37,7 @@ public class TestPlayUrlApi {
         //4的API只提供港澳台区番剧且只有一种清晰度且不分段
         //api.bilibili.com的第一个/x/的貌似没有条件限制
         //而第二个/pgc/的会有区域限制及大会员检测限制
+
+        Assert.assertNotNull(Api._playurlApi2(ep1cid));
     }
 }

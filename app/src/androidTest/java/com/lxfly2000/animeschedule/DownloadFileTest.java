@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 
 import static org.junit.Assert.*;
 
@@ -30,7 +31,7 @@ public class DownloadFileTest {
         localAnimeJS= StreamUtility.GetStringFromStream(appContext.getResources().openRawResource(R.raw.anime));
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
-            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,Object additionalReturned) {
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                 try{
                     downloadJS=StreamUtility.GetStringFromStream(stream);
                 }catch (IOException e){

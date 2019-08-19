@@ -194,4 +194,5 @@
     <string name="label_youku_download_notice">TODO：優酷下載注意事項。</string>
     <string name="label_iqiyi_download_notice">TODO：愛奇藝下載注意事項。</string>
     <string name="label_choose_video_quality">選擇下載畫質。</string>
+    <string name="message_merged_videos">已合併影片</string>
 </resources>

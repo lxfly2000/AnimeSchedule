@@ -3,6 +3,7 @@ package com.lxfly2000.youget.joiner;
 import androidx.annotation.Nullable;
 
 public abstract class Joiner {
+    //将inputs的文件合并输出至output, 不会删除源文件
     public abstract int join(String[]inputs,String output);
     @Nullable public static Joiner AutoChooseJoiner(String[]inputs){
         for (String input : inputs) {

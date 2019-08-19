@@ -261,8 +261,8 @@ public class QQGet extends YouGet {
                     String[]a=new String[si.size()];
                     Joiner joiner=Joiner.AutoChooseJoiner(si.toArray(a));
                     if(joiner!=null) {
-                        if(joiner.join(a, output)!=0)
-                            Toast.makeText(ctx,"视频合并的功能还在制作中！::>_<::",Toast.LENGTH_SHORT).show();
+                        if(joiner.join(a, output)==0)
+                            Toast.makeText(ctx,ctx.getString(R.string.message_merged_videos)+"\n"+output,Toast.LENGTH_SHORT).show();
                     }
                 }
             },i);

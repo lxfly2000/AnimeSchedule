@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":176,
+	"last_watch_index":218,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -3708,7 +3708,7 @@ setJsonData({
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/e7d9c0c849ea1d0b4756cb569181b4b2387e3515.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss522",
 		"title":"蔷薇少女",
-		"description":"樱田纯，一名不愿上学而长期宅在家里的中学生，热衷于上网购物，并喜欢在购买物品后的退货限期内退回物品。某天他收到一封奇怪的信，上面写着“上发条还是不上发条”的选项，纯在好奇心驱使下选择了“上发条”，之后房间里凭空出现了一只没有署名的神秘皮箱，里面装着一个非常美丽而且质感近似真人的少女人偶。使用木箱内的发条转动背部的开关后，人偶竟像有生命般活动起来，并向纯介绍自己：“我是真红，蔷薇少女的第五人偶。”这时，小丑布偶突然前来袭击，纯在在不明白怎么回事的情况下莫名其妙地成为了真红的媒介，结下了主仆关系。之后，另一对结下类似契约的人类和人偶出现在纯和真红面前，被称为Rozen Maiden（蔷薇少女） 的人偶们的战斗就此展开了……\n动画制作：NOMAD",
+		"description":"樱田纯，一名不愿上学而长期宅在家里的中学生，热衷于上网购物，并喜欢在购买物品后的退货限期内退回物品。某天他收到一封奇怪的信，上面写着“上发条还是不上发条”的选项，纯在好奇心驱使下选择了“上发条”，之后房间里凭空出现了一只没有署名的神秘皮箱，里面装着一个非常美丽而且质感近似真人的少女人偶。使用木箱内的发条转动背部的开关后，人偶竟像有生命般活动起来，并向纯介绍自己：“我是真红，蔷薇少女的第五人偶。”这时，小丑布偶突然前来袭击，纯在在不明白怎么回事的情况下莫名其妙地成为了真红的媒介，结下了主仆关系。之后，另一对结下类似契约的人类和人偶出现在纯和真红面前，被称为Rozen Maiden（蔷薇少女） 的人偶们的战斗就此展开了……\n动画制作：NOMAD\n7话14分的bgm极其熟悉（123.55-6323-613.22-11-6522-），而且这里其他的bgm也都很好。",
 		"actors":"真红：沢城みゆき\n雏莓：野川さくら\n翠星石：桑谷夏子\n苍星石：森永理科\n水银灯：田中理恵\n樱田纯：真田アサミ\n柏葉巴：倉田雅世",
 		"staff":"原作：PEACH-PIT\n监督：松尾衡\n脚本：玉井☆豪、花田十輝、岡田麿里\n分镜：宍戸淳、桜美かつし、松尾衡、大橋誉志光、高橋丈夫、堀之内元\n演出：水本葉月、太田雅彦、松田清、かわむらけんいち、池田重隆、小林智樹、島崎奈々子、吉本毅\n人物设定：石井久美\n系列构成： 花田十輝\n美术监督：柴田千佳子\n色彩设计：勝沼まどか\n总作画监督：石井久美\n音乐：光宗信吉\n音响监督：鶴岡陽太\n摄影监督：岸克芳\n剪辑：武宮むつみ\n动画制作：ノーマッド",
 		"start_date":"2004-10-07",
@@ -4271,7 +4271,7 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"create_date":"2019-1-24"
 	},{
-		"watched_episode":[20190812,20190813,20190815,20190816],
+		"watched_episode":[20190812,20190813,20190815,20190816,20190819],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/88739b4d0f11ac59eda06629fc131a0ae347974b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss281",
 		"title":"甘城光辉游乐园",
@@ -4289,7 +4289,7 @@ setJsonData({
 		"color":"silver",
 		"category":["装逼","日常","奇幻","励志","职场"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":4,
+		"last_watch_episode_anime":5,
 		"create_date":"2019-1-24"
 	},{
 		"watched_episode":[false],
@@ -6654,7 +6654,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-24"
 	},{
-		"watched_episode":[20190707,20190715,20190723,20190729,20190805,20190812],
+		"watched_episode":[20190707,20190715,20190723,20190729,20190805,20190812,20190819],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/4c7324327dd9ae035007c3e9bc40cd2ce08635b1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28006",
 		"title":"擅长捉弄的高木同学 第二季",
@@ -6671,7 +6671,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","校园","恋爱","日常","搞笑"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-6-24"
 	},{
 		"watched_episode":[0],
@@ -7213,5 +7213,25 @@ setJsonData({
 		"category":["奇幻","日常","治愈","小说改","架空","冒险"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-8-13"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/84488991f62c9be2381fd7a447e1309af5f18189.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss2910",
+		"title":"真实之泪",
+		"description":"《真实之泪 true tears》是由P.A.WORKS所制作的日本的电视动画作品。\n本作自2008年1月开始播放，以富山县为舞台（担当动画制作的P.A.WORKS社址就在富山县南砺市），角色和剧情均为原创。\nDVD于2008年发售，Blu-ray BOX则是预定于2010年3月26日发售。\n故事以插画家为梦想的高中生－仲上真一郎，与真一郎同居的同学－汤浅比吕美(被仲上家领养)，平时与真一郎的父母过著四人的家庭生活。某日，真一郎在学校里遇见了爬到树上却下不来的女孩－石动乃绘，还对真一郎说了些不可思议的话。自从这次的相遇，使得真一郎与比吕美、乃绘、好友野伏三代吉、童年玩伴安藤爱子之间的关系开始产生微妙的变化。故事描写着他们在各自的苦恼中下定决心而成长，是一部青涩的校园恋爱剧。\n动画制作：P.A. WORKS",
+		"actors":"安藤爱子：井口裕香\n仲上真一郎：石井真\n石动乃绘：高垣彩陽\n汤浅比吕美：名塚佳織\n野伏三代吉：吉野裕行\n黑部朋与：渡辺智美\n仲上刊：高橋理恵子\n仲上宗弘：藤原啓治\n石动纯：増田裕生\n",
+		"staff":"脚本：森田真由美、西村純二、岡田麿里、西村纯二、冈田磨里\n导演：西村純二\n原作：La'cryma\n演出：浅井義之、川面真也、许琮、浅井义之\n分镜：安藤真裕、川面真也、山本秀世、西村純二、西村纯二\n",
+		"start_date":"2008-01-05",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["校园","治愈","恋爱","游戏改"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-8-19"
 	}]
 });

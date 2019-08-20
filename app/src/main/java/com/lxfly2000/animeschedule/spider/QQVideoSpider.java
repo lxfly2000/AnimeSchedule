@@ -107,7 +107,8 @@ public class QQVideoSpider extends Spider {
                     }catch (Exception e){
                         item.rank=0;
                     }
-                    for(int i=1;i<=item.episodeCount;i++){
+                    int currentNum=coverInfo.getInt("current_num");
+                    for(int i=1;i<=currentNum;i++){
                         AnimeItem.EpisodeTitle et=new AnimeItem.EpisodeTitle();
                         et.episodeTitle=item.title+" "+i;
                         et.episodeIndex=String.valueOf(i);

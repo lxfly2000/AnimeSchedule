@@ -257,10 +257,10 @@ public class QQGet extends YouGet {
                     for (DownloadParams dp : partParams) {
                         si.add(dp.downloadFullPath);
                     }
-                    String output=paramSavePath+"/"+fileNameWithoutExt;
                     String[]a=new String[si.size()];
                     Joiner joiner=Joiner.AutoChooseJoiner(si.toArray(a));
                     if(joiner!=null) {
+                        String output=paramSavePath+"/"+fileNameWithoutExt+"."+joiner.getExt();
                         if(joiner.join(a, output)==0) {
                             for(String dPath:a){
                                 FileUtility.DeleteFile(dPath);

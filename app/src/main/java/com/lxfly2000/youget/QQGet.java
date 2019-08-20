@@ -156,7 +156,7 @@ public class QQGet extends YouGet {
     }
 
     private void QQDownloadByVid_forSegCnt(ArrayList<DownloadParams>partParams,int part,int segCnt,int fcCnt,JSONObject videoJson,String fnPre,String magicStr,String videoType,String host) throws JSONException{
-        if(part<=segCnt+1) {
+        if(part<=segCnt) {
             String partFormatId;
             DownloadParams dp=new DownloadParams();
             if (fcCnt == 0) {

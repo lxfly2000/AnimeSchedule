@@ -15,7 +15,11 @@ import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.animeschedule.spider.Spider;
 import com.lxfly2000.animeschedule.spider.YoukuSpider;
+import com.lxfly2000.youget.YouGet;
+import com.lxfly2000.youget.YoukuGet;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class YoukuDownloadDialog extends DownloadDialog {
@@ -41,17 +45,32 @@ public class YoukuDownloadDialog extends DownloadDialog {
 
     private boolean episodeTitleOK=false;
 
+    public void OpenVideoQualityDialog(AnimeJson json,int index){
+        YoukuGet youkuGet=new YoukuGet(ctx);
+        AlertDialog dq=new AlertDialog.Builder(ctx)
+                .setTitle(json.GetTitle(index))
+                .setView(R.layout.dialog_anime_download_choose_quality)
+                .setPositiveButton("优酷的下载功能正在制作中，敬请期待！",null)
+                .show();
+        //查询可用清晰度
+        for (int i = 0; i < checkEpisodes.size(); i++) {
+            if(checkEpisodes.get(i).isChecked()){//第一个选定的集数
+                youkuGet.QueryQualities(json.GetWatchUrl(i), i, new YouGet.OnReturnVideoQualityFunction() {
+                    @Override
+                    public void OnReturnVideoQuality(boolean success, ArrayList<YouGet.VideoQuality> qualities) {
+                        //TODO，获取这个对话框的布局控件，将获取到的结果显示出来
+                    }
+                });
+                break;
+            }
+        }
+    }
+
     @Override
     public void OpenDownloadDialog(AnimeJson json, int index) {
         AlertDialog dialog=new AlertDialog.Builder(ctx)
                 .setTitle(json.GetTitle(index))
-                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
-                    AlertDialog dq=new AlertDialog.Builder(ctx)
-                                .setTitle(json.GetTitle(index))
-                                .setView(R.layout.dialog_anime_download_choose_quality)
-                                .setPositiveButton("优酷的下载功能正在制作中，敬请期待！",null)
-                                .show();
-                })
+                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> OpenVideoQualityDialog(json,index))
                 .setNegativeButton(android.R.string.cancel,null)
                 .setView(R.layout.dialog_anime_download_with_notice)
                 .show();

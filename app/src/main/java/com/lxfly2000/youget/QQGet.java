@@ -248,6 +248,8 @@ public class QQGet extends YouGet {
                 @Override
                 public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
                     Toast.makeText(ctx, ctx.getString(R.string.message_download_finish, partParams.get((int)extra).downloadFullPath), Toast.LENGTH_LONG).show();
+                    if(partParams.size()<=1)
+                        return;
                     partParams.get((int)extra).downloaded=true;
                     for (DownloadParams dp : partParams) {
                         if (!dp.downloaded)

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.lxfly2000.animeschedule.R;
 import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.utilities.*;
+import com.lxfly2000.youget.joiner.Joiner;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -148,6 +149,16 @@ public class AcFunGet extends YouGet{
     }
 
     private String videoSavePath;
+    static class DownloadEpisodeStatus{
+        String savePath;
+        boolean downloaded;
+        public DownloadEpisodeStatus(String localPath){
+            savePath=localPath;
+            downloaded=false;
+        }
+    }
+
+    ArrayList<DownloadEpisodeStatus>downloadStatus;
 
     private void AcFunDownloadByVid_Async1(HashMap<String,YoukuStreamType> mapYouku){
         String[]seq={"mp4hd3", "mp4hd2", "mp4hd", "flvhd"};
@@ -167,6 +178,7 @@ public class AcFunGet extends YouGet{
         else
             ext="mp4";
 
+        downloadStatus=new ArrayList<>();
         for (int i=0;i< preferred.segUrl.size();i++) {
             AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
             sysDownload.SetUserAgent(Values.userAgentChromeWindows);
@@ -177,13 +189,35 @@ public class AcFunGet extends YouGet{
             if(preferred.segUrl.size()>1)
                 videoSavePath+=" ["+i+"]";
             videoSavePath+="."+ext;
+            downloadStatus.add(new DownloadEpisodeStatus(videoSavePath));
             sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
                 @Override
                 public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
                     Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,videoSavePath),Toast.LENGTH_LONG).show();
-                    //TODO:考虑多段的情况
+                    if(downloadStatus.size()<=1)
+                        return;
+                    downloadStatus.get((int)extra).downloaded=true;
+                    for(DownloadEpisodeStatus dp:downloadStatus){
+                        if(!dp.downloaded)
+                            return;
+                    }
+                    ArrayList<String>si=new ArrayList<>();
+                    for(DownloadEpisodeStatus dp:downloadStatus){
+                        si.add(dp.savePath);
+                    }
+                    String[]a=new String[si.size()];
+                    Joiner joiner=Joiner.AutoChooseJoiner(si.toArray(a));
+                    if(joiner!=null){
+                        String output=paramSavePath+"/"+fileNameWithoutExt+"."+joiner.getExt();
+                        if(joiner.join(a,output)==0){
+                            for(String dPath:a){
+                                FileUtility.DeleteFile(dPath);
+                            }
+                            Toast.makeText(ctx,ctx.getString(R.string.message_merged_videos)+"\n"+output,Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
-            },videoSavePath);
+            },i);
             sysDownload.StartDownloadFile(preferred.segUrl.get(i),videoSavePath,fileNameWithoutExt);
         }
         if(preferred.segUrl.size()>1){

@@ -41,17 +41,20 @@ public class IQiyiDownloadDialog extends DownloadDialog {
 
     private boolean episodeTitleOK=false;
 
+    public void OpenVideoQualityDialog(AnimeJson json,int index){
+        AlertDialog dq=new AlertDialog.Builder(ctx)
+                .setTitle(json.GetTitle(index))
+                .setView(R.layout.dialog_anime_download_choose_quality)
+                .setPositiveButton("爱奇艺的下载功能正在制作中，敬请期待！",null)
+                .show();
+        //查询可用清晰度
+    }
+
     @Override
     public void OpenDownloadDialog(AnimeJson json, int index) {
         AlertDialog dialog=new AlertDialog.Builder(ctx)
                 .setTitle(json.GetTitle(index))
-                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
-                    AlertDialog dq=new AlertDialog.Builder(ctx)
-                            .setTitle(json.GetTitle(index))
-                            .setView(R.layout.dialog_anime_download_choose_quality)
-                            .setPositiveButton("爱奇艺的下载功能正在制作中，敬请期待！",null)
-                            .show();
-                })
+                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> OpenVideoQualityDialog(json, index))
                 .setNegativeButton(android.R.string.cancel,null)
                 .setView(R.layout.dialog_anime_download_with_notice)
                 .show();

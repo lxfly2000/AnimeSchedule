@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":338,
+	"last_watch_index":218,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -4271,7 +4271,7 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"create_date":"2019-1-24"
 	},{
-		"watched_episode":[20190812,20190813,20190815,20190816,20190819],
+		"watched_episode":[20190812,20190813,20190815,20190816,20190819,20190821,20190821],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/88739b4d0f11ac59eda06629fc131a0ae347974b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss281",
 		"title":"甘城光辉游乐园",
@@ -4289,7 +4289,7 @@ setJsonData({
 		"color":"silver",
 		"category":["装逼","日常","奇幻","励志","职场"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":5,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-1-24"
 	},{
 		"watched_episode":[false],
@@ -7074,7 +7074,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-7-30"
 	},{
-		"watched_episode":[20190805,20190805,20190805,20190808,20190809,20190815],
+		"watched_episode":[20190805,20190805,20190805,20190808,20190809,20190815,20190821],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/15c587a046c6fa135410a978d00be87972c4cf66.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss5556",
 		"title":"奇异太郎少年的妖怪绘日记",
@@ -7091,7 +7091,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["漫画改","神魔","泡面"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-8-5"
 	},{
 		"watched_episode":[20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806],

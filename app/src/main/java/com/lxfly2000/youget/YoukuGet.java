@@ -102,10 +102,10 @@ public class YoukuGet extends YouGet {
         }
     }
 
-    class Youku{
-        String mobileUA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36";
-        String dispatcherURL="vali.cp31.ott.cibntv.net";
-        ArrayList<StreamType>streamTypes;
+    static class Youku{
+        static String mobileUA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36";
+        static String dispatcherURL="vali.cp31.ott.cibntv.net";
+        static ArrayList<StreamType>streamTypes;
 
         String ua = mobileUA;
         String referer = "https://v.youku.com";
@@ -145,6 +145,19 @@ public class YoukuGet extends YouGet {
             //obsolete?
             streamTypes.add(new StreamType("flv", "flv", "标清"));
             streamTypes.add(new StreamType("mp4", "mp4", "标清"));
+        }
+
+        public void YoukuUps(){
+            String url = String.format("https://ups.youku.com/ups/get.json?vid=%s&ccode=%s","0",ccode);
+            /*url += '&client_ip=192.168.1.1'
+            url += '&utid=' + self.utid
+            url += '&client_ts=' + str(int(time.time()))
+            url += '&ckey=' + urllib.parse.quote(self.ckey)
+            if self.password_protected:
+            url += '&password=' + self.password
+            headers = dict(Referer=self.referer)
+            headers['User-Agent'] = self.ua
+            api_meta = json.loads(get_content(url, headers=headers))*/
         }
     }
 }

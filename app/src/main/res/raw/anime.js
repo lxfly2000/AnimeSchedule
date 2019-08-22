@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":218,
+	"last_watch_index":356,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -464,7 +464,7 @@ setJsonData({
 		"start_date":"2018-01-11",
 		"update_period":7,
 		"update_period_unit":"day",
-		"episode_count":13,
+		"episode_count":14,
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss21542",
 		"absense_count":0,
 		"watched_episode":[true,true,true,true,true,true,false,false,false,false,false,false,false],
@@ -3314,9 +3314,9 @@ setJsonData({
 		"staff":"原作：米泽穗信\n监督：武本康弘\n脚本：西岡麻衣子、賀東招二、村元克彦\n分镜：山田尚子、木上益治、石立太一、内海紘子、武本康弘、北之原孝將、太田里香、河浪栄作\n演出：山田尚子、木上益治、石立太一、内海紘子、武本康弘、北之原孝將、太田里香、河浪栄作\n系列构成：贺东招二\n角色设计：西屋太志\n色彩设计：石田奈央美\n美术监督：奥出修平\n总作画监督：西屋太志\n音乐：田中公平\n音乐监制：鹤冈阳太（乐音舍）\n摄影监督：中上龙太\n动画制作：京都アニメーション（京都动画）",
 		"start_date":"2012-04-22",
 		"update_time_int":0,
-		"update_period":1,
-		"update_period_unit":"month",
-		"episode_count":22,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":23,
 		"absense_count":0,
 		"abandoned":false,
 		"rank":0,
@@ -4271,7 +4271,7 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"create_date":"2019-1-24"
 	},{
-		"watched_episode":[20190812,20190813,20190815,20190816,20190819,20190821,20190821],
+		"watched_episode":[20190812,20190813,20190815,20190816,20190819,20190821,20190821,20190822],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/88739b4d0f11ac59eda06629fc131a0ae347974b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss281",
 		"title":"甘城光辉游乐园",
@@ -4289,7 +4289,7 @@ setJsonData({
 		"color":"silver",
 		"category":["装逼","日常","奇幻","励志","职场"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":7,
+		"last_watch_episode_anime":8,
 		"create_date":"2019-1-24"
 	},{
 		"watched_episode":[false],
@@ -7074,7 +7074,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-7-30"
 	},{
-		"watched_episode":[20190805,20190805,20190805,20190808,20190809,20190815,20190821],
+		"watched_episode":[20190805,20190805,20190805,20190808,20190809,20190815,20190821,20190822,20190822,20190822],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/15c587a046c6fa135410a978d00be87972c4cf66.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss5556",
 		"title":"奇异太郎少年的妖怪绘日记",
@@ -7088,10 +7088,10 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":5,
 		"color":"silver",
 		"category":["漫画改","神魔","泡面"],
-		"last_watch_episode_anime":7,
+		"last_watch_episode_anime":10,
 		"create_date":"2019-8-5"
 	},{
 		"watched_episode":[20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806,20190806],

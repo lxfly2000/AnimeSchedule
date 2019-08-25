@@ -442,14 +442,17 @@ public class IQiyiGet extends YouGet {
             int finishedCount=0;
             for (int i = 0; i < urls.size(); i++) {
                 String ext = Common.Match1(urls.get(i), "\\.(\\w+)\\?");
-                pathSegments.add(paramSavePath + "/" + fileNameWithoutExt + "[" + i + "]." + ext);
-                if(FileUtility.IsFileExists(pathSegments.get(i))){
+                String path = paramSavePath + "/" + fileNameWithoutExt;
+                if (urls.size() > 1)
+                    path += "[" + i + "]." + ext;
+                pathSegments.add(path);
+                if (FileUtility.IsFileExists(pathSegments.get(i))) {
                     finishedCount++;
-                    downloadFinished.set(i,true);
+                    downloadFinished.set(i, true);
                 }
             }
-            if(finishedCount==pathSegments.size()){
-                MergeVideos();
+            if(finishedCount==pathSegments.size()&&finishedCount>1){
+                MergeVideos(urls);
                 return;
             }
             try {
@@ -460,15 +463,16 @@ public class IQiyiGet extends YouGet {
                             @Override
                             public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
                                 downloadFinished.set((int) extra, true);
-                                for (int i = 0; i < urls.size(); i++) {
-                                    if (!downloadFinished.get(i))
-                                        return;
-                                }
-                                MergeVideos();
+                                if(urls.size()<=1)
+                                    return;
+                                MergeVideos(urls);
                             }
                         }, i);
                         String localPath = pathSegments.get(i);
-                        sysDownload.StartDownloadFile(urls.get(i), localPath, fileNameWithoutExt + " [" + (i + 1) + "/" + urls.size() + "]");
+                        String notifyTitle=fileNameWithoutExt;
+                        if(urls.size()>1)
+                            notifyTitle+= " [" + (i + 1) + "/" + urls.size() + "]";
+                        sysDownload.StartDownloadFile(urls.get(i), localPath, notifyTitle);
                     }
                 }
             }catch (IndexOutOfBoundsException e){
@@ -476,7 +480,11 @@ public class IQiyiGet extends YouGet {
             }
         }
 
-        void MergeVideos(){
+        void MergeVideos(ArrayList<String>urls){
+            for (int i = 0; i < urls.size(); i++) {
+                if (!downloadFinished.get(i))
+                    return;
+            }
             String[] a = new String[pathSegments.size()];
             pathSegments.toArray(a);
             Joiner joiner = Joiner.AutoChooseJoiner(a);

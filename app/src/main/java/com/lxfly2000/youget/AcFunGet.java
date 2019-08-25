@@ -148,7 +148,6 @@ public class AcFunGet extends YouGet{
         taskGetVideo.execute(vidUrl);
     }
 
-    private String videoSavePath;
     static class DownloadEpisodeStatus{
         String savePath;
         boolean downloaded;
@@ -159,6 +158,7 @@ public class AcFunGet extends YouGet{
     }
 
     ArrayList<DownloadEpisodeStatus>downloadStatus;
+    ArrayList<String>videoSavePaths=new ArrayList<>();
 
     private void AcFunDownloadByVid_Async1(HashMap<String,YoukuStreamType> mapYouku){
         String[]seq={"mp4hd3", "mp4hd2", "mp4hd", "flvhd"};
@@ -179,49 +179,41 @@ public class AcFunGet extends YouGet{
             ext="mp4";
 
         downloadStatus=new ArrayList<>();
+        int downloadedCount=0;
         for (int i=0;i< preferred.segUrl.size();i++) {
-            AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
-            sysDownload.SetUserAgent(Values.userAgentChromeWindows);
-            String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie_acfun.txt";
-            if(FileUtility.IsFileExists(cookiePath))
-                sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));
-            videoSavePath=paramSavePath+"/"+fileNameWithoutExt;
+            videoSavePaths.add(paramSavePath+"/"+fileNameWithoutExt);
+            downloadStatus.add(new DownloadEpisodeStatus(videoSavePaths.get(i)));
+            if(FileUtility.IsFileExists(videoSavePaths.get(i))) {
+                downloadStatus.get(i).downloaded = true;
+                downloadedCount++;
+            }
             if(preferred.segUrl.size()>1)
-                videoSavePath+=" ["+i+"]";
-            videoSavePath+="."+ext;
-            downloadStatus.add(new DownloadEpisodeStatus(videoSavePath));
-            sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
-                @Override
-                public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
-                    Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,videoSavePath),Toast.LENGTH_LONG).show();
-                    if(downloadStatus.size()<=1)
-                        return;
-                    downloadStatus.get((int)extra).downloaded=true;
-                    for(DownloadEpisodeStatus dp:downloadStatus){
-                        if(!dp.downloaded)
+                videoSavePaths.set(i,videoSavePaths.get(i)+" ["+i+"]");
+            videoSavePaths.set(i,videoSavePaths.get(i)+"."+ext);
+            if(!downloadStatus.get(i).downloaded) {
+                AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
+                sysDownload.SetUserAgent(Values.userAgentChromeWindows);
+                String cookiePath = Values.GetRepositoryPathOnLocal() + "/cookie_acfun.txt";
+                if (FileUtility.IsFileExists(cookiePath))
+                    sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));
+                sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
+                    @Override
+                    public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
+                        Toast.makeText(ctx, ctx.getString(R.string.message_download_finish, videoSavePaths.get((int) extra)), Toast.LENGTH_LONG).show();
+                        downloadStatus.get((int) extra).downloaded = true;
+                        if (downloadStatus.size() <= 1)
                             return;
+                        MergeVideos();
                     }
-                    ArrayList<String>si=new ArrayList<>();
-                    for(DownloadEpisodeStatus dp:downloadStatus){
-                        si.add(dp.savePath);
-                    }
-                    String[]a=new String[si.size()];
-                    Joiner joiner=Joiner.AutoChooseJoiner(si.toArray(a));
-                    if(joiner!=null){
-                        String output=paramSavePath+"/"+fileNameWithoutExt+"."+joiner.getExt();
-                        if(joiner.join(a,output)==0){
-                            for(String dPath:a){
-                                FileUtility.DeleteFile(dPath);
-                            }
-                            Toast.makeText(ctx,ctx.getString(R.string.message_merged_videos)+"\n"+output,Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            },i);
-            sysDownload.StartDownloadFile(preferred.segUrl.get(i),videoSavePath,fileNameWithoutExt);
+                }, i);
+                String notifyTitle=fileNameWithoutExt;
+                if(preferred.segUrl.size()>1)
+                    notifyTitle+=" [" + (i + 1) + "/" + preferred.segUrl.size() + "]";
+                sysDownload.StartDownloadFile(preferred.segUrl.get(i), videoSavePaths.get(i), notifyTitle);
+            }
         }
-        if(preferred.segUrl.size()>1){
-            Toast.makeText(ctx,"这个视频是多段的，请在下载完成后手动合并。\n自动合并功能尚未制作。",Toast.LENGTH_LONG).show();
+        if(downloadedCount==downloadStatus.size()&&downloadedCount>1){
+            MergeVideos();
         }
 
         if(paramDownloadDanmaku){
@@ -254,6 +246,24 @@ public class AcFunGet extends YouGet{
             String danmakuUrl=GetDanmakuUrl(videoId);
             task.SetExtra(danmakuUrl);
             task.execute(danmakuUrl);
+        }
+    }
+
+    private void MergeVideos(){
+        for(DownloadEpisodeStatus dp:downloadStatus){
+            if(!dp.downloaded)
+                return;
+        }
+        String[]a=new String[videoSavePaths.size()];
+        Joiner joiner=Joiner.AutoChooseJoiner(videoSavePaths.toArray(a));
+        if(joiner!=null){
+            String output=paramSavePath+"/"+fileNameWithoutExt+"."+joiner.getExt();
+            if(joiner.join(a,output)==0){
+                for(String dPath:a){
+                    FileUtility.DeleteFile(dPath);
+                }
+                Toast.makeText(ctx,ctx.getString(R.string.message_merged_videos)+"\n"+output,Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

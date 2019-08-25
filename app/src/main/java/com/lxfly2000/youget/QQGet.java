@@ -233,6 +233,7 @@ public class QQGet extends YouGet {
             task.execute(keyApi);
             return;
         }
+        int downloadedCount=0;
         for (int i=0;i<partParams.size();i++) {
             String url=partParams.get(i).url;
             String videoSavePath=paramSavePath+"/"+fileNameWithoutExt;
@@ -240,39 +241,50 @@ public class QQGet extends YouGet {
                 videoSavePath+=" ["+partParams.get(i).partNumber+"]";
             videoSavePath+="."+partParams.get(i).ext;
             partParams.get(i).downloadFullPath=videoSavePath;
-            partParams.get(i).downloaded=false;
-            AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
-            if(FileUtility.IsFileExists(cookiePath))
-                sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));
-            sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
-                @Override
-                public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
-                    Toast.makeText(ctx, ctx.getString(R.string.message_download_finish, partParams.get((int)extra).downloadFullPath), Toast.LENGTH_LONG).show();
-                    if(partParams.size()<=1)
-                        return;
-                    partParams.get((int)extra).downloaded=true;
-                    for (DownloadParams dp : partParams) {
-                        if (!dp.downloaded)
+            partParams.get(i).downloaded=FileUtility.IsFileExists(videoSavePath);
+            if(partParams.get(i).downloaded) {
+                downloadedCount++;
+            }else {
+                AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
+                if (FileUtility.IsFileExists(cookiePath))
+                    sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));
+                sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
+                    @Override
+                    public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
+                        Toast.makeText(ctx, ctx.getString(R.string.message_download_finish, partParams.get((int) extra).downloadFullPath), Toast.LENGTH_LONG).show();
+                        partParams.get((int) extra).downloaded = true;
+                        if (partParams.size() <= 1)
                             return;
+                        MergeVideos(partParams);
                     }
-                    ArrayList<String>si=new ArrayList<>();
-                    for (DownloadParams dp : partParams) {
-                        si.add(dp.downloadFullPath);
-                    }
-                    String[]a=new String[si.size()];
-                    Joiner joiner=Joiner.AutoChooseJoiner(si.toArray(a));
-                    if(joiner!=null) {
-                        String output=paramSavePath+"/"+fileNameWithoutExt+"."+joiner.getExt();
-                        if(joiner.join(a, output)==0) {
-                            for(String dPath:a){
-                                FileUtility.DeleteFile(dPath);
-                            }
-                            Toast.makeText(ctx, ctx.getString(R.string.message_merged_videos) + "\n" + output, Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                }, i);
+                sysDownload.StartDownloadFile(url, videoSavePath);
+            }
+        }
+        if(downloadedCount==partParams.size()&&downloadedCount>1){
+            MergeVideos(partParams);
+        }
+    }
+
+    private void MergeVideos(ArrayList<DownloadParams>partParams){
+        for (DownloadParams dp : partParams) {
+            if (!dp.downloaded)
+                return;
+        }
+        ArrayList<String> si = new ArrayList<>();
+        for (DownloadParams dp : partParams) {
+            si.add(dp.downloadFullPath);
+        }
+        String[] a = new String[si.size()];
+        Joiner joiner = Joiner.AutoChooseJoiner(si.toArray(a));
+        if (joiner != null) {
+            String output = paramSavePath + "/" + fileNameWithoutExt + "." + joiner.getExt();
+            if (joiner.join(a, output) == 0) {
+                for (String dPath : a) {
+                    FileUtility.DeleteFile(dPath);
                 }
-            },i);
-            sysDownload.StartDownloadFile(url,videoSavePath);
+                Toast.makeText(ctx, ctx.getString(R.string.message_merged_videos) + "\n" + output, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

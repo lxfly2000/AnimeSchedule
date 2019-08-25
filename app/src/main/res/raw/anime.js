@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":140,
+	"last_watch_index":332,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -6594,7 +6594,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-19"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20190825],
 		"cover":"http:\/\/pic8.iqiyipic.com\/image\/20181012\/da\/a7\/a_100040315_m_601_m1.jpg",
 		"watch_url":"https:\/\/www.iqiyi.com\/a_19rrh923sd.html",
 		"title":"精灵使的剑舞",
@@ -6611,7 +6611,7 @@ setJsonData({
 		"rank":0,
 		"color":"silver",
 		"category":["日漫","动作","热血","冒险","7-13","14-17","18以上","日语","动画","热血","励志","冒险"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-6-19"
 	},{
 		"watched_episode":[20190714,20190720,20190727,20190803,20190810,20190817],

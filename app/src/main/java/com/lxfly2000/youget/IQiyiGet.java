@@ -421,6 +421,7 @@ public class IQiyiGet extends YouGet {
             task.execute(m3u);
         }
 
+        ArrayList<Boolean>downloadFinished=new ArrayList<>();
         private void DownloadM3U8Main(String m3u8file){
             ArrayList<String>urls=new ArrayList<>();
             Pattern p=Pattern.compile("https?://[^\\n]+");
@@ -431,41 +432,62 @@ public class IQiyiGet extends YouGet {
                 urls.add(m3u8file.substring(m.start(),m.end()));
                 m3u8file=m3u8file.substring(m.start()+1);
             }
-            DownloadM3U8Seg(urls,0);
+            for(int i=0;i<urls.size();i++)
+                downloadFinished.add(false);
+            DownloadM3U8Seg(urls);
         }
 
-        private void DownloadM3U8Seg(ArrayList<String>urls,int seg){
-            AndroidSysDownload sysDownload=new AndroidSysDownload(ctx);
+        ArrayList<String> pathSegments = new ArrayList<>();
+        private void DownloadM3U8Seg(ArrayList<String>urls){
+            int finishedCount=0;
+            for (int i = 0; i < urls.size(); i++) {
+                String ext = Common.Match1(urls.get(i), "\\.(\\w+)\\?");
+                pathSegments.add(paramSavePath + "/" + fileNameWithoutExt + "[" + i + "]." + ext);
+                if(FileUtility.IsFileExists(pathSegments.get(i))){
+                    finishedCount++;
+                    downloadFinished.set(i,true);
+                }
+            }
+            if(finishedCount==pathSegments.size()){
+                MergeVideos();
+                return;
+            }
             try {
-                String ext = Common.Match1(urls.get(seg), "\\.(\\w+)\\?");
-                sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
-                    @Override
-                    public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
-                        if (seg + 1 < urls.size()) {
-                            DownloadM3U8Seg(urls, seg + 1);
-                            return;
-                        }
-                        ArrayList<String> paths = new ArrayList<>();
-                        for (int i = 0; i < seg + 1; i++)
-                            paths.add(paramSavePath + "/" + fileNameWithoutExt + "[" + i + "]." + ext);
-                        String[] a = new String[paths.size()];
-                        paths.toArray(a);
-                        Joiner joiner = Joiner.AutoChooseJoiner(a);
-                        if(joiner!=null) {
-                            String mergePath = paramSavePath + "/" + fileNameWithoutExt + "." + joiner.getExt();
-                            if (joiner.join(a, mergePath) == 0) {
-                                for (String segFile : a) {
-                                    FileUtility.DeleteFile(segFile);
+                for(int i=0;i<urls.size();i++) {
+                    if(!FileUtility.IsFileExists(pathSegments.get(i))) {
+                        AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
+                        sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
+                            @Override
+                            public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
+                                downloadFinished.set((int) extra, true);
+                                for (int i = 0; i < urls.size(); i++) {
+                                    if (!downloadFinished.get(i))
+                                        return;
                                 }
-                                Toast.makeText(ctx, ctx.getString(R.string.message_merged_videos) + "\n" + mergePath, Toast.LENGTH_SHORT).show();
+                                MergeVideos();
                             }
-                        }
+                        }, i);
+                        String localPath = pathSegments.get(i);
+                        sysDownload.StartDownloadFile(urls.get(i), localPath, fileNameWithoutExt + " [" + (i + 1) + "/" + urls.size() + "]");
                     }
-                }, null);
-                String localPath=paramSavePath + "/" + fileNameWithoutExt + "[" + seg + "]." + ext;
-                sysDownload.StartDownloadFile(urls.get(seg), localPath, fileNameWithoutExt+" ["+(seg+1)+"/" +urls.size()+"]");
+                }
             }catch (IndexOutOfBoundsException e){
                 onFinishFunction.OnFinish(false,paramPlayUrl,null,e.getClass().getName()+"\n"+e.getLocalizedMessage());
+            }
+        }
+
+        void MergeVideos(){
+            String[] a = new String[pathSegments.size()];
+            pathSegments.toArray(a);
+            Joiner joiner = Joiner.AutoChooseJoiner(a);
+            if (joiner != null) {
+                String mergePath = paramSavePath + "/" + fileNameWithoutExt + "." + joiner.getExt();
+                if (joiner.join(a, mergePath) == 0) {
+                    for (String segFile : a) {
+                        FileUtility.DeleteFile(segFile);
+                    }
+                    Toast.makeText(ctx, ctx.getString(R.string.message_merged_videos) + "\n" + mergePath, Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

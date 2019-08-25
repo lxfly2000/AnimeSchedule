@@ -7297,7 +7297,7 @@ setJsonData({
 		"watched_episode":[0],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/7e13fba734a4cf7eb7cb21959c367e82e5168637.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28400",
-		"title":"魔法少女☆伊莉雅 Prisma☆Phantom",
+		"title":"魔法少女☆伊莉雅 Prisma☆Phantasm",
 		"description":"Fate\/kaleid liner系列的角色穿越平行世界的大集合，原作监修的完全原创剧情，描绘少女们的另一个故事。\n动画制作：银链",
 		"actors":"伊莉雅斯菲尔·冯·爱因兹贝伦：门胁舞以\t\n美游·艾德费尔特：名冢佳织\t\n克洛伊·冯·爱因兹贝伦（小黑）：斋藤千和\t\n远坂凛：植田佳奈\t\n露维亚瑟琳塔·艾德费尔特：伊藤静\t\n間桐慎二：神谷浩史\n言峰绮礼：中田让治",
 		"staff":"导演: 大沼心\n脚本: 水濑叶月、井上坚二\n音乐: 加藤达也\n人物设定: 平田和也\n音响监督: 土屋雅纪\n音响: グロービジョン\n音乐制作: ランティス\n动画制作: SILVER LINK.",

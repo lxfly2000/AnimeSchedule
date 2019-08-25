@@ -14,5 +14,6 @@ public class TestMp4Parser {
                 return;
         }
         Assert.assertEquals(0,new MP4Joiner().join(inputs,"TestOutput.mp4"));
+        FileUtility.DeleteFile("TestOutput.mp4");
     }
 }

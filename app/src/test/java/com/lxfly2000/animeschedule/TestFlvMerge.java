@@ -17,5 +17,6 @@ public class TestFlvMerge {
                 return;
         }
         Assert.assertEquals(0,new FLVJoiner().join(inputs,"TestOutput.flv"));
+        FileUtility.DeleteFile("TestOutput.flv");
     }
 }

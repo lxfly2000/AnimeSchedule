@@ -1,5 +1,6 @@
 package com.lxfly2000.animeschedule;
 
+import com.lxfly2000.utilities.FileUtility;
 import com.lxfly2000.utilities.HashUtility;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,8 +14,10 @@ public class TestHash {
     }
     @Test
     public void TestFileMD5(){
-        String digest="e0fe9b2a2b884e95c6e8557654bbde03";
-        String src="src/main/res/drawable/ic_animeschedule.xml";
+        String digest="5329994d18cb66ac70052b694a89bd05";
+        String src="114514.txt";
+        FileUtility.WriteFile(src,"114514\n1919\n810\n就是这↑里↓了\n哼！哼！啊啊啊啊啊啊啊啊啊啊啊啊啊！！");
         Assert.assertEquals(digest,HashUtility.GetFileMD5(src));
+        FileUtility.DeleteFile(src);
     }
 }

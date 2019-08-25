@@ -44,25 +44,24 @@ public class IQiyiDownloadDialog extends DownloadDialog {
 
     private boolean episodeTitleOK=false;
     AlertDialog videoQualityDialog;
+    YouGet.OnFinishFunction onFinishFunction=new YouGet.OnFinishFunction() {
+        @Override
+        public void OnFinish(boolean success, @Nullable String bangumiPath, @Nullable String danmakuPath, @Nullable String msg) {
+            if(msg!=null)
+                Toast.makeText(ctx,msg,Toast.LENGTH_LONG).show();
+            if(!success){
+                if(bangumiPath==null)
+                    return;
+                if(msg==null)
+                    Toast.makeText(ctx,ctx.getString(R.string.message_download_failed,bangumiPath),Toast.LENGTH_LONG).show();
+                return;
+            }
+            if(bangumiPath!=null&&msg==null)
+                Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,bangumiPath),Toast.LENGTH_LONG).show();
+        }
+    };
 
     public void OpenVideoQualityDialog(AnimeJson json,int index){
-        IQiyiGet iQiyiGet=new IQiyiGet(ctx);
-        iQiyiGet.SetOnFinish(new YouGet.OnFinishFunction() {
-            @Override
-            public void OnFinish(boolean success, @Nullable String bangumiPath, @Nullable String danmakuPath, @Nullable String msg) {
-                if(msg!=null)
-                    Toast.makeText(ctx,msg,Toast.LENGTH_LONG).show();
-                if(!success){
-                    if(bangumiPath==null)
-                        return;
-                    if(msg==null)
-                        Toast.makeText(ctx,ctx.getString(R.string.message_download_failed,bangumiPath),Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(bangumiPath!=null&&msg==null)
-                    Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,bangumiPath),Toast.LENGTH_LONG).show();
-            }
-        });
         videoQualityDialog=new AlertDialog.Builder(ctx)
                 .setTitle(json.GetTitle(index))
                 .setView(R.layout.dialog_anime_download_choose_quality)
@@ -72,9 +71,12 @@ public class IQiyiDownloadDialog extends DownloadDialog {
                         RadioButton button=(RadioButton)radioGroup.getChildAt(i_radio);
                         if(button.isChecked()){
                             for(int i_epi=0;i_epi<checkEpisodes.size();i_epi++){
-                                if(checkEpisodes.get(i_epi).isChecked())
-                                iQiyiGet.DownloadBangumi(json.GetWatchUrl(index),i_epi,i_radio,preferences.getString(ctx.getString(
-                                        R.string.key_acfun_save_path), Values.GetRepositoryPathOnLocal()));
+                                if(checkEpisodes.get(i_epi).isChecked()) {
+                                    IQiyiGet iQiyiGet=new IQiyiGet(ctx);
+                                    iQiyiGet.SetOnFinish(onFinishFunction);
+                                    iQiyiGet.DownloadBangumi(json.GetWatchUrl(index), i_epi, i_radio, preferences.getString(ctx.getString(
+                                            R.string.key_acfun_save_path), Values.GetRepositoryPathOnLocal()));
+                                }
                             }
                             Toast.makeText(ctx,R.string.message_download_task_created,Toast.LENGTH_SHORT).show();
                         }
@@ -87,6 +89,8 @@ public class IQiyiDownloadDialog extends DownloadDialog {
         //查询可用清晰度
         for(int i=0;i<checkEpisodes.size();i++){
             if(checkEpisodes.get(i).isChecked()){
+                IQiyiGet iQiyiGet=new IQiyiGet(ctx);
+                iQiyiGet.SetOnFinish(onFinishFunction);
                 iQiyiGet.QueryQualities(json.GetWatchUrl(index), i, new YouGet.OnReturnVideoQualityFunction() {
                     @Override
                     public void OnReturnVideoQuality(boolean success, ArrayList<YouGet.VideoQuality> qualities) {

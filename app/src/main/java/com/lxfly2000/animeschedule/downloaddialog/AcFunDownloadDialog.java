@@ -83,6 +83,14 @@ public class AcFunDownloadDialog extends DownloadDialog {
                 .setView(R.layout.dialog_acfun_download)
                 .show();
         checkIncludeDanmaku=dialog.findViewById(R.id.checkAcfunIncludeDanmaku);
+        checkIncludeDanmaku.setChecked(false);
+        checkIncludeDanmaku.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+                    Toast.makeText(ctx,"下载弹幕功能目前存在Bug，建议不要使用。\n下載彈幕功能目前存在Bug，建議不要使用。\nThere is a bug in downloading Danmaku function at this time, please avoid using this.",Toast.LENGTH_LONG).show();
+            }
+        });
         linearLayout=dialog.findViewById(R.id.linearLayoutEpisodes);
         buttonOk=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
         buttonOk.setEnabled(false);

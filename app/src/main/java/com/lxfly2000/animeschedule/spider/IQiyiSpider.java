@@ -129,7 +129,7 @@ public class IQiyiSpider extends Spider {
                     onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_unable_to_read_url));
                     return;
                 }
-                Pattern p=Pattern.compile("albumId: *\"?[0-9]+\"?,");
+                Pattern p=Pattern.compile("albumId: *\"?[1-9][0-9]*\"?,");
                 try {
                     String htmlString = StreamUtility.GetStringFromStream(stream);//整个网页的内容
                     Matcher m = p.matcher(htmlString);
@@ -137,12 +137,16 @@ public class IQiyiSpider extends Spider {
                     if(m.find())
                         mfind=true;
                     else{
-                        p=Pattern.compile("a(lbum-)?id *= *\"[0-9]+\"");
+                        p=Pattern.compile("a(lbum-)?id *= *\"[1-9][0-9]*\"");
                         m=p.matcher(htmlString);
                         if(m.find())
                             mfind=true;
                         else{
-                            if(((String)extra).startsWith("http:")) {
+                            p=Pattern.compile("\"aid\":[1-9][0-9]*");
+                            m=p.matcher(htmlString);
+                            if(m.find())
+                                mfind=true;
+                            else if(((String)extra).startsWith("http:")) {
                                 GetIQiyiAnimeIDFromURL(((String) extra).replaceFirst("http", "https"));
                                 return;
                             }
@@ -160,7 +164,7 @@ public class IQiyiSpider extends Spider {
                             onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_unable_get_id_number));
                     }else{
                         if(url.contains("www.iqiyi.com/v_"))//2019-5-1:无法识别www.iqiyi.com/v_开头的链接
-                            GetIQiyiAnimeIDFromURL(url.replaceFirst("www.iqiyi.com","m.iqiyi.com"));
+                            GetIQiyiAnimeIDFromURL(url.replaceFirst("www\\.iqiyi\\.com","m.iqiyi.com"));
                         else
                             onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_unable_get_id_number_line));
                     }

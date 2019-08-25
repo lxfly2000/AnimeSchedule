@@ -126,7 +126,7 @@ public class AcFunGet extends YouGet{
                 try{
                     String enc=connection.getHeaderField("Content-Encoding");
                     InputStream iStream=stream;
-                    if("gzip".equals(enc))//判断输入流是否是压缩的，并获取压缩算法
+                    if("gzip".equals(enc))//判断输入流是否是压缩的，并获取压缩算as法
                         iStream=new GZIPInputStream(stream);
                     else if("deflate".equals(enc))
                         iStream=new InflaterInputStream(stream,new Inflater(true));

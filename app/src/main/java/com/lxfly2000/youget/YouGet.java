@@ -16,8 +16,8 @@ public abstract class YouGet {
     public abstract void DownloadBangumi(String url,int episodeToDownload_fromZero,int quality,String saveDirPath);
 
     public static class VideoQuality{
-        int index;
-        String qualityName;
+        public int index;
+        public String qualityName;
         public VideoQuality(int _index,String _qualityName){
             index=_index;
             qualityName=_qualityName;

@@ -42,7 +42,7 @@ public class YoukuGet extends YouGet {
 
     @Override
     public void QueryQualities(String url, int episodeToDownload_fromZero, OnReturnVideoQualityFunction f) {
-
+        //TODO:???
     }
 
     String quote_cna(String val){
@@ -105,19 +105,10 @@ public class YoukuGet extends YouGet {
         task.execute(url);
     }
 
-    static class StreamType{
-        public String id,container,videoProfile;
-        public StreamType(String id,String container,String videoProfile){
-            this.id=id;
-            this.container=container;
-            this.videoProfile=videoProfile;
-        }
-    }
-
     class Youku{
         String mobile_ua ="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36";
         String dispatcher_url ="vali.cp31.ott.cibntv.net";
-        ArrayList<StreamType> stream_types;
+        ArrayList<Common.StreamType> stream_types;
 
         String ua = mobile_ua;
         String referer = "https://v.youku.com";
@@ -138,25 +129,25 @@ public class YoukuGet extends YouGet {
 
         public Youku() {
             stream_types = new ArrayList<>();
-            stream_types.add(new StreamType("hd3", "flv", "1080P"));
-            stream_types.add(new StreamType("hd3v2", "flv", "1080P"));
-            stream_types.add(new StreamType("mp4hd3", "mp4", "1080P"));
-            stream_types.add(new StreamType("mp4hd3v2", "mp4", "1080P"));
+            stream_types.add(new Common.StreamType("hd3", "flv", "1080P"));
+            stream_types.add(new Common.StreamType("hd3v2", "flv", "1080P"));
+            stream_types.add(new Common.StreamType("mp4hd3", "mp4", "1080P"));
+            stream_types.add(new Common.StreamType("mp4hd3v2", "mp4", "1080P"));
 
-            stream_types.add(new StreamType("hd2", "flv", "超清"));
-            stream_types.add(new StreamType("hd2v2", "flv", "超清"));
-            stream_types.add(new StreamType("mp4hd2", "mp4", "超清"));
-            stream_types.add(new StreamType("mp4hd2v2", "mp4", "超清"));
+            stream_types.add(new Common.StreamType("hd2", "flv", "超清"));
+            stream_types.add(new Common.StreamType("hd2v2", "flv", "超清"));
+            stream_types.add(new Common.StreamType("mp4hd2", "mp4", "超清"));
+            stream_types.add(new Common.StreamType("mp4hd2v2", "mp4", "超清"));
 
-            stream_types.add(new StreamType("mp4hd", "mp4", "高清"));
+            stream_types.add(new Common.StreamType("mp4hd", "mp4", "高清"));
             //not really equivalent to mp4hd
-            stream_types.add(new StreamType("flvhd", "flv", "渣清"));
-            stream_types.add(new StreamType("3gphd", "mp4", "渣清"));
+            stream_types.add(new Common.StreamType("flvhd", "flv", "渣清"));
+            stream_types.add(new Common.StreamType("3gphd", "mp4", "渣清"));
 
-            stream_types.add(new StreamType("mp4sd", "mp4", "标清"));
+            stream_types.add(new Common.StreamType("mp4sd", "mp4", "标清"));
             //obsolete?
-            stream_types.add(new StreamType("flv", "flv", "标清"));
-            stream_types.add(new StreamType("mp4", "mp4", "标清"));
+            stream_types.add(new Common.StreamType("flv", "flv", "标清"));
+            stream_types.add(new Common.StreamType("mp4", "mp4", "标清"));
         }
 
         String vid;

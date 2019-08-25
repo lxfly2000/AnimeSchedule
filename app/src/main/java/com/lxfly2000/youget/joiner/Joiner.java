@@ -9,11 +9,13 @@ public abstract class Joiner {
         for (String input : inputs) {
             String[] sp = input.split("\\.");
             if(sp.length>1){
-                switch (sp[sp.length-1]){
-                    case "flv": case "f4v":return new FLVJoiner();
-                    case "mp4":return new MP4Joiner();
-                    case "ts":return new TSJoiner();
-                }
+                String ext=sp[sp.length-1].toLowerCase();
+                if(ext.contains("flv")||ext.contains("f4v"))
+                    return new FLVJoiner();
+                if(ext.contains("mp4"))
+                    return new MP4Joiner();
+                if(ext.contains("ts"))
+                    return new TSJoiner();
             }
         }
         return null;

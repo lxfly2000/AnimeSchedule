@@ -54,9 +54,22 @@ public class Common {
 
     //返回正则匹配后的第一组（括号）内的字符串，如果未找到，返回null
     public static String Match1(String text,String regex){
+        return Match(text,regex,1);
+    }
+
+    public static String Match(String text,String regex,int group){
         Matcher m= Pattern.compile(regex).matcher(text);
         if(m.find())
-            return m.group(1);
+            return m.group(group);
         return null;
+    }
+
+    static class StreamType{
+        public String id,container,videoProfile;
+        public StreamType(String id,String container,String videoProfile){
+            this.id=id;
+            this.container=container;
+            this.videoProfile=videoProfile;
+        }
     }
 }

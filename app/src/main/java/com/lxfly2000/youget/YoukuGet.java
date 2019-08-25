@@ -206,8 +206,14 @@ public class YoukuGet extends YouGet {
             task.execute(url);
         }
 
-        public void change_cdn(String cls,String url){
-            //TODO
+        public String change_cdn(String url){
+            if(url.contains(dispatcher_url)) {
+                return url;
+            }else if(url.contains("k.youku.com")) {
+                return url;
+            }else{
+                return  url.replaceFirst("//[^/]/","//"+dispatcher_url+"/");
+            }
         }
     }
 }

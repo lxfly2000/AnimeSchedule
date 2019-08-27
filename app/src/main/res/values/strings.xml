@@ -246,7 +246,9 @@
         quality will be downloaded.\n2. Some videos may require VIP account, otherwise you will not get a complete
         video.\n3. You may need to set cookies information via \"cookie_qqvideo.txt\" in the AnimeSchedule folder to
         download the \"VIP only\" videos.</string>
-    <string name="label_youku_download_notice">TODO：Label for Youku download.</string>
+    <string name="label_youku_download_notice">Choose the episodes you want to download.\nAttention:\n1. Some videos
+        need the VIP account to download.\n2. You need to set cookies information via \"cookie_youku.txt\" in
+        the AnimeSchedule folder to use VIP account.</string>
     <string name="label_iqiyi_download_notice">Choose the episodes you want to download.\nAttention:\n1. Some videos
         may need the VIP account to download.\n2. You may need to set cookies information via \"cookie_iqiyi.txt\" in
         the AnimeSchedule folder to use VIP account.</string>

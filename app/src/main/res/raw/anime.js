@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":332,
+	"last_watch_index":218,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -4271,7 +4271,7 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"create_date":"2019-1-24"
 	},{
-		"watched_episode":[20190812,20190813,20190815,20190816,20190819,20190821,20190821,20190822],
+		"watched_episode":[20190812,20190813,20190815,20190816,20190819,20190821,20190821,20190822,20190826,20190827],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/88739b4d0f11ac59eda06629fc131a0ae347974b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss281",
 		"title":"甘城光辉游乐园",
@@ -4285,11 +4285,11 @@ setJsonData({
 		"episode_count":14,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":5,
+		"rank":4,
 		"color":"silver",
 		"category":["装逼","日常","奇幻","励志","职场"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":8,
+		"last_watch_episode_anime":10,
 		"create_date":"2019-1-24"
 	},{
 		"watched_episode":[false],
@@ -5314,7 +5314,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630,20190707,20190714,20190725,20190727,20190803,20190810,20190817],
+		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630,20190707,20190714,20190725,20190727,20190803,20190810,20190817,20190825],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/368c60d973a8a3251534f599dcb2eff7fc64cef3.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26766",
 		"title":"水果篮子2019版",
@@ -5331,7 +5331,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","奇幻","校园","恋爱","少女"],
-		"last_watch_episode_anime":20,
+		"last_watch_episode_anime":21,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414,20190417],
@@ -6608,13 +6608,13 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":3,
 		"color":"silver",
 		"category":["日漫","动作","热血","冒险","7-13","14-17","18以上","日语","动画","热血","励志","冒险"],
 		"last_watch_episode_anime":1,
 		"create_date":"2019-6-19"
 	},{
-		"watched_episode":[20190714,20190720,20190727,20190803,20190810,20190817],
+		"watched_episode":[20190714,20190720,20190727,20190803,20190810,20190817,20190825],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/da3b4ad9f24a1defef978ced3150e558996c7b0f.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28002",
 		"title":"某科学的一方通行",
@@ -6628,10 +6628,10 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":3,
 		"color":"silver",
 		"category":["漫画改","科幻","战斗","魔法","校园"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-6-21"
 	},{
 		"watched_episode":[0],
@@ -6654,7 +6654,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-24"
 	},{
-		"watched_episode":[20190707,20190715,20190723,20190729,20190805,20190812,20190819],
+		"watched_episode":[20190707,20190715,20190723,20190729,20190805,20190812,20190819,20190826],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/4c7324327dd9ae035007c3e9bc40cd2ce08635b1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28006",
 		"title":"擅长捉弄的高木同学 第二季",
@@ -6671,7 +6671,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","校园","恋爱","日常","搞笑"],
-		"last_watch_episode_anime":7,
+		"last_watch_episode_anime":8,
 		"create_date":"2019-6-24"
 	},{
 		"watched_episode":[0],
@@ -6694,7 +6694,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-26"
 	},{
-		"watched_episode":[20190712,20190719,20190727,20190802,20190809,20190816],
+		"watched_episode":[20190712,20190719,20190727,20190802,20190809,20190816,20190825],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8fa97d1f68517724a0afcb1ca536bfe5b818e0d8.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28007",
 		"title":"街角魔族",
@@ -6711,7 +6711,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","日常","萌系"],
-		"last_watch_episode_anime":6,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-6-27"
 	},{
 		"watched_episode":[20190709,20190716,20190723,20190730,20190806,null,20190820],
@@ -6734,7 +6734,7 @@ setJsonData({
 		"last_watch_episode_anime":7,
 		"create_date":"2019-6-27"
 	},{
-		"watched_episode":[20190717,20190717,20190720,20190727,20190803,20190810,20190817],
+		"watched_episode":[20190717,20190717,20190720,20190727,20190803,20190810,20190817,20190826],
 		"cover":"https:\/\/imgs.aixifan.com\/image-manager_1562306582316-PAi1ZPjVIH",
 		"watch_url":"https:\/\/www.acfun.cn\/bangumi\/aa5024870",
 		"title":"满月之战GRANBELM",
@@ -6751,7 +6751,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["机战","美少女"],
-		"last_watch_episode_anime":7,
+		"last_watch_episode_anime":8,
 		"create_date":"2019-7-7"
 	},{
 		"watched_episode":[20190707],
@@ -6934,7 +6934,7 @@ setJsonData({
 		"last_watch_episode_anime":13,
 		"create_date":"2019-7-24"
 	},{
-		"watched_episode":[20190730,20190730,20190731,20190731,20190802,20190809,20190817],
+		"watched_episode":[20190730,20190730,20190731,20190731,20190802,20190809,20190817,20190825],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/97007f464a9511abdbf8bf938c01dcdbaab151e0.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28016",
 		"title":"女高中生的虚度日常",
@@ -6951,7 +6951,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["日常","漫画改","校园","搞笑","声控"],
-		"last_watch_episode_anime":7,
+		"last_watch_episode_anime":8,
 		"create_date":"2019-7-27"
 	},{
 		"watched_episode":[0],

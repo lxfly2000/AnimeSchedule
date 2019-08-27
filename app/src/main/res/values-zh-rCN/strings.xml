@@ -191,7 +191,7 @@
     <string name="label_download_acfun_include_danmaku">同时下载弹幕</string>
     <string name="message_download_task_created">下载任务已创建，请耐心等待下载完成。</string>
     <string name="label_qq_download_notice">选择要下载的分集。\n注意：\n⒈只能下载最高画质。\n⒉部分视频需要VIP账号，否则下载的视频可能不完整。\n⒊你需要在 AnimeSchedule 目录中的“cookie_qqvideo.txt”文件（如不存在请自行创建）设置 Cookie 信息来下载VIP限制的视频。</string>
-    <string name="label_youku_download_notice">TODO：优酷下载注意事项。</string>
+    <string name="label_youku_download_notice">选择要下载的分集。\n注意：\n⒈部分视频需要VIP账号，否则下载的视频可能不完整。\n⒉你需要在 AnimeSchedule 目录中的“cookie_youku.txt”文件（如不存在请自行创建）设置 Cookie 信息来下载VIP限制的视频。</string>
     <string name="label_iqiyi_download_notice">选择要下载的分集。\n注意：\n⒈部分视频可能需要VIP账号。\n⒉你需要在 AnimeSchedule 目录中的“cookie_iqiyi.txt”文件（如不存在请自行创建）设置 Cookie 信息来使用VIP账号。</string>
     <string name="label_choose_video_quality">选择下载画质。</string>
     <string name="message_merged_videos">已合并视频</string>

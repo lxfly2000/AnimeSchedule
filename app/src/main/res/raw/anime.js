@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":218,
+	"last_watch_index":162,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -3103,7 +3103,7 @@ setJsonData({
 		"actors":"本田珠辉：長縄まりあ\n布田裕美音：前川涼子\n藤川歌夜：悠木碧\n关菖蒲：小澤亜李\n村上椎奈：村川梨衣\n",
 		"update_time_int":1350
 	},{
-		"watched_episode":[false],
+		"watched_episode":[20190828],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/afcfb11c77ca87bf44e010d8dd349e4a723fde32.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss915",
 		"title":"A CHANNEL",
@@ -3114,11 +3114,11 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":5,
 		"color":"silver",
 		"category":["萌系","日常","校园","治愈"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"staff":"脚本：浦畑達彦\n导演：小野学\n原作：黒田bb\n演出：博史池畠、イシグロキョウヘイ、小野学\n分镜：小野学、小島正幸\n音乐：MoNACA\n",
 		"actors":"一井透：悠木碧\n百木伦：福原香織\n西由宇子：寿美菜子\n天王寺渚：内山夕実\n今井丰：又吉愛\n野山美步：斎藤桃子\n鬼头纪美子：茅原実里\n佐藤幸世：小野大輔\n镰手多季：沢城みゆき\n",
 		"update_time_int":0
@@ -4271,7 +4271,7 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"create_date":"2019-1-24"
 	},{
-		"watched_episode":[20190812,20190813,20190815,20190816,20190819,20190821,20190821,20190822,20190826,20190827],
+		"watched_episode":[20190812,20190813,20190815,20190816,20190819,20190821,20190821,20190822,20190826,20190827,20190828],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/88739b4d0f11ac59eda06629fc131a0ae347974b.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss281",
 		"title":"甘城光辉游乐园",
@@ -4289,7 +4289,7 @@ setJsonData({
 		"color":"silver",
 		"category":["装逼","日常","奇幻","励志","职场"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":10,
+		"last_watch_episode_anime":11,
 		"create_date":"2019-1-24"
 	},{
 		"watched_episode":[false],

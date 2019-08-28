@@ -2,12 +2,7 @@
 
 package com.chengww.tools;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +12,7 @@ public class FlvMerge {
     private final static int FLV_TAG_HEADER_SIZE = 11;
     private final static int MAX_DATA_SIZE = 16777220;
     private static MyTimeStamp lastTimeStamp;
+    private double durationSum=0.0;
 
     public void merge(File[] files,File path) throws IOException {
         String inputFileName, mergeFileName;
@@ -130,7 +126,47 @@ public class FlvMerge {
         }
 
         dos.close();
+
+        RandomAccessFile raf=new RandomAccessFile(mergeFile,"rwd");
+        //Hack:修改第一个ScriptTag中的AMF为duration的数值
+        //参考：https://www.jianshu.com/p/7ffaec7b3be6
+        //可知“duration”后接类型代码为0（仅占一个字节），数据长度为8字节，为double类型
+        //需要将所有出现的“duration”数值累加起来输出至第一个“duration”中
+        
+
         return 0;
+    }
+
+    private double QWordToDoubleBE(byte[]data){
+        for(int i=0;i<4;i++){
+            byte t=data[i];
+            data[i]=data[7-i];
+            data[7-i]=data[i];
+        }
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data,0,8));
+            return ois.readDouble();
+        }catch (IOException e){
+            return 0.0;
+        }
+    }
+
+    private byte[]DoubleToQWordBE(double d){
+        try{
+            ByteArrayOutputStream baos=new ByteArrayOutputStream(8);
+            ObjectOutputStream oos=new ObjectOutputStream(baos);
+            oos.writeDouble(d);
+            oos.flush();
+            byte[]data=baos.toByteArray();
+            for(int i=0;i<4;i++){
+                byte t=data[i];
+                data[i]=data[7-i];
+                data[7-i]=data[i];
+            }
+            return data;
+        }catch (IOException e){
+            return null;
+        }
     }
 
     private int AddFileData(File fileSource, DataOutputStream dos,

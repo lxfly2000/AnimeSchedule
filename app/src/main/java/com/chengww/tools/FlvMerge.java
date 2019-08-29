@@ -129,6 +129,36 @@ public class FlvMerge {
         return 0;
     }
 
+    public static int ByteIndexOf(byte[] src, byte[] find, int start)
+    {
+        boolean matched = false;
+        int end = find.length - 1;
+        int skip = 0;
+        for (int index = start; index <= src.length - find.length; ++index)
+        {
+            matched = true;
+            if (find[0] != src[index] || find[end] != src[index + end]) continue;
+            else skip++;
+            if (end > 10)
+                if (find[skip] != src[index + skip] || find[end - skip] != src[index + end - skip])
+                    continue;
+                else skip++;
+            for (int subIndex = skip; subIndex < find.length - skip; ++subIndex)
+            {
+                if (find[subIndex] != src[index + subIndex])
+                {
+                    matched = false;
+                    break;
+                }
+            }
+            if (matched)
+            {
+                return index;
+            }
+        }
+        return -1;
+    }
+
     private void UpdateDuration(String mergeFile) {
         try {
             double durationSum=0.0;
@@ -146,10 +176,11 @@ public class FlvMerge {
                 long posCurrentPreTagSize=raf.getFilePointer();
                 if(posCurrentPreTagSize+4>=raf.length())
                     break;
-                int prevTagLength=QWordBEtoLE(raf.readInt());
+                //卧槽我才发现Java原来默认采用的是BigEndian模式！？
+                int prevTagLength=raf.readInt();
                 //各tag部分
                 //tagHeader占11字节
-                int tagDataSize=QWordBEtoLE(raf.readInt());
+                int tagDataSize=raf.readInt();
                 int tagType=(tagDataSize>>24)&0xFF;
                 tagDataSize=tagDataSize&0xFFFFFF;
                 if(tagType==18) {//脚本Tag
@@ -159,75 +190,50 @@ public class FlvMerge {
                     long posTagData=raf.getFilePointer();
                     byte[]tagData=new byte[tagDataSize];
                     raf.read(tagData,0,tagDataSize);
-                    String tagDataStr=new String(tagData);
-                    int indexDur=tagDataStr.indexOf("duration");
+                    //TODO:虽然时间显示没问题了，但是在某些渣渣播放器比如三星视频上，拖动还是有问题，可能还需要调整其他参数
+                    int indexDur=ByteIndexOf(tagData,"duration".getBytes(),0);
                     if(indexDur!=-1){
                         byte valueType=tagData[indexDur+8];
+                        indexDur+=9;
                         if(valueType==0){
                             byte[]durationBytes=new byte[8];
                             for(int i=0;i<durationBytes.length;i++){
-                                durationBytes[i]=tagData[indexDur+1+i];
+                                durationBytes[i]=tagData[indexDur+i];
                             }
-                            durationSum+=QWordToDoubleBE(durationBytes);
+                            durationSum+= QWordToDouble(durationBytes);
                             if(firstDurationPos==0){
-                                firstDurationPos=posTagData+indexDur+9;
+                                firstDurationPos=posTagData+indexDur;
                             }
                         }
                     }
                 }
-                raf.seek(posCurrentPreTagSize+FLV_TAG_HEADER_SIZE+tagDataSize);
+                raf.seek(posCurrentPreTagSize+4+FLV_TAG_HEADER_SIZE+tagDataSize);
             }
             if(firstDurationPos!=0){//找到了duration
                 raf.seek(firstDurationPos);
-                byte[]duration_bytes=DoubleToQWordBE(durationSum);
+                byte[]duration_bytes= DoubleToQWord(durationSum);
                 raf.write(duration_bytes);
             }
+            raf.close();
         }catch (IOException e){/*Ignore*/}
     }
 
-    private short WordLEtoBE(short n){
-        return WordBEtoLE(n);
-    }
-
-    private short WordBEtoLE(short n){
-        return (short)(((n>>8)&0xFF)|((n<<8)&0xFF00));
-    }
-
-    private int QWordLEtoBE(int n){
-        return QWordBEtoLE(n);
-    }
-
-    private int QWordBEtoLE(int n){
-        return ((n>>24)&0xFF)|((n>>8)&0xFF00)|((n<<8)&0xFF0000)|((n<<24)&0xFF000000);
-    }
-
-    private double QWordToDoubleBE(byte[]data){
-        for(int i=0;i<4;i++){
-            byte t=data[i];
-            data[i]=data[7-i];
-            data[7-i]=data[i];
-        }
+    private double QWordToDouble(byte[]data){
         try {
-            ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data,0,8));
+            DataInputStream ois = new DataInputStream(new ByteArrayInputStream(data,0,8));
             return ois.readDouble();
         }catch (IOException e){
             return 0.0;
         }
     }
 
-    private byte[]DoubleToQWordBE(double d){
+    private byte[] DoubleToQWord(double d){
         try{
             ByteArrayOutputStream baos=new ByteArrayOutputStream(8);
-            ObjectOutputStream oos=new ObjectOutputStream(baos);
+            DataOutputStream oos=new DataOutputStream(baos);
             oos.writeDouble(d);
             oos.flush();
-            byte[]data=baos.toByteArray();
-            for(int i=0;i<4;i++){
-                byte t=data[i];
-                data[i]=data[7-i];
-                data[7-i]=data[i];
-            }
-            return data;
+            return baos.toByteArray();
         }catch (IOException e){
             return null;
         }

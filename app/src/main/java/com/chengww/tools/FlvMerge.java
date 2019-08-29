@@ -154,36 +154,31 @@ public class FlvMerge {
                 tagDataSize=tagDataSize&0xFFFFFF;
                 if(tagType==18) {//脚本Tag
                     raf.seek(raf.getFilePointer()+FLV_TAG_HEADER_SIZE-4);
-                    boolean toNextTagHeader=false;
-                    while(!toNextTagHeader){
-                        //现在文件指针在tagData区
-                        byte tagDataType=raf.readByte();
-                        if(tagDataType==8){//说明这个AMF是ECMA数组类型
-                            int count=QWordBEtoLE(raf.readInt());//这个数组中有几个元素
-                            for(int i=0;i<count;i++){
-                                //现在文件指针在ECMA数组区
-                                short name_length=WordBEtoLE(raf.readShort());
-                                byte[]name_data_bytes=new byte[name_length];
-                                raf.read(name_data_bytes,0,name_length);
-                                String name_data=new String(name_data_bytes,0,name_length);
-                                byte value_type=raf.readByte();
-                                if(name_data.equals("duration")&&value_type==0){
-                                    if(firstDurationPos==0){
-                                        firstDurationPos=raf.getFilePointer();
-                                    }
-                                    byte[]value_data_bytes=new byte[name_length];
-                                    raf.read(value_data_bytes,0,name_length);
-                                    double value_data=QWordToDoubleBE(value_data_bytes);
-                                    durationSum+=value_data;
-                                    toNextTagHeader=true;
-                                    break;
-                                }else {
-                                    //TODO:如果不是该怎么跳过当前这个数组区？
+                    //现在文件指针在tagData区
+                    byte tagDataType=raf.readByte();
+                    if(tagDataType==8){//说明这个AMF是ECMA数组类型
+                        int count=QWordBEtoLE(raf.readInt());//这个数组中有几个元素
+                        for(int i=0;i<count;i++){
+                            //现在文件指针在ECMA数组区
+                            short name_length=WordBEtoLE(raf.readShort());
+                            byte[]name_data_bytes=new byte[name_length];
+                            raf.read(name_data_bytes,0,name_length);
+                            String name_data=new String(name_data_bytes,0,name_length);
+                            byte value_type=raf.readByte();
+                            if(name_data.equals("duration")&&value_type==0){
+                                if(firstDurationPos==0){
+                                    firstDurationPos=raf.getFilePointer();
                                 }
+                                byte[]value_data_bytes=new byte[name_length];
+                                raf.read(value_data_bytes,0,name_length);
+                                double value_data=QWordToDoubleBE(value_data_bytes);
+                                durationSum+=value_data;
+                                break;
+                            }else {
+                                //TODO:如果不是该怎么跳过当前这个数组区？
                             }
                         }
                     }
-                    byte valueType=raf.readByte();
                 }
                 raf.seek(posCurrentPreTagSize+FLV_TAG_HEADER_SIZE+tagDataSize);
             }

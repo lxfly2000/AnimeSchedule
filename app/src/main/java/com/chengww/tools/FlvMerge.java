@@ -155,34 +155,29 @@ public class FlvMerge {
                 if(tagType==18) {//脚本Tag
                     raf.seek(raf.getFilePointer()+FLV_TAG_HEADER_SIZE-4);
                     //现在文件指针在tagData区
-                    byte tagDataType=raf.readByte();
-                    if(tagDataType==8){//说明这个AMF是ECMA数组类型
-                        int count=QWordBEtoLE(raf.readInt());//这个数组中有几个元素
-                        for(int i=0;i<count;i++){
-                            //现在文件指针在ECMA数组区
-                            short name_length=WordBEtoLE(raf.readShort());
-                            byte[]name_data_bytes=new byte[name_length];
-                            raf.read(name_data_bytes,0,name_length);
-                            String name_data=new String(name_data_bytes,0,name_length);
-                            byte value_type=raf.readByte();
-                            if(name_data.equals("duration")&&value_type==0){
-                                if(firstDurationPos==0){
-                                    firstDurationPos=raf.getFilePointer();
-                                }
-                                byte[]value_data_bytes=new byte[name_length];
-                                raf.read(value_data_bytes,0,name_length);
-                                double value_data=QWordToDoubleBE(value_data_bytes);
-                                durationSum+=value_data;
-                                break;
-                            }else {
-                                //TODO:如果不是该怎么跳过当前这个数组区？
+                    //搜索到“duration”后读它后面的1个字节即为长度的类型，根据类型确定要读取的字节数
+                    long posTagData=raf.getFilePointer();
+                    byte[]tagData=new byte[tagDataSize];
+                    raf.read(tagData,0,tagDataSize);
+                    String tagDataStr=new String(tagData);
+                    int indexDur=tagDataStr.indexOf("duration");
+                    if(indexDur!=-1){
+                        byte valueType=tagData[indexDur+8];
+                        if(valueType==0){
+                            byte[]durationBytes=new byte[8];
+                            for(int i=0;i<durationBytes.length;i++){
+                                durationBytes[i]=tagData[indexDur+1+i];
+                            }
+                            durationSum+=QWordToDoubleBE(durationBytes);
+                            if(firstDurationPos==0){
+                                firstDurationPos=posTagData+indexDur+9;
                             }
                         }
                     }
                 }
                 raf.seek(posCurrentPreTagSize+FLV_TAG_HEADER_SIZE+tagDataSize);
             }
-            if(firstDurationPos!=0.0){//找到了duration
+            if(firstDurationPos!=0){//找到了duration
                 raf.seek(firstDurationPos);
                 byte[]duration_bytes=DoubleToQWordBE(durationSum);
                 raf.write(duration_bytes);

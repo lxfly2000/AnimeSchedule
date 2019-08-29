@@ -12,7 +12,6 @@ public class FlvMerge {
     private final static int FLV_TAG_HEADER_SIZE = 11;
     private final static int MAX_DATA_SIZE = 16777220;
     private static MyTimeStamp lastTimeStamp;
-    private double durationSum=0.0;
 
     public void merge(File[] files,File path) throws IOException {
         String inputFileName, mergeFileName;
@@ -126,15 +125,49 @@ public class FlvMerge {
         }
 
         dos.close();
-
-        RandomAccessFile raf=new RandomAccessFile(mergeFile,"rwd");
-        //Hack:修改第一个ScriptTag中的AMF为duration的数值
-        //参考：https://www.jianshu.com/p/7ffaec7b3be6
-        //可知“duration”后接类型代码为0（仅占一个字节），数据长度为8字节，为double类型
-        //需要将所有出现的“duration”数值累加起来输出至第一个“duration”中
-        
-
+        UpdateDuration(mergeFileName);
         return 0;
+    }
+
+    private void UpdateDuration(String mergeFile) {
+        try {
+            double durationSum=0.0;
+            RandomAccessFile raf = new RandomAccessFile(mergeFile, "rwd");
+            //Hack:修改第一个ScriptTag中的AMF为duration的数值
+            //参考：https://www.jianshu.com/p/7ffaec7b3be6
+            //可知“duration”后接类型代码为0（仅占一个字节），数据长度为8字节，为double类型
+            //需要将所有出现的“duration”数值累加起来输出至第一个“duration”中
+
+            int firstDurationPos=0;
+            //跳过FLV头部9字节
+            raf.seek(FLV_HEADER_SIZE);
+            while(true){
+                long posCurrentPreTagSize=raf.getFilePointer();
+                if(posCurrentPreTagSize+4>=raf.length())
+                    break;
+                int prevTagLength=QWordBEtoLE(raf.readInt());
+                //各tag部分
+                //tagHeader占11字节
+                int tagDataSize=QWordBEtoLE(raf.readInt());
+                int tagType=(tagDataSize>>24)&0xFF;
+                tagDataSize=tagDataSize&0xFFFFFF;
+                if(tagType==18) {//脚本Tag
+                    raf.seek(raf.getFilePointer()+FLV_TAG_HEADER_SIZE-4);
+                    //TODO:遍历AMF信息
+                    byte valueType=raf.readByte();
+                }else{
+                    raf.seek(posCurrentPreTagSize+FLV_TAG_HEADER_SIZE+tagDataSize);
+                }
+            }
+        }catch (IOException e){/*Ignore*/}
+    }
+
+    private int QWordLEtoBE(int n){
+        return QWordBEtoLE(n);
+    }
+
+    private int QWordBEtoLE(int n){
+        return ((n>>24)&0xFF)|((n>>8)&0xFF00)|((n<<8)&0xFF0000)|((n<<24)&0xFF000000);
     }
 
     private double QWordToDoubleBE(byte[]data){

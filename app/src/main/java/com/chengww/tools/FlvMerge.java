@@ -133,12 +133,13 @@ public class FlvMerge {
         try {
             double durationSum=0.0;
             RandomAccessFile raf = new RandomAccessFile(mergeFile, "rwd");
-            //Hack:修改第一个ScriptTag中的AMF为duration的数值
+            //Hack:修改第一个ScriptTag中的AMF为duration的数值，这只是为那些制作不规范的播放器作的一个临时解决方案
             //参考：https://www.jianshu.com/p/7ffaec7b3be6
+            //参考：https://blog.csdn.net/tianyue168/article/details/5994962
             //可知“duration”后接类型代码为0（仅占一个字节），数据长度为8字节，为double类型
             //需要将所有出现的“duration”数值累加起来输出至第一个“duration”中
 
-            int firstDurationPos=0;
+            long firstDurationPos=0;
             //跳过FLV头部9字节
             raf.seek(FLV_HEADER_SIZE);
             while(true){
@@ -153,13 +154,53 @@ public class FlvMerge {
                 tagDataSize=tagDataSize&0xFFFFFF;
                 if(tagType==18) {//脚本Tag
                     raf.seek(raf.getFilePointer()+FLV_TAG_HEADER_SIZE-4);
-                    //TODO:遍历AMF信息
+                    boolean toNextTagHeader=false;
+                    while(!toNextTagHeader){
+                        //现在文件指针在tagData区
+                        byte tagDataType=raf.readByte();
+                        if(tagDataType==8){//说明这个AMF是ECMA数组类型
+                            int count=QWordBEtoLE(raf.readInt());//这个数组中有几个元素
+                            for(int i=0;i<count;i++){
+                                //现在文件指针在ECMA数组区
+                                short name_length=WordBEtoLE(raf.readShort());
+                                byte[]name_data_bytes=new byte[name_length];
+                                raf.read(name_data_bytes,0,name_length);
+                                String name_data=new String(name_data_bytes,0,name_length);
+                                byte value_type=raf.readByte();
+                                if(name_data.equals("duration")&&value_type==0){
+                                    if(firstDurationPos==0){
+                                        firstDurationPos=raf.getFilePointer();
+                                    }
+                                    byte[]value_data_bytes=new byte[name_length];
+                                    raf.read(value_data_bytes,0,name_length);
+                                    double value_data=QWordToDoubleBE(value_data_bytes);
+                                    durationSum+=value_data;
+                                    toNextTagHeader=true;
+                                    break;
+                                }else {
+                                    //TODO:如果不是该怎么跳过当前这个数组区？
+                                }
+                            }
+                        }
+                    }
                     byte valueType=raf.readByte();
-                }else{
-                    raf.seek(posCurrentPreTagSize+FLV_TAG_HEADER_SIZE+tagDataSize);
                 }
+                raf.seek(posCurrentPreTagSize+FLV_TAG_HEADER_SIZE+tagDataSize);
+            }
+            if(firstDurationPos!=0.0){//找到了duration
+                raf.seek(firstDurationPos);
+                byte[]duration_bytes=DoubleToQWordBE(durationSum);
+                raf.write(duration_bytes);
             }
         }catch (IOException e){/*Ignore*/}
+    }
+
+    private short WordLEtoBE(short n){
+        return WordBEtoLE(n);
+    }
+
+    private short WordBEtoLE(short n){
+        return (short)(((n>>8)&0xFF)|((n<<8)&0xFF00));
     }
 
     private int QWordLEtoBE(int n){

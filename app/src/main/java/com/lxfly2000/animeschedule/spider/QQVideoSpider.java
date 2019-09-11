@@ -6,6 +6,7 @@ import com.lxfly2000.animeschedule.R;
 import com.lxfly2000.animeschedule.Values;
 import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.utilities.*;
+import com.lxfly2000.youget.Common;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,6 +24,7 @@ public class QQVideoSpider extends Spider {
 
     private AnimeItem item=new AnimeItem();
 
+    String coverId="";
     @Override
     public void Execute(String url){
         //腾讯网址格式：
@@ -35,7 +37,6 @@ public class QQVideoSpider extends Spider {
         //                                   ~~~~~~~~~~~~~~~同样也只需要管CoverID就行了
         //网页端剧集简介：https://v.qq.com/detail/5/5rs71cp7oy0429e.html
         //                         CoverID的首字符~ ~~~~~~~~~~~~~~~剧集简介也是用CoverID标识的
-        String coverId="";
         if(url.contains("m.v.qq.com")){
             Matcher m= Pattern.compile("coverid=[A-Za-z0-9\\-_]+").matcher(url);
             if(m.find()){
@@ -48,6 +49,8 @@ public class QQVideoSpider extends Spider {
                     m=Pattern.compile("m.v.qq.com/cover/[A-Za-z0-9\\-_]/[A-Za-z0-9\\-_]+").matcher(url);
                     if(m.find())
                         coverId=url.substring(m.start()+19,m.end());
+                    else
+                        coverId=Common.Match1(url,"m\\.v\\.qq\\.com/x/cover/e/([A-Za-z0-9\\-_]+)\\.html");
                 }
             }
         }else if(url.contains("v.qq.com/x/cover/")){
@@ -58,8 +61,10 @@ public class QQVideoSpider extends Spider {
             Matcher m=Pattern.compile("v.qq.com/detail/[A-Za-z0-9\\-_]/[A-Za-z0-9\\-_]+").matcher(url);
             if(m.find())
                 coverId=url.substring(m.start()+18,m.end());
+        }else if(url.contains("v.qq.com/biu/msearch_detail?id=")){
+            coverId= Common.Match1(url,"v\\.qq\\.com/biu/msearch_detail\\?id=([A-Za-z0-9\\-_]+)");
         }
-        if(coverId.equals("")){
+        if(coverId==null||coverId.equals("")){
             onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_not_supported_url));
             return;
         }
@@ -112,6 +117,7 @@ public class QQVideoSpider extends Spider {
                         AnimeItem.EpisodeTitle et=new AnimeItem.EpisodeTitle();
                         et.episodeTitle=item.title+" "+i;
                         et.episodeIndex=String.valueOf(i);
+                        et.episodeWatchUrl="https://v.qq.com/x/cover/"+coverId+"/"+coverInfo.getJSONArray("video_ids").getString(i-1)+".html";
                         item.episodeTitles.add(et);
                     }
                 }catch (JSONException e){

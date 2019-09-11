@@ -91,6 +91,9 @@ public class AcFunDownloadDialog extends DownloadDialog {
                     Toast.makeText(ctx,"下载弹幕功能目前存在Bug，建议不要使用。\n下載彈幕功能目前存在Bug，建議不要使用。\nThere is a bug in downloading Danmaku function at this time, please avoid using this.",Toast.LENGTH_LONG).show();
             }
         });
+        //TODO：沙雕A站把下载接口屏蔽了吗？
+        ((TextView)dialog.findViewById(R.id.textView4)).append("\n2019-9-6 更新：\n因A站查询接口变化，下载功能暂时无法使用。");
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setText("暂时失效/Temp.Unavailable");
         linearLayout=dialog.findViewById(R.id.linearLayoutEpisodes);
         buttonOk=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
         buttonOk.setEnabled(false);

@@ -43,6 +43,7 @@ public class QQDownloadDialog extends DownloadDialog {
     };
 
     private boolean episodeTitleOK=false;
+    private AnimeItem animeItem;
 
     @Override
     public void OpenDownloadDialog(AnimeJson json, int index) {
@@ -68,7 +69,7 @@ public class QQDownloadDialog extends DownloadDialog {
                                         Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,bangumiPath),Toast.LENGTH_LONG).show();
                                 }
                             });
-                            qqGet.DownloadBangumi(json.GetWatchUrl(index),i_check,0,preferences.getString(ctx.getString(
+                            qqGet.DownloadBangumi(animeItem.episodeTitles.get(i_check).episodeWatchUrl,i_check,0,preferences.getString(ctx.getString(
                                     R.string.key_acfun_save_path), Values.GetRepositoryPathOnLocal()));
                         }
                     }
@@ -92,6 +93,7 @@ public class QQDownloadDialog extends DownloadDialog {
                     dialog.setTitle(data.title);
                 if(episodeTitleOK)
                     return;
+                animeItem=data;
                 for(int i=0;i<data.episodeTitles.size();i++){
                     CheckBox checkBox=new CheckBox(dialog.getContext());
                     checkBox.setText("["+data.episodeTitles.get(i).episodeIndex+"] "+data.episodeTitles.get(i).episodeTitle);

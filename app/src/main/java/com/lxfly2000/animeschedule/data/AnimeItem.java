@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class AnimeItem {
     public static class EpisodeTitle{
-        public String episodeTitle,episodeIndex;
+        public String episodeTitle,episodeIndex,episodeWatchUrl;
     }
 
     public String watchUrl;

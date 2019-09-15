@@ -135,6 +135,8 @@ public class IQiyiDownloadDialog extends DownloadDialog {
                     dialog.setTitle(data.title);
                 if(episodeTitleOK)
                     return;
+                TextView textView=dialog.findViewById(R.id.textViewDownloadNotice);
+                textView.setText(String.format(textView.getText().toString(),IQiyiGet.cookiePath.substring(1+IQiyiGet.cookiePath.lastIndexOf("/"))));
                 for(int i=0;i<data.episodeTitles.size();i++){
                     CheckBox checkBox=new CheckBox(dialog.getContext());
                     checkBox.setText("["+data.episodeTitles.get(i).episodeIndex+"] "+data.episodeTitles.get(i).episodeTitle);

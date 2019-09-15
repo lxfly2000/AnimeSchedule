@@ -13,7 +13,7 @@
             <TextView
                     android:text="@string/label_acfun_download_notice"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent" android:id="@+id/textView4" android:layout_weight="1"/>
+                    android:layout_height="match_parent" android:id="@+id/textViewDownloadNotice" android:layout_weight="1"/>
             <CheckBox
                     android:text="@string/label_download_acfun_include_danmaku"
                     android:layout_width="wrap_content"

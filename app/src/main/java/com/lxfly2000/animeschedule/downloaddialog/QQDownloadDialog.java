@@ -93,6 +93,8 @@ public class QQDownloadDialog extends DownloadDialog {
                     dialog.setTitle(data.title);
                 if(episodeTitleOK)
                     return;
+                TextView textView=dialog.findViewById(R.id.textViewDownloadNotice);
+                textView.setText(String.format(textView.getText().toString(),QQGet.cookiePath.substring(1+QQGet.cookiePath.lastIndexOf("/"))));
                 animeItem=data;
                 for(int i=0;i<data.episodeTitles.size();i++){
                     CheckBox checkBox=new CheckBox(dialog.getContext());

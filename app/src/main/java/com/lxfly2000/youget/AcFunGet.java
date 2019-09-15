@@ -32,6 +32,7 @@ public class AcFunGet extends YouGet{
     private String htmlString;
     private String videoId;
     private SharedPreferences preferences;
+    public static final String cookiePath= Values.GetRepositoryPathOnLocal()+"/cookie_acfun.txt";
     public AcFunGet(@NonNull Context context){
         super(context);
         preferences= Values.GetPreference(ctx);
@@ -102,6 +103,17 @@ public class AcFunGet extends YouGet{
         task.execute(url);
     }
 
+    private void AcFunDownloadByHtml(){
+        if (paramDownloadDanmaku)
+            DownloadDanmaku();
+        try{
+            JSONObject bangumiData=new JSONObject(StringUtility.ParseBracketObject(htmlString,htmlString.indexOf("bangumiData = "),'{','}'));
+            //TODO: M3U8下载方式
+        }catch (JSONException e) {
+            onFinishFunction.OnFinish(false, paramPlayUrl, null, ctx.getString(R.string.message_json_exception, e.getLocalizedMessage()));
+        }
+    }
+
     private int redirectCount=0;
 
     private void AcFunDownloadByVid(String vidUrl){
@@ -111,7 +123,8 @@ public class AcFunGet extends YouGet{
                 if(onFinishFunction ==null)
                     return;
                 if(!success){
-                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
+                    //2019-9-6：经查发现A站查询接口变化，/video/getVideo.aspx接口已无法使用。
+                    AcFunDownloadByHtml();
                     return;
                 }
                 if(response==301||response==302){
@@ -145,6 +158,7 @@ public class AcFunGet extends YouGet{
             }
         };
         Common.SetYouGetHttpHeader(taskGetVideo);
+        //TODO:是不是要在HTTP头里加点什么东西？
         taskGetVideo.execute(vidUrl);
     }
 
@@ -193,7 +207,6 @@ public class AcFunGet extends YouGet{
             if(!downloadStatus.get(i).downloaded) {
                 AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
                 sysDownload.SetUserAgent(Values.userAgentChromeWindows);
-                String cookiePath = Values.GetRepositoryPathOnLocal() + "/cookie_acfun.txt";
                 if (FileUtility.IsFileExists(cookiePath))
                     sysDownload.SetCookie(FileUtility.ReadFile(cookiePath));
                 sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
@@ -216,37 +229,40 @@ public class AcFunGet extends YouGet{
             MergeVideos();
         }
 
-        if(paramDownloadDanmaku){
-            AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
-                @Override
-                public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
-                    if(onFinishFunction ==null)
-                        return;
-                    String enc=connection.getHeaderField("Content-Encoding");
-                    InputStream iStream=stream;
-                    try{
-                        if("gzip".equals(enc))//判断输入流是否是压缩的，并获取压缩算法
-                            iStream=new GZIPInputStream(stream);
-                        else if("deflate".equals(enc))
-                            iStream=new InflaterInputStream(stream,new Inflater(true));
-                    }catch (IOException e){/*Ignore*/}
-                    String savePath=paramSavePath+"/"+fileNameWithoutExt+".cmt.json";
-                    if(!success){
-                        onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
-                        return;
-                    }
-                    //TODO：为什么下载的弹幕有杂乱内容？
-                    if(!FileUtility.WriteStreamToFile(savePath,iStream,false))
-                        onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
-                    else
-                        onFinishFunction.OnFinish(true,null,savePath,null);
+        if(paramDownloadDanmaku)
+            DownloadDanmaku();
+    }
+
+    private void DownloadDanmaku(){
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
+                if(onFinishFunction ==null)
+                    return;
+                String enc=connection.getHeaderField("Content-Encoding");
+                InputStream iStream=stream;
+                try{
+                    if("gzip".equals(enc))//判断输入流是否是压缩的，并获取压缩算法
+                        iStream=new GZIPInputStream(stream);
+                    else if("deflate".equals(enc))
+                        iStream=new InflaterInputStream(stream,new Inflater(true));
+                }catch (IOException e){/*Ignore*/}
+                String savePath=paramSavePath+"/"+fileNameWithoutExt+".cmt.json";
+                if(!success){
+                    onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
+                    return;
                 }
-            };
-            Common.SetYouGetHttpHeader(task);
-            String danmakuUrl=GetDanmakuUrl(videoId);
-            task.SetExtra(danmakuUrl);
-            task.execute(danmakuUrl);
-        }
+                //TODO：为什么下载的弹幕有杂乱内容？
+                if(!FileUtility.WriteStreamToFile(savePath,iStream,false))
+                    onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
+                else
+                    onFinishFunction.OnFinish(true,null,savePath,null);
+            }
+        };
+        Common.SetYouGetHttpHeader(task);
+        String danmakuUrl=GetDanmakuUrl(videoId);
+        task.SetExtra(danmakuUrl);
+        task.execute(danmakuUrl);
     }
 
     private void MergeVideos(){
@@ -357,6 +373,8 @@ public class AcFunGet extends YouGet{
         };
         Common.SetYouGetHttpHeader(task);
         task.SetExtra(url);
+        if(FileUtility.IsFileExists(cookiePath))
+            task.SetCookie(FileUtility.ReadFile(cookiePath));
         task.execute(url);
     }
 }

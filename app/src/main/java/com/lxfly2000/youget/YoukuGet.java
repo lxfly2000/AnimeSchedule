@@ -35,7 +35,7 @@ public class YoukuGet extends YouGet {
     private String paramPlayUrl,paramSavePath, fileNameWithoutExt;
     private String title;
     private int episodeToDownload,downloadQuality;
-    String cookiePath= Values.GetRepositoryPathOnLocal()+"/cookie_youku.txt";
+    public static final String cookiePath= Values.GetRepositoryPathOnLocal()+"/cookie_youku.txt";
     public YoukuGet(@NonNull Context context) {
         super(context);
         stream_types=new HashMap<>();

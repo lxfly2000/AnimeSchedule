@@ -28,7 +28,7 @@ public class QQGet extends YouGet {
     private String paramPlayUrl,paramSavePath, fileNameWithoutExt;
     private String htmlString,title;
     private String videoId;
-    String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie_qqvideo.txt";
+    public static final String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie_qqvideo.txt";
     public QQGet(@NonNull Context context) {
         super(context);
     }

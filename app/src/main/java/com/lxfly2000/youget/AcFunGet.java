@@ -3,6 +3,7 @@ package com.lxfly2000.youget;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.lxfly2000.animeschedule.R;
@@ -19,6 +20,8 @@ import java.io.InputStream;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -103,14 +106,128 @@ public class AcFunGet extends YouGet{
         task.execute(url);
     }
 
-    private void AcFunDownloadByHtml(){
-        if (paramDownloadDanmaku)
-            DownloadDanmaku();
-        try{
-            JSONObject bangumiData=new JSONObject(StringUtility.ParseBracketObject(htmlString,htmlString.indexOf("bangumiData = "),'{','}'));
-            //TODO: M3U8下载方式
-        }catch (JSONException e) {
-            onFinishFunction.OnFinish(false, paramPlayUrl, null, ctx.getString(R.string.message_json_exception, e.getLocalizedMessage()));
+    private void AcFunDownloadByM3U8(){
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
+                if(onFinishFunction ==null)
+                    return;
+                if(!success){
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
+                    return;
+                }
+                try{
+                    JSONObject jsonInfo=new JSONObject(StreamUtility.GetStringFromStream(stream,false));
+                    DownloadM3U8AllQualities(jsonInfo.getJSONObject("playInfo").getJSONArray("streams").getJSONObject(0).getJSONArray("playUrls").getString(0));
+                }catch (IOException e){
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
+                }catch (JSONException e){
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
+                }
+            }
+        };
+        //参考：https://blog.n1ce.top/blog/2019/07/28/java-spider-acfun-down-2/
+        task.execute("https://www.acfun.cn/rest/pc-direct/play/playInfo/m3u8Auto?videoId="+videoId);
+    }
+
+    private void DownloadM3U8AllQualities(String m3u8url){
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
+                if(onFinishFunction ==null)
+                    return;
+                if(!success){
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
+                    return;
+                }
+                try{
+                    String m3u8data=StreamUtility.GetStringFromStream(stream,false);
+                    String[]sp=m3u8data.substring(m3u8data.indexOf("#EXT-X-STREAM-INF:")+18).split("#EXT-X-STREAM-INF:");
+                    ArrayList<VideoQuality>vqs=new ArrayList<>();
+                    for (int i=0;i<sp.length;i++){
+                        String s=sp[i];
+                        String[]spEntry=s.split("\\n");
+                        vqs.add(new VideoQuality(Integer.parseInt(Common.Match1(spEntry[0],"BANDWIDTH=(\\d+)")),Common.Match1(spEntry[0],"RESOLUTION=(\\d+x\\d+)"),spEntry[1]));
+                    }
+                    Collections.sort(vqs, (a, b) -> Integer.compare(b.index,a.index));
+                    if(downloadQuality==-1){
+                        onReturnQualities.OnReturnVideoQuality(true,vqs);
+                        return;
+                    }
+                    String reqUrl=vqs.get(downloadQuality).url;
+                    if(!reqUrl.startsWith("http")&&!reqUrl.startsWith("/"))//相对路径
+                        reqUrl=m3u8url.substring(0,m3u8url.lastIndexOf("/")+1)+reqUrl;
+                    DownloadM3U8File(reqUrl);
+                }catch (IOException e){
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
+                }
+            }
+        };
+        task.execute(m3u8url);
+    }
+
+    private void DownloadM3U8File(String m3u8url){
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
+                if(onFinishFunction ==null)
+                    return;
+                if(!success){
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_unable_to_fetch_anime_info));
+                    return;
+                }
+                try{
+                    String str=StreamUtility.GetStringFromStream(stream,false);
+                    //TODO:下载所有TS片段，注意URL是相对路径
+                }catch (IOException e){
+                    onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
+                }
+            }
+        };
+        task.execute(m3u8url);
+    }
+
+    private void DownloadM3U8Streams(ArrayList<String>urls){
+        int finishedCount=0;
+        downloadStatus=new ArrayList<>();
+        for(int i=0;i<urls.size();i++){
+            String ext=Common.Match1(urls.get(i),"\\.(\\w+)\\?");
+            String path=paramSavePath+"/"+fileNameWithoutExt;
+            if(urls.size()>1)
+                path+="["+i+"]."+ext;
+            videoSavePaths.add(path);
+            downloadStatus.add(new DownloadEpisodeStatus(path));
+            if(FileUtility.IsFileExists(videoSavePaths.get(i))){
+                finishedCount++;
+                downloadStatus.get(i).downloaded=true;
+            }
+        }
+        if(finishedCount==videoSavePaths.size()&&finishedCount>1){
+            MergeVideos();
+            return;
+        }
+        try {
+            for(int i=0;i<urls.size();i++) {
+                if(!FileUtility.IsFileExists(videoSavePaths.get(i))) {
+                    AndroidSysDownload sysDownload = new AndroidSysDownload(ctx);
+                    sysDownload.SetOnDownloadFinishReceiver(new AndroidSysDownload.OnDownloadCompleteFunction() {
+                        @Override
+                        public void OnDownloadComplete(long downloadId, boolean success, int downloadedSize, int returnedFileSize, Object extra) {
+                            downloadStatus.get((int) extra).downloaded=true;
+                            if(urls.size()<=1)
+                                return;
+                            MergeVideos();
+                        }
+                    }, i);
+                    String localPath = videoSavePaths.get(i);
+                    String notifyTitle=fileNameWithoutExt;
+                    if(urls.size()>1)
+                        notifyTitle+= " [" + (i + 1) + "/" + urls.size() + "]";
+                    sysDownload.StartDownloadFile(urls.get(i), localPath, notifyTitle);
+                }
+            }
+        }catch (IndexOutOfBoundsException e){
+            onFinishFunction.OnFinish(false,paramPlayUrl,null,e.getClass().getName()+"\n"+e.getLocalizedMessage());
         }
     }
 
@@ -124,7 +241,7 @@ public class AcFunGet extends YouGet{
                     return;
                 if(!success){
                     //2019-9-6：经查发现A站查询接口变化，/video/getVideo.aspx接口已无法使用。
-                    AcFunDownloadByHtml();
+                    AcFunDownloadByM3U8();
                     return;
                 }
                 if(response==301||response==302){
@@ -288,17 +405,19 @@ public class AcFunGet extends YouGet{
         DownloadBangumi(url, episodeToDownload_fromZero,0, saveDirPath,true);
     }
 
+    OnReturnVideoQualityFunction onReturnQualities;
+
     @Override
     public void QueryQualities(String url, int episodeToDownload_fromZero, OnReturnVideoQualityFunction f) {
-        ArrayList<VideoQuality>vqs=new ArrayList<>();
-        VideoQuality vq=new VideoQuality(0,"");
-        vqs.add(vq);
-        f.OnReturnVideoQuality(true,vqs);
+        onReturnQualities=f;
+        DownloadBangumi(url,episodeToDownload_fromZero,-1,null,false,false);
     }
 
     public void DownloadBangumi(String url,int episodeToDownload_fromZero,int quality,String saveDirPath,boolean downloadDanmaku){
         DownloadBangumi(url,episodeToDownload_fromZero,quality,saveDirPath,downloadDanmaku,false);
     }
+
+    private int downloadQuality=-1;
 
     //注意episodeToDownload是从0数起的
     private void DownloadBangumi(String url,int episodeToDownload_fromZero,int quality,String saveDirPath,boolean downloadDanmaku,boolean episodeFound){
@@ -306,6 +425,7 @@ public class AcFunGet extends YouGet{
         paramPlayUrl=url;
         paramSavePath=saveDirPath;
         paramDownloadDanmaku=downloadDanmaku;
+        downloadQuality=quality;
         Matcher mUrl= Pattern.compile("https?://[^\\.]*\\.*acfun\\.[^\\.]+/bangumi/a[ab](\\d+)").matcher(url);
         if(!mUrl.find()){
             if(onFinishFunction !=null)

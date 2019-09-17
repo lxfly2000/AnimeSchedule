@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":374,
+	"last_watch_index":251,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -4964,7 +4964,7 @@ setJsonData({
 		"last_watch_episode_anime":13,
 		"create_date":"2019-3-22"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[20190916],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/7fe6ad684ad228b7d9d643160b40fae4b9694c72.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss818",
 		"title":"零之使魔",
@@ -4978,11 +4978,11 @@ setJsonData({
 		"episode_count":13,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["奇幻","日常","后宫","战斗","恋爱","小说改"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-3-25"
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,20190405],
@@ -6654,7 +6654,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-24"
 	},{
-		"watched_episode":[20190707,20190715,20190723,20190729,20190805,20190812,20190819,20190826,20190902,20190909],
+		"watched_episode":[20190707,20190715,20190723,20190729,20190805,20190812,20190819,20190826,20190902,20190909,20190916],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/4c7324327dd9ae035007c3e9bc40cd2ce08635b1.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28006",
 		"title":"擅长捉弄的高木同学 第二季",
@@ -6671,7 +6671,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","校园","恋爱","日常","搞笑"],
-		"last_watch_episode_anime":10,
+		"last_watch_episode_anime":11,
 		"create_date":"2019-6-24"
 	},{
 		"watched_episode":[0],
@@ -7434,7 +7434,7 @@ setJsonData({
 		"last_watch_episode_anime":11,
 		"create_date":"2019-9-6"
 	},{
-		"watched_episode":[20190912,20190915],
+		"watched_episode":[20190912,20190915,20190916],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/afcfb11c77ca87bf44e010d8dd349e4a723fde32.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss916",
 		"title":"A CHANNEL+smile",
@@ -7451,7 +7451,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["萌系","日常","校园","治愈"],
-		"last_watch_episode_anime":2,
+		"last_watch_episode_anime":3,
 		"create_date":"2019-9-11"
 	},{
 		"watched_episode":[20190911],

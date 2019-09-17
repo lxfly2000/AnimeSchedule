@@ -14,6 +14,7 @@ import com.lxfly2000.animeschedule.data.AnimeItem;
 import com.lxfly2000.animeschedule.spider.AcFunSpider;
 import com.lxfly2000.animeschedule.spider.Spider;
 import com.lxfly2000.youget.AcFunGet;
+import com.lxfly2000.youget.YouGet;
 
 import java.util.ArrayList;
 
@@ -42,54 +43,90 @@ public class AcFunDownloadDialog extends DownloadDialog {
         }
     };
 
+    YouGet.OnFinishFunction onFinishFunction=new YouGet.OnFinishFunction() {
+        @Override
+        public void OnFinish(boolean success, @Nullable String bangumiPath, @Nullable String danmakuPath, @Nullable String msg) {
+            if(msg!=null)
+                Toast.makeText(ctx,msg,Toast.LENGTH_LONG).show();
+            if(!success){
+                if(bangumiPath==null)
+                    return;
+                if(msg==null)
+                    Toast.makeText(ctx,ctx.getString(R.string.message_download_failed,bangumiPath),Toast.LENGTH_LONG).show();
+                return;
+            }
+            if(bangumiPath!=null&&msg==null)
+                Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,bangumiPath),Toast.LENGTH_LONG).show();
+        }
+    };
+
+    AlertDialog dq;
+    public void OpenVideoQualityDialog(AnimeJson json,int index){
+        dq=new AlertDialog.Builder(ctx)
+                .setTitle(json.GetTitle(index))
+                .setView(R.layout.dialog_anime_download_choose_quality)
+                .setPositiveButton(android.R.string.ok,(dialogInterface, i) -> {
+                    RadioGroup radioGroup=dq.findViewById(R.id.radiosVideoQuality);
+                    for(int i_radio=0;i_radio<radioGroup.getChildCount();i_radio++){
+                        RadioButton button=(RadioButton)radioGroup.getChildAt(i_radio);
+                        if(button.isChecked()){
+                            for(int i_epi=0;i_epi<checkEpisodes.size();i_epi++){
+                                if(checkEpisodes.get(i_epi).isChecked()){
+                                    AcFunGet acFunGet=new AcFunGet(ctx);
+                                    acFunGet.SetOnFinish(onFinishFunction);
+                                    acFunGet.DownloadBangumi(json.GetWatchUrl(index),i_epi,i_radio,preferences.getString(ctx.getString(
+                                            R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()));
+                                }
+                            }
+                            Toast.makeText(ctx,R.string.message_download_task_created,Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel,null)
+                .show();
+        dq.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
+        RadioGroup radioGroup=dq.findViewById(R.id.radiosVideoQuality);
+        //查询可用清晰度
+        for(int i=0;i<checkEpisodes.size();i++){
+            if(checkEpisodes.get(i).isChecked()){
+                AcFunGet acFunGet=new AcFunGet(ctx);
+                acFunGet.SetOnFinish(onFinishFunction);
+                acFunGet.QueryQualities(json.GetWatchUrl(index), i, new YouGet.OnReturnVideoQualityFunction() {
+                    @Override
+                    public void OnReturnVideoQuality(boolean success, ArrayList<YouGet.VideoQuality> qualities) {
+                        for(int i=0;i<qualities.size();i++) {
+                            RadioButton radioButton = new RadioButton(dq.getContext());
+                            radioButton.setText(qualities.get(i).qualityName);
+                            radioButton.setId(i);
+                            radioButton.setLayoutParams(radioGroup.getLayoutParams());
+                            radioGroup.addView(radioButton);
+                            if(i==0) {
+                                radioGroup.check(i);
+                                dq.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(true);
+                            }
+                        }
+                    }
+                });
+                break;
+            }
+        }
+    }
+
     private boolean episodeTitleOK=false;
 
     @Override
     public void OpenDownloadDialog(AnimeJson json, int index){
         AlertDialog dialog=new AlertDialog.Builder(ctx)
                 .setTitle(json.GetTitle(index))
-                .setPositiveButton(android.R.string.ok,(dialogInterface, i) -> {
-                    for(int i_check=0;i_check<checkEpisodes.size();i_check++) {
-                        if (checkEpisodes.get(i_check).isChecked()){
-                            AcFunGet acfunGet=new AcFunGet(ctx);
-                            acfunGet.SetOnFinish(new AcFunGet.OnFinishFunction() {
-                                @Override
-                                public void OnFinish(boolean success, @Nullable String bangumiPath, @Nullable String danmakuPath, @Nullable String msg) {
-                                    if(msg!=null)
-                                        Toast.makeText(ctx,msg,Toast.LENGTH_LONG).show();
-                                    if(!success){
-                                        String path=bangumiPath;
-                                        if(path==null)
-                                            path=danmakuPath;
-                                        if(path==null)
-                                            return;
-                                        if(msg==null)
-                                            Toast.makeText(ctx,ctx.getString(R.string.message_download_failed,path),Toast.LENGTH_LONG).show();
-                                        return;
-                                    }
-                                    if(bangumiPath!=null&&msg==null)
-                                        Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,bangumiPath),Toast.LENGTH_LONG).show();
-                                    if(danmakuPath!=null&&msg==null)
-                                        Toast.makeText(ctx,ctx.getString(R.string.message_download_finish,danmakuPath),Toast.LENGTH_LONG).show();
-                                }
-                            });
-                            acfunGet.DownloadBangumi(json.GetWatchUrl(index),i_check,0,preferences.getString(ctx.getString(
-                                    R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()),checkIncludeDanmaku.isChecked());
-                        }
-                    }
-                    Toast.makeText(ctx,R.string.message_download_task_created,Toast.LENGTH_SHORT).show();
-                })
+                .setPositiveButton(android.R.string.ok,(dialogInterface, i) -> OpenVideoQualityDialog(json, index))
                 .setNegativeButton(android.R.string.cancel,null)
                 .setView(R.layout.dialog_acfun_download)
                 .show();
         checkIncludeDanmaku=dialog.findViewById(R.id.checkAcfunIncludeDanmaku);
         checkIncludeDanmaku.setChecked(false);
-        checkIncludeDanmaku.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
-                    Toast.makeText(ctx,"下载弹幕功能目前存在Bug，建议不要使用。\n下載彈幕功能目前存在Bug，建議不要使用。\nThere is a bug in downloading Danmaku function at this time, please avoid using this.",Toast.LENGTH_LONG).show();
-            }
+        checkIncludeDanmaku.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b)
+                Toast.makeText(ctx,"下载弹幕功能目前存在Bug，建议不要使用。\n下載彈幕功能目前存在Bug，建議不要使用。\nThere is a bug in downloading Danmaku function at this time, please avoid using this.",Toast.LENGTH_LONG).show();
         });
         linearLayout=dialog.findViewById(R.id.linearLayoutEpisodes);
         buttonOk=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
@@ -107,7 +144,8 @@ public class AcFunDownloadDialog extends DownloadDialog {
                 if(episodeTitleOK)
                     return;
                 TextView textView=dialog.findViewById(R.id.textViewDownloadNotice);
-                textView.setText(String.format(textView.getText().toString(),AcFunGet.cookiePath.substring(1+AcFunGet.cookiePath.lastIndexOf("/"))));
+                textView.setText(String.format(textView.getText().toString(),AcFunGet.cookiePath.substring(1+AcFunGet.cookiePath.lastIndexOf("/")))
+                .split("\\n")[0]);//TODO:后面的注意信息可能都不需要了。
                 for(int i=0;i<data.episodeTitles.size();i++){
                     CheckBox checkBox=new CheckBox(dialog.getContext());
                     checkBox.setText("["+data.episodeTitles.get(i).episodeIndex+"] "+data.episodeTitles.get(i).episodeTitle);

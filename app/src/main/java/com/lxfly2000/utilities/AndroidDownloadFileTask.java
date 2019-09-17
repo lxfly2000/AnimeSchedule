@@ -25,6 +25,9 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
     private String referer=null;
     private String accept=null;
     private String acceptLanguage=null;
+    private String host=null;
+    private String origin=null;
+    private String headerConnection=null;
     private URLConnection connection;
 
     @Override
@@ -59,6 +62,12 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
                 connection.setRequestProperty("Accept",accept);
             if(acceptLanguage!=null)
                 connection.setRequestProperty("Accept-Language",acceptLanguage);
+            if(host!=null)
+                connection.setRequestProperty("Host",host);
+            if(origin!=null)
+                connection.setRequestProperty("Origin",origin);
+            if(headerConnection!=null)
+                connection.setRequestProperty("Connection",headerConnection);
             if(connectTimeOut>0)
                 connection.setConnectTimeout(connectTimeOut);
             if(readTimeOut>0)
@@ -118,6 +127,18 @@ public abstract class AndroidDownloadFileTask extends AsyncTask<String,Integer,B
 
     public void SetUserAgent(String ua){
         userAgent=ua;
+    }
+
+    public void SetConnection(String _headerConnection){
+        headerConnection=_headerConnection;
+    }
+
+    public void SetHost(String _host){
+        host=_host;
+    }
+
+    public void SetOrigin(String _origin){
+        origin=_origin;
     }
 
     public void SetCookie(String _cookie){

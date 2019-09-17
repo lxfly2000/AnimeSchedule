@@ -55,6 +55,7 @@ public class AboutActivity extends AppCompatActivity {
         SetTextViewWithURL(findViewById(R.id.textViewThanksIpcjsBilibiliHelper),null);
         SetTextViewWithURL(findViewById(R.id.textViewThanksBiliplus),null);
         SetTextViewWithURL(findViewById(R.id.textViewThanksYouget),null);
+        SetTextViewWithURL(findViewById(R.id.textViewThanksNlAcFun),null);
         SetTextViewWithURL(findViewById(R.id.textViewUsingFilepicker),null);
         SetTextViewWithURL(findViewById(R.id.textViewUsingBilibiliMerge),null);
         SetTextViewWithURL(findViewById(R.id.textViewUsingMp4parser),null);

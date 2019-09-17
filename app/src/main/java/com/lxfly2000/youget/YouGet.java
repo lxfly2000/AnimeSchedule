@@ -18,9 +18,14 @@ public abstract class YouGet {
     public static class VideoQuality{
         public int index;
         public String qualityName;
+        public String url;
         public VideoQuality(int _index,String _qualityName){
             index=_index;
             qualityName=_qualityName;
+        }
+        public VideoQuality(int _index,String _qualityName,String _url){
+            this(_index, _qualityName);
+            url=_url;
         }
     }
 

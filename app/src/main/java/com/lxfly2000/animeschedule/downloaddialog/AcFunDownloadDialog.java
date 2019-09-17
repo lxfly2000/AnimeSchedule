@@ -48,6 +48,8 @@ public class AcFunDownloadDialog extends DownloadDialog {
         public void OnFinish(boolean success, @Nullable String bangumiPath, @Nullable String danmakuPath, @Nullable String msg) {
             if(msg!=null)
                 Toast.makeText(ctx,msg,Toast.LENGTH_LONG).show();
+            if(bangumiPath==null)
+                bangumiPath=danmakuPath;
             if(!success){
                 if(bangumiPath==null)
                     return;
@@ -75,7 +77,7 @@ public class AcFunDownloadDialog extends DownloadDialog {
                                     AcFunGet acFunGet=new AcFunGet(ctx);
                                     acFunGet.SetOnFinish(onFinishFunction);
                                     acFunGet.DownloadBangumi(json.GetWatchUrl(index),i_epi,i_radio,preferences.getString(ctx.getString(
-                                            R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()));
+                                            R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()),checkIncludeDanmaku.isChecked());
                                 }
                             }
                             Toast.makeText(ctx,R.string.message_download_task_created,Toast.LENGTH_SHORT).show();
@@ -123,11 +125,6 @@ public class AcFunDownloadDialog extends DownloadDialog {
                 .setView(R.layout.dialog_acfun_download)
                 .show();
         checkIncludeDanmaku=dialog.findViewById(R.id.checkAcfunIncludeDanmaku);
-        checkIncludeDanmaku.setChecked(false);
-        checkIncludeDanmaku.setOnCheckedChangeListener((compoundButton, b) -> {
-            if(b)
-                Toast.makeText(ctx,"下载弹幕功能目前存在Bug，建议不要使用。\n下載彈幕功能目前存在Bug，建議不要使用。\nThere is a bug in downloading Danmaku function at this time, please avoid using this.",Toast.LENGTH_LONG).show();
-        });
         linearLayout=dialog.findViewById(R.id.linearLayoutEpisodes);
         buttonOk=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
         buttonOk.setEnabled(false);
@@ -145,7 +142,7 @@ public class AcFunDownloadDialog extends DownloadDialog {
                     return;
                 TextView textView=dialog.findViewById(R.id.textViewDownloadNotice);
                 textView.setText(String.format(textView.getText().toString(),AcFunGet.cookiePath.substring(1+AcFunGet.cookiePath.lastIndexOf("/")))
-                .split("\\n")[0]);//TODO:后面的注意信息可能都不需要了。
+                .split("\\n")[0]);//后面的注意信息可能都不需要了。
                 for(int i=0;i<data.episodeTitles.size();i++){
                     CheckBox checkBox=new CheckBox(dialog.getContext());
                     checkBox.setText("["+data.episodeTitles.get(i).episodeIndex+"] "+data.episodeTitles.get(i).episodeTitle);

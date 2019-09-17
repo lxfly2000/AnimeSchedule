@@ -178,7 +178,16 @@ public class AcFunGet extends YouGet{
                 }
                 try{
                     String str=StreamUtility.GetStringFromStream(stream,false);
-                    //TODO:下载所有TS片段，注意URL是相对路径
+                    String[]lines=str.split("\n");
+                    ArrayList<String>urlsToDownload=new ArrayList<>();
+                    for (String line : lines) {
+                        if (!line.startsWith("#")&&line.length()>0) {
+                            if(!line.startsWith("http")&&!line.startsWith("/"))//相对路径
+                                line=m3u8url.substring(0,m3u8url.lastIndexOf("/")+1)+line;
+                            urlsToDownload.add(line);
+                        }
+                    }
+                    DownloadM3U8Streams(urlsToDownload);
                 }catch (IOException e){
                     onFinishFunction.OnFinish(false,paramPlayUrl,null,ctx.getString(R.string.message_error_on_reading_stream,e.getLocalizedMessage()));
                 }
@@ -229,6 +238,9 @@ public class AcFunGet extends YouGet{
         }catch (IndexOutOfBoundsException e){
             onFinishFunction.OnFinish(false,paramPlayUrl,null,e.getClass().getName()+"\n"+e.getLocalizedMessage());
         }
+
+        if(paramDownloadDanmaku)
+            DownloadDanmaku();
     }
 
     private int redirectCount=0;
@@ -275,7 +287,6 @@ public class AcFunGet extends YouGet{
             }
         };
         Common.SetYouGetHttpHeader(taskGetVideo);
-        //TODO:是不是要在HTTP头里加点什么东西？
         taskGetVideo.execute(vidUrl);
     }
 
@@ -369,11 +380,13 @@ public class AcFunGet extends YouGet{
                     onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
                     return;
                 }
-                //TODO：为什么下载的弹幕有杂乱内容？
-                if(!FileUtility.WriteStreamToFile(savePath,iStream,false))
+                try {
+                    FileUtility.WriteFile(savePath,StreamUtility.GetStringFromStream(iStream, false));//注意此处如果用WriteStreamToFile可能会出现谜之乱码
+                }catch (IOException e){
                     onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
-                else
-                    onFinishFunction.OnFinish(true,null,savePath,null);
+                    return;
+                }
+                onFinishFunction.OnFinish(true,null,savePath,null);
             }
         };
         Common.SetYouGetHttpHeader(task);

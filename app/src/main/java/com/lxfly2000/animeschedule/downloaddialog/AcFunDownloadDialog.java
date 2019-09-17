@@ -140,9 +140,6 @@ public class AcFunDownloadDialog extends DownloadDialog {
                     dialog.setTitle(data.title);
                 if(episodeTitleOK)
                     return;
-                TextView textView=dialog.findViewById(R.id.textViewDownloadNotice);
-                textView.setText(String.format(textView.getText().toString(),AcFunGet.cookiePath.substring(1+AcFunGet.cookiePath.lastIndexOf("/")))
-                .split("\\n")[0]);//后面的注意信息可能都不需要了。
                 for(int i=0;i<data.episodeTitles.size();i++){
                     CheckBox checkBox=new CheckBox(dialog.getContext());
                     checkBox.setText("["+data.episodeTitles.get(i).episodeIndex+"] "+data.episodeTitles.get(i).episodeTitle);

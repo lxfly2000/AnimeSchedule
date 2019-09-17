@@ -242,9 +242,7 @@
         <a href="https://github.com/soimort/you-get">you-get</a>
     </string>
     <string name="label_acfun_download_settings">AcFun &amp; IQiyi &amp; QQ Video &amp; Youku download settings</string>
-    <string name="label_acfun_download_notice">Choose the episodes you want to download.\nAttention:\n1. Only the
-        highest available quality will be downloaded.\n2. 1080p requires you login AcFun account, you can provide the
-        account info via the \"%s\" file in the AnimeSchedule folder by setting cookies information.</string>
+    <string name="label_acfun_download_notice">Choose the episodes you want to download.</string>
     <string name="label_download_acfun_include_danmaku">Also download Danmaku</string>
     <string name="message_download_task_created">Download task created, please wait for the download finishing.</string>
     <string name="label_qq_download_notice">Choose the episodes you want to download.\nAttention:\n1. Only the highest

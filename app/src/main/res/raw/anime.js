@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":251,
+	"last_watch_index":384,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -4964,11 +4964,11 @@ setJsonData({
 		"last_watch_episode_anime":13,
 		"create_date":"2019-3-22"
 	},{
-		"watched_episode":[20190916],
+		"watched_episode":[20190916,20190918,20190918,20190919,20190919,20190919,20190919,20190919,20190919,20190920,20190920,20190920,20190920],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/7fe6ad684ad228b7d9d643160b40fae4b9694c72.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss818",
 		"title":"零之使魔",
-		"description":"在异世界哈尔凯尼亚被当作“使魔”被召唤出来的高中生平贺才人卷入了一场满载着四种元素的幻想罗曼史大冒险中。将才人召唤至异世界的是长相可爱却没有丝毫魔法才能的主人样露易丝。面对突然出现的迷之美少女，满心疑惑的才人在听她讲完契约内容之后，遭遇了突如其来的强吻之后，他的手背上浮现出了不可思议的文字，才人就这样莫名其妙的成为了露易丝的使魔。\n　　以全寄宿制的托丽斯汀魔法学院为舞台，主人样美少女魔法使露易丝与使魔才人在争吵、责备、爱恋中开始了充满了勇气与屈辱的学园生活。在异世界波澜万丈的交流之中，露易丝和才人的命运会怎么样呢？\n动画制作：日创",
+		"description":"在异世界哈尔凯尼亚被当作“使魔”被召唤出来的高中生平贺才人卷入了一场满载着四种元素的幻想罗曼史大冒险中。将才人召唤至异世界的是长相可爱却没有丝毫魔法才能的主人样露易丝。面对突然出现的迷之美少女，满心疑惑的才人在听她讲完契约内容之后，遭遇了突如其来的强吻之后，他的手背上浮现出了不可思议的文字，才人就这样莫名其妙的成为了露易丝的使魔。\n　　以全寄宿制的托丽斯汀魔法学院为舞台，主人样美少女魔法使露易丝与使魔才人在争吵、责备、爱恋中开始了充满了勇气与屈辱的学园生活。在异世界波澜万丈的交流之中，露易丝和才人的命运会怎么样呢？\n动画制作：日创\n据说JC把小说剧情改得连亲妈都不认识了？\n这个跟夏娜一起还真是充满了JC的00年代风格。\nOP，ED好评。\n结尾太沙雕了，不过我不介意哈哈。",
 		"actors":"谢斯塔：堀江由衣\n平贺才人：日野聡\n露易丝·法兰西斯·露·布朗·杜·拉·瓦利埃尔：釘宮理恵\nモンモランシー・マルガリタ・ラ・フェール・ド・モンモランシ：高橋美佳子\n基修・杜・格拉蒙：櫻井孝宏\nイル..",
 		"staff":"原作： 山口升、ヤマグチノボル\n导演： 岩崎良明\n分镜： 柳沢テツヤ、鈴木洋平、福田道生、東海林真一\n演出： 高島大輔、鈴木洋平\n音乐： 光宗信吉\n人物原案： 兎塚エイジ\n人物设定： 飯塚晴子、藤井昌宏\n系列构成： 吉岡たかを\n总作画监督： 藤井昌宏\n作画监督： 冷水由紀絵、木本茂樹、亀井治、山本篤史\n原画： 阿部望、冷水由紀絵、大木良一、夏目真悟、竹内哲也\n音响监督： 高橋剛\n动画制作： J.C.STAFF\n别名： 零之使魔 第一季",
 		"start_date":"2006-07-02",
@@ -4978,11 +4978,11 @@ setJsonData({
 		"episode_count":13,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":4,
+		"rank":5,
 		"color":"silver",
 		"category":["奇幻","日常","后宫","战斗","恋爱","小说改"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":1,
+		"last_watch_episode_anime":13,
 		"create_date":"2019-3-25"
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,20190405],
@@ -5314,11 +5314,11 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-4-6"
 	},{
-		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630,20190707,20190714,20190725,20190727,20190803,20190810,20190817,20190825,20190901,20190907,20190914],
+		"watched_episode":[20190430,20190501,20190503,20190503,20190505,20190511,20190518,20190525,20190604,20190610,20190615,20190623,20190630,20190707,20190714,20190725,20190727,20190803,20190810,20190817,20190825,20190901,20190907,20190914,20190921],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/368c60d973a8a3251534f599dcb2eff7fc64cef3.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss26766",
 		"title":"水果篮子2019版",
-		"description":"高中生本田透在失去了自己唯一亲人的母亲之后过起了独自一人的帐篷生活。但是，透安扎帐篷的地方刚好就是历史渊源的家族“草摩家”的领地之内！在草摩紫吴的邀请下成为了草摩家佣人的透，居然要与学校里王子般存在的草摩由希、以及视由希为眼中钉的草摩夹这两人一起生活。\n然而，透却仍未知晓。“草摩家”自从数百年前起就被忌讳的诅咒所束缚的事实……\n动画制作：TMS Entertainment",
+		"description":"高中生本田透在失去了自己唯一亲人的母亲之后过起了独自一人的帐篷生活。但是，透安扎帐篷的地方刚好就是历史渊源的家族“草摩家”的领地之内！在草摩紫吴的邀请下成为了草摩家佣人的透，居然要与学校里王子般存在的草摩由希、以及视由希为眼中钉的草摩夹这两人一起生活。\n然而，透却仍未知晓。“草摩家”自从数百年前起就被忌讳的诅咒所束缚的事实……\n动画制作：TMS Entertainment\n第二季在2020年播出。",
 		"actors":"本田透：石见舞菜香\n草摩由希：岛崎信长\n草摩夹：内田雄马\n草摩紫吴：中村悠一\n草摩乐罗：钉宫理惠\n草摩红叶：潘惠美\n草摩泼春：古川慎\n草摩羽鸟：兴津和幸\n草摩绫女：樱井孝宏\n草摩慊人：坂本真绫\n鱼谷卯绪：种崎敦美\n花岛咲：佐藤聪美\n本田今日子：泽城美雪",
 		"staff":"原作、总监修：高屋奈月《水果篮子》（白泉社・花与梦COMICS）\n监督：井端义秀\n总编剧：岸本卓\n角色设计：进藤优\n动画制作：TMS Entertainment",
 		"start_date":"2019-04-06",
@@ -5331,7 +5331,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","奇幻","校园","恋爱","少女"],
-		"last_watch_episode_anime":24,
+		"last_watch_episode_anime":25,
 		"create_date":"2019-4-6"
 	},{
 		"watched_episode":[20190414,20190417],
@@ -6694,7 +6694,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-6-26"
 	},{
-		"watched_episode":[20190712,20190719,20190727,20190802,20190809,20190816,20190825,20190830,20190907,20190914],
+		"watched_episode":[20190712,20190719,20190727,20190802,20190809,20190816,20190825,20190830,20190907,20190914,20190920],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/8fa97d1f68517724a0afcb1ca536bfe5b818e0d8.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28007",
 		"title":"街角魔族",
@@ -6711,7 +6711,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","日常","萌系"],
-		"last_watch_episode_anime":10,
+		"last_watch_episode_anime":11,
 		"create_date":"2019-6-27"
 	},{
 		"watched_episode":[20190709,20190716,20190723,20190730,20190806,null,20190820],
@@ -6734,7 +6734,7 @@ setJsonData({
 		"last_watch_episode_anime":7,
 		"create_date":"2019-6-27"
 	},{
-		"watched_episode":[20190717,20190717,20190720,20190727,20190803,20190810,20190817,20190826,20190901,20190907,20190914],
+		"watched_episode":[20190717,20190717,20190720,20190727,20190803,20190810,20190817,20190826,20190901,20190907,20190914,20190921],
 		"cover":"https:\/\/imgs.aixifan.com\/image-manager_1562306582316-PAi1ZPjVIH",
 		"watch_url":"https:\/\/www.acfun.cn\/bangumi\/aa5024870",
 		"title":"满月之战GRANBELM",
@@ -6745,13 +6745,13 @@ setJsonData({
 		"update_time_int":85,
 		"update_period":7,
 		"update_period_unit":"day",
-		"episode_count":12,
+		"episode_count":13,
 		"absense_count":0,
 		"abandoned":true,
 		"rank":3,
 		"color":"silver",
 		"category":["机战","美少女"],
-		"last_watch_episode_anime":11,
+		"last_watch_episode_anime":12,
 		"create_date":"2019-7-7"
 	},{
 		"watched_episode":[20190707],
@@ -6934,7 +6934,7 @@ setJsonData({
 		"last_watch_episode_anime":13,
 		"create_date":"2019-7-24"
 	},{
-		"watched_episode":[20190730,20190730,20190731,20190731,20190802,20190809,20190817,20190825,20190831,20190907,20190914],
+		"watched_episode":[20190730,20190730,20190731,20190731,20190802,20190809,20190817,20190825,20190831,20190907,20190914,20190921],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/97007f464a9511abdbf8bf938c01dcdbaab151e0.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28016",
 		"title":"女高中生的虚度日常",
@@ -6947,11 +6947,11 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":5,
+		"abandoned":true,
+		"rank":4,
 		"color":"silver",
 		"category":["日常","漫画改","校园","搞笑","声控"],
-		"last_watch_episode_anime":11,
+		"last_watch_episode_anime":12,
 		"create_date":"2019-7-27"
 	},{
 		"watched_episode":[0],
@@ -7414,7 +7414,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-8-30"
 	},{
-		"watched_episode":[20190909,20190909,20190909,20190909,20190909,20190910,20190910,20190910,20190910,20190911,20190914],
+		"watched_episode":[20190909,20190909,20190909,20190909,20190909,20190910,20190910,20190910,20190910,20190911,20190914,20190920],
 		"cover":"http:\/\/i.gtimg.cn\/qqlive\/img\/jpgcache\/files\/qqvideo\/e\/er0k7wjhbw8f4vj.jpg",
 		"watch_url":"https:\/\/v.qq.com\/detail\/e\/er0k7wjhbw8f4vj.html",
 		"title":"为了女儿，我说不定连魔王都能干掉。",
@@ -7427,11 +7427,11 @@ setJsonData({
 		"update_period_unit":"day",
 		"episode_count":12,
 		"absense_count":0,
-		"abandoned":false,
-		"rank":4,
+		"abandoned":true,
+		"rank":3,
 		"color":"silver",
 		"category":["魔幻","魔法"],
-		"last_watch_episode_anime":11,
+		"last_watch_episode_anime":12,
 		"create_date":"2019-9-6"
 	},{
 		"watched_episode":[20190912,20190915,20190916],
@@ -7633,5 +7633,125 @@ setJsonData({
 		"category":["战斗"],
 		"last_watch_episode_anime":0,
 		"create_date":"2019-9-15"
+	},{
+		"watched_episode":[20190921],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/70ff3f06e424edf935e4d56f63bb586e1dec76be.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss819",
+		"title":"零之使魔 双月骑士",
+		"description":"在异世界哈尔凯尼亚被当作“使魔”被召唤出来的高中生平贺才人卷入了一场满载着四种元素的幻想罗曼史大冒险中。将才人召唤至异世界的是长相可爱却没有丝毫魔法才能的主人样露易丝。面对突然出现的迷之美少女，满心疑惑的才人在听她讲完契约内容之后，遭遇了突如其来的强吻之后，他的手背上浮现出了不可思议的文字，才人就这样莫名其妙的成为了露易丝的使魔。\n　　以全寄宿制的托丽斯汀魔法学院为舞台，主人样美少女魔法使露易丝与使魔才人在争吵、责备、爱恋中开始了充满了勇气与屈辱的学园生活。在异世界波澜万丈的交流之中，露易丝和才人的命运会怎么样呢？\n动画制作：日创",
+		"actors":"谢斯塔：堀江由衣\n露易丝·法兰西斯·露·布朗·杜·拉·瓦利埃尔：釘宮理恵\n平贺才人：日野聡\n基修・杜・格拉蒙：櫻井孝宏\n塔巴萨：猪口有佳\n安丽埃塔·杜·托里斯汀：川澄綾子\n卡托丽雅・伊维特・露・布..",
+		"staff":"原作： 山口升、ヤマグチノボル\n导演： 紅優\n分镜： 鈴木洋平、福田道生\n演出： 秋田谷典昭、高島大輔、鈴木洋平、橋本敏一\n音乐： 澁谷知子\n人物原案： 兎塚エイジ\n人物设定： 藤井昌宏\n系列构成： 河原ゆうじ\n色彩设计： 石川恭介\n作画监督： 長谷川眞也、冷水由紀絵、川上哲也、山本篤史\n摄影监督： 福世晋吾\n原画： 冷水由紀絵、藤井慎吾、長谷川眞也、滝本祥子\n音乐制作： ハピネット、高橋剛\n动画制作： J.C.STAFF\n别名： 零之使魔 第二季\n官方网站： http：\/\/www.zero-tsukaima.com\/",
+		"start_date":"2007-07-08",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":5,
+		"color":"silver",
+		"category":["奇幻","战斗","小说改","架空","穿越","冒险"],
+		"last_watch_episode_anime":1,
+		"create_date":"2019-9-19"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/11633750bc0f499c9faa07a21300b308347b386e.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss821",
+		"title":"零之使魔F",
+		"description":"在异世界“哈尔凯尼亚”，被露易丝当作使魔召唤出来的日本高中生平贺才人被卷入了这个世界的一切。召唤才人出来的是长相可爱但完全没有魔法才能的露易丝。一脸茫然的才人突然被露易丝强吻之后，他的手背出现了一个卢恩字母(符文)，才人自此变成了露易丝的使魔。\n故事主要围绕在托里斯汀（即露易丝等人所在的王国）所发生的大小事情，并描述露易丝和才人从最差的主仆关系逐渐亲近的成长过程。",
+		"actors":"蒂法妮亚·韦斯特伍德：能登麻美子\n露易丝·法兰西斯·露·布朗·杜·拉·瓦利埃尔：釘宮理恵\n平贺才人：日野聡\n谢斯塔：堀江由衣\n塔巴萨：猪口有佳\n丘尔洁・奥古斯都・菲列特利加・封・安哈尔特・泽罗普斯..",
+		"staff":"原作： ヤマグチノボル\n导演： 岩崎良明\n分镜： 越田知明、鈴木洋平、岡村正弘、堀之内元\n演出： 奥野浩行、鈴木洋平、岡村正弘、堀之内元\n音乐： 光宗信吉\n人物原案： 兎塚エイジ\n人物设定： 藤井昌宏\n系列构成： ヤマグチノボル\n总作画监督： 藤井昌宏\n作画监督： 神本兼利、長谷川亨雄、北川大輔\n道具设计： 野田康行\n原画： 野中正幸、神本兼利\n音响监督： 明田川仁\n制片人： 木谷高明\n音乐制作： 日本コロムビア\n动画制作： J.C.STAFF",
+		"start_date":"2012-01-07",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["奇幻","日常","战斗","小说改","架空","穿越","冒险"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-9-19"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/92f3a37c031bc9f3ee1f03208aa1acc8586c11f9.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss3790",
+		"title":"零之使魔～三美姬的轮舞～OVA",
+		"description":"      魔法学院决定去海边度假？连女王都要来？好色的才人等人怎能放过这么好的机会。可是到了海边，才人才知道露易丝这个世界的泳装是这么的保守。这时，校长以“水精灵”的谎言开始了他们的计划，让她们先穿上了标准游泳衣（虽然不是比基尼，但是能很好的暴露身材）。然后是比基尼，最后让她们开始沙滩排球比赛。两人一组，那一队赢了，就可以穿女巫装。但其实那个女巫装就是用贝壳做成的比基尼（超暴露）。路易斯她们会怎么做呢？\n\n",
+		"actors":"露易丝·法兰西斯·露·布朗·杜·拉·瓦利埃尔：釘宮理恵\n平贺才人：日野聡\n谢斯塔：堀江由衣\n蒂法妮亚·韦斯特伍德：能登麻美子",
+		"staff":"脚本：國澤真理子\n分镜：タムラコータロー\n动画制作：J.C.STAFF\n",
+		"start_date":"2008-12-25",
+		"update_time_int":0,
+		"update_period":1,
+		"update_period_unit":"month",
+		"episode_count":1,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["奇幻","战斗","日常","架空","穿越"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-9-19"
+	},{
+		"watched_episode":[0],
+		"cover":"https:\/\/i0.hdslb.com\/bfs\/archive\/c721e48e0ae3a2f0bbae279e31e0a37224157ac2.png",
+		"watch_url":"http:\/\/www.bilibili.com\/video\/av853757",
+		"title":"零之使魔III",
+		"description":"Bili:",
+		"actors":"",
+		"staff":"",
+		"start_date":"2008-7-6",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":[],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-9-19"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/www.qiqidongman.com\/dmpic\/jnqlvsaua05.jpg",
+		"watch_url":"http:\/\/www.qiqidongman.com\/v\/4753\/",
+		"title":"露蒂的玩具",
+		"description":"露蒂的玩具的故事是讲述单亲爸爸塔原直哉，在一次换工作中被一位神秘的巫女带往了一个由梦魔族统治的异世界尤各瓦尔兰国。把直哉带来此处的原因原来是为了使他成为魔界公主亚斯塔露蒂的后宫候补。亚斯塔露蒂，身为妖魔界的公主，是一位以吸收男性精气来活命的梦魔族后裔，虽然要靠吸收男性精气来活命，但是她却因为童年阴影而异常地讨厌男性。而所谓的后宫候补，当然是成为露蒂的侍寝对象了，可是讨厌男性的露蒂起初只是把直哉视为“玩具”，但渐渐却非常在意起直哉。随着故事的发展，直哉的女儿明日叶也来到了尤各瓦尔兰国居住，但意想不到的是明日叶与露蒂的关系……\n动画制作：diomédea",
+		"actors":"钉宫理惠\n……",
+		"staff":"",
+		"start_date":"2011-4-10",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":[],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-9-20"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/07bde8bc1d76e9ca712268108075df84c1978a79.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss868",
+		"title":"纯白交响曲",
+		"description":"男主角瓜生新吾是“各务台学园”的普通学生。不过该学校由于各种原因的关系，在新学期开始的时候将同名叫“结姬女子学园”的名门女校进行合并。为了让学生能够更加融洽地相处，校方在新学期开始之前实行了试行合并，包括新吾在内的数十名各务台学园生试验性地到结女学园上学。而男生的出现也在女校引发了不小的骚动，众多个性丰富的妹子们也扎堆似的出现在了男主角的面前。那么包围在后宫般的环境当中，新吾又将从何选择呢……\n\n《纯白交响曲》（ましろ色シンフォニー）是日本游戏公司palette（ぱれっと）于2009年10月30日发售的美少女游戏，含有副标题的的全名是《ましろ色シンフォニー -Love is pure white-》。于2011年由Manglobe公司出品。自2011年10月4日起播映。共播放12集（已完结）。",
+		"actors":"天羽美羽：力丸乃りこ\n乾纱凪：吉田真弓\n安洁莉娜·菜夏·史威尔：壱智村小真\n瓜生樱乃：後藤麻衣\n濑名爱理：小野涼子\n瓜生新吾：水島大宙\n八冢万智：瑞沢渓\n瀬名兰华：櫻井浩美\n帕喵：櫻井浩美\n",
+		"staff":"脚本：冨田頼子、砂山蔵澄\n导演：菅沼栄治\n原作：ぱれっと\n演出：菅沼栄治、駒屋健一郎\n分镜：岡佳広、菅沼栄治、望月智充\n美术监督：佐藤歩\n总作画监督：川村敏江\n作画监督：仁井学、北條直明、梅津茜、平野絵美、山本翔、杉本幸子",
+		"start_date":"2011-10-04",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["日常","游戏改"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-9-20"
 	}]
 });

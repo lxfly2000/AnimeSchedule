@@ -375,7 +375,7 @@ public class AcFunGet extends YouGet{
                     else if("deflate".equals(enc))
                         iStream=new InflaterInputStream(stream,new Inflater(true));
                 }catch (IOException e){/*Ignore*/}
-                String savePath=paramSavePath+"/"+fileNameWithoutExt+".cmt.json";
+                String savePath=paramSavePath+"/"+fileNameWithoutExt+".json";
                 if(!success){
                     onFinishFunction.OnFinish(false,null,savePath,ctx.getString(R.string.message_download_failed,(String)extra));
                     return;

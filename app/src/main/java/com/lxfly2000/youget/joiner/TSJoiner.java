@@ -16,7 +16,9 @@ public class TSJoiner extends Joiner {
                     while((len = fis.read(buf))!=-1) {
                         fos.write(buf, 0, len);
                     }
-                } catch (IOException e) {/*Ignore*/}
+                } catch (IOException e) {
+                    return -2;
+                }
             }
         }catch (FileNotFoundException e){
             return -1;

@@ -76,8 +76,8 @@ public class AcFunDownloadDialog extends DownloadDialog {
                                 if(checkEpisodes.get(i_epi).isChecked()){
                                     AcFunGet acFunGet=new AcFunGet(ctx);
                                     acFunGet.SetOnFinish(onFinishFunction);
-                                    acFunGet.DownloadBangumi(json.GetWatchUrl(index),i_epi,i_radio,preferences.getString(ctx.getString(
-                                            R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()),checkIncludeDanmaku.isChecked());
+                                    acFunGet.DownloadBangumi(animeItem.episodeTitles.get(i_epi).episodeWatchUrl,i_epi,i_radio,preferences.getString(ctx.getString(
+                                            R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()),checkIncludeDanmaku.isChecked(),true);
                                 }
                             }
                             Toast.makeText(ctx,R.string.message_download_task_created,Toast.LENGTH_SHORT).show();
@@ -93,7 +93,7 @@ public class AcFunDownloadDialog extends DownloadDialog {
             if(checkEpisodes.get(i).isChecked()){
                 AcFunGet acFunGet=new AcFunGet(ctx);
                 acFunGet.SetOnFinish(onFinishFunction);
-                acFunGet.QueryQualities(json.GetWatchUrl(index), i, new YouGet.OnReturnVideoQualityFunction() {
+                acFunGet.QueryQualities(animeItem.episodeTitles.get(i).episodeWatchUrl, i, new YouGet.OnReturnVideoQualityFunction() {
                     @Override
                     public void OnReturnVideoQuality(boolean success, ArrayList<YouGet.VideoQuality> qualities) {
                         for(int i=0;i<qualities.size();i++) {
@@ -108,13 +108,14 @@ public class AcFunDownloadDialog extends DownloadDialog {
                             }
                         }
                     }
-                });
+                },true);
                 break;
             }
         }
     }
 
     private boolean episodeTitleOK=false;
+    private AnimeItem animeItem;
 
     @Override
     public void OpenDownloadDialog(AnimeJson json, int index){
@@ -140,6 +141,7 @@ public class AcFunDownloadDialog extends DownloadDialog {
                     dialog.setTitle(data.title);
                 if(episodeTitleOK)
                     return;
+                animeItem=data;
                 for(int i=0;i<data.episodeTitles.size();i++){
                     CheckBox checkBox=new CheckBox(dialog.getContext());
                     checkBox.setText("["+data.episodeTitles.get(i).episodeIndex+"] "+data.episodeTitles.get(i).episodeTitle);

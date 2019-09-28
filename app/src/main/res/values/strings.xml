@@ -244,7 +244,7 @@
     <string name="label_acfun_download_settings">AcFun &amp; IQiyi &amp; QQ Video &amp; Youku download settings</string>
     <string name="label_acfun_download_notice">Choose the episodes you want to download.</string>
     <string name="label_download_acfun_include_danmaku">Also download Danmaku</string>
-    <string name="message_download_task_created">Download task created, please wait for the download finishing.</string>
+    <string name="message_download_task_created">Download task created, please wait for the download to finish.</string>
     <string name="label_qq_download_notice">Choose the episodes you want to download.\nAttention:\n1. Only the highest
         quality will be downloaded.\n2. Some videos may require VIP account, otherwise you will not get a complete
         video.\n3. You may need to set cookies information via \"%s\" in the AnimeSchedule folder to

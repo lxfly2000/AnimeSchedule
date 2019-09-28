@@ -3,7 +3,6 @@ package com.lxfly2000.youget;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
-import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.lxfly2000.animeschedule.R;
@@ -21,7 +20,6 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -421,9 +419,13 @@ public class AcFunGet extends YouGet{
     OnReturnVideoQualityFunction onReturnQualities;
 
     @Override
-    public void QueryQualities(String url, int episodeToDownload_fromZero, OnReturnVideoQualityFunction f) {
+    public void QueryQualities(String url, int episodeToDownload_fromZero, OnReturnVideoQualityFunction f){
+        QueryQualities(url, episodeToDownload_fromZero, f,false);
+    }
+
+    public void QueryQualities(String url, int episodeToDownload_fromZero, OnReturnVideoQualityFunction f,boolean episodeFound) {
         onReturnQualities=f;
-        DownloadBangumi(url,episodeToDownload_fromZero,-1,null,false,false);
+        DownloadBangumi(url,episodeToDownload_fromZero,-1,null,false,episodeFound);
     }
 
     public void DownloadBangumi(String url,int episodeToDownload_fromZero,int quality,String saveDirPath,boolean downloadDanmaku){
@@ -433,7 +435,7 @@ public class AcFunGet extends YouGet{
     private int downloadQuality=-1;
 
     //注意episodeToDownload是从0数起的
-    private void DownloadBangumi(String url,int episodeToDownload_fromZero,int quality,String saveDirPath,boolean downloadDanmaku,boolean episodeFound){
+    public void DownloadBangumi(String url,int episodeToDownload_fromZero,int quality,String saveDirPath,boolean downloadDanmaku,boolean episodeFound){
         //参考：https://github.com/soimort/you-get/blob/develop/src/you_get/extractors/acfun.py#L111
         paramPlayUrl=url;
         paramSavePath=saveDirPath;

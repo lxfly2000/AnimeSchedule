@@ -67,7 +67,10 @@ public class BilibiliSpider extends Spider {
                     if(redirectCount>preferences.getInt(ctx.getString(R.string.key_redirect_max_count), Values.vDefaultRedirectMaxCount)){
                         onReturnDataFunction.OnReturnData(item,STATUS_ONGOING,response+"\n"+ctx.getString(R.string.message_too_many_redirect));
                     }else {
-                        ReadBilibiliURL_OnCallback(connection.getRequestProperty("Location"));
+                        String location=connection.getRequestProperty("Location");
+                        if(location==null)
+                            location="";
+                        ReadBilibiliURL_OnCallback(location);
                         return;
                     }
                 }else {

@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":397,
+	"last_watch_index":422,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -1117,7 +1117,7 @@ setJsonData({
 		"last_watch_episode_anime":12,
 		"last_watch_date_anime":"2018-12-27"
 	},{
-		"watched_episode":[false,false,false,false,false,false,false,false,false,false,false,false],
+		"watched_episode":[20191118,20191118,false,false,false,false,false,false,false,false,false,false],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/16e8f574911bc1c2fc7b4fe2e2b8fa4fe04e1c13.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss53",
 		"title":"月刊少女野崎君",
@@ -1128,12 +1128,13 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":5,
 		"color":"silver",
 		"category":["少女","搞笑","校园","恋爱","漫改"],
 		"staff":"政行：若松博隆、小野友樹、鹿島遊\n脚本：中村能子\n人物设定：谷口淳一郎\n作画監督：宮川智恵子、瀧原美樹、天﨑まなむ、工藤裕加、中嶋敦子、小谷杏子、菊永千里、吉田奏子\n若松博隆：木村良平、鹿島遊、瀬尾結月\n总作画监督： 谷口淳一郎\n作画监督： 瀧原美樹\n摄影监督： 伊藤邦彦\n剪辑： 武宮むつみ\n主题歌演出： オーイシマサヨシ、佐倉千代（小澤亜李）、大石昌良\n音响监督： 松尾衡\n制作： テレビ東京、スクウェア・エニックス、メディアファクトリー、アニメシアターX\n音乐制作： メディアファクトリー、テレビ東京ミュージック\n动画制作： 動画工房\nOP・ED 分镜： りょーちも（OP）山﨑みつえ（ED）\n官方网站： http：\/\/www.nozakikun.tv\/",
 		"actors":"佐仓千代：小澤亜李\n野崎梅太郎：中村悠一\n鹿岛游：中原麻衣\n堀政行：小野友樹\n若松博隆：木村良平\n濑尾结月：泽城美雪\n御子柴实琴：岡本信彦\n宫前剑：三宅健太\n前野蜜也：小野大輔\n",
-		"update_time_int":0
+		"update_time_int":0,
+		"last_watch_episode_anime":2
 	},{
 		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/faa8ac33e4ae5c6601d25f6e90f6ff64edf41292.jpg",
@@ -1548,26 +1549,6 @@ setJsonData({
 		"update_time_int":0,
 		"actors":"(NOT SET)",
 		"staff":"(NOT SET)"
-	},{
-		"watched_episode":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-		"cover":"http:\/\/5b0988e595225.cdn.sohucs.com\/images\/20180601\/4177e582461e4555b5297ef7da0dc9c0.jpeg",
-		"watch_url":"http:\/\/v.youku.com\/v_show\/id_XMzc0Njg0MTU2.html",
-		"title":"犬夜叉",
-		"description":"Youku:日暮戈薇是就读于国中三年级的15岁普通小女生，某日，她偶然通过家中神社的枯井来到了500年前的战国时代。时狼烟四起，妖怪横行，世间大地生灵涂炭。戈薇在御神木那里邂逅了被封印的半妖犬夜叉。 50年前，意欲变成真正妖怪的犬夜叉，为了得到四魂之玉结识拥有强大灵力的巫女桔梗。经过一段时间相处，两人之间产生了感情。犬夜叉因此希望变成人类，而桔梗也打算在净化完四魂之玉后过回普通人的生活。 然而，对桔梗心存邪念的盗贼鬼蜘蛛将灵魂和肉体献给妖怪，继而转生变成邪恶的半妖奈落。在他的一番挑拨下，犬夜叉被桔梗封印在神木之上，重伤的桔梗也在悲伤绝望中死去。 桔梗转生的戈薇解救了犬夜叉，却不慎将四魂之玉射成碎片。为了找回碎片，她和犬夜叉以及随后遇到的伙伴：七宝、弥勒、珊瑚踏上了充满艰难险阻的旅途……\n动画制作：日升",
-		"start_date":"2000-10-16",
-		"update_period":7,
-		"update_period_unit":"day",
-		"episode_count":167,
-		"absense_count":0,
-		"abandoned":false,
-		"rank":0,
-		"color":"silver",
-		"category":[],
-		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
-		"actors":"(NOT SET)",
-		"staff":"(NOT SET)",
-		"update_time_int":0
 	},{
 		"watched_episode":[true,true,true,true,true],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/970a03911409a8d3891242fea3392196f19f58f7.jpg",
@@ -3746,7 +3727,7 @@ setJsonData({
 		"last_watch_episode_anime":1,
 		"create_date":"2019-1-2"
 	},{
-		"watched_episode":[false],
+		"watched_episode":[20191118],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/6de861925c772076a747844427bf49c252a8accf.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss782",
 		"title":"一起一起这里那里",
@@ -3760,11 +3741,11 @@ setJsonData({
 		"episode_count":13,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["萌系","日常","治愈","萝莉"],
 		"last_watch_date_anime":"1900-1-1",
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-1-3"
 	},{
 		"watched_episode":[false],
@@ -7494,7 +7475,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-9-12"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20191118],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/4b12304c6d7f54c9fa339599f3bf195064c7bcef.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss1356",
 		"title":"萌单",
@@ -7508,10 +7489,10 @@ setJsonData({
 		"episode_count":14,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":["萌系","日常","魔法"],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-9-12"
 	},{
 		"watched_episode":[0],
@@ -7894,7 +7875,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-9-30"
 	},{
-		"watched_episode":[20191027,20191027,20191027,20191031],
+		"watched_episode":[20191027,20191027,20191027,20191031,20191118,20191118],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/9a3ce7ccfb2f20bf1cee49c5859add6f41bdec4c.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28544",
 		"title":"我不是说了能力要平均值么！",
@@ -7911,7 +7892,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["小说改","穿越","奇幻","萌系","架空","魔法"],
-		"last_watch_episode_anime":4,
+		"last_watch_episode_anime":6,
 		"create_date":"2019-9-30"
 	},{
 		"watched_episode":[0],
@@ -7934,7 +7915,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-9-30"
 	},{
-		"watched_episode":[20191027,20191027,20191031,20191031],
+		"watched_episode":[20191027,20191027,20191031,20191031,20191118,20191118,20191118],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/344e3720dd0c4c665e4cb3bd9937addd1544e948.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28624",
 		"title":"厨病激发男孩",
@@ -7951,7 +7932,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["小说改","搞笑","日常","校园"],
-		"last_watch_episode_anime":4,
+		"last_watch_episode_anime":7,
 		"create_date":"2019-9-30"
 	},{
 		"watched_episode":[0],
@@ -8034,7 +8015,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-10-3"
 	},{
-		"watched_episode":[20191027,20191027,20191027],
+		"watched_episode":[20191027,20191027,20191027,20191118,20191118,20191118],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/7203889dcc88b3efb9c94c933fa61851dba0c7a8.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28625",
 		"title":"这个勇者明明超强却过分慎重",
@@ -8051,7 +8032,7 @@ setJsonData({
 		"rank":4,
 		"color":"silver",
 		"category":["小说改","穿越","奇幻","战斗","搞笑","魔法","冒险","架空"],
-		"last_watch_episode_anime":3,
+		"last_watch_episode_anime":6,
 		"create_date":"2019-10-4"
 	},{
 		"watched_episode":[20191027,20191027],
@@ -8254,11 +8235,11 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-10-15"
 	},{
-		"watched_episode":[0],
+		"watched_episode":[20191118],
 		"cover":"https:\/\/i0.hdslb.com\/bfs\/archive\/bea5f70ed27017ac5871c9fa4708846553b26f07.jpg",
 		"watch_url":"http:\/\/www.bilibili.com\/video\/av530917",
 		"title":"悠悠式",
-		"description":"Bili:",
+		"description":"动画制作：KINEMA CITRUS",
 		"actors":"",
 		"staff":"",
 		"start_date":"2013-4-10",
@@ -8268,10 +8249,10 @@ setJsonData({
 		"episode_count":12,
 		"absense_count":0,
 		"abandoned":false,
-		"rank":0,
+		"rank":4,
 		"color":"silver",
 		"category":[],
-		"last_watch_episode_anime":0,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-10-15"
 	},{
 		"watched_episode":[0],
@@ -8371,7 +8352,107 @@ setJsonData({
 		"rank":3,
 		"color":"silver",
 		"category":["搞笑","萌系","治愈","泡面","游戏改"],
-		"last_watch_episode_anime":9,
+		"last_watch_episode_anime":1,
 		"create_date":"2019-10-29"
+	},{
+		"watched_episode":[20191118],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/fa218bbc1f73d86824dddb3048691058a82ccf25.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss3106",
+		"title":"苍之彼方的四重奏",
+		"description":"这是个因「反重力鞋」的问世，人人都能轻而易举地翱翔天空的世界。转校至久奈浜学院的仓科明日香，与新的同学鸢泽美咲、日向晶也相遇，得知了穿着「反重力鞋」竞技的比赛项目「Flying Circus」（简称FC）。迷上这项运动的明日香决意加入久奈浜学院的「FC部」，与其他伙伴一起挥洒青春的汗水。她们互帮互助，共同成长，向强力的对手发起挑战。目标——夏季大赛！\n动画制作：GONZO",
+		"actors":"日向晶也：逢坂良太\n仓科明日香：福圆美里\n有坂真白：山本希望\n市之濑莉佳：米泽圆\n青柳窗果：若林直美\n青柳紫苑：近藤孝行\n佐藤院丽子：种田梨沙\n真藤一成：兴津和幸\n各务葵：绪方惠美\n保坂实里：仪武佑子",
+		"staff":"原作：sprite\n监督：追崎史敏\n演出：高桥幸雄\n角色原案：铃森\n角色设计：中野圭哉\n系列构成：吉田玲子\n道具设计：清水奏太郎\n总作画监督：中野圭哉、小池智史\n动作监督：鲤川慎平\n美术监督：氏家诚\n色彩设定：村田惠理子\n音乐：Elements Garden\n音响监督：森下广人\nCG导演：井野元英二\n摄影监督：荻原猛夫\n编辑：斋藤朱里\n动画制作：GONZO",
+		"start_date":"2016-01-11",
+		"update_time_int":215,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":3,
+		"color":"silver",
+		"category":["奇幻","运动","游戏改"],
+		"last_watch_episode_anime":1,
+		"create_date":"2019-11-18"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a462dba300b93eba189dc9d1f4a98c77db0e5e01.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss919",
+		"title":"架向星空之桥",
+		"description":"【本片翻译由澄空学园字幕组提供】\n故事讲述男主角星野一马，为了陪同身体虚弱的弟弟星野步疗养，在学期过了一半却决定和弟弟由市镇搬到空气清新的乡郊山比古町居住。本应是值得纪念的转校第一天，一马在这陌生的道路上迷了路，但幸好的是，一马遇到了同校的女生中津川初，并像其他王道游戏般，两人“意外地”滑倒，又“意外地”地接了吻。在一连串的意外后，最意外的竟是被初的好友日向伊吹看到了，就这样，他们三人的初遇及再遇的故事便在这乡郊里展开。\n动画制作：动画工房",
+		"actors":"星野一马：浅沼晋太郎\n中津川初：中村繪里子\n星野 歩：大橋歩夕\n神本圆佳：清水愛\n酒井阳菜：吉田真弓\n藤堂小宵：大久保藍子\n藤堂绸：高桥智秋\n日向伊吹：青叶苹果",
+		"staff":"脚本： 雑破業\n分镜： 岩崎太郎、博多正寿\n演出： 越田知明、岩崎太郎\n人物原案： 涼香、なちゅらるとん、鶴崎貴大、有河サトル、澤野明、ぞうあざら\n系列构成： 雑破業\n作画监督： 奥野浩行、清水昌之、長谷川亨雄、野道佳代\n监修： 柊★たくみ\n原画： 吉原達矢\n主题歌演出： のみこ\n制片人： 伊藤誠\n动画制作： 動画工房\n别名： 向星空架桥\n官方网站： http：\/\/www.mmv.co.jp\/special\/hoshikaka\/\n导演： 三原武憲\n系列构成\/脚本： 雑破業\n人物设定\/作画监督： 大河原晴男\n美术监督： 門間幸一\n制作： 山比古町観光協会",
+		"start_date":"2011-04-11",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["日常","治愈"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-11-18"
+	},{
+		"watched_episode":[20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0c39256b7c701547a0ce7082740dc082a50c9e68.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28324",
+		"title":"犬夜叉",
+		"description":"《犬夜叉》是根据日本漫画家高桥留美子所著同名作品改编的电视动画，故事讲述半妖少年——犬夜叉和穿越时空的少女——日暮戈薇，以及法师弥勒、驱魔师珊瑚、叉尾妖猫云母、小狐妖七宝一同对抗死敌奈落，并四处寻找四魂之玉碎片的冒险经历。\n动画制作：日升",
+		"actors":"犬夜叉：山口胜平\n日暮戈薇：雪野五月\n弥勒：辻谷耕史\n珊瑚：桑岛法子\n七宝：渡边久美子\n云母：Tarako\n杀生丸：成田剑\n铃：能登麻美子\n桔梗：日高法子\n钢牙：松野太纪\n琥珀：矢岛晶子\n枫：京田尚子\n冥加：绪方贤一\n刀刀斋：八奈见乘儿\n邪见：长岛雄一\n奈落\t：森川智之\n神无:野上由加奈\n神乐\t：大神泉\n赤子：小林爱\n白童子：小林爱\n\n",
+		"staff":"原作：高桥留美子\n制作统括：小石川伸哉（ytv） 都筑伸一郎（小学馆） 吉井孝幸（SUNRISE）\n企画：诹访道彦（ytv） 藤森匠（小学馆） 植田益朗→宫河恭夫（SUNRISE）\n管理人：新井利幸、袖崎友和、横田清\n原案协助：三上信一、村上正直、熊谷崇（小学馆「少年Sunday周刊」编辑部）\n企画协助：下山明子\n系列构成：隅泽克之\n人物设计：菱沼义仁\n妖魔设计：沙仓拓实\n美术监督：池田繁美\n色彩设计：佐藤美由纪\n摄影监督：伊藤久美子、大神洋一\n编集：鹤渊友彰\n音乐：和田薰\n音响监督：鹤冈阳太\n主要制作人：诹访道彦（ytv）、富冈秀行（SUNRISE）\n制作人：斋藤朋之（ytv） 佐藤弘幸（SUNRISE）\n监督：池田成→青木康直\n制作：读卖电视台、SUNRISE舞台设定",
+		"start_date":"2000-10-16",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":167,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":5,
+		"color":"silver",
+		"category":["漫画改","热血","穿越","奇幻","战斗","冒险","神魔","恋爱"],
+		"last_watch_episode_anime":15,
+		"create_date":"2019-11-18"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/image\/fa2700aa713fd3f770599fe816b4f84f260519ca.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28937",
+		"title":"吹响吧！上低音号 第二季",
+		"description":"吹奏乐竞赛京都府大赛。在那里漂亮地取得金奖的北宇治高中吹奏乐部，向着下一个舞台·强豪云集的关西大赛发起挑战……！\n动画制作：京都动画",
+		"actors":"黄前久美子：黑泽朋世\n加藤叶月：朝井彩加\n川岛绿辉：丰田萌绘\n高坂丽奈：安济知佳\n田中明日香：寿美菜子\n小笠原晴香：早见沙织\n中世古香织：茅原实里\n冢本秀一：石谷春贵\n泷升：樱井孝宏\n伞木希美：东山奈央\n黄前麻美子：沼仓爱美\n松本美知惠：久川绫\n桥本真博：中村悠一\n新山聪美：桑岛法子",
+		"staff":"原作：武田绫乃\n监督：石原立也\n剧本：花田十辉\n角色设计：池田晶子\n系列演出：山田尚子\n美术监督：篠原睦雄\n色彩设计：竹田明代\n乐器设定：高桥博行\n摄影监督：高尾一也\n音响监督：鹤冈阳太\n音乐：松田彬人\n音乐制作：Lantis\n音乐制作协力：洗足学园音乐大学\n演奏协力：Freshman Wind Ensemble 2014\n音乐监修：大和田雅洋\n动画制作：京都动画",
+		"start_date":"2016-10-5",
+		"update_time_int":1080,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":13,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["小说改","日常","萌系","校园","励志","音乐","社团"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-11-18"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/image\/145ae170aad690934481271529dd62632c0b3da6.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss4687",
+		"title":"犬夜叉 完结篇",
+		"description":"《犬夜叉》是根据日本漫画家高桥留美子所著同名作品改编的电视动画，故事讲述半妖少年——犬夜叉和穿越时空的少女——日暮戈薇，以及法师弥勒、驱魔师珊瑚、叉尾妖猫云母、小狐妖七宝一同对抗死敌奈落，并四处寻找四魂之玉碎片的冒险经历。\n动画制作：日升",
+		"actors":"犬夜叉：山口胜平\n日暮戈薇：雪野五月\n弥勒：辻谷耕史\n珊瑚：桑岛法子\n七宝：渡边久美子\n云母：Tarako\n杀生丸：成田剑\n铃：能登麻美子\n桔梗：日高法子\n钢牙：松野太纪\n琥珀：矢岛晶子\n枫：京田尚子\n冥加：绪方贤一\n刀刀斋：八奈见乘儿\n邪见：长岛雄一\n奈落\t：森川智之\n神无:野上由加奈\n神乐\t：大神泉\n赤子：小林爱\n白童子：小林爱\n\n",
+		"staff":"原作：高桥留美子\n监督：青木康直\n副监督：佐藤照雄\n系列构成：隅泽克之\n人物设定和总作画监督：菱沼义仁\n美术监督：池田繁美\n色彩设计：佐藤美由纪\nCG：小森稻穗、福士直也\n摄影监督：小川滋见\n编辑：鹤渕友彰\n音乐：和田薫\n音响监督：鹤冈阳太\n制片人：斋藤朋之、小形尚弘、浅井忍\n主要制片人：诹访道彦、富冈秀行\n动画制作：SUNRISE",
+		"start_date":"2009-10-03",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":26,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["漫画改","热血","奇幻","战斗","穿越","恋爱","冒险","神魔"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-11-18"
 	}]
 });

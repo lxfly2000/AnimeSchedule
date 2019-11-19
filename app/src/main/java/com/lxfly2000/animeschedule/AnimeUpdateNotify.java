@@ -95,8 +95,10 @@ public class AnimeUpdateNotify extends Service {
 
     private void ReleaseNotifyIdChannel(){
         NotificationManager manager=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        if(manager!=null) {
-            manager.deleteNotificationChannel(notifyChannelId);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (manager != null) {
+                manager.deleteNotificationChannel(notifyChannelId);
+            }
         }
     }
     

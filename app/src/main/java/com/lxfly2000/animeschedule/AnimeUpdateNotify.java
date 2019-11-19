@@ -1,12 +1,11 @@
 package com.lxfly2000.animeschedule;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
+import android.app.*;
 import android.content.*;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
 import android.util.SparseArray;
@@ -73,6 +72,33 @@ public class AnimeUpdateNotify extends Service {
 
     private static final String ACTION_WATCH_ANIME=BuildConfig.APPLICATION_ID+".WatchAnime";
     private SparseArray<Timer> timersHideNotifyHead =new SparseArray<>();
+    private String notifyChannelId=BuildConfig.APPLICATION_ID;
+
+    private void RegisterNotifyIdChannel(){
+        //https://blog.csdn.net/qq_15527709/article/details/78853048
+        String notifyChannelName = "AnimeSchedule Channel";
+        NotificationChannel notificationChannel = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationChannel = new NotificationChannel(notifyChannelId,
+                    notifyChannelName, NotificationManager.IMPORTANCE_HIGH);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setShowBadge(true);
+            notificationChannel.enableVibration(false);
+            notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            if(manager!=null) {
+                manager.createNotificationChannel(notificationChannel);
+            }
+        }
+    }
+
+    private void ReleaseNotifyIdChannel(){
+        NotificationManager manager=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        if(manager!=null) {
+            manager.deleteNotificationChannel(notifyChannelId);
+        }
+    }
     
     private void PublishUpdateNotification(final int index){
         StringBuilder strSchedule=new StringBuilder();
@@ -95,7 +121,7 @@ public class AnimeUpdateNotify extends Service {
         //注意requestCode在不同的通知里也要是不同的，否则会被覆盖
         PendingIntent pi=PendingIntent.getBroadcast(this,index,new Intent(ACTION_WATCH_ANIME).putExtra("index",index),PendingIntent.FLAG_UPDATE_CURRENT);
         //Builder方法过时解决：https://blog.csdn.net/zwk_sys/article/details/79661045
-        final NotificationCompat.Builder nb=new NotificationCompat.Builder(this,"anime_update")
+        final NotificationCompat.Builder nb=new NotificationCompat.Builder(this,notifyChannelId)
                 .setSmallIcon(R.drawable.ic_animeschedule)
                 .setContentTitle(jsonForNotify.GetTitle(index))
                 .setContentText(strSchedule.toString())
@@ -139,6 +165,7 @@ public class AnimeUpdateNotify extends Service {
     public void onDestroy(){
         timerCheckAnimeUpdate.cancel();
         unregisterReceiver(notifyBroadcastReceiver);
+        ReleaseNotifyIdChannel();
         super.onDestroy();
     }
 
@@ -156,6 +183,7 @@ public class AnimeUpdateNotify extends Service {
                 }
             }
         };
+        RegisterNotifyIdChannel();
         registerReceiver(notifyBroadcastReceiver,new IntentFilter(ACTION_WATCH_ANIME));
     }
 

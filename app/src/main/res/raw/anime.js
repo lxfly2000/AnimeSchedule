@@ -8395,7 +8395,7 @@ setJsonData({
 		"last_watch_episode_anime":0,
 		"create_date":"2019-11-18"
 	},{
-		"watched_episode":[20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118],
+		"watched_episode":[20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191118,20191119,20191119],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0c39256b7c701547a0ce7082740dc082a50c9e68.jpg",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss28324",
 		"title":"犬夜叉",
@@ -8412,7 +8412,7 @@ setJsonData({
 		"rank":5,
 		"color":"silver",
 		"category":["漫画改","热血","穿越","奇幻","战斗","冒险","神魔","恋爱"],
-		"last_watch_episode_anime":15,
+		"last_watch_episode_anime":17,
 		"create_date":"2019-11-18"
 	},{
 		"watched_episode":[0],

@@ -8,7 +8,6 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
-import android.util.SparseArray;
 import com.lxfly2000.utilities.*;
 
 import java.util.Timer;
@@ -71,13 +70,12 @@ public class AnimeUpdateNotify extends Service {
     }
 
     private static final String ACTION_WATCH_ANIME=BuildConfig.APPLICATION_ID+".WatchAnime";
-    private SparseArray<Timer> timersHideNotifyHead =new SparseArray<>();
     private String notifyChannelId=BuildConfig.APPLICATION_ID;
 
     private void RegisterNotifyIdChannel(){
         //https://blog.csdn.net/qq_15527709/article/details/78853048
         String notifyChannelName = "AnimeSchedule Channel";
-        NotificationChannel notificationChannel = null;
+        NotificationChannel notificationChannel;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationChannel = new NotificationChannel(notifyChannelId,
                     notifyChannelName, NotificationManager.IMPORTANCE_HIGH);
@@ -129,21 +127,14 @@ public class AnimeUpdateNotify extends Service {
                 .setContentText(strSchedule.toString())
                 //https://blog.csdn.net/yuzhiboyi/article/details/8484771
                 .setContentIntent(pi)
-                .setFullScreenIntent(pi,false)
+                //https://blog.csdn.net/wds1181977/article/details/49783787
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(Notification.DEFAULT_LIGHTS|Notification.DEFAULT_SOUND)
                 .setAutoCancel(true);
         if(FileUtility.IsFileExists(coverPath))
             nb.setLargeIcon(BitmapFactory.decodeFile(coverPath));
-        nm.notify(index,nb.build());
-        timersHideNotifyHead.put(index,new Timer());
-        timersHideNotifyHead.get(index).schedule(new TimerTask() {
-            @Override
-            public void run() {
-                nb.setFullScreenIntent(null,false)
-                        .setDefaults(Notification.DEFAULT_LIGHTS);
-                nm.notify(index,nb.build());//Bug 非预期的动作：即使点了通知框还是会在状态栏中再显示一次
-            }
-        },5000);
+        if(nm!=null)
+            nm.notify(index,nb.build());
     }
 
     Timer timerCheckAnimeUpdate =null;
@@ -180,7 +171,6 @@ public class AnimeUpdateNotify extends Service {
             public void onReceive(Context context, Intent intent) {
                 if(ACTION_WATCH_ANIME.equals(intent.getAction())) {
                     int index=intent.getIntExtra("index",0);
-                    timersHideNotifyHead.get(index).cancel();
                     AndroidUtility.OpenUri(context, jsonForNotify.GetWatchUrl(index));
                 }
             }

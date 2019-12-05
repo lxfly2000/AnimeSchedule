@@ -310,15 +310,22 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
                             ParametersSetImage param = (ParametersSetImage) extra;
-                            if(success) {
-                                FileUtility.WriteStreamToFile(param.imagePath,stream);
-                                ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).put("cover", BitmapFactory.decodeFile(param.imagePath));
-                            }else {
-                                ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).put("cover",BitmapFactory.decodeResource(getResources(),R.raw.dn_error));
-                                Toast.makeText(getBaseContext(),getString(R.string.message_cannot_download_cover,animeJson.GetCoverUrl(jsonSortTable.get(param.listIndex)),
-                                        ((HashMap<String,Object>)param.listAdapter.getItem(param.listIndex)).get("title")),Toast.LENGTH_LONG).show();
-                            }
-                            param.listAdapter.notifyDataSetChanged();
+                            try {
+                                if (success) {
+                                    FileUtility.WriteStreamToFile(param.imagePath, stream);
+                                    item.put("cover", BitmapFactory.decodeFile(param.imagePath));
+                                } else {
+                                    item.put("cover", BitmapFactory.decodeResource(getResources(), R.raw.dn_error));
+                                    Toast.makeText(getBaseContext(), getString(R.string.message_cannot_download_cover, animeJson.GetCoverUrl(jsonSortTable.get(param.listIndex)),
+                                            ((HashMap<String, Object>) param.listAdapter.getItem(param.listIndex)).get("title")), Toast.LENGTH_LONG).show();
+                                }
+                                if(param.listIndex>=lastTopItemIndex&&param.listIndex<=lastBottomItemIndex) {
+                                    adapter.notifyDataSetChanged();
+                                }else if(item.get("cover")instanceof Bitmap){
+                                    ((Bitmap)item.get("cover")).recycle();
+                                    item.remove("cover");
+                                }
+                            }catch (IndexOutOfBoundsException e){/*Nothing*/}
                         }
                     };
                     task.SetExtra(new ParametersSetImage(adapter,coverPath,i));

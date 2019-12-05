@@ -1,6 +1,6 @@
 setJsonData({
 	"_comment":"episode_count:正整数，-1为未知；absense_count:跳票次数；watched_episode:标记各集是否已观看，默认false；abandoned:是否弃番；rank:评分0～5",
-	"last_watch_index":425,
+	"last_watch_index":147,
 	"anime":[{
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/0f9ab51ef5033eadad06628e98ee70d06a115fec.jpg",
 		"title":"魔法使的新娘",
@@ -2804,7 +2804,7 @@ setJsonData({
 		"staff":"(NOT SET)",
 		"update_time_int":0
 	},{
-		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
+		"watched_episode":[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,20190312],
 		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
 		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss25739",
 		"title":"关于我转生变成史莱姆这档事",
@@ -2812,7 +2812,7 @@ setJsonData({
 		"start_date":"2018-10-02",
 		"update_period":7,
 		"update_period_unit":"day",
-		"episode_count":25,
+		"episode_count":26,
 		"absense_count":1,
 		"abandoned":true,
 		"rank":3,

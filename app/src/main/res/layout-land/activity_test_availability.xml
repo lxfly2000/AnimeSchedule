@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".TestAvailabilityActivity">
+
+    <ListView
+            android:layout_width="0dp"
+            android:layout_height="match_parent" android:id="@+id/listAvailability" android:layout_weight="1"/>
+    <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+<TableRow>
+<Space android:layout_height="wrap_content" android:layout_width="wrap_content"/>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_availability_true" android:textAlignment="center"/>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_availability_false" android:textAlignment="center"/>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_count_stat_total" android:textAlignment="center"/>
+</TableRow>
+<TableRow>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_app_name_bilibili" android:textAlignment="center"/>
+<TextView android:id="@+id/textAvailabilityBilibiliTrue" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityBilibiliFalse" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityBilibiliTotal" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+</TableRow>
+<TableRow>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_app_name_iqiyi" android:textAlignment="center"/>
+<TextView android:id="@+id/textAvailabilityIQiyiTrue" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityIQiyiFalse" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityIQiyiTotal" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+</TableRow>
+<TableRow>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_app_name_qqvideo" android:textAlignment="center"/>
+<TextView android:id="@+id/textAvailabilityQQVideoTrue" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityQQVideoFalse" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityQQVideoTotal" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+</TableRow>
+<TableRow>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_app_name_youku" android:textAlignment="center"/>
+<TextView android:id="@+id/textAvailabilityYoukuTrue" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityYoukuFalse" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityYoukuTotal" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+</TableRow>
+<TableRow>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_app_name_acfun" android:textAlignment="center"/>
+<TextView android:id="@+id/textAvailabilityAcFunTrue" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityAcFunFalse" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityAcFunTotal" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+</TableRow>
+<TableRow>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_app_name_etc" android:textAlignment="center"/>
+<TextView android:id="@+id/textAvailabilityEtcTrue" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityEtcFalse" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityEtcTotal" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+</TableRow>
+<TableRow>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/label_count_stat_total" android:textAlignment="center"/>
+<TextView android:id="@+id/textAvailabilityTotalTrue" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityTotalFalse" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+<TextView android:id="@+id/textAvailabilityTotalTotal" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat"/>
+</TableRow>
+    </TableLayout>
+</LinearLayout>

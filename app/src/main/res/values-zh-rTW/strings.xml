@@ -196,4 +196,5 @@
     <string name="label_choose_video_quality">選擇下載畫質。</string>
     <string name="message_merged_videos">已合併影片</string>
     <string name="message_fetch_cna_failed">無法獲取 CNA Cookie, 請手動設定 Cookie.</string>
+    <string name="message_move_files">移動：%s\n至：%s…</string>
 </resources>

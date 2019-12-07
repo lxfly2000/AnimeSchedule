@@ -202,7 +202,7 @@ public class BilibiliAnimeEpisodeDownloader {
         }
         AndroidSysDownload sysDownload=new AndroidSysDownload(ctx);
         sysDownload.SetUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1");
-        String cookiePath=Values.GetRepositoryPathOnLocal()+"/cookie_bilibili.txt";
+        String cookiePath=Values.GetRepositoryPathOnLocal(ctx)+"/cookie_bilibili.txt";
         if(referer!=null)
             sysDownload.SetReferer(referer);
         if(FileUtility.IsFileExists(cookiePath))

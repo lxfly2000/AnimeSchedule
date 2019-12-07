@@ -20,7 +20,7 @@ public class AnimeWeb extends AppCompatActivity {
         SharedPreferences preferences=Values.GetPreference(this);
         String starMarks=getResources().getStringArray(R.array.star_marks)[preferences.getInt(getString(R.string.key_star_mark),Values.vDefaultStarMark)];
         String starMarkFull=starMarks.substring(0,1),starMarkEmpty=starMarks.substring(1,2);
-        webAnime.loadUrl("file://"+Values.GetRepositoryPathOnLocal()+"/"+Values.webFiles[0]+"?mark_full="+starMarkFull+"&mark_empty="+starMarkEmpty);
+        webAnime.loadUrl("file://"+Values.GetRepositoryPathOnLocal(this)+"/"+Values.webFiles[0]+"?mark_full="+starMarkFull+"&mark_empty="+starMarkEmpty);
     }
 
     @Override

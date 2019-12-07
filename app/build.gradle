@@ -7,8 +7,8 @@ android {
         applicationId "com.lxfly2000.animeschedule"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 185
-        versionName "6.2.4"
+        versionCode 186
+        versionName "6.2.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BUILD_DATE", "\"" + new Date().format("yyyy-M-d") + "\""
     }
@@ -56,7 +56,7 @@ preBuild {
     doFirst {
         try {
             exec {
-                commandLine android.getSdkDirectory().getPath() + '/platform-tools/adb', 'pull', '/sdcard/AnimeSchedule/anime.js', 'src/main/res/raw/anime.js'
+                commandLine android.getSdkDirectory().getPath() + '/platform-tools/adb', 'pull', '/sdcard/Android/data/'+android.defaultConfig.applicationId+'/files/anime.js', 'src/main/res/raw/anime.js'
             }
         } catch (Exception e) {
             println e.getLocalizedMessage()

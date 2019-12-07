@@ -77,7 +77,7 @@ public class AcFunDownloadDialog extends DownloadDialog {
                                     AcFunGet acFunGet=new AcFunGet(ctx);
                                     acFunGet.SetOnFinish(onFinishFunction);
                                     acFunGet.DownloadBangumi(animeItem.episodeTitles.get(i_epi).episodeWatchUrl,i_epi,i_radio,preferences.getString(ctx.getString(
-                                            R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal()),checkIncludeDanmaku.isChecked(),true);
+                                            R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal(ctx)),checkIncludeDanmaku.isChecked(),true);
                                 }
                             }
                             Toast.makeText(ctx,R.string.message_download_task_created,Toast.LENGTH_SHORT).show();

@@ -264,4 +264,5 @@
         <a href="https://gitee.com/chengww5217/BiliBiliMerge">BilibiliMerge</a>
     </string>
     <string name="message_fetch_cna_failed">Cannot fetch CNA Cookie, please set your own Cookie manually.</string>
+    <string name="message_move_files">Move: %s\nTo: %s...</string>
 </resources>

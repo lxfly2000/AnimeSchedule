@@ -60,9 +60,13 @@ public class IQiyiGet extends YouGet {
     private String paramPlayUrl,paramSavePath,fileNameWithoutExt;
     private int episodeToDownload;
     private SharedPreferences preferences;
-    public static final String cookiePath= Values.GetRepositoryPathOnLocal()+"/cookie_iqiyi.txt";
+    public static String GetCookiePath(Context context){
+        return Values.GetRepositoryPathOnLocal(context)+"/cookie_iqiyi.txt";
+    }
+    private String cookiePath;
     public IQiyiGet(@NonNull Context context) {
         super(context);
+        cookiePath=GetCookiePath(ctx);
         preferences=Values.GetPreference(ctx);
     }
 

@@ -8474,5 +8474,25 @@ setJsonData({
 		"category":["漫画改","战斗","奇幻","冒险"],
 		"last_watch_episode_anime":2,
 		"create_date":"2019-11-30"
+	},{
+		"watched_episode":[0],
+		"cover":"http:\/\/i0.hdslb.com\/bfs\/bangumi\/image\/d8edcc44a4cc30ce60eb464badadde185931e10e.jpg",
+		"watch_url":"https:\/\/www.bilibili.com\/bangumi\/play\/ss4389",
+		"title":"我不受欢迎，怎么想都是你们的错！",
+		"description":"主人公\"黑木智子\"以为变成「女子高中生」就自然会受欢迎。但现实却完全不同。\n进入高中两个月了，别说男朋友了，就连和同学都没有好好说话。\n对这个状况感到焦急的智子开始了让自己受欢迎的行动。\n但是……智子在班级中不怎么引人注目，而且她极度怕生，不擅长与人交流，\n不得不从和家人以外的人对话开始。\n不受欢迎的女高中生“黑木智子”为了变得受欢迎孤军奋斗……\n智子有闪亮的未来在等待着吗！？\n这是不受欢迎的女高中生烦恼的开始！！\n动画制作：银链",
+		"actors":"黑木智子：橘田泉\n黑木智贵：中村悠一\n成濑优：花泽香菜\n小纪：钉宫理惠",
+		"staff":"原作：谷川NICO\n监督：大沼心\n系列构成：吉冈孝夫\n角色设计、总作画监督：古川英树\n美术监督：森尾麻纪\n摄影监督：岩井和也\n色彩设定：木幡美雪\n编集：坪根健太郎\n音响监督：本山哲\n音乐：Sadesper Record\n音乐制作：Media Factory\n动画制作：SILVER LINK.\n动画制作：WATAMOTE制作委员会",
+		"start_date":"2013-07-08",
+		"update_time_int":0,
+		"update_period":7,
+		"update_period_unit":"day",
+		"episode_count":12,
+		"absense_count":0,
+		"abandoned":false,
+		"rank":0,
+		"color":"silver",
+		"category":["漫画改","搞笑","日常","校园"],
+		"last_watch_episode_anime":0,
+		"create_date":"2019-12-6"
 	}]
 });

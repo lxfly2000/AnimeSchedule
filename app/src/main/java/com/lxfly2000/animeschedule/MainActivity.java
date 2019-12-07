@@ -109,6 +109,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        if(FileUtility.IsFileExists(Values.GetRepositoryPathOnLocal())){
+            String oldPath=Values.GetRepositoryPathOnLocal();
+            String newPath=Values.GetRepositoryPathOnLocal(this);
+            Toast.makeText(this,getString(R.string.message_move_files,oldPath,newPath),Toast.LENGTH_LONG).show();
+            try {
+                Runtime.getRuntime().exec(String.format("rm -r -f %s", newPath)).waitFor();
+                Runtime.getRuntime().exec(String.format("mv -f %s %s", oldPath, newPath)).waitFor();
+            }catch (IOException e){
+                Toast.makeText(this,getString(R.string.message_io_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+            }catch (InterruptedException e){
+                Toast.makeText(this,getString(R.string.message_exception,e.getLocalizedMessage()),Toast.LENGTH_LONG).show();
+            }
+        }
         SaveAndReloadJsonFile(false);
         if(animeJson.GetAnimeCount()>0) {
             GetAnimeUpdateInfo(true);
@@ -116,10 +129,10 @@ public class MainActivity extends AppCompatActivity {
             Snackbar.make(listAnime,R.string.message_no_anime_json,Snackbar.LENGTH_LONG)
                     .setAction(android.R.string.ok, view -> {
                         try{
-                            if(FileUtility.WriteFile(Values.GetJsonDataFullPath(),StreamUtility.GetStringFromStream(getResources().openRawResource(R.raw.anime))))
+                            if(FileUtility.WriteFile(Values.GetJsonDataFullPath(getBaseContext()),StreamUtility.GetStringFromStream(getResources().openRawResource(R.raw.anime))))
                                 SaveAndReloadJsonFile(false);
                             else
-                                Toast.makeText(getBaseContext(), getString(R.string.message_cannot_write_to_file,Values.GetJsonDataFullPath()), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getBaseContext(), getString(R.string.message_cannot_write_to_file,Values.GetJsonDataFullPath(getBaseContext())), Toast.LENGTH_LONG).show();
                         }catch (IOException e){
                             //Nothing to do.
                         }
@@ -229,16 +242,16 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void ReadJsonFile(){
-        if(!FileUtility.IsFileExists(Values.GetJsonDataFullPath())){
+        if(!FileUtility.IsFileExists(Values.GetJsonDataFullPath(this))){
             animeJson=new AnimeJson();
             SaveJsonFile();
         }
-        animeJson=new AnimeJson(Values.GetJsonDataFullPath());
+        animeJson=new AnimeJson(Values.GetJsonDataFullPath(this));
         Pattern p=Pattern.compile("\\.json$");
-        Matcher m=p.matcher(Values.GetJsonDataFullPath());
+        Matcher m=p.matcher(Values.GetJsonDataFullPath(this));
         if(m.find()){
-            File file=new File(Values.GetJsonDataFullPath());
-            if(file.renameTo(new File(Values.GetRepositoryPathOnLocal()+"/"+Values.pathJsonDataOnRepository[0]))) {
+            File file=new File(Values.GetJsonDataFullPath(this));
+            if(file.renameTo(new File(Values.GetRepositoryPathOnLocal(this)+"/"+Values.pathJsonDataOnRepository[0]))) {
                 Toast.makeText(this, getString(R.string.message_rename_file,file.getName(),Values.pathJsonDataOnRepository[0]), Toast.LENGTH_LONG).show();
             }else {
                 Toast.makeText(this, getString(R.string.message_cannot_rename,file.getName()), Toast.LENGTH_LONG).show();
@@ -247,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void SaveJsonFile(){
-        animeJson.SaveToFile(Values.GetJsonDataFullPath());
+        animeJson.SaveToFile(Values.GetJsonDataFullPath(this));
     }
 
     class ParametersSetImage{
@@ -285,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
                 if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
                     coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
                 }
-                final String coverPath=Values.GetCoverPathOnLocal()+"/"+
+                final String coverPath=Values.GetCoverPathOnLocal(this)+"/"+
                         FileUtility.ReplaceIllegalPathChar(animeJson.GetTitle(jsonSortTable.get(i))+coverExt);
                 if(FileUtility.IsFileExists(coverPath)){
                     AsyncTask<Object,Integer,Boolean>task=new AsyncTask<Object, Integer, Boolean>() {
@@ -606,12 +619,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                     if(googleDriveOperator.IsAccountSignIn())
-                        googleDriveOperator.DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
+                        googleDriveOperator.DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath(getBaseContext()));
                     else {
                         googleDriveOperator.SetOnSignInSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
                             @Override
                             public void OnOperationSuccess(Object extra) {
-                                ((GoogleDriveOperator)extra).DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath());
+                                ((GoogleDriveOperator)extra).DownloadFromDrive(Values.appIdentifier,Values.pathJsonDataOnRepository[0],Values.GetJsonDataFullPath(getBaseContext()));
                             }
                         }.SetExtra(googleDriveOperator));
                         googleDriveOperator.SignInClient();
@@ -630,12 +643,12 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage(R.string.message_overwrite_google_drive_warning)
                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                     if(googleDriveOperator.IsAccountSignIn())
-                        googleDriveOperator.UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
+                        googleDriveOperator.UploadToDrive(Values.GetJsonDataFullPath(getBaseContext()),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
                     else {
                         googleDriveOperator.SetOnSignInSuccessActions(new GoogleDriveOperator.OnOperationSuccessActions() {
                             @Override
                             public void OnOperationSuccess(Object extra) {
-                                ((GoogleDriveOperator)extra).UploadToDrive(Values.GetJsonDataFullPath(),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
+                                ((GoogleDriveOperator)extra).UploadToDrive(Values.GetJsonDataFullPath(getBaseContext()),Values.appIdentifier,Values.pathJsonDataOnRepository[0]);
                             }
                         }.SetExtra(googleDriveOperator));
                         googleDriveOperator.SignInClient();
@@ -1083,7 +1096,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void OnViewWebPage(){
         for(int i=0;i<Values.webFiles.length;i++) {
-            String webFile=Values.GetRepositoryPathOnLocal()+"/"+Values.webFiles[i];
+            String webFile=Values.GetRepositoryPathOnLocal(this)+"/"+Values.webFiles[i];
             if (!FileUtility.IsFileExists(webFile)) {
                 try{
                 if(!FileUtility.WriteFile(webFile,StreamUtility.GetStringFromStream(getResources().openRawResource(Values.resIdWebFiles[i])))){
@@ -1095,7 +1108,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         Intent intent=new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.fromFile(new File(Values.GetRepositoryPathOnLocal()+"/"+Values.webFiles[0])));
+        intent.setData(Uri.fromFile(new File(Values.GetRepositoryPathOnLocal(this)+"/"+Values.webFiles[0])));
         intent.setPackage("com.android.chrome");
         try {
             startActivity(intent);

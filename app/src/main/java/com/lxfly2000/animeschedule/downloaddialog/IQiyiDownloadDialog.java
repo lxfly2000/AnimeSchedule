@@ -75,7 +75,7 @@ public class IQiyiDownloadDialog extends DownloadDialog {
                                     IQiyiGet iQiyiGet=new IQiyiGet(ctx);
                                     iQiyiGet.SetOnFinish(onFinishFunction);
                                     iQiyiGet.DownloadBangumi(json.GetWatchUrl(index), i_epi, i_radio, preferences.getString(ctx.getString(
-                                            R.string.key_acfun_save_path), Values.GetRepositoryPathOnLocal()));
+                                            R.string.key_acfun_save_path), Values.GetRepositoryPathOnLocal(ctx)));
                                 }
                             }
                             Toast.makeText(ctx,R.string.message_download_task_created,Toast.LENGTH_SHORT).show();
@@ -136,7 +136,7 @@ public class IQiyiDownloadDialog extends DownloadDialog {
                 if(episodeTitleOK)
                     return;
                 TextView textView=dialog.findViewById(R.id.textViewDownloadNotice);
-                textView.setText(String.format(textView.getText().toString(),IQiyiGet.cookiePath.substring(1+IQiyiGet.cookiePath.lastIndexOf("/"))));
+                textView.setText(String.format(textView.getText().toString(),IQiyiGet.GetCookiePath(ctx).substring(1+IQiyiGet.GetCookiePath(ctx).lastIndexOf("/"))));
                 for(int i=0;i<data.episodeTitles.size();i++){
                     CheckBox checkBox=new CheckBox(dialog.getContext());
                     checkBox.setText("["+data.episodeTitles.get(i).episodeIndex+"] "+data.episodeTitles.get(i).episodeTitle);

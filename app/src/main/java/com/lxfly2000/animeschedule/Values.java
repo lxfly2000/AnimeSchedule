@@ -38,18 +38,21 @@ public class Values {
     //public static final String keyRedirectMaxCount="redirect_max_count";
     public static final int vDefaultRedirectMaxCount=5;
     //public static final String[] starMarks={"★☆","●○"};
+    public static String GetRepositoryPathOnLocal(Context context){
+        return context.getExternalFilesDir(null).getPath();
+    }
     public static String GetRepositoryPathOnLocal(){
         return Environment.getExternalStorageDirectory().getPath()+"/"+appIdentifier;
     }
-    public static String GetCoverPathOnLocal(){
-        return GetRepositoryPathOnLocal()+"/covers";
+    public static String GetCoverPathOnLocal(Context context){
+        return GetRepositoryPathOnLocal(context)+"/covers";
     }
-    public static String GetJsonDataFullPath(){
+    public static String GetJsonDataFullPath(Context context){
         for(int i=0;i<pathJsonDataOnRepository.length;i++){
-            if(FileUtility.IsFileExists(GetRepositoryPathOnLocal()+"/"+pathJsonDataOnRepository[i]))
-                return GetRepositoryPathOnLocal()+"/"+pathJsonDataOnRepository[i];
+            if(FileUtility.IsFileExists(GetRepositoryPathOnLocal(context)+"/"+pathJsonDataOnRepository[i]))
+                return GetRepositoryPathOnLocal(context)+"/"+pathJsonDataOnRepository[i];
         }
-        return GetRepositoryPathOnLocal()+"/"+pathJsonDataOnRepository[0];
+        return GetRepositoryPathOnLocal(context)+"/"+pathJsonDataOnRepository[0];
     }
     public static SharedPreferences GetPreference(Context context){
         return context.getSharedPreferences(appIdentifier,Context.MODE_PRIVATE);
@@ -94,7 +97,7 @@ public class Values {
     }
     //public static final String pkgNameBilibiliVersions[]={"tv.danmaku.bili","com.bilibili.app.in","com.bilibili.app.blue"};
     public static String GetAppDataPathExternal(Context ctx){
-        return ctx.getExternalCacheDir().getParentFile().getParent();
+        return ctx.getExternalFilesDir(null).getParentFile().getParent();
     }
 
     public static final String userAgentChromeWindows="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36";

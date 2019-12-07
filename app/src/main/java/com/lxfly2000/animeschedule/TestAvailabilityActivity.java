@@ -74,7 +74,7 @@ public class TestAvailabilityActivity extends AppCompatActivity {
 
         String src=getIntent().getStringExtra("src");
         if(src==null)
-            src=Values.GetJsonDataFullPath();
+            src=Values.GetJsonDataFullPath(this);
         json=new AnimeJson(src);
         jsonSortTable=new ArrayList<>();
         for(int i=0;i<json.GetAnimeCount();i++)

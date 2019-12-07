@@ -33,9 +33,13 @@ public class AcFunGet extends YouGet{
     private String htmlString;
     private String videoId;
     private SharedPreferences preferences;
-    public static final String cookiePath= Values.GetRepositoryPathOnLocal()+"/cookie_acfun.txt";
+    private String cookiePath;
+    public static String GetCookiePath(Context context){
+        return Values.GetRepositoryPathOnLocal(context)+"/cookie_acfun.txt";
+    }
     public AcFunGet(@NonNull Context context){
         super(context);
+        cookiePath= GetCookiePath(ctx);
         preferences= Values.GetPreference(ctx);
     }
 

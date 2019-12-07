@@ -70,7 +70,7 @@ public class QQDownloadDialog extends DownloadDialog {
                                 }
                             });
                             qqGet.DownloadBangumi(animeItem.episodeTitles.get(i_check).episodeWatchUrl,i_check,0,preferences.getString(ctx.getString(
-                                    R.string.key_acfun_save_path), Values.GetRepositoryPathOnLocal()));
+                                    R.string.key_acfun_save_path), Values.GetRepositoryPathOnLocal(ctx)));
                         }
                     }
                     Toast.makeText(ctx,R.string.message_download_task_created,Toast.LENGTH_SHORT).show();
@@ -94,7 +94,7 @@ public class QQDownloadDialog extends DownloadDialog {
                 if(episodeTitleOK)
                     return;
                 TextView textView=dialog.findViewById(R.id.textViewDownloadNotice);
-                textView.setText(String.format(textView.getText().toString(),QQGet.cookiePath.substring(1+QQGet.cookiePath.lastIndexOf("/"))));
+                textView.setText(String.format(textView.getText().toString(),QQGet.GetCookiePath(ctx).substring(1+QQGet.GetCookiePath(ctx).lastIndexOf("/"))));
                 animeItem=data;
                 for(int i=0;i<data.episodeTitles.size();i++){
                     CheckBox checkBox=new CheckBox(dialog.getContext());

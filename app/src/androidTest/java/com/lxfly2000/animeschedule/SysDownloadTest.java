@@ -28,7 +28,7 @@ public class SysDownloadTest {
         Context context= InstrumentationRegistry.getTargetContext();
         localAnimeJS= StreamUtility.GetStringFromStream(context.getResources().openRawResource(R.raw.anime));
         AndroidSysDownload sysDownload=new AndroidSysDownload(context);
-        String path=Values.GetRepositoryPathOnLocal()+"/test_anime.js";
+        String path=Values.GetRepositoryPathOnLocal(context)+"/test_anime.js";
         if(FileUtility.IsFileExists(path)){
             Log.d("SysDownloadTest","删除已存在的测试文件");
             FileUtility.DeleteFile(path);

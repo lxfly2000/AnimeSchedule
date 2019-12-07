@@ -114,7 +114,7 @@ public class AnimeUpdateNotify extends Service {
         if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
             coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
         }
-        String coverPath=Values.GetCoverPathOnLocal()+"/"+
+        String coverPath=Values.GetCoverPathOnLocal(this)+"/"+
                 FileUtility.ReplaceIllegalPathChar(jsonForNotify.GetTitle(index)+coverExt);
         final NotificationManager nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         //putExtra的参数在获取时为空的问题：https://blog.csdn.net/wangbole/article/details/7465385

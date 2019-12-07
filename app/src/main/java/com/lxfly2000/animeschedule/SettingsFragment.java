@@ -122,7 +122,7 @@ public class SettingsFragment extends PreferenceFragment {
         StringizeSettings();
         sharedPreferences.edit()
                 .putString(getString(R.string.key_bilibili_save_path),Values.GetvDefaultBilibiliSavePath(getActivity()))
-                .putString(getString(R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal())
+                .putString(getString(R.string.key_acfun_save_path),Values.GetRepositoryPathOnLocal(getActivity()))
                 .putBoolean(getString(R.string.key_sort_separate_abandoned),Values.vDefaultSortSeperateAbandoned)
                 .apply();
         ConvertIntSettings();
@@ -135,7 +135,7 @@ public class SettingsFragment extends PreferenceFragment {
         PresentSettings(enumSortOrder,Values.vDefaultSortOrder);
         PresentSettings(checkSeperate,Values.vDefaultSortSeperateAbandoned);
         PresentSettings(prefBilibiliSavePath,Values.GetvDefaultBilibiliSavePath(getActivity()));
-        PresentSettings(prefAcFunSavePath,Values.GetRepositoryPathOnLocal());
+        PresentSettings(prefAcFunSavePath,Values.GetRepositoryPathOnLocal(getActivity()));
         PresentSettings(enumBilibiliClient,Values.vDefaultBilibiliVersionIndex);
         PresentSettings(enumBilibiliApi,Values.vDefaultApiMethod);
         PresentSettings(enumStarMark,Values.vDefaultStarMark);

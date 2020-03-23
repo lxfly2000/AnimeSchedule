@@ -43,7 +43,9 @@ public class BilibiliSpider extends Spider {
 
     int redirectCount=0;
 
-    private void ReadBilibiliURL_OnCallback(final String urlString){//2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
+    private void ReadBilibiliURL_OnCallback(final String urlString){
+        //2018-11-14：B站原来的两个JSON的API均已失效，现在改为了HTML内联JS代码
+        //2020-3-24：在链接为avid或bvid时该方法需要额外从REST API接口获取重定向信息再执行这个函数
         /*输入URL：parsableLinkRegex中的任何一个B站URL
          *
          * 在返回的HTML文本（转换成小写）里找ss#####, season_id:#####, "season_id":#####, ssid:#####, "ssid":#####
@@ -108,16 +110,55 @@ public class BilibiliSpider extends Spider {
                         ReadBilibiliSSID_OnCallback(htmlString.substring(m.start()+7,m.end()));
                         return;
                     }
-                    String ssid_not_found_string=ctx.getString(R.string.message_bilibili_ssid_not_found);
-                    if(urlString.startsWith("http:"))
-                        ssid_not_found_string+="\n"+ctx.getString(R.string.message_bilibili_ssid_not_found_advise);
-                    onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ssid_not_found_string);
+                    //执行重定向流程
+                    ReadBilibiliRedirectURL_OnCallback(urlString);
                 }catch (IOException e){
                     onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_io_exception,e.getLocalizedMessage()));
                 }
             }
         };
-        task.SetUserAgent(Values.userAgentChromeWindows);
+        task.execute(urlString);
+    }
+
+    private void ReadBilibiliRedirectURL_OnCallback(String urlString){
+        String api="http://api.bilibili.com/x/web-interface/view?aid=%s&bvid=%s";
+        String aid=URLUtility.GetBilibiliVideoIdString(urlString);
+        if(aid==null){
+            aid="";
+        }
+        String bvid=URLUtility.GetBilibiliBVIDString(urlString);
+        if(bvid==null){
+            bvid="";
+        }
+        api=String.format(api,aid,bvid);
+        item.title=api;
+        onReturnDataFunction.OnReturnData(item,STATUS_ONGOING,null);
+        AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
+            @Override
+            public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra, URLConnection connection) {
+                if(!success){
+                    onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_unable_to_fetch_episode_id));
+                    return;
+                }
+                try {
+                    JSONObject json = new JSONObject(StreamUtility.GetStringFromStream(stream));
+                    String redirect_url=json.getJSONObject("data").getString("redirect_url");
+                    if(redirect_url.length()>0){
+                        ReadBilibiliURL_OnCallback(redirect_url);
+                        return;
+                    }
+                    String ssid_not_found_string = ctx.getString(R.string.message_bilibili_ssid_not_found);
+                    if (urlString.startsWith("http:"))
+                        ssid_not_found_string += "\n" + ctx.getString(R.string.message_bilibili_ssid_not_found_advise);
+                    item.title = ssid_not_found_string;
+                    onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ssid_not_found_string);
+                }catch (JSONException e){
+                    onReturnDataFunction.OnReturnData(null,STATUS_FAILED,ctx.getString(R.string.message_json_exception,e.getLocalizedMessage()));
+                }catch (IOException e){
+                    onReturnDataFunction.OnReturnData(item,STATUS_FAILED,ctx.getString(R.string.message_io_exception,e.getLocalizedMessage()));
+                }
+            }
+        };
         task.execute(urlString);
     }
 

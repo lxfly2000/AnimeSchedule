@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class URLUtility {
     private static final String regexBilibiliSSID="(anime/[0-9]+)|(/ss[0-9]+)";
     private static final String regexBilibiliAVID="/av[0-9]+";
+    private static final String regexBilibiliBVID="/(BV|bv)[A-Za-z0-9]+";
     public static boolean IsBilibiliBangumiLink(String url){
         Matcher matcher= Pattern.compile(Values.parsableLinksRegex[0]).matcher(url);
         return matcher.find();
@@ -49,6 +50,16 @@ public class URLUtility {
         if(!matcher.find())
             return null;
         return url.substring(matcher.start(),matcher.end());
+    }
+
+    public static String GetBilibiliBVIDString(String url){
+        if(!IsBilibiliVideoLink(url))
+            return null;
+        Matcher matcher=Pattern.compile(regexBilibiliBVID).matcher(url);
+        if(!matcher.find())
+            return null;
+        url=url.substring(matcher.start(),matcher.end());
+        return url.substring(3);
     }
 
     public static String MakeBilibiliSeasonUriString(String ssidString){

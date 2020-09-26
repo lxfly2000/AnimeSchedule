@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent){
         HandleIntent(intent);
+        super.onNewIntent(intent);
     }
 
     private void HandleIntent(Intent intent){
@@ -1132,6 +1133,7 @@ public class MainActivity extends AppCompatActivity {
             if(googleDriveOperator!=null)
                 googleDriveOperator.OnSignInResultReturn(resultCode, data);
         }
+        super.onActivityResult(requestCode,resultCode,data);
     }
 
     @Override

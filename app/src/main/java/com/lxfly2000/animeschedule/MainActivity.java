@@ -404,7 +404,9 @@ public class MainActivity extends AppCompatActivity {
             int position=(int)view.getTag();
             String coverPath=GetLocalCoverPath(animeJson.GetCoverUrl(jsonSortTable.get(position)),position);
             if(FileUtility.IsFileExists(coverPath)) {
-                Toast.makeText(getBaseContext(), coverPath, Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(this,ImageViewActivity.class);
+                intent.setData(Uri.parse("file://"+coverPath));
+                startActivity(intent);
             }
         });
         listAnime.setAdapter(customAdapter);

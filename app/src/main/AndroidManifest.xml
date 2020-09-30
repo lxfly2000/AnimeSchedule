@@ -16,7 +16,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".TestAvailabilityActivity" android:label="@string/menu_test_availability">
+        <activity android:name=".ImageViewActivity" android:theme="@style/ImagePreview">
+        </activity>
+        <activity
+                android:name=".TestAvailabilityActivity"
+                android:label="@string/menu_test_availability">
         </activity>
         <activity
                 android:name=".SettingsActivity"

@@ -197,4 +197,5 @@
     <string name="message_merged_videos">已合併影片</string>
     <string name="message_fetch_cna_failed">無法獲取 CNA Cookie, 請手動設定 Cookie.</string>
     <string name="message_move_files">移動：%s\n至：%s…</string>
+    <string name="menu_open_image_external">使用外部程式打開圖像</string>
 </resources>

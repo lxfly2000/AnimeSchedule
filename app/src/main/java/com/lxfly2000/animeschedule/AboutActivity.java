@@ -59,6 +59,7 @@ public class AboutActivity extends AppCompatActivity {
         SetTextViewWithURL(findViewById(R.id.textViewUsingFilepicker),null);
         SetTextViewWithURL(findViewById(R.id.textViewUsingBilibiliMerge),null);
         SetTextViewWithURL(findViewById(R.id.textViewUsingMp4parser),null);
+        SetTextViewWithURL(findViewById(R.id.textViewUsingPhotoView),null);
         findViewById(R.id.buttonDonateQQ).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonDonateAlipay).setOnClickListener(buttonClickListener);
         findViewById(R.id.buttonContactBilibili).setOnClickListener(buttonClickListener);

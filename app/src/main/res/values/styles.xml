@@ -12,12 +12,28 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/FadeInOutAnimation</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
-    <!--https://stackoverflow.com/q/28247599-->
+    <!-- https://stackoverflow.com/q/28247599 -->
     <style name="SearchViewDark" parent="@android:style/Widget.AutoCompleteTextView">
         <item name="android:textColor">@android:color/primary_text_dark</item>
+    </style>
+    <style name="ImagePreview" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowBackground">@color/colorHalfTransparent</item>
+        <item name="android:windowAnimationStyle">@style/FadeInOutAnimation</item>
+    </style>
+    <!-- https://www.jianshu.com/p/6878d556c9cd -->
+    <style name="FadeInOutAnimation" parent="@android:style/Animation.Activity">
+        <!--Upper Activity Entering-->
+        <item name="android:activityOpenEnterAnimation">@anim/anim_fade_in</item>
+        <!--Lower Activity Exiting-->
+        <item name="android:activityOpenExitAnimation">@anim/anim_fade_out</item>
+        <!--Lower Activity Entering-->
+        <item name="android:activityCloseEnterAnimation">@anim/anim_fade_in</item>
+        <!--Upper Activity Exiting-->
+        <item name="android:activityCloseExitAnimation">@anim/anim_fade_out</item>
     </style>
 
 </resources>

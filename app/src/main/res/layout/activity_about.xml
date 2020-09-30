@@ -177,6 +177,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textViewUsingMp4parser"
                     android:textSize="18sp"/>
+            <TextView
+                    android:text="@string/label_using_3rdparty_photoview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textViewUsingPhotoView"
+                    android:textSize="18sp"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

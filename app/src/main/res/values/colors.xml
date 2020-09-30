@@ -9,4 +9,5 @@
     <color name="colorHttpClient">#F30</color>
     <color name="colorHttpServer">#C0F</color>
     <color name="colorHttpTimeOut">#E63</color>
+    <color name="colorHalfTransparent">#80000000</color>
 </resources>

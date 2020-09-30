@@ -294,13 +294,7 @@ public class MainActivity extends AppCompatActivity {
             final HashMap<String,Object>item=(HashMap)adapter.getItem(i);
             if(item.get("cover")==null){
                 String coverUrl=animeJson.GetCoverUrl(jsonSortTable.get(i));
-                String[]tempSplit=coverUrl.split("/");
-                String coverExt=".jpg";
-                if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
-                    coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
-                }
-                final String coverPath=Values.GetCoverPathOnLocal(this)+"/"+
-                        FileUtility.ReplaceIllegalPathChar(animeJson.GetTitle(jsonSortTable.get(i))+coverExt);
+                final String coverPath=GetLocalCoverPath(coverUrl,i);
                 if(FileUtility.IsFileExists(coverPath)){
                     AsyncTask<Object,Integer,Boolean>task=new AsyncTask<Object, Integer, Boolean>() {
                         @Override
@@ -350,6 +344,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private String GetLocalCoverPath(String coverUrl,int listPosition){
+        String[]tempSplit=coverUrl.split("/");
+        String coverExt=".jpg";
+        if(tempSplit.length>0&&tempSplit[tempSplit.length-1].contains(".")){
+            coverExt=tempSplit[tempSplit.length-1].substring(tempSplit[tempSplit.length-1].lastIndexOf('.'));
+        }
+        String coverPath=Values.GetCoverPathOnLocal(this)+"/"+
+                FileUtility.ReplaceIllegalPathChar(animeJson.GetTitle(jsonSortTable.get(listPosition))+coverExt);
+        return coverPath;
+    }
+
     private void DisplayList(){
         RebuildSortTable(preferences.getInt(getString(R.string.key_sort_method),Values.vDefaultSortMethod),
                 preferences.getInt(getString(R.string.key_sort_order),Values.vDefaultSortOrder),
@@ -357,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<HashMap<String,Object>>listItems=new ArrayList<>();
         String[]keyStrings={"title","description","ranking","schedule","cover"};
         int[]viewIds={R.id.textAnimeTitle,R.id.textAnimeDescription,R.id.textRanking,R.id.textSchedule,R.id.imageCover};
-        SimpleAdapter customAdapter=new SimpleAdapter(this,listItems,R.layout.item_anime,keyStrings,viewIds);
+        AnimeItemAdapter customAdapter=new AnimeItemAdapter(this,listItems,R.layout.item_anime,keyStrings,viewIds);
         String starMarks=getResources().getStringArray(R.array.star_marks)[preferences.getInt(getString(R.string.key_star_mark),Values.vDefaultStarMark)];
         String starMarkFull=starMarks.substring(0,1),starMarkEmpty=starMarks.substring(1,2);
         for(int i=0;i<animeJson.GetAnimeCount();i++){
@@ -394,6 +399,13 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             return false;
+        });
+        customAdapter.SetOnImageClickListener(R.id.imageCover,view -> {
+            int position=(int)view.getTag();
+            String coverPath=GetLocalCoverPath(animeJson.GetCoverUrl(jsonSortTable.get(position)),position);
+            if(FileUtility.IsFileExists(coverPath)) {
+                Toast.makeText(getBaseContext(), coverPath, Toast.LENGTH_LONG).show();
+            }
         });
         listAnime.setAdapter(customAdapter);
         listAnime.setSelectionFromTop(posListAnimeScroll,posListAnimeTop);

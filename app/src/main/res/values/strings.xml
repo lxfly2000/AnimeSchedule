@@ -272,4 +272,5 @@
     <string name="label_using_3rdparty_photoview" translatable="false">
         <a href="https://github.com/chrisbanes/PhotoView">chrisbanes/PhotoView</a>
     </string>
+    <string name="tag_transition_name_image_view" translatable="false">ImageView</string>
 </resources>

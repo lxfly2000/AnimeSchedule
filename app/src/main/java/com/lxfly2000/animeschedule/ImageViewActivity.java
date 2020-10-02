@@ -23,7 +23,7 @@ public class ImageViewActivity extends Activity {
         photoView=findViewById(R.id.photo_view);
         photoView.setImageURI(getIntent().getData());
         photoView.setOnClickListener(view -> {
-            finish();
+            finishAfterTransition();
         });
         registerForContextMenu(photoView);
         photoView.setOnLongClickListener(view -> {

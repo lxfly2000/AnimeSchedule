@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.BaseColumns;
+import androidx.core.app.ActivityOptionsCompat;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -404,9 +405,10 @@ public class MainActivity extends AppCompatActivity {
             int position=(int)view.getTag();
             String coverPath=GetLocalCoverPath(animeJson.GetCoverUrl(jsonSortTable.get(position)),position);
             if(FileUtility.IsFileExists(coverPath)) {
+                ActivityOptionsCompat options=ActivityOptionsCompat.makeSceneTransitionAnimation(this,view,getString(R.string.tag_transition_name_image_view));
                 Intent intent=new Intent(this,ImageViewActivity.class);
                 intent.setData(Uri.parse("file://"+coverPath));
-                startActivity(intent);
+                startActivity(intent,options.toBundle());
             }
         });
         listAnime.setAdapter(customAdapter);

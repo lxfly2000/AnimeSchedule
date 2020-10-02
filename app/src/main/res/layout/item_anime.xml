@@ -17,7 +17,7 @@
                 android:layout_marginBottom="0dp" android:layout_marginLeft="0dp"
                 app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="0dp" android:contentDescription="@string/label_anime_cover"
-                android:adjustViewBounds="true"/>
+                android:adjustViewBounds="true" android:transitionName="@string/tag_transition_name_image_view"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
             android:orientation="vertical"

@@ -63,7 +63,7 @@ public class Values {
         editPref.apply();
     }
     public static final String[]parsableLinksRegex={
-            "(.*bangumi\\.bilibili\\.com/anime/[0-9]+)|(.*bilibili\\.com/bangumi/play/(ss|ep)[0-9]+)|(.*bilibili\\.com/bangumi/media/md[0-9]+)|(.*b23\\.tv/((ss|ep|av)\\d+|(bv|BV)[A-Za-z0-9]+))|(.*bangumi\\.bilibili\\.com/review/media/\\d+)|(.*bilibili\\.com/video/(av\\d+)|((bv|BV)[A-Za-z0-9]+))",
+            "(.*bangumi\\.bilibili\\.com/anime/[0-9]+)|(.*bilibili\\.com/bangumi/play/(ss|ep)?[0-9]+)|(.*bilibili\\.com/bangumi/media/md[0-9]+)|(.*b23\\.tv/((ss|ep|av)\\d+|(bv|BV)[A-Za-z0-9]+))|(.*bangumi\\.bilibili\\.com/review/media/\\d+)|(.*bilibili\\.com/video/(av\\d+)|((bv|BV)[A-Za-z0-9]+))",
             ".*iqiyi\\.com/[av]_.*\\.html",
             "(.*v\\.qq\\.com/x/cover/.*\\.html)|(.*m\\.v\\.qq\\.com/(play/)?play\\.html\\?[A-Za-z0-9\\-_=&]+)|(.*m\\.v\\.qq\\.com/cover/.*\\.html)|(.*v\\.qq\\.com/detail/./.*\\.html)|(.*v\\.qq\\.com/biu/msearch_detail\\?id=[A-Za-z0-9\\-_]+)",
             "(.*list\\.youku\\.com/show/id_.*\\.html)|(.*v\\.youku\\.com/v_show/id_.*\\.html)|(.*m\\.youku\\.com/video/id_.*\\.html)",

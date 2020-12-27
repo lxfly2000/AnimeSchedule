@@ -19,11 +19,13 @@
         <item>Bilibili Danmaku (tv.danmaku.bili)</item>
         <item>Bilibili International (com.bilibili.app.in)</item>
         <item>Bilibili Blue (com.bilibili.app.blue)</item>
+        <item>Bilibili (com.bstar.intl)</item>
     </string-array>
     <string-array name="pkg_name_bilibili_versions">
         <item>tv.danmaku.bili</item>
         <item>com.bilibili.app.in</item>
         <item>com.bilibili.app.blue</item>
+        <item>com.bstar.intl</item>
     </string-array>
     <string-array name="list_bilibili_video_quality">
         <item>Low(Legacy)</item>

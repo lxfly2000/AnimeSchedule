@@ -14,7 +14,7 @@ public class TestHash {
     }
     @Test
     public void TestFileMD5(){
-        String digest="a025094483078f2b92aac7094b03a514";
+        String digest="5329994d18cb66ac70052b694a89bd05";
         String src="114514.txt";
         FileUtility.WriteFile(src,"114514\n1919\n810\n就是这↑里↓了\n哼！哼！啊啊啊啊啊啊啊啊啊啊啊啊啊！！");
         Assert.assertEquals(digest,HashUtility.GetFileMD5(src));

@@ -75,7 +75,10 @@ public class AndroidUtility {
                 new String[] { MediaStore.Images.Media._ID }, MediaStore.Images.Media.DATA + "=? ",
                 new String[] { filePath }, null);
         if (cursor != null && cursor.moveToFirst()) {
-            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
+            int index=cursor.getColumnIndex(MediaStore.MediaColumns._ID);
+            if(index<0)
+                return null;
+            int id = cursor.getInt();
             Uri baseUri = Uri.parse("content://media/external/images/media");
             return Uri.withAppendedPath(baseUri, "" + id);
         } else {

@@ -78,7 +78,7 @@ public class AndroidUtility {
             int index=cursor.getColumnIndex(MediaStore.MediaColumns._ID);
             if(index<0)
                 return null;
-            int id = cursor.getInt();
+            int id = cursor.getInt(index);
             Uri baseUri = Uri.parse("content://media/external/images/media");
             return Uri.withAppendedPath(baseUri, "" + id);
         } else {

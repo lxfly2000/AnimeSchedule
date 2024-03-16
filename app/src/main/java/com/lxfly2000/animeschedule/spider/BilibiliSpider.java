@@ -223,11 +223,15 @@ public class BilibiliSpider extends Spider {
                         }
                     }catch (JSONException e){/*Ignore*/}
                     try {
-                        String countString = htmlJson.getString("total_ep");
+                        //2024-3-16：原有链接已失效，字段名已更改
+                        /*String countString = htmlJson.getString("total_ep");
                         if (countString.contentEquals("0"))
                             item.episodeCount=-1;
                         else
-                            item.episodeCount=Integer.parseInt(countString);
+                            item.episodeCount=Integer.parseInt(countString);*/
+                        item.episodeCount=htmlJson.getInt("total");
+                        if(item.episodeCount==0)
+                            item.episodeCount=-1;
                     }catch (JSONException e){/*Ignore*/}
                     try {
                         StringBuilder tagString = new StringBuilder();
@@ -243,8 +247,11 @@ public class BilibiliSpider extends Spider {
                         for(int i=0;i<epArray.length();i++){
                             AnimeItem.EpisodeTitle et=new AnimeItem.EpisodeTitle();
                             JSONObject epObject=epArray.getJSONObject(i);
-                            et.episodeTitle=epObject.getString("index_title");
-                            et.episodeIndex=epObject.getString("index");
+                            //2024-3-16：原有链接已失效，字段名已更改
+                            //et.episodeTitle=epObject.getString("index_title");
+                            //et.episodeIndex=epObject.getString("index");
+                            et.episodeTitle=epObject.getString("long_title");
+                            et.episodeIndex=epObject.getString("title");
                             item.episodeTitles.add(et);
                         }
                     }catch (JSONException e){/*Ignore*/}

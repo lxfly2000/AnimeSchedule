@@ -165,7 +165,10 @@ public class BilibiliSpider extends Spider {
     private void ReadBilibiliSSID_OnCallback(final String idString){
         item.title="SSID:"+idString;
         onReturnDataFunction.OnReturnData(item,STATUS_ONGOING,null);
-        final String requestUrl="https://bangumi.bilibili.com/view/web_api/season?season_id="+idString;
+        //2024-3-16：原有链接已失效：
+        //final String requestUrl="https://bangumi.bilibili.com/view/web_api/season?season_id="+idString;
+        //参考：https://github.com/Nemo2011/bilibili-api/blob/a0474871bbbc0cc1b85dcae6e8fa0c33035ef279/bilibili_api/data/api/bangumi.json#L90
+        final String requestUrl="https://api.bilibili.com/pgc/view/web/season?season_id="+idString;
         AndroidDownloadFileTask task=new AndroidDownloadFileTask() {
             @Override
             public void OnReturnStream(ByteArrayInputStream stream, boolean success, int response, Object extra,URLConnection connection) {

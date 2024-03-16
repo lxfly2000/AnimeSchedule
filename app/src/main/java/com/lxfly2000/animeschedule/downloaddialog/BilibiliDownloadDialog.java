@@ -153,7 +153,9 @@ public class BilibiliDownloadDialog extends DownloadDialog{
                         CheckBox checkBox=new CheckBox(dialog.getContext());
                         try {
                             JSONObject epObject = epArray.getJSONObject(i);
-                            checkBox.setText("[" + epObject.getString("index") + "] " + epObject.getString("index_title"));
+                            //2024-3-16：原有链接已失效，字段名已更改
+                            //checkBox.setText("[" + epObject.getString("index") + "] " + epObject.getString("index_title"));
+                            checkBox.setText("[" + epObject.getString("title") + "] " + epObject.getString("long_title"));
                         }catch (JSONException e){
                             checkBox.setText("["+(i+1)+"] ("+e.getLocalizedMessage()+")");
                         }
@@ -168,6 +170,9 @@ public class BilibiliDownloadDialog extends DownloadDialog{
                 }
             }
         };
-        task.execute("https://bangumi.bilibili.com/view/web_api/season?season_id="+ssid);
+        //2024-3-16：原有链接已失效：
+        //task.execute("https://bangumi.bilibili.com/view/web_api/season?season_id="+ssid);
+        //参考：https://github.com/Nemo2011/bilibili-api/blob/a0474871bbbc0cc1b85dcae6e8fa0c33035ef279/bilibili_api/data/api/bangumi.json#L90
+        task.execute("https://api.bilibili.com/pgc/view/web/season?season_id="+ssid);
     }
 }
